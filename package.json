@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vuepress dev docs",
+    "dev:hot": "vuepress dev docs --temp .temp",
     "build": "vuepress build docs",
     "deploy": "bash deploy.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +20,7 @@
     "vuepress": "^1.6.0",
     "vuepress-plugin-comment": "^0.7.3",
     "vuepress-plugin-reading-progress": "^1.0.10",
-    "vuepress-plugin-smooth-scroll": "0.0.10"
+    "vuepress-plugin-smooth-scroll": "0.0.10",
+    "watchpack": "^2.1.1"
   }
 }

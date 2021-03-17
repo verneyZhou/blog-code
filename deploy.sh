@@ -14,7 +14,7 @@ npm run build
 cd docs/.vuepress/dist
 
 # 如果是发布到自定义域名
-# echo 'www.example.com' > CNAME
+echo 'docs.verneyzhou-code.cn' > CNAME
 
 git init
 git add -A
@@ -27,6 +27,8 @@ git commit -m 'blog submit'
 
 # https形式
 # git push -f https://github.com/<USERNAME>/<USERNAME>.github.io.git  master
+
+
 git push -f https://github.com/verneyZhou/verneyZhou.github.io.git  master
 
 
