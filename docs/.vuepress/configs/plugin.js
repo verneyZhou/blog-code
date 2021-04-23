@@ -4,6 +4,7 @@ module.exports = [
     '@vuepress/nprogress', // 进度条
     'reading-progress', // 阅读进度插件
     'vuepress-plugin-smooth-scroll', // 你的 VuePress 站点中使用平滑滚动
+    'flowchart', // 流程图
     [
         '@vuepress/pwa', // pwa
         {

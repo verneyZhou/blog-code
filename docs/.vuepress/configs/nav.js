@@ -4,12 +4,12 @@ module.exports = [
         items: [
             {text: 'html', link: '/frontend/html/'},
             {text: 'css', link: '/frontend/css/'},
-            {text: 'js', link: '/frontend/js/'},
             {text: '小程序', link: '/frontend/wechat/'},
             {text: 'H5', link: '/frontend/h5/'},
             {text: 'PC&后台', link: '/frontend/pc/'},
         ]
     },
+    { text: 'JavaScript', link: '/frontend/js/' },
     { text: '工具', 
         items: [
             {text: '开发', 
@@ -27,11 +27,11 @@ module.exports = [
         ]
     },
     { text: '面试', link: '/interview/' },
-    { text: '关于', link: '/about/' },
     { text: '源码',
         items: [
             {text: 'vuex源码分析', link: '/code/vuex/'}
         ]
     },
     { text: 'Github', link: 'https://github.com/verneyZhou' },
+    { text: '关于', link: '/about/' },
 ]

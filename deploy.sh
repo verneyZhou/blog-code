@@ -17,6 +17,7 @@ cd docs/.vuepress/dist
 echo 'docs.verneyzhou-code.cn' > CNAME
 
 git init
+# git pull
 git add -A
 git commit -m 'blog submit'
 

@@ -12,14 +12,15 @@ const path = require('path');
 
 
 module.exports = {
-    title: '阿沐的博客',
+    title: '夜里骑车看海',
     description: '这是阿沐的博客哦~',
     head,
     lastUpdated: true, // 显示更新时间,设置true，开启最后更新时间
     themeConfig,
     markdown,
     alias: {
-        'styles': path.resolve(__dirname, './styles')
+        'styles': path.resolve(__dirname, './styles'),
+        'images': path.resolve(__dirname, './images')
     },
     plugins: plugins
 }
