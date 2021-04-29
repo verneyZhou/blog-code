@@ -4,6 +4,7 @@
 
 
 ## 原生js系列
+---
 
 ### 1. 手写一个new操作符
 
@@ -382,16 +383,16 @@ console.log(Object.assign2({},undefined, null, '123',123, true, {name: 'tom', [S
 
 ### 函数柯里化
 
----
+
 ## 常用方法
-
-### 1.防抖
-
-
-
-
 ---
+
+
+
+
+
 ## 数组方法
+---
 
 ### 1.`Array.prototype.reduce`的模拟实现
 > 关于`reduce`的模拟实现，具体见[数组的reduce学习笔记](./array-reduce)，这里不再赘述。

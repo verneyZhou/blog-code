@@ -6,7 +6,7 @@
 ## 前言
 在前端项目开发过程当中，[Vuex](https://vuex.vuejs.org/zh/)是一个专为 [Vue.js](https://cn.vuejs.org/) 应用程序开发的状态管理工具。
 
-这里是我的Vuex源码学习记录。
+以下是我爆肝半月整理的Vuex源码学习记录。
 
 ## Vuex的使用
 > 这里简单回顾下Vuex的使用，具体可进入[官方文档](https://vuex.vuejs.org/zh/guide/)查询。

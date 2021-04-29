@@ -2,8 +2,6 @@
 
 
 
-
-
 ## 一些常用的js代码技巧
 这里收集的是日常项目开发中一些比较常用的js代码，短小精悍，方便实用。
 
@@ -137,6 +135,30 @@ console.log(ageFn(23)); // adult
 2. [JavaScript复杂判断的更优雅写法](https://zhuanlan.zhihu.com/p/48917912)
 
 
+### js解构的使用
+> ES6[解构](https://es6.ruanyifeng.com/#docs/destructuring)的常见用途~
+1. 交换变量
+```js
+let a = 1;
+let b = 2;
+
+[a, b] = [b, a];
+
+console.log(a,b); // 2 1
+```
+2. 访问数组元素
+> 将`colors`数组的第一个元素赋给`firstColor`变量；如果数组在索引`0`处没有任何元素，则分配`white`默认值
+```js
+const colors = [];
+// 访问第一个元素
+let [firstColor = 'white'] = colors;
+console.log(firstColor); // white
+
+// 访问第二个元素，默认red
+let [,secondColor = 'red'] = colors;
+console.log(secondColor);
+```
+
 
 ### 其他
 
@@ -198,6 +220,27 @@ for (let p of searchParams) {
 ```
 
 
+#### 4. 实现：`foo(1)(2)(3).getValue()`或`foo(1,2,3).getValue()`等于6
+```js
+function foo(...args) {
+    // target是一个函数，先将传入的参数合并到一起，再递归调用foo函数
+    const target = (...arg1s) => foo(...[...args, ...arg1s])
+    // reduce实现累加
+    target.getValue = () => args.reduce((p, n) => p+ n, 0)
+    return target // 返回target
+}
+
+var f1 = foo(1,2,3);
+console.log(f1.getValue()); // 6
+
+var f2 = foo(1,2)(3);
+console.log(f2.getValue()); // 6
+
+var f3 = foo(1)(2)(3);
+console.log(f3.getValue()); // 6 
+```
+
+
 
 
 
@@ -208,3 +251,4 @@ for (let p of searchParams) {
 https://juejin.cn/post/6844903924520992782
 
 - [用js实现一个无限循环的动画](https://www.jianshu.com/p/fa5512dfb4f5)
+[https://mp.weixin.qq.com/s/lwQ2lTPMceGBrjaByc87DA](https://mp.weixin.qq.com/s/lwQ2lTPMceGBrjaByc87DA)

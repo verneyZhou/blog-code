@@ -26,5 +26,6 @@ module.exports = [
         }
     ],
     ["link", { rel: "stylesheet", href: "/styles/css/style.css" }], // // 这种方式也可以覆盖默认样式，相当于是行内样式
-    ["script", { charset: "utf-8", src: "/js/disable-user-zoom.js" }] // 移动端,禁止用户缩放,引入你写的js
+    ["script", { type: "utf-8", src: "/js/disable-user-zoom.js" }], // 移动端,禁止用户缩放,引入你写的js
+    ["script", { charset: "utf-8", src: "/js/wx.js" }],
 ]

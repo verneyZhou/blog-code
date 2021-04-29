@@ -1,5 +1,5 @@
 module.exports = [
-    { text: '首页', link: '/' },
+    { text: '最新', link: '/' },
     { text: '前端', 
         items: [
             {text: 'html', link: '/frontend/html/'},
@@ -10,28 +10,22 @@ module.exports = [
         ]
     },
     { text: 'JavaScript', link: '/frontend/js/' },
-    { text: '工具', 
+    { text: '项目',
         items: [
-            {text: '开发', 
-            items: [
-                {text: 'vscode', link: '/tool/vscode/'},
-                {text: 'node', link: '/tool/node/'}
-            ]
-            },
-            {text: '文档', 
-            items: [
-                {text: '笔记', link: '/tool/note/'},
-                {text: '整理', link: 'frontend/note/'}
-            ]
-            },
+            {text: 'vue-node-admin', link: '/project/vue-node-admin/'},
+            {text: 'h5', link: '/project/mobile-h5/'},
+            {text: '小程序', link: '/mini-program/'},
         ]
     },
-    { text: '面试', link: '/interview/' },
     { text: '源码',
         items: [
             {text: 'vuex源码分析', link: '/code/vuex/'}
         ]
     },
+    { text: '工具', link: '/tool/'},
+    
+    
+    { text: '面试', link: '/interview/' },
     { text: 'Github', link: 'https://github.com/verneyZhou' },
     { text: '关于', link: '/about/' },
 ]
