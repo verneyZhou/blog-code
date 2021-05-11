@@ -12,6 +12,7 @@
 - [js深入：js的原型与原型链](./prototype)
 - [js深入：从执行上下文到闭包](./closure)
 - [js深入：js的事件循环](./async-js)
+- [js深入：面试题整理](./interview)
 
 
 
@@ -20,7 +21,7 @@
 - [js中数组常用方法整理](./array-methods)
 - [手写系列](./handle-codes)
 - [一些js的使用小技巧](./js-skills)
-- [宏任务、微任务-面试题整理](./async-interview)
+
 - [一些笔试题](./js-interview)
 
 

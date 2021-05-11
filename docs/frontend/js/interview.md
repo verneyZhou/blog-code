@@ -1,6 +1,40 @@
 
 
 
+1. 试着运行以下代码，会报错：
+``` js
+var obj = { x: 1, y: 2, z: 3 };
+[...obj]; // Uncaught TypeError: obj is not iterable
+```
+因为扩展运算符`...` 和 for-of 语句遍历`iterable`对象定义要遍历的数据。Array 或Map 是具有默认迭代行为的内置迭代器。对象不是可迭代的，但是可以通过使用iterable和iterator协议使它们可迭代。
+> 在Mozilla文档中，如果一个对象实现了`@@iterator`方法，那么它就是可迭代的，这意味着这个对象(或者它原型链上的一个对象)必须有一个带有`@@iterator`键的属性，这个键可以通过常量`Symbol.iterator`获得。
+``` js
+var obj = { x: 1, y: 2, z: 3 };
+obj[Symbol.iterator] = function() {
+  
+  // iterator 是一个具有 next 方法的对象，
+  // 它的返回至少有一个对象
+  // 两个属性：value＆done。
+
+  // 返回一个 iterator 对象
+  return {
+    next: function() {
+      if (this._countDown === 3) {
+        const lastValue = this._countDown;
+        return { value: this._countDown, done: true };
+      }
+      this._countDown = this._countDown + 1;
+      return { value: this._countDown, done: false };
+    },
+    _countDown: 0
+  };
+};
+[...obj]; // [1,2,3]
+```
+这时再执行`...obj`就能正常打印：`[1,2,3]`。
+
+
+
 #### Promise面试题
 
 [Promise](https://mp.weixin.qq.com/s/cN40pHBfttZ3O2oEbVPAcg)

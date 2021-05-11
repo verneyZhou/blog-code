@@ -72,3 +72,6 @@ user = 'root';
 password = '2020zyZY'
 ```
 
+
+
+<fix-link label="Back" href="/project/vue-node-admin/"></fix-link>

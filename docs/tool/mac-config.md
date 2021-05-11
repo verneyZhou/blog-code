@@ -9,7 +9,7 @@
 
 ### 常用工具
 
-- 浏览器：谷歌浏览器
+- 浏览器：谷歌浏览器、Safari(mac自带)、Firefox
 >设置搜索引擎为百度，安装扩展程序（FeHelper、）
 - 笔记：有道云笔记、xmind
 - 网盘：百度云网盘
@@ -20,21 +20,24 @@
 - photo shop
 > 百度云网盘中的三个下载包下载，解压，断网，安装，用TNT破解，重新打开即可
 - office办公软件：ppt、excel、word
-- 聊天工具：钉钉、微信
+- 聊天工具：钉钉、微信、qq、
 - [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 - 终端工具：[iTerm2](http://www.iterm2.com/)
 - 终端提示工具：[oh-my-zsh](https://ohmyz.sh)
 - api调试工具：postMan
 - 抓包工具：[Charles](https://xclient.info/s/charles.html) （或 百度云下载）
 - 代码编辑工具：[WebStorm](https://www.jetbrains.com/zh-cn/webstorm/)、[VSCode](https://code.visualstudio.com/)
-- 翻墙工具
+- 搭梯子：v2Ray
+- 娱乐工具：网易云、qq音乐、B站、youtube...
 
 
 ### 工作涉及
 - 项目工具：shimo+jira(项目管理)、wiki(需求文档)
 - UI 设计工具：[蓝湖](https://lanhuapp.com/)
-- 技术社区：[掘金](https://juejin.im/timeline)
+- 技术社区：[掘金](https://juejin.im/timeline)、极客时间
 
+- mysql客户端：Navicat Premium
+- 静态资源上传远程服务器：FileZilla
 
 
 ## 配置开发环境

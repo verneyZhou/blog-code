@@ -3,5 +3,5 @@
 
 ## 目录
 
-- [开发流程](./flow)
-- [微信授权及jssdk初始化](./auth)
+- [开发流程](./flow.html)
+- [微信授权及jssdk初始化](./auth.html)

@@ -1,5 +1,6 @@
 
-const nav = require('./nav');
+const nav = require('./nav'); // 导航
+const sidebar = require('./sidebar'); // 侧边栏
 
 module.exports = {
     // logo: "../public/images/logo.jpg", // 左上角logo
@@ -7,6 +8,7 @@ module.exports = {
     // repoLabel: 'GitHub', // 链接的名称
     // docsDir: 'docs',
     sidebar: 'auto',
-    displayAllHeaders: true, // 默认值：false
+    // sidebar,
+    displayAllHeaders: false, // 默认值：false
     nav: nav
 }

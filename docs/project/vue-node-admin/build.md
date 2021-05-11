@@ -75,9 +75,14 @@
         - 静态资源
     - components
         - 公共组件
+    - plugins
         - 公共插件
     - directive
         - 指令
+    - filters
+        - 过滤函数
+    - mixins
+        - 混入
     - router
         - 路由
     - icons
@@ -98,5 +103,10 @@
         - 入口js
 
 ### 单元测试
+
+
+
+
+<fix-link label="Back" href="/project/vue-node-admin/"></fix-link>
 
 

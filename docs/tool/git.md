@@ -18,7 +18,7 @@
 > branch-name为分支名
 
 
-> 在gitlab上删除分支后，本地git branch -r还能看到怎么办？[参考](https://www.cnblogs.com/lyraLee/p/10916504.html)
+> Q：在gitlab上删除分支后，本地git branch -r还能看到怎么办？[参考](https://www.cnblogs.com/lyraLee/p/10916504.html)
 - `git remote prune --dry-run origin` 查看当前有哪些是该消失还存在的分支
 - `git remote prune origin` 删除上面展示的所有分支
 - `git fetch --prune origin`   如果没有结果输出说明已经删除完成了
@@ -371,11 +371,37 @@ git config --global user.email "your email"
 用yarn试下~
 
 
-8. 如何下载公司`gitlab`上的项目？
+8. `git pull`报错：
+``` shell
+You have not concluded your merge (MERGE_HEAD exists).
+Please, commit your changes before you can merge.
+```
+可能是因为在你以前pull下来的代码没有自动合并导致的.
+``` shell
+# 取消某次合并
+git merge --abort #如果Git版本 >= 1.7.4
+git reset --merge #如果Git版本 >= 1.6.1
+```
+然后再`git pull`
+
+
+
+
+
+
+## 备注
+
+- 如何下载公司`gitlab`上的项目？
     1. 下载vpn软件:`easy connect`
     2. 进入`gitlab`项目页面，添加电脑`id_rsd.pub`到`sshKey`
     3. `git clone` 即可
-    注：一般只能下载项目，如果想push的话会报错，如果把`git config user`的name和email改为公司git账号应该就可以推送了（只是猜想。。。）
+    > 注：一般只能下载项目，如果想push的话会报错，如果把`git config user`的name和email改为公司git账号应该就可以推送了（只是猜想。。。）
+
+
+- [github](https://github.com/)访问不了了~
+    - 搭梯子翻墙~具体流程在我另一篇博文里[搭梯子](./vpn)；
+    - 配置git520，具体参考[GitHub 访问不了？教你几招轻松解决](https://zhuanlan.zhihu.com/p/358183268)
+    > [github520](https://github.com/521xueweihan/GitHub520)
 
 
 

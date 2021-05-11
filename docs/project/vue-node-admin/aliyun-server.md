@@ -249,6 +249,9 @@ service sshd restart
 3. 有时访问已经添加ssl证书的域名会访问不了，提示证书已撤销，重新购买证书，绑定域名，下载证书放到node项目的`https/`目录下，和niginx服务器的`upload/https/`目录下，注意这里本地的nginx服务器和远程的ngnix服务器都要更证书；重新把项目跑起来就可以了~
 
 
+
+<fix-link label="Back" href="/project/vue-node-admin/"></fix-link>
+
 <!-- 2021-04-26 -->
 
 

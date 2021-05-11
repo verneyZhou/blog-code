@@ -2,7 +2,6 @@
 
 
 
-const sidebar = require('./configs/sidebar');
 const plugins = require('./configs/plugin');
 const head = require('./configs/head');
 const markdown = require('./configs/markdown');
@@ -12,7 +11,7 @@ const path = require('path');
 
 
 module.exports = {
-    base: '/blog/', // 如果部署到阿里云服务器需要添加这个
+    // base: '/blog/', // 如果部署到阿里云服务器需要添加这个
     title: '夜里骑车看海',
     description: '这是阿沐的博客哦~',
     head,

@@ -267,9 +267,9 @@ var a = 111
 console.log(a); // 20
 console.log(b); // 3
 ```
-函数`a`是存在于`Block`作用域中，刚开始执行`window.a = a`时，window下的a被赋值为函数；之后又被赋值为`20`；所以最后打印`20`；而`var`没有块级作用域，`全局的{}`中声明的变量会自动挂载到`window`下面作为全局变量，所以最后打印`3`
+函数`a`是存在于`Block`作用域中，刚开始执行`window.a = a`时，window下的a被赋值为函数；之后又被赋值为`20`；所以最后打印`20`；而`var`没有块级作用域，`全局的{}`中声明的变量会自动挂载到`window`下面作为全局变量，所以最后打印`3`。
 
-[let](https://mp.weixin.qq.com/s/AIMxdo3P466jYzdI1_i5lQ)
+
 
 
 

@@ -113,5 +113,6 @@ jssdk初始化的时候传参url为当前页面url，因为获取签名的url必
 [参考](https://developers.weixin.qq.com/community/develop/doc/0000e2f5d0cdc02c0a391aedd58c00?jumpto=comment&commentid=000e44fc9c43680c0b3924ae15b0)
 
 
+<fix-link label="Back" href="/project/mobile-h5/"></fix-link>
 
 <!-- 2021-04-28 -->
