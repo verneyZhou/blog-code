@@ -1,5 +1,5 @@
 <template>
-<a class="fix-link" :href="href">{{label || '目录'}}</a>
+<a class="fix-link" :href="`/blog${href}`">{{label || '目录'}}</a>
 </template>
 
 <script>

@@ -1,6 +1,7 @@
 
 
-##### 线上发布！！！！ #######
+##### 线上发布阿里云服务器！！！！ #######
+
 
 #!/usr/bin/env sh
 
@@ -9,9 +10,9 @@ set -e
 
 echo "start updating blog..."
 
-cd /root/admin-book
+cd /root/vue-blog
 
-git clone https://github.com/verneyZhou/blog-code.git
+# git clone https://github.com/verneyZhou/blog-code.git
 
 cd blog-code
 
