@@ -12,12 +12,11 @@ export default {
     components: {},
     data() {
     return {
+        preffix: '/blog',
+        // preffix: '',
     };
     },
     computed: {
-        preffix() {
-            return location.href.indexOf('verneyzhou-code.cn') > -1 ? '/blog' : ''
-        }
     },
     watch: {},
     //方法集合

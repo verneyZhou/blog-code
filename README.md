@@ -8,6 +8,6 @@ npm run dev:hot
     2. 再上线：npm run deploy
 
     - 方式2：推送到我的阿里云服务器`https://www.verneyzhou-code.cn/blog/`
-    1. 先在 config.js 修改` base: '/blog/'`, 再提交代码至github
+    1. 先在 `config.js` 修改` base: '/blog/'`, 再提交代码至github
     2. `ssh root@verney-zhou`，终端连接远程阿里云服务器
     3. 然后`cd /vue-blog`，执行上线脚本：`./update-blog.sh`
