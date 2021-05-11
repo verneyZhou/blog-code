@@ -29,5 +29,6 @@ module.exports = [
     },
     { text: '源码', link: '/code/' },
     { text: '其他', link: '/tool/'},
+    { text: 'Github', link: 'https://github.com/verneyZhou'},
     { text: '关于', link: '/about/' },
 ]
