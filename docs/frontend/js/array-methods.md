@@ -291,5 +291,5 @@ Array.prototype.concat.apply([], document.querySelectorAll('class_name'))
 
 
 
-<fix-link label="Back" href="/fontend/js/"></fix-link>
+<fix-link label="Back" href="/frontend/js/"></fix-link>
 

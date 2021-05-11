@@ -1,16 +1,12 @@
 
 
-<!-- 
-vultr.tom   https://my.vultr.com/welcome/
-zhou
-verneyzhou@163.com
-20210509zyZY
- -->
+
 
 
 
 # 搭梯子
-> 最近发现访问[github](https://github.com/)经常加载不了，这严重打击了我认真学习（上班摸鱼）的积极性；所以最终还是想学习下怎么搭梯子，顺利的访问github，同时也可以看看油管、facebook啥的~这里就是我的搭梯子笔记~
+
+最近发现访问[github](https://github.com/)经常加载不了，这严重打击了我认真学习（上班摸鱼）的积极性；所以最终还是想学习下怎么搭梯子，顺利的访问github，同时也可以看看油管、facebook啥的~这里就是我的搭梯子笔记~
 
 ## 购买服务器
 要搭梯子，首先得有一台国外的服务器，有很多国外服务商，像aws、google、vultr、搬瓦工，等等；这里我选择的是**vultr**，因为它按小时计费，可以随时删除服务器对应ip被封的情况，而且价格相对便宜，网站简洁，操作简单，支持支付宝支付。
@@ -231,3 +227,11 @@ root@vultr:~#
 
 
 <!-- 2021-05-09 -->
+
+
+<!-- 
+vultr.tom   https://my.vultr.com/welcome/
+zhou
+verneyzhou@163.com
+20210509zyZY
+ -->

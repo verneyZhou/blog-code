@@ -1,16 +1,18 @@
 ---
 home: true
-heroImage: /images/logo_02.jpeg
-heroText: verney Zhou
-tagline: 前端划水指南
-actionText: 给岁月以文明，而不是给文明以岁月。
-actionLink: /frontend/
+heroImage: /images/poster03.jpeg
+heroText: 前端学习笔记
+tagline: 欢迎来到我的博客~
+actionText: 开始阅读 →
+actionLink: /newest/
 features:
-  - title: 文字
-    details: 略
-  - title: 前端学习笔记
-    details: 略。
-  - title: 影.音.摄
-    details: 电影，音乐，摄影。
-footer: MIT Licensed | Copyright © 2021-present 拾叁先生是半鬼
+  - title: 学习
+    details: 学习使人熬夜，熬夜让人头秃。
+  - title: 工作
+    details: 打工是不可能打工的。
+  - title: 生活
+    details: 有人相爱，有人夜里骑车看海。
+# footer: MIT Licensed | Copyright © 2021-present 阿沐
 ---
+
+<home-footer />

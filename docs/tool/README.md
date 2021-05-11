@@ -2,21 +2,21 @@
 
 
 ## 已完成
-- [git使用笔记](./git)
-- [终端学习笔记](./terminal)
+- [git使用笔记](./git.html)
+- [终端学习笔记](./terminal.html)
 - [《透视HTTP协议》学习笔记](./http/)
-- [搭梯子](./vpn)
+- [搭梯子](./vpn.html)
 
 
 
 ## 进行中
-- [新机配置（mac）](./mac-config)
-- [网站收藏](./some-website)
+- [新机配置（mac）](./mac-config.html)
+- [网站收藏](./some-website.html)
 
 
 
 
 ## 未开始
-- [vscode使用笔记](./vscode)
-- [chrome-devtools](./chrome-devtools)
-- [Web性能优化](./web-performance)
+- [vscode使用笔记](./vscode.html)
+- [chrome-devtools](./chrome-devtools.html)
+- [Web性能优化](./web-performance.html)

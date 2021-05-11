@@ -1,5 +1,5 @@
 <template>
-<a class="fix-link" :href="`/blog${href}`">{{label || '目录'}}</a>
+<a class="fix-link" :href="`${preffix}${href}`">{{label || '目录'}}</a>
 </template>
 
 <script>
@@ -12,17 +12,20 @@ export default {
     components: {},
     data() {
     return {
-
     };
     },
-    computed: {},
+    computed: {
+        preffix() {
+            return location.href.indexOf('verneyzhou-code.cn') > -1 ? '/blog' : ''
+        }
+    },
     watch: {},
     //方法集合
     methods: {
 
     },
     created() {
-    console.log('fix link');
+        console.log('fix link', location.href);
     },
     mounted() {
 
@@ -38,7 +41,7 @@ export default {
     z-index: 999;
     padding: 2px;
     top: 4rem;
-    right: 2px;
+    right: 4px;
     font-size: 14px;
     border-radius: 4px;
     border: 1px solid #3eaf7c;
