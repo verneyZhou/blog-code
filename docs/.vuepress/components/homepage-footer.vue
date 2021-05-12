@@ -3,10 +3,10 @@
   <div>
     <p>
       <span>MIT Licensed | Copyright © 2021-present</span>
-      <a href="/about/">阿沐</a>
+      <a href="/blog/about/">阿沐</a>
       <a href="https://beian.miit.gov.cn/" target="_blank">
         <img
-          src="/images/icp.png"
+          src="/blog/images/icp.png"
           width="20"
           height="20"
           alt="公网备案"
