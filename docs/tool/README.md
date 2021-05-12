@@ -20,3 +20,5 @@
 - [vscode使用笔记](./vscode.html)
 - [chrome-devtools](./chrome-devtools.html)
 - [Web性能优化](./web-performance.html)
+- [Webpack原理深析](./webpack)
+- [vue+webpack从0到1搭建项目](./vue-webpack)
