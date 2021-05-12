@@ -24,7 +24,6 @@ export default {
 
     },
     created() {
-        console.log('fix link', location.href);
     },
     mounted() {
 
