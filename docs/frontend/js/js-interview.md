@@ -30,3 +30,6 @@ if (a == 1 && a == 2 && a == 3) {
     console.log(1);
 }
 ```
+
+
+[一些代码片段](https://mp.weixin.qq.com/s/CxrzdjEDFuaL57lh3dLgpg)

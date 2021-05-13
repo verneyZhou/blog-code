@@ -241,6 +241,41 @@ console.log(f3.getValue()); // 6
 ```
 
 
+#### 5. `??`与`?.`的应用
+
+- 空值合并操作符`??`
+> 空值合并操作符（??）是一个逻辑操作符，当左侧的操作数为`null`或者`undefined`时，返回其右侧操作数，否则返回左侧操作数。
+
+与逻辑或操作符 `||` 不同，逻辑或操作符会在左侧操作数为假值时返回右侧操作数：
+``` js
+let a = null ?? 1;
+let b = undefined ?? 1;
+let c = 0 ?? 1;
+let d = '' ?? 1;
+console.log(a,b,c,d); // 1 1 0 ""
+
+let cc = 0 || 1;
+let dd = '' || 1;
+console.log(cc,dd); // 1 1
+```
+
+- 可选链操作符`?.`
+> 可选链操作符( ?. )允许读取位于连接对象链深处的属性的值，而不必明确验证链中的每个引用是否有效，在引用为空(nullish ) (null 或者 undefined) 的情况下不会引起错误。
+``` js
+let obj = {
+  name: 'tom',
+  a: {
+    aa: 'rose'
+  }
+}
+
+console.log(obj?.b?.bb);  // undefined   不会报错
+console.log(obj.b.bb) // 直接报错
+// 按之前的写法就得这样判断一下：obj.b ? obj.b.bb : ''
+```
+[参考](https://www.cnblogs.com/zhigu/p/13962661.html)
+
+
 
 
 

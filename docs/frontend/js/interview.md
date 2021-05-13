@@ -271,3 +271,11 @@ console.log(4, new Date() - date)
 - 检查微任务队列，为空
 - 检查宏任务队列，执行 setTimeout 宏任务，输入 2 1000
 :::
+
+
+
+[异步求和](https://mp.weixin.qq.com/s/RBk-cLUU-ZT4ylqIR2XdJg)
+
+
+
+[实现准时的setTimeout](https://mp.weixin.qq.com/s/AZh1djakcCo798T3OsdOwQ)

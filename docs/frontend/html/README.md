@@ -14,3 +14,4 @@
 - [canvas](./canvas.html)
 - [懒加载]
 - [分页]
+- [通信](page-message.html)
