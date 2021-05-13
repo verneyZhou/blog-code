@@ -34,7 +34,7 @@ HTTP/2 并没有使用传统的压缩算法，而是开发了专门的“HPACK�
 
 它把 TCP 协议的部分特性挪到了应用层，把原来的“Header+Body”的消息“打散”为数个小片的**二进制“帧”**（Frame），用 **HEADERS帧存放头数据、DATA帧存放实体数据**。
 
-<img :src="$withBase('/images/https/pro101.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/pro101.png')" width="auto"/>
 
 > HTTP/2 数据分帧后“Header+Body”的报文结构就完全消失了，协议看到的只是一个个的“碎片”。
 
@@ -64,7 +64,7 @@ HTTP/2 为此定义了一个**流**（Stream）的概念，它是**二进制帧�
 
 下面的这张图对比了 HTTP/1、HTTPS 和 HTTP/2 的协议栈：
 
-<img :src="$withBase('/images/https/pro102.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/pro102.png')" width="auto"/>
 
 虽然 HTTP/2 的底层实现很复杂，但它的“语义”还是简单的 HTTP/1，之前学习的知识不会过时，仍然能够用得上。
 
@@ -98,7 +98,7 @@ PRI * HTTP/2.0\r\n\r\nSM\r\n\r\nb
 
 现在 HTTP 报文头就简单了，全都是“Key-Value”形式的字段，于是 HTTP/2 就为一些最常用的头字段定义了一个只读的**静态表**（Static Table）。
 
-<img :src="$withBase('/images/https/pro103.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/pro103.png')" width="auto"/>
 
 > 这个表格列出了“静态表”的一部分，这样只要查表就可以知道字段名和对应的值，比如数字“2”代表“GET”，数字“8”代表状态码 200。
 
@@ -115,7 +115,7 @@ PRI * HTTP/2.0\r\n\r\nSM\r\n\r\nb
 
 HTTP/2 的帧结构有点类似 TCP 的段或者 TLS 里的记录，但报头很小，只有 9 字节，非常地节省。二进制的格式也保证了不会有歧义，而且使用位运算能够非常简单高效地解析。
 
-<img :src="$withBase('/images/https/pro104.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/pro104.png')" width="auto"/>
 
 - 帧开头是 3 个字节的**长度**（但不包括头的 9 个字节），默认上限是 2^14，最大是 2^24，也就是说 HTTP/2 的帧通常不超过 16K，最大是 16M。
 - 长度后面的一个字节是**帧类型**，大致可以分成**数据帧**和**控制帧**两类，HEADERS 帧和 DATA 帧属于数据帧，存放的是 HTTP 报文，而 SETTINGS、PING、PRIORITY 等则是用来管理流的控制帧。
@@ -169,7 +169,7 @@ Google 在推 SPDY 的时候就已经意识到了这个问题，于是就又发�
 
 而这个“HTTP over QUIC”就是 HTTP 协议的下一个大版本，**HTTP/3**。它在 HTTP/2 的基础上又实现了质的飞跃，真正“完美”地解决了“队头阻塞”问题。
 
-<img :src="$withBase('/images/https/pro201.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/pro201.png')" width="auto"/>
 
 从这张图里，你可以看到 HTTP/3 有一个关键的改变，那就是它把下层的 TCP“抽掉”了，换成了 UDP。因为 UDP 是无序的，包之间没有依赖关系，所以就从根本上解决了“队头阻塞”。
 
@@ -225,7 +225,7 @@ Nginx 在启动的时候会预先创建好固定数量的 worker 进程，在之
 
 在进程池之上，还有一个“master”进程，专门用来管理进程池。它的作用是用来监控进程，自动恢复发生异常的 worker，保持进程池的稳定和服务能力。
 
-<img :src="$withBase('/images/https/pro202.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/pro202.png')" width="auto"/>
 
 
 - **I/O 多路复用**
@@ -514,7 +514,7 @@ WebSocket 的握手是一个标准的 HTTP GET 请求，但要带上两个协议
 Chrome 等浏览器自带的开发者工具也可以很好地观察客户端延迟指标：
 > 点击某个 URI，在 Timing 页里会显示出一个小型的“瀑布图”，是这个资源消耗时间的详细分解
 
-<img :src="$withBase('/images/https/pro301.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/pro301.png')" width="auto"/>
 
 - 因为有“队头阻塞”，浏览器对每个域名最多开 6 个并发连接（HTTP/1.1），当页面里链接很多的时候就必须**排队等待（Queued、Queueing）**，这里它就等待了 1.62 秒，然后才被浏览器正式处理；
 - 浏览器要**预先分配资源，调度连接（Stalled）**，花费了 11.56 毫秒;
@@ -533,7 +533,7 @@ Chrome 等浏览器自带的开发者工具也可以很好地观察客户端延�
 
 以 HTTP 基本的“请求 - 应答”模型为出发点，大致画出如下互联网示意图：
 
-<img :src="$withBase('/images/https/pro302.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/pro302.png')" width="auto"/>
 
 - **第一公里** 是指网站的出口，也就是服务器接入互联网的传输线路，它的带宽直接决定了网站对外的服务能力，也就是吞吐量等指标。显然，优化性能应该在这“第一公里”加大投入，尽量购买大带宽，接入更多的运营商网络。
 - **中间一公里** 就是由许多小网络组成的实际的互联网，其实它远不止“一公里”，而是非常非常庞大和复杂的网络，地理距离、网络互通都严重影响了传输速度。好在这里面有一个 HTTP 的“好帮手”——CDN，它可以帮助网站跨越“千山万水”，让这段距离看起来真的就好像只有“一公里”。

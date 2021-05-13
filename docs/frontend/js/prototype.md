@@ -99,8 +99,8 @@ console.log(person.__proto__ === Person.prototype);
 
 - `__proto__` vs `prototype`:
 <div>
-    <img :src="$withBase('/images/js/proto.png')" width="48%"/>
-    <img :src="$withBase('/images/js/prototype.png')" width="48%"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/js/proto.png')" width="48%"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/js/prototype.png')" width="48%"/>
 </div>
 
 ### constructor
@@ -113,7 +113,7 @@ var person = new Person();
 console.log(Person === Person.prototype.constructor); //true
 ```
 创建了自定义的构造函数之后，其原型对象默认只会取得`constructor`属性；至于其他方法，则都是从`Object`继承而来的。
-<img :src="$withBase('/images/js/constructor.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/js/constructor.png')" width="auto"/>
 
 ### 构造函数、原型和实例的关系
 简单回顾一下构造函数、原型和实例的关系:
@@ -136,7 +136,7 @@ console.log(Object.getPrototypeOf(person) === Person.prototype) //true
 
 三者关系如图：
 
-<img :src="$withBase('/images/js/js_prototype.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/js/js_prototype.png')" width="auto"/>
 
 Object.prototype的原型为null，所以查到Object.prototype就可以停止查找了。
 ```js
@@ -343,7 +343,7 @@ console.log(instance.getSuperValue()); // true
 
 可以用一张图来表示原型链：
 
-<img :src="$withBase('/images/js/prototype_lian.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/js/prototype_lian.png')" width="auto"/>
 
 所有的原型对象都可以沿着原型链一直往上寻找，直到找到最后的原型对象`Object.prototype`，然后`Object.prototype`再往上寻找就是`null`，用来表示此处没有对象，停止寻找。
 

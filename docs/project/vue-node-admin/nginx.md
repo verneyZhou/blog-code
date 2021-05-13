@@ -96,15 +96,15 @@ server
 
 1. 启动之后浏览器输入：`http://localhost:8080`能访问到默认的位于`/usr/local/Cellar/nginx/1.17.3_1/html/`下的资源：
 
-<img :src="$withBase('/images/project/nginx001.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/nginx001.png')" width="auto"/>
 
 2. 输入：`http://localhost:8089`则能访问到我们自己配置的位于 `/Users/admin/upload/` 下的资源：
 
-<img :src="$withBase('/images/project/nginx002.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/nginx002.png')" width="auto"/>
 
 3. 输入：`https://localhost`也能访问我们自己配置的位于 `/Users/admin/upload/` 下的资源：
 
-<img :src="$withBase('/images/project/nginx003.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/nginx003.png')" width="auto"/>
 
 > 提示不安全是因为ssl证书是跟域名绑定的，这里输入的是localhost提示不安全是正常的~
 
@@ -113,7 +113,7 @@ server
 - **代理域名**
 1. 接下来可通过`switchHosts` 将 本地ip代理到配置文件中ssl证书对应的域名：
 
-<img :src="$withBase('/images/project/nginx004.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/nginx004.png')" width="auto"/>
 
 2. 也可通过命令行直接修改：
 ``` shell
@@ -121,7 +121,7 @@ vim /etc/hosts # mac根目录下etc一般保存着电脑的host配置文件
 ```
 现在在浏览器输入：`https://www.verneyzhou-code.cn/` 就可以访问到本地 `/Users/admin/upload/` 下的资源：
 
-<img :src="$withBase('/images/project/nginx005.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/nginx005.png')" width="auto"/>
 
 > 这样就不会提示不安全~
 

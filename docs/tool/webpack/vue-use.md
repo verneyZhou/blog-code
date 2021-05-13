@@ -51,7 +51,7 @@ console.log('hello webpack!!!');
 ```
 运行之后会出现如下提示：
 
-<img :src="$withBase('/images/webpack/webpack001.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack001.png')" width="auto"/>
 
 >warning的意思是需要设定模式，如果不设定模式，默认为生产模式，生产模式是会压缩js代码；
 项目里多了一个dist文件夹，webpack4在打包时默认入口文件为src目录下的index.js，输出地址为dist文件夹，文件为main.js
@@ -395,7 +395,7 @@ modules.export = {
 - **Q：如何判断webpack的模块热替换是否生效？**
 > 如果HMR已生效，更改代码，回到浏览器，页面自动更新，但只是局部更新，并没有reload页面，且可以在控制后台发现这样一个js：
 
-<img :src="$withBase('/images/webpack/webpack002.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack002.jpeg')" width="auto"/>
 
 > 如果HMR未生效，则每次更改代码都是通过reload页面进行更新。
 
@@ -444,11 +444,11 @@ devtool:'source-map' // 单独生成.map文件 可定位到源代码
 可对比下添加前后的打包文件：
 - 未添加`devtool`配置
 
-<img :src="$withBase('/images/webpack/webpack003.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack003.jpeg')" width="auto"/>
 
 - 添加配置：`devtool:'source-map'`
 
-<img :src="$withBase('/images/webpack/webpack004.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack004.jpeg')" width="auto"/>
 
 
 
@@ -574,12 +574,12 @@ import 'babel-polyfill'; // 全局引入
 
 > 发现打包后之前的箭头函数转换为es5语法，用到的新的API如Promise也引入了polyfill：
 
-<img :src="$withBase('/images/webpack/webpack006.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack006.jpeg')" width="auto"/>
 
 
 > 按需引入的一些es6 API的polyfill：
 
-<img :src="$withBase('/images/webpack/webpack007.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack007.jpeg')" width="auto"/>
 
 
 
@@ -744,13 +744,13 @@ module.exports = {
 
 最后，`npm run lint`试一下：
 
-<img :src="$withBase('/images/webpack/webpack101.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack101.png')" width="auto"/>
 
 > 果不其然，有一堆warn和error警告~
 
 `npm run lint:fix`修复一下：
 
-<img :src="$withBase('/images/webpack/webpack102.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack102.png')" width="auto"/>
 
 > 执行之后，src里面的大部分格式问题就被自动修复了，其他的就手动修复了~
 
@@ -812,7 +812,7 @@ module.exports = {
 
 配置完后，把项目中导入的模块替换成`@`，然后`npm run dev`试一下~
 
-<img :src="$withBase('/images/webpack/webpack008.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack008.jpeg')" width="auto"/>
 
 > 可以看到，项目中通过`@`别名引入的模块打包后编译为相对路径了
 
@@ -876,11 +876,11 @@ npm i url-loader file-loader -D # 安装
 
 > 项目中引入的图片资源路径：
 
-<img :src="$withBase('/images/webpack/webpack103.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack103.jpeg')" width="auto"/>
 
 > 本地跑起来后浏览器中图片的路径：
 
-<img :src="$withBase('/images/webpack/webpack104.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack104.jpeg')" width="auto"/>
 
 
 
@@ -1047,11 +1047,11 @@ module.exports = {
 
 项目中的样式：
 
-<img :src="$withBase('/images/webpack/webpack105.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack105.jpeg')" width="auto"/>
 
 打包后的样式：
 
-<img :src="$withBase('/images/webpack/webpack106.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack106.jpeg')" width="auto"/>
 
 
 
@@ -1146,7 +1146,7 @@ import 'lib-flexible';
 
 5. 最后，`npm run dev`试一下~
 
-<img :src="$withBase('/images/webpack/webpack107.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack107.jpeg')" width="auto"/>
 
 > 跑起来后，切换到移动端模式，发现打包后的尺寸转换成了rem~且计算得该宽度下，`1rem`等于`41.4px`
 
@@ -1453,7 +1453,7 @@ module.export = {
 
 2. `npm run build`一下~
 
-<img :src="$withBase('/images/webpack/webpack109.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack109.jpeg')" width="auto"/>
 
 > 打包之后可看到js模块已经分离了~
 
@@ -1505,7 +1505,7 @@ module.export = {
 
 3. `npm run build`一下~
 
-<img :src="$withBase('/images/webpack/webpack201.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack201.jpeg')" width="auto"/>
 
 > 打包之后，生成一个css文件，生成link标签，插入到head中~
 
@@ -1659,7 +1659,7 @@ npm run analyze
 
 5. 看到如下页面，即运行成功~
 
-<img :src="$withBase('/images/webpack/webpack202.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/webpack/webpack202.png')" width="auto"/>
 
 > 可通过此图分析打包后的文件大小，优化代码体积~
 
@@ -1846,6 +1846,7 @@ package-lock=false  // 禁止生成package-lock.json文件
 
 ## 备注
 1. 虽然现在`vue3`已经出来了，webpack也已经更新到`v5+`版本了，但现在公司的大多数项目还是vue2+搭配webpack4+搭建项目，估计得等vue3的坑踩得差不多了才开始大面积使用吧~
+2. 这里主要讲的是搭建`SPA`类项目的配置，关于`vue + webpack`搭建项目的完整配置信息有兴趣的可以看下我github上的项目[vue-webpack](https://github.com/verneyZhou/vue-webpack)，里面包含`SPA`和`MPA`两类项目的搭建配置~
 
 
 

@@ -8,7 +8,7 @@
 1. `vue+webpack`搭建项目
     - 适配：amfe-flexible + postcss-px2rem-exclude
     - ui库：vant
-> 具体搭建流程见另一篇博客：[vue+webpack搭建项目流程梳理](./webpack);
+> 具体搭建流程见另一篇博客：[vue+webpack搭建项目流程梳理](/tool/webpack/vue-use.html);
 
 2. `jenkins`配置
 > 新建的项目需要配置它的测试环境和线上环境，这里我是用jenkins进行配置；配置成功后可以在不同环境通过域名访问~
@@ -88,7 +88,7 @@ jenkins上新建一个项目，用于部署dev和qa环境，并添加shell脚本
 
 2. 警告：`Second Autoprefixer control comment was ignored. Autoprefixer applies control comment to whole block, not to next rules.`
 
-<img :src="$withBase('/images/mobile/mobile003.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/mobile/mobile003.png')" width="auto"/>
 
 ``` css
 .ellipse-3{
@@ -106,7 +106,7 @@ jenkins上新建一个项目，用于部署dev和qa环境，并添加shell脚本
 ```
 3. 微信jssdk初始化的时候，报：63002；
 
-<img :src="$withBase('/images/mobile/mobile004.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/mobile/mobile004.png')" width="auto"/>
 
 jssdk初始化的时候传参url为当前页面url，因为获取签名的url必须与当前页面的url一致（也有可能是后端对url的某些特殊字符进行加密处理后导致url前后不一致，导致签名失效）~
 

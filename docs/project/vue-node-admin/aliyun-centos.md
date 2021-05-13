@@ -24,7 +24,7 @@ Welcome to Alibaba Cloud Elastic Compute Service !
 
 1. [安装nvm](https://github.com/nvm-sh/nvm)
 
-<img :src="$withBase('/images/project/centos001.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/centos001.png')" width="auto"/>
 
 > 将上面的命令粘贴到终端~
 
@@ -249,7 +249,7 @@ Welcome to Alibaba Cloud Elastic Compute Service !
 ```
 浏览器输入购买的阿里云服务器ip地址即可访问了！，如下图：
 
-<img :src="$withBase('/images/project/centos002.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/centos002.png')" width="auto"/>
 
 
 
@@ -327,7 +327,7 @@ nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
 ```
 这是再次在浏览器中输入阿里云ip，就会出现如下内容：
 
-<img :src="$withBase('/images/project/centos003.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/centos003.png')" width="auto"/>
 
 > 已经能够访问到我们自己配置的资源~
 
@@ -336,15 +336,15 @@ nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
     - 首先下载FTP工具：[FileZilla](https://www.filezilla.cn/download/client)
     - 下载完成后，打开FileZilla：
         - 文件 > 站点管理器 > 新建站点：
-        <img :src="$withBase('/images/project/centos004.png')" width="auto"/>
+        <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos004.png')" width="auto"/>
         > 站点名自定义，主机是ssh登录服务器的别名，密码是服务器的密码~
 
         - 连接成功之后：
-        <img :src="$withBase('/images/project/centos005.png')" width="auto"/>
+        <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos005.png')" width="auto"/>
 
     - 然后将本地需要上传到服务器的资源直接拖拽到右边区域，就可以实现上传了~
     - 上传成功后，删除刚开始的测试文件index.html，刷新浏览器ip地址：
-    <img :src="$withBase('/images/project/centos006.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos006.png')" width="auto"/>
     > 本地资源已经上传到服务器上了~
 
     - 最后，如果上线的话，记得把nginx中自动打开index的配置关闭：
@@ -438,11 +438,11 @@ mysql>
 
 2. 连接
     - 添加3306端口：打开阿里云控制台，云服务器ECS，网络安全，安全组，进入点击添加：
-    <img :src="$withBase('/images/project/centos007.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos007.png')" width="auto"/>
     > 保存之后，客户端就能连到3306端口~
 
     - 打开mysql客户端navicat，新建mySql连接，连接云服务器：
-    <img :src="$withBase('/images/project/centos008.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos008.png')" width="auto"/>
     > 主机为阿里云服务器ip，端口3306，用户名为root，密码为配置的2020zyZY
 
 

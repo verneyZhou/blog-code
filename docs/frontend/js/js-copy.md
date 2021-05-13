@@ -581,7 +581,7 @@ console.log(obj4);
 ```
 打印结果：
 
-<img :src="$withBase('/images/js/deep-copy.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/js/deep-copy.png')" width="auto"/>
 
 可以再用上面的方法试试`循环引用`和`引用丢失`的问题：
 ```js

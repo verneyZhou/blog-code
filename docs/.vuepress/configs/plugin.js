@@ -6,6 +6,17 @@ module.exports = [
     'vuepress-plugin-smooth-scroll', // 你的 VuePress 站点中使用平滑滚动
     'flowchart', // 流程图
     [
+      '@vuepress/medium-zoom',
+      {
+        selector: 'img.zoom-custom-imgs',
+        // medium-zoom options here
+        // See: https://github.com/francoischalifour/medium-zoom#options
+        options: {
+          margin: 16
+        }
+      }
+    ],
+    [
         '@vuepress/pwa', // pwa
         {
            serviceWorker: true,

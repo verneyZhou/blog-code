@@ -47,7 +47,7 @@ TCP 位于传输层，提供可靠的字节流服务。所谓的字节流服务�
 
 握手过程中使用了 TCP 的标志（flag）：**SYN（synchronize:同步）** 和 **ACK（acknowledgement:承认）**。
 
-<img :src="$withBase('/images/https/http1101.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http1101.jpeg')" width="auto"/>
 
 
 - **第一次握手**
@@ -96,7 +96,7 @@ TCP 位于传输层，提供可靠的字节流服务。所谓的字节流服务�
 ### 四次挥手
 > 当读写操作完成后，双方不再需要这个连接时可以释放这个连接，而释放则需要**四次握手**。
 
-<img :src="$withBase('/images/https/http1102.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http1102.jpeg')" width="auto"/>
 
 - **第一次挥手**
 
@@ -148,10 +148,10 @@ TCP 位于传输层，提供可靠的字节流服务。所谓的字节流服务�
 
 - HTTP 协议规定报文必须有 header，但可以没有 body，而且在 header 之后必须要有一个“空行”，也就是“CRLF”，十六进制的“0D0A”：
 
-<img :src="$withBase('/images/https/http101.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http101.png')" width="auto"/>
 
 - 在如下浏览器发出的请求报文里，第一行“GET / HTTP/1.1”就是请求行，而后面的“Host”“Connection”等等都属于 header，报文的最后是一个空白行结束，没有 body：
-<img :src="$withBase('/images/https/http102.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http102.png')" width="auto"/>
 
 ### 请求行
 请求报文里的起始行也就是请求行（request line），它简要地描述了**客户端想要如何操作服务器端的资源**。
@@ -381,7 +381,7 @@ Content-Encoding: gzip
 ```
 > 这两个字段可以省略，如果请求报文里没有 Accept-Encoding 字段，就表示客户端不支持压缩数据；如果响应报文里没有 Content-Encoding 字段，就表示响应数据没有被压缩。
 
-<img :src="$withBase('/images/https/http201.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http201.png')" width="auto"/>
 
 #### 语言类型与编码
 > MIME type 和 Encoding type 解决了计算机理解 body 数据的问题，接下来该解决“国际化”的问题。
@@ -421,7 +421,7 @@ Content-Type: text/html; charset=utf-8
 ```
 > 浏览器请求 GBK 或 UTF-8 的字符集，然后服务器返回的是 UTF-8 编码。
 
-<img :src="$withBase('/images/https/http202.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http202.png')" width="auto"/>
 
 > 不过现在的浏览器都支持多种字符集，通常不会发送 Accept-Charset，而服务器也不会发送 Content-Language，因为使用的语言完全可以由字符集推断出来，所以在请求头里一般只会有 Accept-Language 字段，响应头里只会有 Content-Type 字段。
 
@@ -468,7 +468,7 @@ Vary: Accept-Encoding,User-Agent,Accept
 - TRACE：追踪请求 - 响应的传输路径。
 :::
 
-<img :src="$withBase('/images/https/http103.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http103.jpeg')" width="auto"/>
 
 
 ### GET/HEAD
@@ -598,7 +598,7 @@ TCP 协议是有状态的，一开始处于 CLOSED 状态，连接成功后是 E
 4. 最后用一个长度为 0 的块表示结束，即“0\r\n\r\n”。
 :::
 如图：
-<img :src="$withBase('/images/https/http204.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http204.png')" width="auto"/>
 
 
 ### 范围请求
@@ -655,7 +655,7 @@ Content-Range: bytes 0-31/96 # 返回文件的前 32 个字节，并返回文件
 
 多段数据的格式与分块传输也比较类似，但它需要用分隔标记 boundary 来区分不同的片段，可以通过图来对比一下：
 
-<img :src="$withBase('/images/https/http404.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http404.png')" width="auto"/>
 
 > 每一个分段必须以“- -boundary”开始（前面加两个“-”），之后要用“Content-Type”和“Content-Range”标记这段数据的类型和所在范围，然后就像普通的响应头一样以回车换行结束，再加上分段数据，最后用一个“- -boundary- -”（前后各有两个“-”）表示所有的分段结束。
 
@@ -709,7 +709,7 @@ ext json d
 
 - **短连接 vs 长连接**：
 
-<img :src="$withBase('/images/https/http402.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http402.png')" width="auto"/>
 
 - **连接相关的头字段**
 
@@ -759,7 +759,7 @@ Cookie 就是服务器委托浏览器存储在客户端里的一些数据，而�
 2. 浏览器收到响应报文，看到里面有 Set-Cookie，知道这是服务器给的身份标识，于是就保存起来，下次再请求的时候就自动把这个值放进 **Cookie** 字段里发给服务器。
 > 服务器有时会在响应头里添加多个 Set-Cookie，存储多个“key=value”。但浏览器这边发送时不需要用多个 Cookie 字段，只要在一行里用“;”隔开就行。
 
-<img :src="$withBase('/images/https/http401.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http401.png')" width="auto"/>
 
 ### Cookie 的属性
 
@@ -812,7 +812,7 @@ Cookie 就是服务器委托浏览器存储在客户端里的一些数据，而�
 3. 浏览器缓存资源，等待下次重用。
 :::
 
-<img :src="$withBase('/images/https/http501.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http501.png')" width="auto"/>
 
 服务器标记资源有效期使用的头字段是**Cache-Control**，里面的值**max-age=30**就是资源的**有效时间**，相当于告诉浏览器，“这个页面只能缓存 30 秒，之后就算是过期，不能用。”
 > 这里的 max-age 是“生存时间”（又叫“新鲜度”“缓存寿命”，类似 TTL，Time-To-Live），时间的计算起点是响应报文的创建时刻（即 Date 字段，也就是离开服务器的时刻），而不是客户端收到报文的时刻，也就是说包含了在链路传输过程中所有节点所停留的时间。
@@ -822,7 +822,7 @@ Cookie 就是服务器委托浏览器存储在客户端里的一些数据，而�
 - **no-cache**：它的字面含义容易与 no-store 搞混，实际的意思并不是不允许缓存，而是**可以缓存，但在使用之前必须要去服务器验证是否过期**，是否有最新的版本；
 - **must-revalidate**：又是一个和 no-cache 相似的词，它的意思是**如果缓存不过期就可以继续使用，但过期了如果还想用就必须去服务器验证**。
 
-<img :src="$withBase('/images/https/http502.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http502.png')" width="auto"/>
 
 
 ### 客户端的缓存控制
@@ -841,7 +841,7 @@ HTTP 协议定义了一系列“If”开头的“条件请求”字段，专门�
 1. 条件请求一共有 5 个头字段，我们最常用的是 **if-Modified-Since** 和 **If-None-Match** 这两个。需要第一次的响应报文预先提供**Last-modified**和**ETag**，然后第二次请求时就可以带上缓存里的原值，验证资源是否是最新的。
 2. 如果资源没有变，服务器就回应一个**304 Not Modified**，表示缓存依然有效，浏览器就可以更新一下有效期，然后放心大胆地使用缓存了。
 
-<img :src="$withBase('/images/https/http503.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http503.png')" width="auto"/>
 
 - **Last-modified** 就是文件的最后修改时间。
 
@@ -876,7 +876,7 @@ HTTP 协议定义了一系列“If”开头的“条件请求”字段，专门�
 ## HTTP的代理服务
 链条的起点还是客户端（也就是浏览器），中间的角色被称为代理服务器（proxy server），链条的终点被称为源服务器（origin server），意思是数据的“源头”“起源”。
 
-<img :src="$withBase('/images/https/http504.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http504.png')" width="auto"/>
 
 ### 代理服务
 所谓的“代理服务”就是指**服务本身不生产内容，而是处于中间位置转发上下游的请求和响应，具有双重身份**：面向下游的用户时，表现为服务器，代表源服务器响应客户端的请求；而面向上游的源服务器时，又表现为客户端，代表客户端发送请求。
@@ -950,7 +950,7 @@ HTTP 的**服务器缓存**功能主要由代理服务器来实现（即**缓存
 
 下面的流程图是完整的服务器端缓存控制策略，可以同时控制客户端和代理：
 
-<img :src="$withBase('/images/https/http505.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http505.png')" width="auto"/>
 
 > 源服务器在设置完“Cache-Control”后必须要为报文加上“Last-modified”或“ETag”字段。否则，客户端和代理后面就无法使用条件请求来验证缓存是否有效，也就不会有 304 缓存重定向。
 
@@ -958,7 +958,7 @@ HTTP 的**服务器缓存**功能主要由代理服务器来实现（即**缓存
 #### 客户端的缓存控制
 客户端在 HTTP 缓存体系里要面对的是代理和源服务器，也必须区别对待，这里直接上图：
 
-<img :src="$withBase('/images/https/http406.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http406.png')" width="auto"/>
 
 > max-age、no-store、no-cache 这三个属性已经介绍过了，它们也是同样作用于代理和源服务器；关于缓存的生存时间，多了两个新属性“max-stale”和“min-fresh”。
 

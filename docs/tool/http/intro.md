@@ -101,7 +101,7 @@ TCP/IP 协议实际上是一系列网络通信协议的统称，其中最核心�
 TCP/IP 当初的设计者真的是非常聪明，创造性地提出了“分层”的概念，把复杂的网络通信划分出多个层次，再给每一个层次分配不同的职责，层次内只专心做自己的事情就好，用“分而治之”的思想把一个“大麻烦”拆分成了数个“小麻烦”，从而解决了网络通信的难题。
 - TCP/IP 的协议栈的层级图
 
-<img :src="$withBase('/images/https/tcp-ip.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/tcp-ip.png')" width="auto"/>
 
 > TCP/IP 协议总共有四层，就像搭积木一样，每一层需要下层的支撑，同时又支撑着上层，任何一层被抽掉都可能会导致整个协议栈坍塌。
 
@@ -128,7 +128,7 @@ OSI，全称是**开放式系统互联通信参考模型**（Open System Interco
 
 OSI 模型分成了七层，部分层次与 TCP/IP 很像：
 
-<img :src="$withBase('/images/https/osi.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/osi.png')" width="auto"/>
 
 ::: tip 从下到上分别是：
 1. 第一层：物理层，网络的物理形式，例如电缆、光纤、网卡、集线器等等；
@@ -143,7 +143,7 @@ OSI 模型分成了七层，部分层次与 TCP/IP 很像：
 #### 两个分层模型的映射关系
 > 现在有了两个网络分层模型：TCP/IP 和 OSI，新的问题又出现了，一个是四层模型，一个是七层模型，这两者应该如何互相映射或者说互相解释呢？
 
-<img :src="$withBase('/images/https/tcp-osi.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/tcp-osi.png')" width="auto"/>
 
 1. 第一层：物理层，TCP/IP 里无对应；
 2. 第二层：数据链路层，对应 TCP/IP 的链接层；
@@ -167,7 +167,7 @@ OSI 模型分成了七层，部分层次与 TCP/IP 很像：
 
 但下层的传输过程对于上层是完全“透明”的，上层也不需要关心下层的具体实现细节，所以就 HTTP 层次来看，它不管下层是不是 TCP/IP 协议，看到的只是一个可靠的传输链路，只要把数据加上自己的头，对方就能原样收到。
 
-<img :src="$withBase('/images/https/tcp001.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/tcp001.png')" width="auto"/>
 
 
 
@@ -275,7 +275,7 @@ http://bitpoetry.io/posts/hello.html#intro
 
 #### URI 的格式
 
-<img :src="$withBase('/images/https/http104.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/http104.png')" width="auto"/>
 
 - **scheme**
 

@@ -1,7 +1,9 @@
-# vue-node-admin
-这是我爆肝整理的全栈项目学习记录：
-- 前端：vue
-- 后端：node
+# 全栈项目开发实录：vue-node-admin
+
+这里是我从学习到整理，爆肝两个多月完成的全栈项目学习记录，主要包括阿里云服务器购买、服务器环境搭建，再到后端环境配置等等，也是第一个我自己从0到1独立完成的全栈项目。
+
+- 前端：vue + element-ui
+- 后端：node + express
 - 服务器：nginx
 - 数据库：mySql
 
@@ -18,4 +20,14 @@
 
 ## 项目
 
-<!-- [git地址]() -->
+- 前端项目`ebook-admin-vue`[github地址](https://github.com/verneyZhou/ebook-admin-vue)
+> 由于我做这个项目的重点不在前端开发上，所以为了方便，前端项目我是直接`folk`的PanJiaChen大佬在`github`上的项目[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)，然后在这个项目上进行修改，添加我电子书上传的相关逻辑代码~
+
+- 后端项目`ebook-admin-node`[github地址](https://github.com/verneyZhou/ebook-admin-node)
+> 这个项目是使用`node + express`搭建的项目，主要是后端部分的代码~
+
+- 项目[线上地址](https://www.verneyzhou-code.cn/admin-fe/#/book/list)，里面主要是实现`epub`电子书上传等相关逻辑~
+
+这个项目的目的主要是通过实现`epub`电子书这一个功能来对完成一次前后端全栈项目的实战，本系列博文主要记录项目从0到1的搭建与上线的流程，对于项目内部的实现逻辑暂无描述，后续有时间了可以再加上~
+
+<!-- 2021-05-13 -->

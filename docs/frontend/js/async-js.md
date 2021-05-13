@@ -15,14 +15,14 @@ js中的数据类型可以分为**基本类型**和**引用类型**。基本类�
 堆是动态分配的内存，大小不定也不会自动释放。<br/>
 堆内存的存储不同于栈，虽然他们都是内存中的一片空间，但是堆内存存储变量时没有什么规律可言。
 
-<img :src="$withBase('/images/js/heap.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/js/heap.png')" width="auto"/>
 
 ### 栈（stack）
 
 栈也是一种数据结构，栈stack为自动分配的内存空间，它由系统自动释放。<br/>
 栈是一种限定**仅在表头进行插入和删除操作**的线性表，一种**先进后出**(LIFO(Last-In-First-Out)的数据结构。栈中项的插入(叫做推入)和移除(叫做弹出)，只发生在一个位置——栈的顶部。ECMAScript 为数组专门提供了 push()和 pop()方法，以便 实现类似栈的行为。
 
-<img :src="$withBase('/images/js/stack.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/js/stack.jpeg')" width="auto"/>
 
 1. 栈内存的特点:存取速度快，但不灵活，同时由于结构简单，在变量使用完成后就可以将其释放，内存回收容易实现。
 2. 我们在访问引用类型时，需要在栈内存中查找对应的地址，再去堆内存中取得真正的值，访问速度自然不及栈内存。
@@ -38,7 +38,7 @@ js中的数据类型可以分为**基本类型**和**引用类型**。基本类�
 
 队列的数据元素又称为队列元素。在队列中插入一个队列元素称为入队，从队列中删除一个队列元素称为出队。因为队列只允许在一端插入，在另一端删除，所以只有最早进入队列的元素才能最先从队列中删除，故队列又称为**先进先出**（FIFO—first in first out）。
 
-<img :src="$withBase('/images/js/queue.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/js/queue.jpeg')" width="auto"/>
 
 [JavaScript数据结构之队列](https://zhuanlan.zhihu.com/p/53444124)
 
@@ -60,7 +60,7 @@ js中的数据类型可以分为**基本类型**和**引用类型**。基本类�
 （4）主线程不断重复上面的第三步。
 :::
 
-<img :src="$withBase('/images/js/async-task.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/js/async-task.png')" width="auto"/>
 
 ### 事件循环（Event Loop）
 1. Event Loop，顾名思义：事件循环。主线程从"任务队列"中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为**Event Loop**（事件循环）。
@@ -76,7 +76,7 @@ js中的数据类型可以分为**基本类型**和**引用类型**。基本类�
 2. **microtasks**: process.nextTick（node独有）、Promises、Object.observe(废弃)、[MutationObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver)
 3. 宏任务和微任务的关系:
 
-<img :src="$withBase('/images/js/macro-task.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/js/macro-task.png')" width="auto"/>
 
 > js中任务执行顺序为：同步任务 》 微任务 》 宏任务
 
@@ -85,7 +85,7 @@ js中的数据类型可以分为**基本类型**和**引用类型**。基本类�
 ### 浏览器的Event Loop
 先看下这张别人整理的我觉得挺全面的流程图：
 
-<img :src="$withBase('/images/js/event-loop.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/js/event-loop.png')" width="auto"/>
 
 > 这张图将浏览器的Event Loop完整的描述了出来，梳理下JavaScript代码的具体流程：
 1. 执行全局Script同步代码，这些同步代码有一些是同步任务，有一些是异步任务（比如setTimeout等）；**同步任务立即执行，异步任务则判断是宏任务还是微任务，添加到对应队列中；**

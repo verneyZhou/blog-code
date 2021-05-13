@@ -19,7 +19,7 @@
 ### 进行中
 
 - [js中数组常用方法整理](./array-methods.html)
-- [手写系列](./handle-codes.html)
+- [js手写系列](./handle-codes.html)
 - [一些js的使用小技巧](./js-skills.html)
 
 - [一些笔试题](./js-interview.html)

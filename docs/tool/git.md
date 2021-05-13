@@ -28,23 +28,23 @@
 ### 2. 查看提交记录
 
 - `git log -n`  :n为最近提交的次数
-<img :src="$withBase('/images/tool/git101.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git101.png')" width="auto"/>
 
 - `git log --online`  把每一个提交压缩到一行，默认只显示提交ID和提交信息第一行
-<img :src="$withBase('/images/tool/git102.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git102.png')" width="auto"/>
 
 - `git log --online -n` :n是数字，获取最近n次的提交记录
 
 - `git log --stat` :显示每次提交的文件增删数量
-<img :src="$withBase('/images/tool/git103.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git103.png')" width="auto"/>
 
 - `git log -p`  :输出所有的删改
-<img :src="$withBase('/images/tool/git104.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git104.png')" width="auto"/>
 
 - `git shortlog -n`  :每个提交按作者分类，显示提交信息第一行；n为数量，默认显示全部提交记录
 > 如：`git shortlog -10`
 
-<img :src="$withBase('/images/tool/git105.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git105.png')" width="auto"/>
 
 - `git log --after="2014-7-1"`  :时间过滤；  或者：`git log --before="......."`
 
@@ -185,14 +185,14 @@ git merge dev // 再merge 自己的分支
 2. 然后切换到master分支：`git merge test`，上线
 > 此时`git log`，记录如下：
 
-<img :src="$withBase('/images/tool/git201.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git201.png')" width="auto"/>
 
 最新的记录是一个`merge commit`，这里是先将mster合到test分支，所以`1`是test分支最新的commitID，`2`是master分支最新的commitID~
 
 3. 回滚操作：`git revert -m 2 commitID`
 > `2`是保留master分支的提交，撤销test分支的提交；commitID为最新的`35784e....`
 
-<img :src="$withBase('/images/tool/git202.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git202.png')" width="auto"/>
 
 revert之后会生成一个新的commitID:`566687...`~
 
@@ -216,15 +216,15 @@ revert之后会生成一个新的commitID:`566687...`~
 - 开始
 > 点击[链接](https://github.com/)，开始新建项目：
 
-<img :src="$withBase('/images/tool/git001.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git001.png')" width="auto"/>
 
 - 命名
 
-<img :src="$withBase('/images/tool/git002.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git002.png')" width="auto"/>
 
 - 初次提交
 
-<img :src="$withBase('/images/tool/git003.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git003.png')" width="auto"/>
 
 > 关于`ssh`和`https`的区别可看这两个链接：[ssh原理以及与https的区别](https://www.cnblogs.com/dzblog/p/6930147.html)、[网络数据传输安全及SSH与HTTPS工作原理](https://www.cnblogs.com/yyds/p/6992125.html)
 
@@ -236,35 +236,35 @@ revert之后会生成一个新的commitID:`566687...`~
     
     如果未配置密钥，则会有如下提示，配置密钥流程见下面：
 
-    <img :src="$withBase('/images/tool/git004.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/tool/git004.png')" width="auto"/>
 
     密钥配置成功后，执行第二步，如果配置了密码，需输入id_rsa密码，如下：
 
-    <img :src="$withBase('/images/tool/git005.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/tool/git005.png')" width="auto"/>
 
 2. 第二种：https
     - `git remote add origin https://github.com/verneyZhou/debug-test.git`
     - `git push -u origin master /  git push --set-upstream origin master`
 
-    <img :src="$withBase('/images/tool/git006.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/tool/git006.png')" width="auto"/>
 
     或：
 
-    <img :src="$withBase('/images/tool/git007.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/tool/git007.png')" width="auto"/>
 
 
 #### 配置密钥
 1. 按上面第一步配置git中流程，如果不需要密码，则一路回车
 
-<img :src="$withBase('/images/tool/git008.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git008.png')" width="auto"/>
 
 2. `vim /Users/zhou/.ssh/id_rsa.pub`
 
-<img :src="$withBase('/images/tool/git009.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git009.png')" width="auto"/>
 
 3. 复制，粘贴到github上
 
-<img :src="$withBase('/images/tool/git010.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git010.png')" width="auto"/>
 
 
 
@@ -273,15 +273,15 @@ revert之后会生成一个新的commitID:`566687...`~
 
 - setting
 
-<img :src="$withBase('/images/tool/git011.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git011.png')" width="auto"/>
 
 - delete
 
-<img :src="$withBase('/images/tool/git012.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git012.png')" width="auto"/>
 
 - 输入名字
 
-<img :src="$withBase('/images/tool/git013.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/git013.png')" width="auto"/>
 
 
 ### 4. 将本地项目推到远程仓库
@@ -319,12 +319,12 @@ origin	https://github.com/PanJiaChen/vue-element-admin.git (push)
 ``` 
 
 2. 输入`git branch`报错
-<img :src="$withBase('/images/tool/giterror001.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/giterror001.png')" width="auto"/>
 原因：从App Store升级到osx El Capitan，MAC git依附XCode的命令行工具。
 方法：输入 xcode-select --install
 
 3. 输入 `git checkout master`报错
-<img :src="$withBase('/images/tool/giterror002.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/giterror002.png')" width="auto"/>
 原因：Git在使用过程中遭遇了崩溃，部分被上锁资源没有被释放导致的
 
     方法：
@@ -333,15 +333,15 @@ origin	https://github.com/PanJiaChen/vue-element-admin.git (push)
     - `open .git`,之后手动删除index.lock文件
 
 4. `yarn dev`打包报错
-<img :src="$withBase('/images/tool/giterror003.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/giterror003.png')" width="auto"/>
 打包文件太多，内存过大，可通过配置扩大内存
 
 5. 未配置ssh key
-<img :src="$withBase('/images/tool/giterror004.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/giterror004.png')" width="auto"/>
 配置即可
 
 6. `git push`失败
-<img :src="$withBase('/images/tool/giterror005.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/giterror005.png')" width="auto"/>
 name不对，更改即可~
 - 命令行方式修改:
 ``` shell
@@ -367,7 +367,7 @@ git config --global user.email "your email"
 原因：我们刚才改的只是配置，但对于以前的commit信息我们是没有做任何修改的，所以我们要再做一次commit，即保证最后一次commit信息是正确的即可。
 
 7. `npm run start`报错
-<img :src="$withBase('/images/tool/giterror006.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/giterror006.png')" width="auto"/>
 用yarn试下~
 
 

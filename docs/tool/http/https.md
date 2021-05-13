@@ -24,7 +24,7 @@ HTTPS 与 HTTP 最大的区别，它能够鉴别危险的网站，并且尽最�
 
 HTTPS 名字里的“S”，它把 HTTP 下层的传输协议由 TCP/IP 换成了 **SSL/TLS**，由“HTTP over TCP/IP”变成了 **HTTP over SSL/TLS** ，让 HTTP 运行在了安全的 SSL/TLS 协议上。
 
-<img :src="$withBase('/images/https/https101.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/https101.png')" width="auto"/>
 
 
 
@@ -36,7 +36,7 @@ HTTPS 名字里的“S”，它把 HTTP 下层的传输协议由 TCP/IP 换成�
 #### 对称加密
 指加密和解密时使用的密钥都是同一个，是“对称”的。只要保证了密钥的安全，那整个通信过程就可以说具有了机密性。
 
-<img :src="$withBase('/images/https/https102.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/https102.png')" width="auto"/>
 
 TLS 里常用的对称加密算法有 AES 和 ChaCha20：
 - **AES** 的意思是**高级加密标准**（Advanced Encryption Standard），密钥长度可以是 128、192 或 256。它安全强度很高，性能也很好，而且有的硬件还会做特殊优化，所以非常流行，是应用最广泛的对称加密算法。
@@ -63,7 +63,7 @@ TLS 里常用的对称加密算法有 AES 和 ChaCha20：
 
 非对称加密可以解决“密钥交换”的问题。网站秘密保管私钥，在网上任意分发公钥，你想要登录网站只要用公钥加密就行了，密文只能由私钥持有者才能解密。而黑客因为没有私钥，所以就无法破解密文。
 
-<img :src="$withBase('/images/https/https103.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/https103.png')" width="auto"/>
 
 非对称加密算法的设计要比对称算法难得多，在 TLS 里只有很少的几种，比如 DH、DSA、RSA、ECC 等。
 
@@ -80,7 +80,7 @@ TLS 里常用的对称加密算法有 AES 和 ChaCha20：
 2. 然后用随机数产生对称算法使用的“会话密钥”（session key），再用公钥加密。因为会话密钥很短，通常只有 16 字节或 32 字节，所以慢一点也无所谓。
 3. 对方拿到密文后用私钥解密，取出会话密钥。这样，双方就实现了对称密钥的安全交换，后续就不再使用非对称加密，全都使用对称加密。
 
-<img :src="$withBase('/images/https/https104.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/https104.png')" width="auto"/>
 
 
 
@@ -99,7 +99,7 @@ TLS 里常用的对称加密算法有 AES 和 ChaCha20：
 
 真正的完整性必须要建立在机密性之上，在混合加密系统里**用会话密钥加密消息和摘要**，这样黑客无法得知明文，也就没有办法动手脚了。
 
-<img :src="$withBase('/images/https/https105.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/https105.png')" width="auto"/>
 
 
 #### 数字签名
@@ -112,7 +112,7 @@ TLS 里常用的对称加密算法有 AES 和 ChaCha20：
 
 签名和公钥一样完全公开，任何人都可以获取。但这个签名只有用私钥对应的公钥才能解开，拿到摘要后，再比对原文验证完整性，就可以像签署文件一样证明消息确实是你发的。
 
-<img :src="$withBase('/images/https/https107.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/https107.png')" width="auto"/>
 
 > 只要你和网站互相交换公钥，就可以用“签名”和“验签”来确认消息的真实性，因为私钥保密，黑客不能伪造签名，就能够保证通信双方的身份。
 
@@ -188,7 +188,7 @@ TLS 由**记录协议、握手协议、警告协议、变更密码规范协议�
 
 先看图：
 
-<img :src="$withBase('/images/https/https106.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/https106.png')" width="auto"/>
 
 
 - **流程分析：**
@@ -261,7 +261,7 @@ Handshake Protocol: Client Key Exchange
 
 接下来看下 RSA 的握手过程：
 
-<img :src="$withBase('/images/https/https108.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/https108.png')" width="auto"/>
 
 大体的流程没有变，只是“Pre-Master”不再需要用算法生成，而是客户端直接生成随机数，然后用服务器的公钥加密，通过“Client Key Exchange”消息发给服务器。服务器再用私钥解密，这样双方也实现了共享三个随机数，就可以生成主密钥。
 
@@ -328,7 +328,7 @@ Q：废除 RSA 和 DH 密钥交换算法的原因？
 
 流程如图：
 
-<img :src="$withBase('/images/https/https109.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/https/https109.png')" width="auto"/>
 
 #### 总结
 1. 为了兼容 1.1、1.2 等“老”协议，TLS1.3 会“伪装”成 TLS1.2，新特性在“扩展”里实现；

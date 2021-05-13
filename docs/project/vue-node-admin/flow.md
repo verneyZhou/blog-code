@@ -52,7 +52,7 @@
 
 - 首先要在[阿里云安群组规则](https://ecs.console.aliyun.com/?spm=5176.100251.recommends.decs.62dd4f15QG9Z3L#/securityGroup/region/cn-beijing)中添加后端api请求的端口号：
 
-<img :src="$withBase('/images/project/image01.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/image01.png')" width="auto"/>
 
 - 然后在服务器上启动node服务：
 ``` shell
@@ -135,7 +135,7 @@ module.exports = {
 > 检查下ECS控制台的[安全组规则](https://ecs.console.aliyun.com/?spm=5176.12818093.recommend.decs.75e316d0JIQoQA#/securityGroup/region/cn-beijing)是否已已添加了`443`端口：
 ECS控制台 》 网络与安全 》 安全组 》 手动添加
 
-<img :src="$withBase('/images/project/flow001.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/flow001.jpeg')" width="auto"/>
 
 添加之后，重启服务器的nginx，再次输入链接应该就可以了~
 

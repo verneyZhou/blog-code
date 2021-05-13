@@ -15,13 +15,13 @@
 
 - 首先就是进到vultr的官网，在下方的输入邮箱、密码，注册账号：
 
-<img :src="$withBase('/images/tool/datizi01.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi01.png')" width="auto"/>
 
 > 注：点击中间的`Create acount`会有限时注册的活动，会送100刀，如果点击右上角的就没有啦~！
 
 - 注册成功后会进入这个页面：
 
-<img :src="$withBase('/images/tool/datizi002.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi002.png')" width="auto"/>
 
 这里选择`Alipay`，但需要最低充值10刀验证，没办法，必须的，充吧，反正充了也是到自己账户里~
 
@@ -29,11 +29,11 @@
 - 注册成功后进入到这个页面，接下来就开始开启实例：
 > 第一次进来左上角会有一个邮箱验证的提示，要先去邮箱验证才能开启！
 
-<img :src="$withBase('/images/tool/datizi003.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi003.png')" width="auto"/>
 
 点击右上角的`+`号，选择`Deploy New Server`：
 
-<img :src="$withBase('/images/tool/datizi004.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi004.png')" width="auto"/>
 
 进入这个页面，开始配置服务器信息：选择`Cloud Compute`；
 
@@ -43,15 +43,15 @@ Server Type，就是选择操作系统，推荐选择`Ubuntu 18.04 x64`；
 
 Server Size，当然是选择第一个最便宜的了，`$0.007/h`，配置为1核cpu、1G内存、1000G流量，一个人日常浏览外网完全够用
 
-<img :src="$withBase('/images/tool/datizi005.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi005.png')" width="auto"/>
 
 其他的选项都保持默认就行，不用管他，直接点右下角的`Deploy Now`，然后会跳到以下页面，会在列表里自动添加刚刚创建的实例，等待它自动安装完成：
 
-<img :src="$withBase('/images/tool/datizi006.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi006.png')" width="auto"/>
 
 等到实例`Status`变为`Running`时，即表示实例生效，接下来点击实例，就进入到这个页面：
 
-<img :src="$withBase('/images/tool/datizi007.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi007.png')" width="auto"/>
 
 > 这里会看到当前实例的`ip地址`，用户名和密码，以及其他配置信息和使用情况~
 
@@ -160,28 +160,28 @@ root@vultr:~#
 
 - 安装完成后进行配置：
 
-<img :src="$withBase('/images/tool/datizi101.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi101.png')" width="auto"/>
 
 选择`Configure`：
 
-<img :src="$withBase('/images/tool/datizi102.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi102.png')" width="auto"/>
 
 这里面填入的**ip地址、端口号、User ID、alterId**就是刚才 **V2Ray 配置信息**里的内容；**Tag** 自定义~
 
 - 创建之后，选择刚刚配置的服务：
 
-<img :src="$withBase('/images/tool/datizi103.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi103.png')" width="auto"/>
 
 - 然后load core就是开启：
 
-<img :src="$withBase('/images/tool/datizi104.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi104.png')" width="auto"/>
 
 > 到这里我们的梯子就算搭好了~！！！
 
 
 接下来是见证奇迹的时刻了~随便找个浏览器输入一个外网链接试下：
 
-<img :src="$withBase('/images/tool/datizi106.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi106.png')" width="auto"/>
 
 > 这里输入油管的官网：`https://www.youtube.com/`，还真的能访问了~!首页还有我们的李子柒小姐姐~！看来李子柒小姐姐在外网上确实很火呀~哈哈哈...嗝~😁 
 
@@ -204,7 +204,7 @@ root@vultr:~#
 
 - 下载完成，安装到手机，打开手机上安装的 v2rayNG 客户端，点击右上角的菜单选项，根据你的需求进行选择即可：
 
-<img :src="$withBase('/images/tool/datizi201.jpeg')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/datizi201.jpeg')" width="auto"/>
 
 这里我选择的是扫描二维码，还记得刚才在远程服务器上配置v2Ray时有个`v2ray qr`生成二维码链接的命令么？在pc浏览器上输入这个命令生成的链接，即得到一个二维码，用`v2rayNG`扫描，就能直接在`v2rayNG`上添加上这个服务器
 

@@ -22,12 +22,12 @@
 
     - 打开系统偏好设置，点击最下面的mysql，出来如下界面：
 
-    <img :src="$withBase('/images/project/mysql001.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/project/mysql001.png')" width="auto"/>
 
 
     - 初始化数据库：点击上图的Initialize Database：
 
-    <img :src="$withBase('/images/project/mysql002.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/project/mysql002.png')" width="auto"/>
 
     设置密码，注意：这里有两个密码，都设置一下~
 
@@ -43,23 +43,23 @@
 
     - 新建本地连接：点击左上角的 连接，选择 mySql，出现弹窗，填写信息：
 
-    <img :src="$withBase('/images/project/mysql003.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/project/mysql003.png')" width="auto"/>
 
     > 连接本地数据库，用户名：root；密码：输入的密码是在mySql里面设置的 Legacy password,输入完成先点击 测试连接，成功后，保存~
 
     - 新建数据库
         1. 新建
 
-        <img :src="$withBase('/images/project/mysql004.png')" width="auto"/>
+        <img class="zoom-custom-imgs" :src="$withBase('/images/project/mysql004.png')" width="auto"/>
 
         2. 填写
 
-        <img :src="$withBase('/images/project/mysql005.png')" width="auto"/>
+        <img class="zoom-custom-imgs" :src="$withBase('/images/project/mysql005.png')" width="auto"/>
 
     - 导入.sql文件
     > book > 运行SQL文件，选择book.sql文件进入导入：
 
-    <img :src="$withBase('/images/project/mysql006.png')" width="auto"/>
+    <img class="zoom-custom-imgs" :src="$withBase('/images/project/mysql006.png')" width="auto"/>
 
     > 导入过程中可能会报错，解决方法见下面【常见问题】~
 

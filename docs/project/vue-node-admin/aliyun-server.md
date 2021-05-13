@@ -11,13 +11,13 @@
     - 购买成功后就可以在[域名列表](https://dc.console.aliyun.com/next/index#/domain/list/all-domain)看到自己的域名；
     - 域名状态如果显示：未实名认证，需要进行实名认证~
 
-<img :src="$withBase('/images/project/image02.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/image02.png')" width="auto"/>
 
 
 2. **解析**
 - 上图列表中点击操作下的【解析】，进入解析列表页面，添加记录：
 
-<img :src="$withBase('/images/project/image03.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/image03.png')" width="auto"/>
 
 > 添加一条测试记录~
 
@@ -25,7 +25,7 @@
 
 - 这里域名解析可以指定到另一个域名，也可以**和开通的阿里云服务器ip地址地址绑定到一起**
 
-<img :src="$withBase('/images/project/image04.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/image04.png')" width="auto"/>
 
 > 添加成功之后就可以通过`master.verneyzhou-code.cn`访问到`123.57.172.182`这个ip地址~但如果不备案的话这样的访问形式很快就会失效
 
@@ -34,7 +34,7 @@
 
 - 点击控制台右上角的【备案】，进入备案列表：
 
-<img :src="$withBase('/images/project/image05.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/image05.png')" width="auto"/>
 
 - 满三月后，右侧会出现【申请】，点击进入【去备案】，然后按官方操作流程备案即可~（？应该也可以直接备案~）
 
@@ -48,25 +48,25 @@
 
 1. 进入SSL证书页面：[链接](https://yundun.console.aliyun.com/?p=cas#/overview/cn-hangzhou)
 
-<img :src="$withBase('/images/project/image06.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/image06.png')" width="auto"/>
 
 2. 点击购买证书，进入选择页面：
 
-<img :src="$withBase('/images/project/image07.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/image07.png')" width="auto"/>
 
 > 个人测试用可以选择免费版~
 
 3. 按照流程购买成功后，进入控制台列表页会新增一条数据：
 
-<img :src="$withBase('/images/project/image08.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/image08.png')" width="auto"/>
 
 4. 点击去申请，填写信息，验证，提交审核~
 
-<img :src="$withBase('/images/project/image09.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/image09.png')" width="auto"/>
 
 5. 提交审核后，等待状态更改为【已签发】，然后就可以下载，让证书生效~
 
-<img :src="$withBase('/images/project/image10.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/image10.png')" width="auto"/>
 
 > 下载证书后，就可以在后端node代码和配置nginx中使用这个证书了~
 
@@ -81,27 +81,27 @@
 
 > 基础配置：
 
-<img :src="$withBase('/images/project/aliyun001.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/aliyun001.png')" width="auto"/>
 
 > 网络安全组：
 
-<img :src="$withBase('/images/project/aliyun002.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/aliyun002.png')" width="auto"/>
 
 > 系统配置：
 
-<img :src="$withBase('/images/project/aliyun003.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/aliyun003.png')" width="auto"/>
 
 - 分组配置一般不用自定义，默认就行~
 
 - 最后，生成订单，支付~
 
-<img :src="$withBase('/images/project/aliyun004.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/aliyun004.png')" width="auto"/>
 
 
 3. 支付成功进入[管理控制台](https://ecs.console.aliyun.com/?spm=5176.12818093.recommends.decs.488716d030QA02#/server/region/cn-beijing)
 > 等待状态变为【运行中】，操作栏中重置密码，重启，等待再次状态更改为【运行中】
 
-<img :src="$withBase('/images/project/aliyun005.png')" width="auto"/>
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/aliyun005.png')" width="auto"/>
 
 4. 电脑打开终端，连接云服务器：
 ``` shell
