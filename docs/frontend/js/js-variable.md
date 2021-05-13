@@ -277,3 +277,10 @@ console.log(b); // 3
 1. [es6入门-let 和 const 命令](https://es6.ruanyifeng.com/#docs/let)
 2. [【译】终极指南：变量提升、作用域和闭包](https://juejin.cn/post/6844903747617832973)
 3. [var、let、const 有什么区别](https://mp.weixin.qq.com/s/0YEcZEMIsVn5d7uPO68WXQ)
+
+
+<fix-link label="Back" href="/frontend/js/depth.html"></fix-link>
+
+
+<!-- 2021-04-25 -->
+

@@ -720,4 +720,7 @@ showName()
 11. [【译】终极指南：变量提升、作用域和闭包](https://juejin.cn/post/6844903747617832973)
 
 
+<fix-link label="Back" href="/frontend/js/depth.html"></fix-link>
+
+
 <!-- 2021-04-23 -->

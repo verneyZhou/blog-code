@@ -374,6 +374,10 @@ console.log(Object.__proto__ === Function.prototype); // true
 3. [JavaScript走进原型链](https://juejin.cn/post/6949814782862032909)
 4. [从探究Function.__proto__===Function.prototype过程中的一些收获](https://github.com/jawil/blog/issues/13)
 
+
+<fix-link label="Back" href="/frontend/js/depth.html"></fix-link>
+
+
 <!-- 2021-04-17 -->
 
 

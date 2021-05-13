@@ -325,4 +325,9 @@ A：不会。因为当js开始执行`foo`函数时，遇到异步代码`setTimeo
 - [JS 异步编程六种方案](https://juejin.cn/post/6844903760280420366)
 - [JavaScript异步编程](https://segmentfault.com/a/1190000015711829)
 
+
+
+
+<fix-link label="Back" href="/frontend/js/depth.html"></fix-link>
+
 <!-- 2021-04-07 -->

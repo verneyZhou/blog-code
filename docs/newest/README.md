@@ -12,14 +12,13 @@
 ## 4月
 
 - [《透视HTTP协议》学习笔记](/tool/http/)
-- [深拷贝、浅拷贝](/frontend/js/js-copy.html)
 
 
 
 ## 3月
 
-- [js深入：从执行上下文到闭包](/frontend/js/closure.html)
-- [js深入：js的事件循环](/frontend/js/async-js.html)
+- [js深入系列](/frontend/js/depth.html)
+
 
 
 
@@ -40,6 +39,5 @@
 - [全栈项目开发实录：vue-node-admin](/project/vue-node-admin/)
 - [移动端微信H5项目开发笔记](/project/mobile-h5/)
 - [vue+webpack从0到1搭建项目](/tool/webpack/vue-use.html)
-- [git使用笔记](/tool/git.html)
 
 
