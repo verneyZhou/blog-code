@@ -29,9 +29,6 @@
 
 - [Set和Map]
 - [算法](./arithmetic.html)
-- [http请求方式]
-
-- [import、require、export、module.exports]
 
 - [js常用的库]
 

@@ -23,3 +23,5 @@
 - [chrome-devtools](./chrome-devtools.html)
 - [Web性能优化](./web-performance.html)
 - [Webpack原理深析](./webpack/learn.html)
+- 技术前瞻
+- nginx

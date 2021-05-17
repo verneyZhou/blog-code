@@ -12,8 +12,8 @@ export default {
     components: {},
     data() {
     return {
-        preffix: '/blog',
-        // preffix: '',
+        // preffix: '/blog',
+        preffix: '',
     };
     },
     computed: {

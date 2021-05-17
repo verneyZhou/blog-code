@@ -10,19 +10,19 @@
 - [js深入：js的原型与原型链](./prototype.html)
 - [js深入：从执行上下文到闭包](./closure.html)
 - [js深入：js的事件循环](./async-js.html)
+- [js深入：AMD、CMD、CommonJs、ES6](./js-module.html)
 
 
 ### 进行中
 
 - [js深入：面试题整理](./interview.html)
+- [js深入：ES6、ES7、ES8...](./js-es6.html)
 
 
 
 
 ### 未开始
 
-- [js深入：es6、es7、es8](./es6.html)
-- [普通函数与箭头函数]
+
 - [=、==、===](js-value.html)
-- [构造函数、原型、原型链、Class类](./prototype.html)
 - [代理：Object.defineProperty、Proxy](./proxy.html)
