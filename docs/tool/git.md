@@ -3,7 +3,30 @@
 ## git常用操作
 ---
 
-### 1. 删除分支
+### 1. 基本操作
+
+- 初始化本地Git存储库：`git init`
+- 创建远程存储库的本地副本：`git clone ssh://git@github.com/[username]/[repository-name].git`
+- 检查状态：`git status`
+- 将文件添加到暂存区：`git add [file-name.txt]`
+> 将所有工作区的修改添加到暂存区：`git add .`
+- 将暂存区的修改进行提交：`git commit -m "[commit message]"`
+> 如果工作区没有添加新的文件，只是在原有文件上进行修改，可以执行`git commit -am "[commit message]"`直接将工作区的修改进行提交
+- 删除文件（或文件夹）：`git rm -r [file-name.txt]`
+- 列出本地所有分支：`git branch`
+> 列出包含本地远程的所有分支：`git branch -a`、重命名本地分支：`git branch -m [old branch name] [new branch name]`
+- 创建一个新分支并切换到该分支：`git checkout -b [branch name]`
+> 切换到已有分支：`git checkout [branch name]`
+- 合并分支：`git merge [branch name]`
+> 将一个分支合并到一个目标分支：`git merge [source branch] [target branch]`
+- 将分支推送到你的远程存储库：`git push origin [branch name]`
+> 强推：`git push -f`
+- 拉取：`git pull`
+- 查看更改：`git log`
+- 合并前预览更改：`git diff [source branch] [target branch]`
+
+
+### 2. 删除分支
 
 - 删除本地分支：`git branch -D branchName`
 
@@ -25,7 +48,7 @@
 
 
 
-### 2. 查看提交记录
+### 3. 查看提交记录
 
 - `git log -n`  :n为最近提交的次数
 <img class="zoom-custom-imgs" :src="$withBase('/images/tool/git101.png')" width="auto"/>
@@ -58,7 +81,7 @@
 
 
 
-### 3. 版本回退
+### 4. 版本回退
 
 - `git reset --hard HEAD^` :返回上个版本
 > **适应场景**：如果想恢复到之前某个提交的版本，且那个版本之后提交的版本我们都不要了
@@ -94,13 +117,13 @@
 [参考](https://blog.csdn.net/fightfightfight/article/details/81039050)
 
 
-### 4. tag操作
+### 5. tag操作
 
 - `git tag` :查看tag
 - `git tag tagName -m '注释'`   :创建tag
 - `git push origin tagName`  :提交tag到github
 
-### 5. 查看git账号
+### 6. 查看git账号
 - `git config user.name`   :查看账户名
 - `git config user.email`  :查看邮箱
 
@@ -383,6 +406,10 @@ git merge --abort #如果Git版本 >= 1.7.4
 git reset --merge #如果Git版本 >= 1.6.1
 ```
 然后再`git pull`
+
+
+9. `.DS_Store`问题
+> DS_Store(英文全称 Desktop Services Store)，处理参考：[如何删除mac中的.DS_Store和git中的.DS_Store](https://www.jianshu.com/p/793788ca7978)
 
 
 

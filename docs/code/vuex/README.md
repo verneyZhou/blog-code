@@ -1828,6 +1828,13 @@ var app = new Vue({
 4. 递归实现模块的注册
 
 
+## 参考
+- [https://github.com/zero2one3/Vuex-Analysis](https://github.com/zero2one3/Vuex-Analysis)
+- [Vuex框架原理与源码分析](https://tech.meituan.com/2017/04/27/vuex-code-analysis.html)
+- [Vuex2.0源码解析](https://zhuanlan.zhihu.com/p/29982815)
+- [手写一版自己的 VUEX](https://segmentfault.com/a/1190000020861804)
+
+
 
 
 <!-- <fix-link label="Back" href="/code/"></fix-link> -->

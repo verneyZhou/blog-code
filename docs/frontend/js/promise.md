@@ -810,7 +810,7 @@ end~
 ### 备注
 1. 这里`MyPromise`的异步调用时通过`setTimeout`来模拟的，但在js的执行序列里，`Promise`是属于微任务，而`setTimeout`是属于宏任务，`Promise`是先于`setTimeout`执行的，这里只是通过`setTimeout`来模拟异步操作。
 2. `finally`方法感觉还需要梳理下~
-
+3. 有时间研究下`Promise.allSettled`方法~
 
 
 ### 参考

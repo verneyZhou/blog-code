@@ -15,7 +15,7 @@
 
 ### 进行中
 
-- [js深入：面试题整理](./interview.html)
+
 - [js深入：ES6、ES7、ES8...](./js-es6.html)
 
 
@@ -26,3 +26,4 @@
 
 - [=、==、===](js-value.html)
 - [代理：Object.defineProperty、Proxy](./proxy.html)
+- [JS深入：js的跨域解决方案](./js-cross-domain.html)

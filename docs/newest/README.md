@@ -25,18 +25,19 @@
 ## 2月
 
 - [js手写系列](/frontend/js/handle-codes.html)
-- [js中数组常用方法整理](/frontend/js/array-methods.html)
+- [git使用笔记](/tool/git.html)
 
 
 ## 1月
 
-- [一些js的使用小技巧](/frontend/js/js-skills.html)
+- [深拷贝、浅拷贝](/frontend/js/js-copy.html)
+- [防抖与节流](/frontend/js/debounce-throttle.html)
 
 
 
 ## 2020年
 
 - [全栈项目开发实录：vue-node-admin](/project/vue-node-admin/)
-- [vue+webpack从0到1搭建项目](/tool/webpack/vue-use.html)
+- [vue+webpack从0到1搭建项目](/skills/webpack/vue-use.html)
 
 

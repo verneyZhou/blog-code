@@ -7,7 +7,14 @@ module.exports = [
             { text: 'CSS', link: '/frontend/css/'},
         ]
     },
-    
+    {
+        text: '进阶',
+        items: [
+            { text: '技术栈', link: '/skills/'},
+            { text: '源码学习', link: '/code/' },
+            { text: '更多', link: '/more/' }
+        ]
+    },
     { text: '项目',
         items: [
             {
@@ -25,27 +32,6 @@ module.exports = [
             }
             
             
-        ]
-    },
-    {
-        text: '进阶',
-        items: [
-            {
-                text: '技术栈',
-                items: [
-                    {text: 'vue', link: '/skills/vue/'},
-                    {text: 'webpack', link: '/skills/webpack/'},
-                    {text: 'node', link: '/skills/node/'},
-                    {text: 'react', link: '/skills/react/'},
-                ]
-            },
-            {
-                text: '提升',
-                items: [
-                    { text: '源码学习', link: '/code/' },
-                    { text: '更多', link: '/more/' },
-                ]
-            }
         ]
     },
     { text: '其他', link: '/tool/'},

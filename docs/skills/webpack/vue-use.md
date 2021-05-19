@@ -8,7 +8,7 @@
 - [vue.js官方文档](https://cn.vuejs.org/)
 - [webpack官方文档](https://www.webpackjs.com/)
 
-> 注：这里使用的vue版本是v2.6.11；webpack版本是v4.42.1；里面的配置模式主要适用于webpack版本为v4.x.x；
+> 注：这里使用的vue版本是`v2.6.11`；webpack版本是`v4.42.1`；里面的配置模式主要适用于webpack版本为`v4.x.x`；
 
 
 
@@ -1923,7 +1923,7 @@ optimization: {
 3. babel 异步懒加载 `@babel/plugin-syntax-dynamic-import`？`core-js`与`babel-polyfill`? 
 
 
-<fix-link label="Back" href="/tool/webpack/"></fix-link>
+<fix-link label="Back" href="/skills/"></fix-link>
 
 <!-- 2021-05-13 -->
 

@@ -18,7 +18,8 @@
 - [js中数组常用方法整理](./array-methods.html)
 - [一些js的使用小技巧](./js-skills.html)
 
-- [一些笔试题](./js-interview.html)
+<!-- - [一些笔试题](./js-interview.html) -->
+<!-- - [js深入：面试题整理](./interview.html) -->
 
 
 
@@ -26,8 +27,6 @@
 
 - [正则](./regexp.html)
 
-
-- [Set和Map]
 - [算法](./arithmetic.html)
 
 - [js常用的库]
@@ -35,11 +34,6 @@
 - [vite+vue3初试](./vite.html)
 
 - [手写MVVM]
-- [Git使用指南](./git.html)
-- [Chrome调试技巧]
-- [webpack]
 - [typescript](./ts.html)
-
-- [跨域]
 
 

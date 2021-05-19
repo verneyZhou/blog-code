@@ -182,14 +182,27 @@ Object.keys(Point.prototype) // []
 - 如果在一个方法前，加上`static`关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为**静态方法**。
 
 
+
+### Set和Map
+
+
+
+
 ### Promise
 Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。
+
+
+
 
 ### Generator
 Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。
 
-### Proxy
 
+
+
+
+### Proxy
+[参考](https://es6.ruanyifeng.com/#docs/proxy)
 
 
 ## ES7
@@ -357,6 +370,7 @@ ES12（ES2021）
 4. [ES6、ES7、ES8特性一锅炖(ES6、ES7、ES8学习指南)](https://juejin.cn/post/6844903679976275976)
 5. [近一万字的ES6语法知识点补充](https://juejin.cn/post/6844903775329583112)
 6. [ECMAScript 6 入门](https://es6.ruanyifeng.com/)
+7. [https://github.com/ljianshu/Blog](https://github.com/ljianshu/Blog)
 
 
 
