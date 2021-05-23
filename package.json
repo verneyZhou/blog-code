@@ -8,7 +8,7 @@
     "dev:hot": "vuepress dev docs --temp .temp",
     "build": "vuepress build docs",
     "deploy": "bash deploy.sh",
-    "npm run aliyun": "bash update-blog.sh",
+    "aliyun": "bash update-blog.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
