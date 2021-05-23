@@ -22,9 +22,9 @@ git pull
 
 echo "frontend building"
 
-rm -rf node_modules
+#rm -rf node_modules
 
-cnpm i 
+#cnpm i 
 
 npm run build
 
