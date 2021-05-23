@@ -17,6 +17,7 @@
 - [js手写系列](./handle-codes.html)
 - [js中数组常用方法整理](./array-methods.html)
 - [一些js的使用小技巧](./js-skills.html)
+- [Object.defineProperty与Proxy](./proxy.html)
 
 <!-- - [一些笔试题](./js-interview.html) -->
 <!-- - [js深入：面试题整理](./interview.html) -->

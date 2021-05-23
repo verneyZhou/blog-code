@@ -219,6 +219,27 @@ root@vultr:~#
 > 注：之后如果在使用过程中连不了了，先看看 v2Ray 是否是已开启状态；如果还是不行就可能是ip被封了~这样就只能在vultr上重新创建一个ip，重新走一遍流程了~
 
 
+## 备注
+
+### Qv2Ray的安装与配置
+> Qv2Ray客户端是一个跟 v2Ray 一样的代理软件，具体介绍见[官方文档](https://qv2ray.net/lang/zh/)，里面有安装配置流程，
+
+1. 安装
+- [Qv2Ray下载地址](https://github.com/Qv2ray/Qv2ray/releases/tag/v2.6.3)
+- [v2ray-core下载地址](https://github.com/v2fly/v2ray-core/releases)
+
+2. 配置
+- 配置中文：Preferences > General Setings > Language > zh_CN
+- 配置 V2Ray Core ：首选项 》 内核设置 
+    - 【V2Ray核心可执行文件路径】选择 v2ray-core 解压后的目录，如：`/Users/admin/Documents/v2ray-macos-64/v2ray`
+    - 【V2Ray资源目录】选择 相同目录：如：`/Users/admin/Documents/v2ray-macos-64/`
+    - 检查 V2ray 核心设置 》 联网对时 》 OK
+
+3. 添加订阅
+> 远程登录服务器，`v2ray url`获取 `vmess://`连接
+- 分组 》 新建 》 粘贴链接 》 更新订阅 》 连接
+
+参考：[Qv2Ray客户端快速入门](https://blog.qiaohewei.cc/2020/10/28/qv2ray-help/)
 
 ## 参考
 

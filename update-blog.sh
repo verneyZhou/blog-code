@@ -10,9 +10,9 @@ set -e
 
 echo "start updating blog..."
 
-cd /root/vue-blog
+cd /root/nginx
 
-# git clone https://github.com/verneyZhou/blog-code.git
+# git clone git@github.com:verneyZhou/blog-code.git
 
 cd blog-code
 
@@ -21,6 +21,8 @@ echo "updating source..."
 git pull
 
 echo "frontend building"
+
+rm -rf node_modules
 
 cnpm i 
 

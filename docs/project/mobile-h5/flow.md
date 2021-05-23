@@ -8,7 +8,7 @@
 1. `vue+webpack`搭建项目
     - 适配：amfe-flexible + postcss-px2rem-exclude
     - ui库：vant
-> 具体搭建流程见另一篇博客：[vue+webpack搭建项目流程梳理](/tool/webpack/vue-use.html);
+> 具体搭建流程见另一篇博客：[vue+webpack搭建项目流程梳理](/skills/webpack/vue-use.html);
 
 2. `jenkins`配置
 > 新建的项目需要配置它的测试环境和线上环境，这里我是用jenkins进行配置；配置成功后可以在不同环境通过域名访问~

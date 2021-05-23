@@ -21,6 +21,7 @@ sidebar: false
 - [阿里云centOS服务器搭建](./aliyun-centos.html)
 - [中后台项目梳理](./build.html)
 - [其他功能点](./points.html)
+- [记一次服务器中毒经历](./reset.html)
 
 
 ## 项目

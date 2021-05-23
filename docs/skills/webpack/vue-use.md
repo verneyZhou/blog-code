@@ -1263,6 +1263,8 @@ import '@/assets';// 引入svg
 ```
 
 
+#### thread-loader
+> 多进程打包构建
 
 
 ### 文件分离及缓存优化
@@ -1906,6 +1908,7 @@ optimization: {
 ```
 
 ## 参考
+
 1. [webpack官方配置](https://www.webpackjs.com/configuration/#%E9%80%89%E9%A1%B9)
 2. [Webpack 配置详解（含 4）——关注细节](https://segmentfault.com/a/1190000014685887)
 3. [github webpack-play](https://github.com/lvzhenbang/webpack-play)
@@ -1922,6 +1925,9 @@ optimization: {
 2. vue-loader配置?
 3. babel 异步懒加载 `@babel/plugin-syntax-dynamic-import`？`core-js`与`babel-polyfill`? 
 
+4. new webpack.HashedModuleIdsPlugin()
+5. thread-loader
+6. historyApiFallback
 
 <fix-link label="Back" href="/skills/"></fix-link>
 

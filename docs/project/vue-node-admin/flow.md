@@ -74,7 +74,7 @@ HTTPS Server is running on: https://localhost:18082
 ```shell
 echo "start updating frontend..."
 cd /root/admin-book
-# git clone https://github.com/verneyZhou/ebook-admin-vue.git // 第一次执行时打开
+# git clone git@github.com:verneyZhou/ebook-admin-vue.git // 第一次执行时打开
 cd ebook-admin-vue
 echo "updating source..."
 git pull
@@ -91,7 +91,7 @@ echo "finish updating frontend..."
 ```shell
 echo "开始更新服务端..."
 cd /root/admin-book
-# git clone https://github.com/verneyZhou/ebook-admin-node.git // 第一次执行时打开
+# git clone git@github.com:verneyZhou/ebook-admin-node.git // 第一次执行时打开
 cd ebook-admin-node
 echo "正在更新代码..."
 git pull
@@ -138,6 +138,11 @@ ECS控制台 》 网络与安全 》 安全组 》 手动添加
 <img class="zoom-custom-imgs" :src="$withBase('/images/project/flow001.jpeg')" width="auto"/>
 
 添加之后，重启服务器的nginx，再次输入链接应该就可以了~
+
+
+
+
+
 
 
 

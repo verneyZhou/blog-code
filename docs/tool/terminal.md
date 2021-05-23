@@ -38,8 +38,12 @@ rm -r -f filename    # 强制删除文件夹
 open fileName  # 使用默认程序打开文件夹
 touch fileName # 新建文件
 vim filename # 终端打开文件；打开之后输入 i 进入编辑模式；点击 ESC 退出编辑模式；输入 :wq 保存并退出
+    :set nu  # 当vim nginx.conf 打开配置文件后可输入此命令显示行数
 cp -r copyUrl newUrl   # 拷贝文件   copyUrl：被拷贝文件路径   newUrl：新路径
 du -hd 1 .   # 查看文件存储大小
+
+mv fromfile tofile  # 移动命令，如果tofile已经存在的话，会直接装原文件覆盖，从而造成文件的丢失
+
 ```
 
 
