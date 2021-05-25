@@ -1,8 +1,13 @@
 
-# Object.defineProperty与Proxy
+# Vue：深入响应式原理
 
 
-## Object.defineProperty
+
+## Object.defineProperty与Proxy
+> 开始之前先介绍下`Object.defineProperty`和`Proxy`~
+
+
+### Object.defineProperty
 > `Object.defineProperty()` 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。详见[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
 
 
@@ -16,7 +21,7 @@
 > - **返回值**：被传递给函数的对象
 
 
-### 属性描述符（descriptor）
+- **属性描述符（descriptor）**
 
 对象里目前存在的**属性描述符**有两种主要形式：**数据描述符和存取描述符**。
 
@@ -40,6 +45,7 @@
     - `set`：当且仅当该属性的 writable 键值为 true 时，属性的值，也就是上面的 value，才能被赋值运算符改变，默认为 false；
 :::
 如果一个描述符不具有 value、writable、get 和 set 中的任意一个键，那么它将被认为是一个数据描述符。如果一个描述符同时拥有 value 或 writable 和 get 或 set 键，则会产生一个异常。
+
 
 - **示例:**
 
@@ -75,7 +81,6 @@ Object.defineProperty(o, "conflict", {
 });
 // 抛出错误 TypeError
 
-
 ```
 
 - **特点：**
@@ -110,8 +115,15 @@ Object.defineProperty(o, "a", {
 });
 ```
 
+### Proxy
+> 关于`Proxy`的简介我已经在另一篇博客[JS深入：ES6、ES7、ES8...](/frontend/js/js-es6.html#proxy)有过记录，具体可参考阮老师的[Proxy]( https://es6.ruanyifeng.com/#docs/proxy)，这里不再赘述~
 
 
+### 比较
+
+
+
+## 概念
 
 ### 数据劫持
 
@@ -121,10 +133,24 @@ Object.defineProperty(o, "a", {
 - 脏值检查（angular.js）
 - 数据劫持（vue.js）
 
-### 优缺点比较
 
 
-## MVVM
+### MVVM
+
+
+
+## 原理
+
+
+
+## 实现
+
+
+
+## 备注
+
+
+## 参考
 
 
 

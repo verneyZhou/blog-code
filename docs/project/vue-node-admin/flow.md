@@ -117,6 +117,7 @@ echo "后台服务端启动成功!"
         - http服务监听的是5000端口，浏览器输入http://localhost:5000/book/list 访问的是后端 /book/list 接口；
         - https服务监听的是18082端口，浏览器输入：https://localhost:18082/book/list 访问后端/book/list接口；
     - mysql的默认数据库端口是3306；
+    - 3389 端口是电脑远程控制的端口
 
 
 6. `Invalid Host header`
