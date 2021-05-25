@@ -5,3 +5,5 @@ docs/.vuepress/dist/
 docs/.vuepress/configs/secretKey.js
 
 .temp
+
+.DS_Store
