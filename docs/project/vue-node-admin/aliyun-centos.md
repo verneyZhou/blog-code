@@ -332,22 +332,24 @@ nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
 > 已经能够访问到我们自己配置的资源~
 
 
-4. 上传资源到nginx上
-    - 首先下载FTP工具：[FileZilla](https://www.filezilla.cn/download/client)
-    - 下载完成后，打开FileZilla：
-        - 文件 > 站点管理器 > 新建站点：
-        <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos004.png')" width="auto"/>
-        > 站点名自定义，主机是ssh登录服务器的别名，密码是服务器的密码~
+## FileZilla上传静态资源
+> 上传资源到nginx上~
 
-        - 连接成功之后：
-        <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos005.png')" width="auto"/>
+- 首先下载FTP工具：[FileZilla](https://www.filezilla.cn/download/client)
+  - 下载完成后，打开FileZilla：
+      - 文件 > 站点管理器 > 新建站点：
+      <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos004.png')" width="auto"/>
+      > 站点名自定义，主机是ssh登录服务器的别名，密码是服务器的密码~
 
-    - 然后将本地需要上传到服务器的资源直接拖拽到右边区域，就可以实现上传了~
-    - 上传成功后，删除刚开始的测试文件index.html，刷新浏览器ip地址：
-    <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos006.png')" width="auto"/>
-    > 本地资源已经上传到服务器上了~
+      - 连接成功之后：
+      <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos005.png')" width="auto"/>
 
-    - 最后，如果上线的话，记得把nginx中自动打开index的配置关闭：
+- 然后将本地需要上传到服务器的资源直接拖拽到右边区域，就可以实现上传了~
+- 上传成功后，删除刚开始的测试文件index.html，刷新浏览器ip地址：
+<img class="zoom-custom-imgs" :src="$withBase('/images/project/centos006.png')" width="auto"/>
+> 本地资源已经上传到服务器上了~
+
+- 最后，如果上线的话，记得把nginx中自动打开index的配置关闭：
 ``` js
 [root@iZ2zef9ue9eyhqrvjxs3aqZ ~]# vim nginx/nginx.conf
 ////
@@ -602,6 +604,13 @@ mysql> update user set password=password("2020zyZY") where user="root";  // 更�
 mysql> flush privileges;  // 生效
 mysql> grant all privileges on *.* to 'root'@'%';  // 赋予root最高权限
 ```
+
+4. 新建数据库的时候报错：
+``` shell
+1044 - Access denied for user 'root'@'%' to database 'book'
+```
+应该是root账号没有授权，在终端连上服务器后，给root授权，具体参照[1.安装](./aliyun-centos.html#mysql环境安装)的授权流程~
+
 
 
 

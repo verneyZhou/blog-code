@@ -35,7 +35,7 @@ export default {
     position: fixed;
     display: inline-block;
     white-space: wrap;
-    width: 32px;
+    min-width: 32px;
     z-index: 999;
     padding: 2px;
     top: 4rem;

@@ -48,7 +48,7 @@ ECMA-262 的第 1 版本质上与 Netscape 的 JavaScript 1.1 相同，只不过
 | ECMAScript 2021(ES12)  | - | Promise.any()等 |
 
 
-## ES6
+## ES6（2015）
 > ES6 在 ES5 发布近 6 年（2009-11 至 2015-6）之后才将其标准化，两个发布版本之间时间跨度很大，所以ES6中的特性比较多。ES6 的目标是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。
 
 关于 ES6 中新增了哪些特性，具体可以参考阮老师的[ES6 入门教程](https://es6.ruanyifeng.com/)，我就不再一一罗列，这里只是简单记录下我对 ES6 部分特性的学习。
@@ -189,8 +189,40 @@ Object.keys(Point.prototype) // []
 
 
 ### Promise
-Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。
+Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。[参考](https://es6.ruanyifeng.com/#docs/promise)
 
+#### Promise.all
+> Promise.all()方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。
+``` js
+const p = Promise.all([p1, p2, p3]);
+```
+p的状态由p1、p2、p3 决定，分成两种情况：
+- 只有p1、p2、p3 的状态都变成 fulfilled，p 的状态才会变成 fulfilled，此时p1、p2、p3 的返回值组成一个数组，传递给p的回调函数。
+- 只要p1、p2、p3 之中有一个被 rejected，p 的状态就变成 rejected，此时第一个被 reject 的实例的返回值，会传递给p的回调函数。
+
+p1、p2、p3都是 Promise 实例，如果不是，就会先调用 Promise.resolve 方法，将参数转为 Promise 实例，再进一步处理。
+
+
+### Promise.race() 
+> Promise.race()方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。
+``` js
+const p = Promise.race([p1, p2, p3]);
+```
+只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给p的回调函数。
+
+``` js
+const p = Promise.race([
+  fetch('/resource-that-may-take-a-while'),
+  new Promise(function (resolve, reject) {
+    setTimeout(() => reject(new Error('request timeout')), 5000)
+  })
+]);
+
+p
+.then(res => console.log(res))
+.catch(err => console.error(err));
+```
+Promise.race()可以用于需要对接口请求设置超时限制的场景。
 
 
 
@@ -512,7 +544,7 @@ Proxy一般和Reflect配套使用,前者拦截对象,后者返回拦截的结果
 
 
 
-## ES7
+## ES7（2016）
 ES7（ES2016）新增的特性比较少，主要有：`Array.prototype.includes()`
 
 ### Array.prototype.includes()
@@ -536,7 +568,7 @@ ES7（ES2016）新增的特性比较少，主要有：`Array.prototype.includes(
 
 
 
-## ES8
+## ES8（2017）
 ES8（ES2017）新增的特性比较少，主要有：`async/await、Object.values()、`
 
 ### async/await
@@ -549,8 +581,8 @@ async 函数是什么？一句话，它就是 Generator 函数的语法糖。它
 
 
 ### `Object.values()`和`Object.entries`
-- Object.values()是一个与Object.keys()类似的新函数，但返回的是Object自身属性的所有值，不包括继承的值。
-- Object.entries()函数返回一个给定对象自身可枚举属性的键值对的数组。
+- Object.values() 是一个与 Object.keys() 类似的新函数，但返回的是 Object 自身属性的所有值，不包括继承的值。
+- Object.entries() 函数返回一个给定对象自身可枚举属性的键值对的数组。
 ``` js
 const obj = {a: 1, b: 2, c: 3};
 Object.values(obj); // [1,2,3]
@@ -558,7 +590,7 @@ Object.entries(obj); [["a", 1], ["b", 2], ["c", 3]]
 ```
 
 
-### `String padding`
+### `padStart()和padEnd()`
 在 ES8 中 String 新增了两个实例函数`String.prototype.padStart`和`String.prototype.padEnd`，允许将空字符串或其他字符串添加到原始字符串的开头或结尾。
 
 - `String.padStart(targetLength,[padString])`
@@ -612,25 +644,75 @@ Object.getOwnPropertyDescriptors(obj)
 
 
 
-## ES9
+## ES9（2018）
 ES9（ES2018）
 
 
 ### Promise.finally()
+finally()方法用于指定不管 Promise 对象最后状态如何，都会执行的操作。该方法是 ES2018 引入标准的。
+``` js
+promise
+.then(result => {···})
+.catch(error => {···})
+.finally(() => {···});
+```
+> 上面代码中，不管promise最后的状态，在执行完then或catch指定的回调函数以后，都会执行finally方法指定的回调函数。
+
+finally方法的回调函数不接受任何参数，这意味着没有办法知道，前面的 Promise 状态到底是fulfilled还是rejected。这表明，finally方法里面的操作，应该是与状态无关的，不依赖于 Promise 的执行结果。
 
 
 ### for await of
-ES2018引入异步迭代器（asynchronous iterators）, `await` 可以和`for...of`循环一起使用，以串行的方式运行异步操作
+ES2018引入异步迭代器（asynchronous iterators）, `await` 可以和`for...of`循环一起使用，以串行的方式运行异步操作。
+``` js
+async function getInfos(arr) {
+  for await (let i of arr) {
+    getData(i)
+  }
+}
+```
 
 
 
 ### 正则新增特性
 
 
-## ES10
+## ES10（2019）
 ES10（ES2019）
 
-### Array的flat()方法和flatMap()方法
+### flat()和flatMap()
+[参考](https://es6.ruanyifeng.com/#docs/array#%E6%95%B0%E7%BB%84%E5%AE%9E%E4%BE%8B%E7%9A%84-flat%EF%BC%8CflatMap)
+
+
+- **flat()**
+
+数组的成员有时还是数组，Array.prototype.flat() 用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。
+``` js
+[1, 2, [3, 4]].flat()  // [1, 2, 3, 4]
+[1, 2, [3, [4, 5]]].flat(2)  // [1, 2, 3, 4, 5]
+[1, [2, [3]]].flat(Infinity)  // // [1, 2, 3]
+```
+- flat() 默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将 flat() 方法的参数写成一个整数，表示想要拉平的层数，默认为 1。
+- 如果不管有多少层嵌套，都要转成一维数组，可以用 Infinity 关键字作为参数。
+
+
+
+- **flatMap()**
+
+flatMap()方法对原数组的每个成员执行一个函数（相当于执行Array.prototype.map()），然后对返回值组成的数组执行flat()方法。该方法返回一个新数组，不改变原数组。
+``` js
+// 相当于 [[2, 4], [3, 6], [4, 8]].flat()
+[2, 3, 4].flatMap((x) => [x, x * 2])
+// [2, 4, 3, 6, 4, 8]
+```
+flatMap()只能展开一层数组。
+
+
+### trimStart()和trimEnd()
+String 新增的的方法，分别去除字符串首尾空白字符。
+``` js
+'   asdfg   '.trimStart();  // "asdfg   "
+'   asdfg   '.trimEnd();  // "   asdfg"
+```
 
 
 
@@ -638,32 +720,192 @@ ES10（ES2019）
 
 
 
-## ES11
-ES11（ES2020）
+
+
+## ES11（2020）
+ES11（ES2020）,[参考](https://github.com/ljianshu/Blog/issues/79)
 
 
 ### Promise.allSettled()
+> Promise.allSettled()方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例。只有等到所有这些参数实例都返回结果，不管是fulfilled还是rejected，包装实例才会结束。该方法由 ES2020 引入。
+
+``` js
+const resolved = Promise.resolve(42);
+const rejected = Promise.reject(-1);
+
+const allSettledPromise = Promise.allSettled([resolved, rejected]);
+
+allSettledPromise.then(function (results) {
+  console.log(results);
+});
+// [
+//    { status: 'fulfilled', value: 42 },
+//    { status: 'rejected', reason: -1 }
+// ]
+```
+> 该方法返回的新的 Promise 实例，一旦结束，状态总是fulfilled，不会变成rejected。状态变成fulfilled后，Promise 的监听函数接收到的参数是一个数组，每个成员对应一个传入Promise.allSettled()的 Promise 实例。
+
+有时候，我们不关心异步操作的结果，只关心这些操作有没有结束。这时，Promise.allSettled()方法就很有用。
 
 
-### 可选链：`?.`、`??`
+### `?.`和`??`
+
+- **空值合并运算符**
+
+ES2020 新增了一个运算符`??`。当左侧的操作数为`null`或者`undefined`时，返回其右侧操作数，否则返回左侧操作数。
+> 在之前我们经常会使用`||`操作符，但是使用 || 操作符，当左侧的操作数为 0 、 null、 undefined、 NaN、 false、 '' 时，都会使用右侧的操作数。如果使用 || 来为某些变量设置默认值，可能会遇到意料之外的行为。
+
+?? 操作符可以规避以上问题，它只有在左操作数是 null 或者是 undefined 时，才会返回右侧操作数。
+``` js
+const someValue = 0;
+const defaultValue = 100;
+let value = someValue ?? defaultValue; // 0
+```
+
+- **可选链操作符**
+
+可选链操作符`?.`允许读取位于连接对象链深处的属性的值，而不必明确验证链中的每个引用是否有效。?. 操作符的功能类似于`.`链式操作符，不同之处在于，在引用为空(nullish, 即 null 或者 undefined) 的情况下不会引起错误，该表达式短路返回值是 undefined。
+
+``` js
+// `.`链式操作符写法
+const tortoise = info.animal && info.animal.reptile && info.animal.reptile.tortoise;
+
+// `?.`可选链操作符写法
+const tortoise = info.animal?.reptile?.tortoise;
+```
+
+
 
 
 ### import()
-按需加载
+> ES2020提案 引入`import()`函数，支持动态加载模块。
+
+`import(specifier)`
+
+import函数的参数specifier，指定所要加载的模块的位置。import命令能够接受什么参数，import()函数就能接受什么参数，两者区别主要是后者为动态加载。import()返回一个 Promise 对象。
+``` js
+import('./dialogBox.js')
+  .then(dialogBox => {...})
+  .catch(error => {...})
+```
 
 
-### 基本数据类型BigInt
-BigInt 是一种内置对象，它提供了一种方法来表示大于 253 - 1 的整数。这原本是 Javascript中可以用 Number 表示的最大数字。BigInt 可以表示任意大的整数
+### BigInt
+`BigInt` 是一种内置对象，它提供了一种方法来表示大于 `2^53 - 1` 的整数。这原本是 Javascript中可以用 Number 表示的最大数字。BigInt 可以表示任意大的整数。
+> `Number.MAX_SAFE_INTEGER` 即可查看。超过这个值，JS 没有办法精确表示。另外，大于或等于2的1024次方的数值，JS 无法表示，会返回 Infinity。
+
+BigInt 即解决了这两个问题。BigInt 只用来表示整数，没有位数的限制，任何位数的整数都可以精确表示。为了和 Number 类型进行区分，BigInt 类型的数据必须添加后缀 n。
+
+``` js
+//Number类型在超过9009199254740991后，计算结果即出现问题
+const num1 = 90091992547409910;
+console.log(num1 + 1); //90091992547409900
+
+//BigInt 计算结果正确
+const num2 = 90091992547409910n;
+console.log(num2 + 1n); //90091992547409911n
+
+
+console.log(BigInt(999)); // 999n
+```
+BigInt 和 Number 是两种数据类型，不能直接进行四则运算，不过可以进行比较操作。
+``` js
+console.log(99n == 99); //true
+console.log(99n === 99); //false 
+console.log(99n + 1);//TypeError: Cannot mix BigInt and other types, use explicit conversionss
+```
+
+
+### globalThis
+> JS 中存在一个顶层对象，但是，顶层对象在各种实现里是不统一的。从不同的 JavaScript 环境中获取全局对象需要不同的语句。在 Web 中，可以通过 window、self 取到全局对象，但是在 Web Workers 中，只有 self 可以。在 Node.js 中，它们都无法获取，必须使用 global。
+
+ES2020 中引入 globalThis 作为顶层对象，在任何环境下，都可以简单的通过 globalThis 拿到顶层对象。
 
 
 
-## ES12
-ES12（ES2021）
+### String 的 matchAll 方法
+matchAll() 方法返回一个包含所有匹配正则表达式的结果的迭代器。可以使用 for...of 遍历，或者使用 展开运算符(...) 或者 Array.from 转换为数组.
+``` js
+
+const regexp = /t(e)(st(\d?))/g;
+const str = 'test1test2';
+
+const matchs = str.matchAll(regexp);
+console.log(matchs); // RegExpStringIterator {}
+console.log([...matchs])
+/*
+0: (4) ["test1", "e", "st1", "1", index: 0, input: "test1test2", groups: undefined]
+1: (4) ["test2", "e", "st2", "2", index: 5, input: "test1test2", groups: undefined]
+length: 2
+/*
+
+```
+
+
+
+## ES12（2021）
+ES12（ES2021）,[参考](https://github.com/ljianshu/Blog/issues/92)
 
 ### Promise.any()
+> ES2021 引入了Promise.any()方法。该方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例返回。
+
+只要参数实例有一个变成 fulfilled 状态，包装实例就会变成 fulfilled 状态；如果所有参数实例都变成 rejected 状态，包装实例就会变成 rejected 状态。
+
+Promise.any()跟Promise.race()方法很像，只有一点不同，就是不会因为某个 Promise 变成rejected状态而结束。
+> Promise.any()抛出的错误，不是一个一般的错误，而是一个 AggregateError 实例。它相当于一个数组，每个成员对应一个被rejected的操作所抛出的错误。
+
+``` js
+var resolved = Promise.resolve(42);
+var rejected = Promise.reject(-1);
+var alsoRejected = Promise.reject(Infinity);
+
+Promise.any([resolved, rejected, alsoRejected]).then(function (result) {
+  console.log(result); // 42
+});
+
+Promise.any([rejected, alsoRejected]).catch(function (results) {
+  console.log(results); // [-1, Infinity]
+});
+```
 
 
-### 
+### String.replaceAll()
+返回一个全新的字符串，所有符合匹配规则的字符都将被替换掉。
+
+``` js
+let str = 'sissfsdfsdtesdran';
+str.replaceAll('s', 'S'); // "SiSSfSdfSdteSdran"
+str.replaceAll(/s/ig, 'S');
+```
+
+### WeakRef
+> 一般来说，在 JavaScript 中，对象的引用是强保留的，这意味着只要持有对象的引用，它就不会被垃圾回收。
+
+目前在 Javascript 中，WeakMap 和 WeakSet 是弱引用对象的唯一方法：将对象作为键添加到 WeakMap 或 WeakSet 中，是不会阻止它被垃圾回收的。
+> JavaScript 的 WeakMap 并不是真正意义上的弱引用：实际上，只要键仍然存活，它就强引用其内容。WeakMap 仅在键被垃圾回收之后，才弱引用它的内容。
+
+WeakRef 是一个更高级的 API，它提供了真正的弱引用，Weakref 实例具有一个方法 deref，该方法返回被引用的原始对象，如果原始对象已被收集，则返回undefined对象。
+
+总而言之，JavaScript 中对象的引用是强引用，WeakMap 和 WeakSet 可以提供部分的弱引用功能，若想在 JavaScript 中实现真正的弱引用，可以通过配合使用 WeakRef 和终结器（Finalizer）来实现。
+
+
+### 逻辑赋值操作符
+逻辑赋值操作符（Logical Assignment Operators）
+
+``` js
+a ||= b
+//等价于
+a = a || (a = b)
+
+a &&= b
+//等价于
+a = a && (a = b)
+
+a ??= b
+//等价于
+a = a ?? (a = b)
+```
+
 
 
 

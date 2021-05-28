@@ -11,7 +11,7 @@
 
 网上百度一遍，有说改 ssh 配置的，有说改阿里云控制台安全组规则的，还有说是防火墙限制问题的，看了一会儿，还是不知所云~算了，明天再看吧，老年人，肝不起~
 
-于是，第二天上午啥事没干，就研究这个问题了~之前还好好的，突然就连不上了，难道是我跟我最近连的另一个 vultr 的服务器有关？我把它关了，再试也不行，永远的`Connection closed`，哎~
+于是，第二天上午啥事没干，就研究这个问题了~之前还好好的，突然就连不上了，难道是跟我最近连的另一个 vultr 的服务器有关？我把它关了，再试也不行，永远的`Connection closed`，哎~
 
 中午想着要不重启下服务器吧，毕竟重启能解决90%的问题~然而等我重启之后，连 ping 都 ping 不通了...
 > 报错信息：`Request timeout for icmp_seq 0; 2 packets transmitted, 0 packets received, 100.0% packet loss`
@@ -41,13 +41,13 @@
 
 ::: tip 初始化系统盘步骤如下：
 - 第1步：您先对此服务器的系统盘和数据盘创建快照进行备份。
-> 创建快照，请您[参看文档](https://help.aliyun.com/document_detail/25455.html)
+> 创建快照，[参看文档](https://help.aliyun.com/document_detail/25455.html)
 - 第2步：重新初始化系统盘，恢复到最初始的状态，然后正常启动服务器。
-> 重新初始化系统盘，请您[参看文档](https://help.aliyun.com/document_detail/25449.html)
+> 重新初始化系统盘，[参看文档](https://help.aliyun.com/document_detail/25449.html)
 - 第3步：如果是linux系统，重新初始化系统盘后，/etc/fstab文件中的挂载信息会被重置，您需要重新创建挂载点并挂载文件系统。
 - 第4步：您通过系统盘快照创建一个按量付费的云盘，然后把该云盘挂载到服务器中作为数据盘，从数据盘中找回您所需数据。
-> 使用快照创建云盘，请您[参看文档](https://help.aliyun.com/document_detail/32317.html)
-- 第5步：挂载云盘到服务器上。请您[参考文档](https://help.aliyun.com/document_detail/25446.html)进行。
+> 使用快照创建云盘，[参看文档](https://help.aliyun.com/document_detail/32317.html)
+- 第5步：挂载云盘到服务器上。[参考文档](https://help.aliyun.com/document_detail/25446.html)进行。
 :::
 
 
@@ -69,7 +69,7 @@
 - 如果已经进行了初始化，请参考此[文档](https://help.aliyun.com/knowledge_detail/49809.html )对linux系统做安全加固；
 > 并且建议通过快照策略，对服务器进行定期的备份，出现紧急情况，也可以用快照做恢复。快照策略的介绍，可[参考](https://help.aliyun.com/document_detail/127811.html)
 
-- 可以通过安全组，对端口策略做加固。将非业务端口，仅对您本地的出口IP放行。比如，如果您搭建的是网站业务，只有`80`和`443`端口，是业务端口，业务端口可以保持对`0.0.0.0`开放。
+- 可以通过安全组，对端口策略做加固。将非业务端口，仅对本地的出口IP放行。比如，如果搭建的是网站业务，只有`80`和`443`端口，是业务端口，业务端口可以保持对`0.0.0.0`开放。
 > 您的本地公网IP，可以访问 ipip.net 或 ip138.com，通过页面显示的IP地址来获取。修改安全组规则，可[参考](https://help.aliyun.com/document_detail/101471.html)
 
 
@@ -84,6 +84,8 @@
 
 4. 修改安全组规则
 > 将`22`这种端口的授权对象改为仅限本机对外ip~
+
+查询对外ip地址：[ip138](https://www.ip138.com/)
 
 
 
@@ -266,6 +268,6 @@ server {
 }
 ```
 
-<fix-link label="Back" href="/project/vue-node-admin/"></fix-link>
+<fix-link label="上一级" href="/project/vue-node-admin/"></fix-link>
 
 <!-- 2021-05-24 -->
