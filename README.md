@@ -18,3 +18,10 @@ npm run dev:hot
 - 优化点：
     1. 评论系统
     2. 点击图片预览
+
+
+- 常见问题：
+    1. 执行`shell`脚本提示：
+    ``` js
+    ./blog-update.sh: 行 21:  2873 已杀死               npm run build
+    ```

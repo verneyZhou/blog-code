@@ -6,4 +6,4 @@ docs/.vuepress/configs/secretKey.js
 
 .temp
 
-.DS_Store
+# .DS_Store

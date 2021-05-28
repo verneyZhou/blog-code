@@ -32,7 +32,7 @@ echo "frontend publish"
 
 cd docs/.vuepress
 
-rm -rf ~/nginx/upload/blog
+# rm -rf ~/nginx/upload/blog
 
 mv dist ~/nginx/upload/blog
 
