@@ -25,3 +25,16 @@ npm run dev:hot
     ``` js
     ./blog-update.sh: 行 21:  2873 已杀死               npm run build
     ```
+    > 自动化执行脚本的时候，服务器cpu占用太多，达到90%以上~
+
+
+
+
+### 计划
+
+1. proxy
+2. chrome-devtool
+3. css3
+4. h5调试及常见问题
+5. 算法
+6. web性能优化

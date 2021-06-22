@@ -5,7 +5,11 @@
 
 ## vue
 
+
 - [Vue：深入响应式原理](./vue/proxy.html)
+- [Vue使用小技巧](./vue/log.html)
+- [实现一个前端经典的轮子：Virtual-DOM]
+- [Vue学习闲杂笔记](./vue/some.html)
 
 
 ## webpack

@@ -27,3 +27,4 @@
 - [=、==、===](js-value.html)
 - [JS深入：js的跨域解决方案](./js-cross-domain.html)
 - [JS深入：js常用的设计模式]
+- [JS深入：js的继承模式]

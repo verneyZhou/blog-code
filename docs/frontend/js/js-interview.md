@@ -30,6 +30,17 @@ if (a == 1 && a == 2 && a == 3) {
     console.log(1);
 }
 ```
+> 扩展：什么样的 a 可以满足 (a === 1 && a === 2 && a === 3) === true 呢？
+``` js
+let current = 0
+Object.defineProperty(window, 'a', {
+  get () {
+    current++
+    return current
+  }
+})
+console.log(a === 1 && a === 2 && a === 3) // true
+```
 
 
 [一些代码片段](https://mp.weixin.qq.com/s/CxrzdjEDFuaL57lh3dLgpg)
