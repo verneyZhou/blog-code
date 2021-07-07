@@ -1,3 +1,8 @@
+---
+navbar: false
+# sidebar: false
+---
+
 
 
 # vue+webpack从0到1搭建项目
@@ -1929,7 +1934,7 @@ optimization: {
 5. thread-loader
 6. historyApiFallback
 
-<fix-link label="Back" href="/skills/"></fix-link>
+<!-- <fix-link label="Back" href="/skills/"></fix-link> -->
 
 <!-- 2021-05-13 -->
 

@@ -806,3 +806,6 @@ btn.addEventListener('click', function() {
 - [监听一个变量的变化，需要怎么做](https://mp.weixin.qq.com/s/q9PxtmT8hO1o76_IgJ3xyg)
 - [深入响应式原理](https://cn.vuejs.org/v2/guide/reactivity.html)
 - [mvvm](https://github.com/DMQ/mvvm)
+
+
+<fix-link label="Back" href="/skills/"></fix-link>

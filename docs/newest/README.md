@@ -7,6 +7,7 @@
 ## 6月
 
 - [Vue：深入响应式原理](/skills/vue/proxy.html)
+- [Vue使用技巧记录](/skills/vue/log.html)
 
 
 
