@@ -359,7 +359,51 @@ Vue.prototype.$log = window.console.log;
 <div>{{$log(info)}}</div>
 ```
 
+### scrollBehavior管理路由滚动
+> 在`SPA`项目开发中，可通过`vue-router`的`scrollBehavior`来管理组件的滚动行为；[vue-router滚动行为](https://router.vuejs.org/zh/guide/advanced/scroll-behavior.html)
+``` js
+const router = new VueRouter({
+  routes: [...],
+  scrollBehavior (to, from, savedPosition) {
 
+    // keep-alive 返回缓存页面后记录浏览位置
+    if (savedPosition && to.meta.keepAlive) {
+      return savedPosition;
+    }
+
+    // 异步滚动操作
+    return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ x: 0, y: 0 });
+    }, 0);
+    });
+
+    // 滚动到锚点
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+  }
+})
+```
+> scrollBehavior 方法接收 to 和 from 路由对象。第三个参数 savedPosition 当且仅当 popstate 导航 (通过浏览器的 前进/后退 按钮触发) 时才可用。
+
+### 子组件绑定原生事件
+> vue中给子组件自定义一个click事件，需要在子组件通过$emit('click')触发才行。如果想在父组件中触发，那就要用到native修饰符了~
+
+``` vue
+<template>
+    <div>
+        <Child @click.native="test"></Child>
+    </div>
+</template>
+<script>
+    methods:{
+        test(){}
+    }
+</script>
+```
 
 
 

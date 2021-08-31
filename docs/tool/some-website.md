@@ -1,6 +1,27 @@
 # 网站收藏
 
 
+## 实用类网站
+
+- [codeif](https://unbug.github.io/codelf/)
+> 当不知道给变量取什么名字时，这个网站可以帮助你
+
+- [印记中文](https://docschina.org/)
+> 前端中文文档合集，包含开发中经常使用的文档
+
+- [tool.lu](https://tool.lu/)
+> 开发中常用的各种在线工具
+
+- [前端静态资源库](https://cdn.baomitu.com/)
+
+
+
+
+
+
+
+
+## 工具类网站
 
 - [免费图片视频库](https://www.pexels.com/zh-cn/)
 - gif/pdf/图片压缩
@@ -33,3 +54,6 @@
 - chrome插件 vimium ：网页快捷操作，脱离鼠标，使用方式可参考相关文档
 - chrome 插件 oneTab：收起 tab 页，需要时可放开恢复
 - chrome 插件 掘金：新开 tab 为掘金热点页
+
+
+

@@ -30,7 +30,13 @@ npm run dev:hot
 
 
 
-### 计划
+## TODO
+
+- css整理
+- js
+- vue
+- webpack原理
+- 移动端调试
 
 1. proxy
 2. chrome-devtool

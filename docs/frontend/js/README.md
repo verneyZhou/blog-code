@@ -19,7 +19,7 @@
 - [一些js的使用小技巧](./js-skills.html)
 
 - [一些笔试题](./js-interview.html)
-- [js深入：面试题整理](./interview.html)
+- [js笔试题整理](./interview.html)
 
 
 
@@ -29,11 +29,8 @@
 
 - [算法](./arithmetic.html)
 
-- [js常用的库]
+- [js常用库整理](./web.html)
 
-- [vite+vue3初试](./vite.html)
-
-- [手写MVVM]
 - [typescript](./ts.html)
 
 

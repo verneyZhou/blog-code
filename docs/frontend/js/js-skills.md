@@ -2,19 +2,38 @@
 
 
 
-## 一些常用的js代码技巧
+# 一些常用的js代码技巧
 这里收集的是日常项目开发中一些比较常用的js代码，短小精悍，方便实用。
 
-### 随机数的应用
+
+## 常用方法
+
+### 判断所有数据类型的typeof
+
+``` js
+window.typeof = function (value) {
+  return Object.prototype.toString.call(val).slice(8, -1)
+}
+```
+
+### 实现图片懒加载lazyLoad
+
+
+[参考](https://github.com/yeyan1996/practical-javascript/blob/master/lazyLoad.js)
+
+
+
+
+## 随机数的应用
 `Math.random()`相关
 
-#### 1. ID随机生成
+### 1. ID随机生成
 ```js
 // toString(radix): radix，数字基数，2~36之间的整数，默认10；radix为几，就表示输出几进制的字符串；36：1~9 A~Z
 let id = Math.random().toString(36).substring(2);
 console.log(id); // ol7lr3jaj08
 ```
-#### 2. 生成一个范围内随机数
+### 2. 生成一个范围内随机数
 ```js
 let max = 20
 let min = 10
@@ -22,20 +41,20 @@ let a = Math.floor(Math.random() * (max - min + 1)) + min;
 console.log(a)
 ```
 
-#### 3.数组随机混排
+### 3.数组随机混排
 ```js
 var arr = ['a', 'b','c', 'd', 'e']; 
 console.log(arr.slice().sort((a,b) => Math.random() - 0.5))
 // ["a", "c", "b", "e", "d"]
 ```
 
-#### 4. 随机布尔值
+### 4. 随机布尔值
 ```js
 let randomBoolean = () => Math.random() >= 0.5; 
 console.log(randomBoolean()); 
 ```
 
-#### 5. 随机的十六进制代码
+### 5. 随机的十六进制代码
 可用于随机生成调色板~
 ```js
 // 0xffffff就表示16进制的ffffff，也就是10进制的：15*16^5 + 15*16^4 + 15*16^3 + 15*16^2 + 15*16^1 + 15
@@ -46,7 +65,7 @@ console.log(a); // #82efaa
 
 
 
-### if-else的替代方案
+## if-else的替代方案
 > 项目经常会用到`if-else`，但当逻辑比较复杂还继续用`if-else`来判断，代码就会显得很臃肿，而且可读性也很差，不够简洁；这里罗列了几个`if-else`的替代方案，可以使代码的书写更加优雅。
 
 先看个用`if-else`写的例子：
@@ -135,7 +154,7 @@ console.log(ageFn(23)); // adult
 2. [JavaScript复杂判断的更优雅写法](https://zhuanlan.zhihu.com/p/48917912)
 
 
-### js解构的使用
+## js解构的使用
 > ES6[解构](https://es6.ruanyifeng.com/#docs/destructuring)的常见用途~
 1. 交换变量
 ```js
@@ -160,9 +179,9 @@ console.log(secondColor);
 ```
 
 
-### 其他
+## 其他
 
-#### 1.获取页面元素
+### 1.获取页面元素
 > 打印出当前网页使用了多少种HTML元素
 ```js
 const getAllTag = () => {
@@ -170,7 +189,7 @@ const getAllTag = () => {
 }
 ```
 
-#### 2. 颜色十六进制转换
+### 2. 颜色十六进制转换
 >  实现颜色转换：`rgb(255, 255, 255) -> #FFFFFF`
 - 方法1：
 ```js
@@ -205,7 +224,7 @@ function rgb2hex(sRGB) {
 rgb2hex('rgb(200, 235, 13)') // #C8EB0D
 ```
 
-#### 3. URLSearchParams
+### 3. URLSearchParams
 > [URLSearchParams](https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams)接口定义了一些实用的方法来处理 URL 的查询字符串。
 ```js
 let url = '?name=tom&age=24&gender=boy';
@@ -220,7 +239,7 @@ for (let p of searchParams) {
 ```
 
 
-#### 4. 实现：`foo(1)(2)(3).getValue()`或`foo(1,2,3).getValue()`等于6
+### 4. 实现：`foo(1)(2)(3).getValue()`或`foo(1,2,3).getValue()`等于6
 ```js
 function foo(...args) {
     // target是一个函数，先将传入的参数合并到一起，再递归调用foo函数
@@ -241,7 +260,7 @@ console.log(f3.getValue()); // 6
 ```
 
 
-#### 5. `??`与`?.`的应用
+### 5. `??`与`?.`的应用
 
 - 空值合并操作符`??`
 > 空值合并操作符（??）是一个逻辑操作符，当左侧的操作数为`null`或者`undefined`时，返回其右侧操作数，否则返回左侧操作数。
@@ -283,7 +302,6 @@ console.log(obj.b.bb) // 直接报错
 
 
 
-https://juejin.cn/post/6844903924520992782
+[d](https://juejin.cn/post/6844903924520992782)
 
-- [用js实现一个无限循环的动画](https://www.jianshu.com/p/fa5512dfb4f5)
-[https://mp.weixin.qq.com/s/lwQ2lTPMceGBrjaByc87DA](https://mp.weixin.qq.com/s/lwQ2lTPMceGBrjaByc87DA)
+- requestAnimationFrame的使用：[用js实现一个无限循环的动画](https://www.jianshu.com/p/fa5512dfb4f5)、[https://mp.weixin.qq.com/s/lwQ2lTPMceGBrjaByc87DA](https://mp.weixin.qq.com/s/lwQ2lTPMceGBrjaByc87DA)

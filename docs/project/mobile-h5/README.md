@@ -1,11 +1,11 @@
 
-# 移动端微信H5项目开发笔记
+# 移动端微信H5项目
 
 ## 目录
 
 - [开发流程](./flow.html)
 - [微信授权及jssdk初始化](./auth.html)
+- [一些移动端开发小技巧](./some-skills.html)
+- [移动端开发-响应式布局](./response.html)
 
-https://mp.weixin.qq.com/s/kG7Df7nR_zu4DbiKfabeVQ
 
-https://mp.weixin.qq.com/s/f1cETLcF0pvZQOPBLIrynw

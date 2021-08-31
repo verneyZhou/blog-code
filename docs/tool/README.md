@@ -20,8 +20,10 @@
 
 ## 未开始
 - [vscode使用笔记](./vscode.html)
-- [chrome-devtools](./chrome-devtools.html)
+- [关于chrome浏览器](./chrome.html)
 - [移动端调试](./mobile-debug.html)
+- [前端登录相关知识梳理](./login.html)
+- [从输入url到页面渲染完成，浏览器经历了什么]
 - sso单点登录
 - 微服务
 - 技术前瞻

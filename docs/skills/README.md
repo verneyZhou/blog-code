@@ -16,6 +16,10 @@
 - [深入vue.prototype.$xxx实现原理]
 - [vue插件使用整理](./vue/plugins.html)
 - [Vue ssr项目开发]
+- [vue3学习](./vue/vue-next.html)
+- [vue3+vite](./vue/vite.html)
+- [手写MVVM]
+
 
 ## webpack
 
@@ -26,6 +30,7 @@
 - [webpack4迁移webpack5]
 - [如何引入自定义的plugins和loader]
 - [手写简易版webpack]
+- [webpack与vite](./webpack/vs.html)
 
 
 
@@ -34,5 +39,6 @@
 
 ## node
 
+- [express中间件实现原理]
 
 ## 其他

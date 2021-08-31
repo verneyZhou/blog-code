@@ -152,6 +152,7 @@ HTML Snippets   # 自动帮你输入HTML标签
 Image preview    # 图片资源预览
 Debugger for Chrome    # 在vs中启动chrome控制台
 小程序助手、Live HTML Previewer、open in browser、SVG viewer、View in Browser、VS Color Picker、vscode-icons、Vetur、Live Server
+any-rule(正则大全)
 ```
 
 ## 常见问题

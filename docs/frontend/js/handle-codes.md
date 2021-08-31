@@ -6,7 +6,26 @@
 ## 原生js系列
 ---
 
-### 1. 手写一个new操作符
+
+### 实现Object.create
+
+``` js
+function create(proto, propsObj = undefined){ // proto 新创建对象的原型对象, propsObj 要定义其可枚举属性或修改的属性描述符的对象
+  if(typeof proto !== 'object' && proto !== null typeof proto !== 'function') // 只能是 null 或者 object
+    throw Error('Uncaught TypeError: Object prototype may only be an Object or null');
+    
+  function F(){} // 创建一个空的构造函数 F
+  F.prototype = proto; // F 原型指向 proto
+  let obj = new F(); // 创建 F 的实例
+ 
+  if(propsObj !== undefined) // propsObj有值则调用 Object.defineProperties
+   Object.defineProperties(obj, propsObj); 
+  
+  return obj; // 返回 这个 obj
+```
+
+
+### 手写一个new操作符
 
 - 先简单看下new的使用：
 ```js
@@ -53,7 +72,7 @@ let fa2 = myNew(Father, 'tom');
 fa2.sayName(); // hello tom
 ```
 
-### 2. Function.call的模拟实现
+### Function.call的模拟实现
 - call语法
 > fun.call(thisArg, arg1, arg2, ...)，调用一个函数, 其具有一个指定的this值和分别提供的参数(参数的列表)。
 
@@ -145,7 +164,7 @@ console.log(bar.call3(foo, 'tom', 24)); // {name: "tom", age: 24, value: 1}
 ```
 具体实现可参考[JavaScript深入之call和apply的模拟实现](https://github.com/mqyqingfeng/Blog/issues/11)
 
-### 3. Function.apply的模拟实现
+### Function.apply的模拟实现
 - apply 语法
 > func.apply(thisArg, [argsArray])，调用一个函数，以及作为一个数组（或类似数组对象）提供的参数。
 
@@ -197,7 +216,7 @@ function bar(name, age) {
 console.log(bar.apply2(foo, ['tom', 27])); // {value: 1, name: "tom", age: 27}
 ```
 
-### 4. Function.bind的模拟实现
+### Function.bind的模拟实现
 - 什么是bind？
 > bind() 方法会创建一个新函数。当这个新函数被调用时，bind() 的第一个参数将作为它运行时的 this，之后的一序列参数将会在传递的实参前传入作为它的参数。(来自于 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_objects/Function/bind) )
 
@@ -292,7 +311,7 @@ console.log(bindObj); // {value: undefined, name: "tom", age: 30, habit: "eat", 
 
 
 
-### 5. `instanceof`的模拟实现
+### `instanceof`的模拟实现
 > `instanceof`用于判断引用类型是否是某个构造函数的实例
 ```js
 console.log([1,2,3] instanceof Object) // true
@@ -319,7 +338,7 @@ console.log([] instanceof Object) // true
 ```
 
 
-### 6. `Object.assign`的模拟实现
+### `Object.assign`的模拟实现
 > [Object.assign](https://es6.ruanyifeng.com/#docs/object-methods#Object-assign)用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
 ```js
 Object.assign(target, source1, source2)
@@ -379,33 +398,232 @@ console.log(Object.assign2({},undefined, null, '123',123, true, {name: 'tom', [S
 
 
 
-
+## 常用方法
 
 ### 函数柯里化
+> 在计算机科学中，柯里化（Currying）是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数且返回结果的新函数的技术。
+
+看下面这个简单的例子理解下：
+``` js
+// 普通的add函数
+function add(x, y) {
+    return x + y
+}
+
+// Currying后
+function curryingAdd(x) {
+    return function (y) {
+        return x + y
+    }
+}
+
+add(1, 2)           // 3
+curryingAdd(1)(2)   // 3
+```
+> 实际上就是把add函数的x，y两个参数变成了先用一个函数接收x然后返回一个函数去处理y参数。
+
+- 通用版实现：
+``` js
+/**
+ * es5实现
+*/
+function curry(fn, args) {
+    var length = fn.length;
+    var args = args || [];
+    return function(){
+        newArgs = args.concat(Array.prototype.slice.call(arguments));
+        if (newArgs.length < length) {
+            return curry.call(this,fn,newArgs);
+        }else{
+            return fn.apply(this,newArgs);
+        }
+    }
+}
+
+// 使用
+function multiFn(a, b, c) {
+    return a * b * c;
+}
+var multi = curry(multiFn);
+console.log('===curry', multi(2)(3)(4), multi(2,3,4), multi(2)(3,4)); // 24 24 24
+```
+``` js
+// es6实现
+const curryES6 = (fn, arr = []) => (...args) => (
+    arg => arg.length === fn.length
+      ? fn(...arg)
+      : curry(fn, arg)
+  )([...arr, ...args])
+
+// 使用
+let curryTest=curryES6((a,b,c,d)=>a+b+c+d)
+console.log(curryTest(1,2,3,4),curryTest(1,2)(3,4),curryTest(1)(2)(3)(4)); // 10 10 10
+```
+
+- 面试题：实现：`addCrarryFn(1)(2)(3)(4) == 10、addCrarryFn(1)(2,3)(4,5) == 15`
+``` js
+function addCrarryFn() {
+    const _args = [...arguments]; // 获取参数
+    function fn() { // 如果继续调用，继续获取参数
+        _args.push(...arguments);
+        return fn;
+    }
+    // 自定义toString方法，当最后通过==比较的时候会隐式调用该方法
+    fn.toString = function() {
+        let res = _args.reduce((sum, cur) => sum + cur); // 累加
+        console.log('====toString',res);
+        return res;
+    }
+    return fn; // 返回fn
+}
+
+console.log('===addCrarryFn',addCrarryFn(1)(2)(3)(4) == 10,addCrarryFn(1)(2,3)(4,5) == 15) // true true
+```
 
 
-## 常用方法
----
+
+
+函数柯里化的主要作用和特点就是**参数复用、提前确认和延迟执行**。
+
+**缺点：** 存取arguments对象通常要比存取命名参数要慢一点；一些老版本的浏览器在arguments.length的实现上是相当慢的；创建大量嵌套作用域和闭包函数会带来花销，无论是在内存还是速度上。
+
+[参考](https://www.jianshu.com/p/2975c25e4d71)
 
 
 
+### 偏函数
+> JS的偏函数很柯里化比较像，其实指的是将给定的函数的部分参数固定化，然后返回新的函数。
+``` js
+//通过个Function添加原型链的方式实现 es5版
+Function.prototype.partial = function() {
+    var args = [].slice.call(arguments),
+        that = this;
+    for (var i = args.length;i<that.length;i++)         //补齐，跟fn的参数列表对应上
+        args.push(undefined)
+    
+    return function() {
+         var remainArgs = [].slice.call(arguments),
+             index = 0;
+ 
+             args.forEach(function(arg,i){
+                 arg === undefined && (args[i] = remainArgs[index++])
+             })
+ 
+         return that.apply(this,args)    
+ 
+    }
+}
+
+//通过个Function添加原型链的方式实现 es6版
+Function.prototype.partial_es6 = function(...args){
+    for (let i = args.length;i<this.length;i++)         //补齐，跟fn的参数列表对应上
+        args.push(undefined)
+    
+    return (...remainArgs) => {
+        let j = 0;
+        args.forEach((arg,i) => arg === undefined && (args[i] = remainArgs[j++]))
+        return this(...args)  
+    }
+}
+
+//  使用
+function add(a,b,c,d) {
+    return a + b + c + d;
+}
+ 
+var _add = add.partial(1,undefined,3,undefined);
+var _add2 = add.partial_es6(1,undefined,3,undefined);
+ 
+console.log(_add(2,4)); // 1 + 2 + 3 + 4 = 10 
+console.log(_add2(2,4)); // 10
+```
+偏函数有什么用呢，举个最简单的例子，比如`setTimeout(fn,time)`这个函数，可以固定后面的`time`参数，这样我们就可以得到很多时间间隔一样的`setTimeout`函数：
+``` js
+var setTimeout_1s = partial(setTimeout,undefined,1000);
+ 
+setTimeout_1s(function(){
+    //do something
+});
+setTimeout_1s(function(){
+   //do something
+});
+```
+
+### 斐波拉契数列
+> 斐波那契指的是这样一个数列：0、1、1、2、3、5、8、13、21、34......在数学上，斐波纳契数列以如下被以递归的方法定义：`F(0)=0，F(1)=1, F(n)=F(n-1)+F(n-2)（n>=2，n∈N*）`;随着数列项数的增加，前一项与后一项之比越来越逼近黄金分割的数值0.6180339887...，所以斐波那契数列又称黄金分割数列。
+
+- 普通递归实现：
+``` js
+function fibonacci(n) {
+    if (n === 0 || n ===1) return n;
+    return fibonacci(n-1) + fibonacci(n-2);
+} 
+```
+缺点：n参数过大时会造成了大量的重复计算，造成调用栈占用内存过大，容易栈溢出。
+
+- 尾递归实现：
+``` js
+function fibonacci(n, current = 0, next = 1) {
+    if (n === 1) return next;
+    if (n === 0) return 0;
+    return fibonacci(n-1, next, current + next);
+}
+```
+
+- 递推法：
+``` js
+function fibonacci(n) {
+    let cur = 0;
+    let next = 1;
+    let temp;
+    for(let i = 0; i < n; i++) {
+        temp = cur;
+        cur = next;
+        next = temp + next;
+    }
+    return cur;
+}
+
+// while + es6改写：
+function fibonacci(n) {
+    let cur = 0;
+    let next = 1;
+    while(n > 0) {
+        [cur, next] = [next, cur + next];
+        n --;
+    }
+    return cur;
+}
+```
+- reduce实现：
+``` js
+function fibonacci(n){
+	let seed = 1;
+	return [...Array(n)].reduce(p => {
+		const temp = p + seed; 
+		seed = p;
+		return temp;
+	},0)
+}
+```
+参考：[一个前端眼中的斐波那契数列](https://www.thisjs.com/2017/09/21/my-view-of-fibonacci/)
 
 
 ## 数组方法
 ---
 
-### 1.`Array.prototype.reduce`的模拟实现
+### `Array.prototype.reduce`的模拟实现
 > 关于`reduce`的模拟实现，具体见[数组的reduce学习笔记](./array-reduce)，这里不再赘述。
 
 
-### 2. `Array.prototype.sort`的模拟实现
+### `Array.prototype.sort`的模拟实现
 > sort() 方法用原地算法对数组的元素进行排序，并返回数组。默认排序顺序是在将元素转换为字符串，然后比较它们的UTF-16代码单元值序列时构建的，详见[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
 
 [实现](https://mp.weixin.qq.com/s/zrhwCosK4fi3uCA9Gms3Lg)
 
 
-### 3. `Array.prototype.filter`的模拟实现
+### `Array.prototype.filter`的模拟实现
 > 返回一个满足筛选条件的新数组；具体介绍见[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
 - 使用：
@@ -446,7 +664,7 @@ Array.prototype.filter2 = function(callback, thisArgs) {
 console.log([1,2,3,4,5].filter2(v => v >= 3)); [3,4,5]
 ```
 
-### 4. `Array.prototype.map`的模拟实现
+### `Array.prototype.map`的模拟实现
 > [map()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map)方法返回一个新数组，其结果是该数组中的每个元素是调用一次提供的函数后的返回值。
 
 - 使用：
@@ -487,7 +705,7 @@ Array.prototype.map2 = function(callback, thisArgs) {
 console.log([1,2,3,4,5].map2(v => v * 2)); // [2, 4, 6, 8, 10]
 ```
 
-### 5. `Array.prototype.forEach`的模拟实现
+### `Array.prototype.forEach`的模拟实现
 > [forEach()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)方法与map类似，但没有返回值，常用于对数组的每个元素执行一次给定的函数。
 
 - 使用：
@@ -527,6 +745,65 @@ a.forEach2((v,i) => a[i] = v * 3)
 console.log(a); // [3, 6, 9, 12, 15]
 ```
 
+### `Array.prototype.push`的模拟实现
+> push() 方法将一个或多个元素添加到数组的末尾，并返回该数组的新长度。[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
+
+``` js
+Array.prototype.push2 = function() {
+    for (var i = 0; i< arguments.length; i++) {
+        this[this.length] = arguments[i]
+    }
+    return this.length
+}
+
+// 使用
+console.log('===push2',[1,2,3,4,5].push2(6,7)); // 7 返回长度
+```
+
+### `Array.prototype.some`的模拟实现
+> some() 方法测试数组中是不是至少有1个元素通过了被提供的函数测试。它返回的是一个Boolean类型的值。[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+
+``` js
+Array.prototype.some2 = function(fun, thisArg) {
+
+    if (this == null) {
+      throw new TypeError('Array.prototype.some called on null or undefined');
+    }
+
+    if (typeof fun !== 'function') {
+      throw new TypeError();
+    }
+
+    var _this = Object(this);
+    var len = _this.length >>> 0;
+
+    if (!len) return false;
+
+    var _thisArg = thisArg || this;
+    for (var i = 0; i < len; i++) {
+      if (i in _this && fun.call(_thisArg, _this[i], i, _this)) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
+    // 使用
+  [1,2,3,4].some2(v => v === 4) // true
+```
+
+
+
+
+## 参考
+
+- [32个手写JS，巩固你的JS基础（面试高频）](https://juejin.cn/post/6875152247714480136)
+- [「中高级前端面试」JavaScript手写代码无敌秘籍](https://juejin.cn/post/6844903809206976520)
+- [一个合格的中级前端工程师需要掌握的 28 个 JavaScript 技巧](https://juejin.cn/post/6844903856489365518)
+
+
+<fix-link label="Back" href="/frontend/js/"></fix-link>
 
 
 

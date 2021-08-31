@@ -11,20 +11,17 @@
 - [js深入：从执行上下文到闭包](./closure.html)
 - [js深入：js的事件循环](./async-js.html)
 - [js深入：AMD、CMD、CommonJs、ES6](./js-module.html)
+- [js深入：ES6、ES7、ES8...](./js-es6.html)
+- [JS深入：js常用的设计模式](./js-design.html)
+- [JS深入：js的跨域解决方案](./js-cross-domain.html)
 
 
 ### 进行中
 
-
-- [js深入：ES6、ES7、ES8...](./js-es6.html)
 
 
 
 
 ### 未开始
 
-
-- [=、==、===](js-value.html)
-- [JS深入：js的跨域解决方案](./js-cross-domain.html)
-- [JS深入：js常用的设计模式]
-- [JS深入：js的继承模式]
+- [JS深入：js的继承模式](./js-inherit.html)
