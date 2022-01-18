@@ -11,7 +11,7 @@ features:
   - title: 工作
     details: 打工是不可能打工的。
   - title: 生活
-    details: 有人相爱，有人夜里骑车看海。
+    details: 谁谓河广？一苇以航。
 # footer: MIT Licensed | Copyright © 2021-present 阿沐
 ---
 

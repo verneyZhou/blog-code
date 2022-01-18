@@ -4,13 +4,13 @@ module.exports = [
     ['link', { rel: 'icon', href: `/icons/favicon.ico` }], // 在public文件夹中查找
     //增加manifest.json
     ['link', { rel: 'manifest', href: '/js/mainfest.json' }],
-    ['meta', { name: 'Author', content: '阿沐' }],
+    ['meta', { name: 'Author', content: '一苇' }],
     [
         'meta',
         {
           rel: 'keywords',
           content:
-            'verneyzhou,阿沐,前端,docs.verneyzhou-code.cn,博客,fe,IT,技术',
+            'verneyzhou,阿沐,一苇,前端,docs.verneyzhou-code.cn,博客,fe,IT,技术',
         },
     ],
     [

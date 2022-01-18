@@ -22,6 +22,116 @@ window.typeof = function (value) {
 [参考](https://github.com/yeyan1996/practical-javascript/blob/master/lazyLoad.js)
 
 
+### cleanObject
+> 去除对象中value为空(null,undefined,'')的属性
+
+``` js
+export const isVoid = (value) =>
+  value === undefined || value === null || value === "";
+
+export const cleanObject = (object) => {
+  // Object.assign({}, object)
+  if (!object) {
+    return {};
+  }
+  const result = { ...object };
+  Object.keys(result).forEach((key) => {
+    const value = result[key];
+    if (isVoid(value)) {
+      delete result[key];
+    }
+  });
+  return result;
+};
+
+
+let res=cleanObject({
+    name:'',
+    pageSize:10,
+    page:1
+})
+console.log("res", res) //输入{page:1,pageSize:10}
+```
+
+### 在浏览器中自定义下载一些内容
+``` js
+/**
+ * 浏览器下载静态文件
+ * @param {String} name 文件名
+ * @param {String} content 文件内容
+ */
+function downloadFile(name, content) {
+    if (typeof name == 'undefined') {
+        throw new Error('The first parameter name is a must')
+    }
+    if (typeof content == 'undefined') {
+        throw new Error('The second parameter content is a must')
+    }
+    if (!(content instanceof Blob)) {
+        content = new Blob([content])
+    }
+    const link = URL.createObjectURL(content)
+    download(link, name)
+}
+//下载一个链接
+function download(link, name) {
+    if (!name) {//如果没有提供名字，从给的Link中截取最后一坨
+        name =  link.slice(link.lastIndexOf('/') + 1)
+    }
+    let eleLink = document.createElement('a')
+    eleLink.download = name
+    eleLink.style.display = 'none'
+    eleLink.href = link
+    document.body.appendChild(eleLink)
+    eleLink.click()
+    document.body.removeChild(eleLink)
+}
+
+//下载excel
+download('http://111.229.14.189/file/1.xlsx')
+
+// 使用
+downloadFile('1.txt','lalalallalalla')
+downloadFile('1.json',JSON.stringify({name:'hahahha'}))
+
+
+```
+
+### 复制内容到剪切板
+``` js
+export function copyToBoard(value) {
+    const element = document.createElement('textarea')
+    document.body.appendChild(element)
+    element.value = value
+    element.select()
+    if (document.execCommand('copy')) {
+        document.execCommand('copy')
+        document.body.removeChild(element)
+        return true
+    }
+    document.body.removeChild(element)
+    return false
+}
+```
+
+
+### 清除所有 Cookie
+``` js
+const clearCookies = document.cookie.split(';').forEach(cookie => document.cookie = cookie.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`));
+
+```
+
+### 将 RGB 转换为十六进制
+``` js
+const rgbToHex = (r, g, b) => "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+rgbToHex(0, 51, 255); // '#0033ff'
+```
+
+
+
+
+
+
 
 
 ## 随机数的应用
@@ -181,7 +291,7 @@ console.log(secondColor);
 
 ## 其他
 
-### 1.获取页面元素
+### 获取页面元素
 > 打印出当前网页使用了多少种HTML元素
 ```js
 const getAllTag = () => {
@@ -189,7 +299,7 @@ const getAllTag = () => {
 }
 ```
 
-### 2. 颜色十六进制转换
+### 颜色十六进制转换
 >  实现颜色转换：`rgb(255, 255, 255) -> #FFFFFF`
 - 方法1：
 ```js
@@ -224,7 +334,7 @@ function rgb2hex(sRGB) {
 rgb2hex('rgb(200, 235, 13)') // #C8EB0D
 ```
 
-### 3. URLSearchParams
+### URLSearchParams
 > [URLSearchParams](https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams)接口定义了一些实用的方法来处理 URL 的查询字符串。
 ```js
 let url = '?name=tom&age=24&gender=boy';
@@ -239,7 +349,7 @@ for (let p of searchParams) {
 ```
 
 
-### 4. 实现：`foo(1)(2)(3).getValue()`或`foo(1,2,3).getValue()`等于6
+### 实现：`foo(1)(2)(3).getValue()`或`foo(1,2,3).getValue()`等于6
 ```js
 function foo(...args) {
     // target是一个函数，先将传入的参数合并到一起，再递归调用foo函数
@@ -260,7 +370,7 @@ console.log(f3.getValue()); // 6
 ```
 
 
-### 5. `??`与`?.`的应用
+### `??`与`?.`的应用
 
 - 空值合并操作符`??`
 > 空值合并操作符（??）是一个逻辑操作符，当左侧的操作数为`null`或者`undefined`时，返回其右侧操作数，否则返回左侧操作数。
@@ -298,10 +408,17 @@ console.log(obj.b.bb) // 直接报错
 
 
 
+### requestAnimationFrame的使用
+
+[用js实现一个无限循环的动画](https://www.jianshu.com/p/fa5512dfb4f5)
+
+[考古挖掘：高刷显示器下的 requestAnimationFrame](https://mp.weixin.qq.com/s/lwQ2lTPMceGBrjaByc87DA)
 
 
 
+## 收藏
 
-[d](https://juejin.cn/post/6844903924520992782)
 
-- requestAnimationFrame的使用：[用js实现一个无限循环的动画](https://www.jianshu.com/p/fa5512dfb4f5)、[https://mp.weixin.qq.com/s/lwQ2lTPMceGBrjaByc87DA](https://mp.weixin.qq.com/s/lwQ2lTPMceGBrjaByc87DA)
+- [关于JS中一些重要的api实现, 巩固你的原生JS功底](https://juejin.cn/post/6844903924520992782)
+- [学会这20+个JavaScript单行代码，可以让你的代码更加骚气](https://mp.weixin.qq.com/s/cNLqiSfPNAaXDbLReberag)
+- [56个JavaScript 实用工具函数助你提升开发效率！](https://juejin.cn/post/7019090370814279693)

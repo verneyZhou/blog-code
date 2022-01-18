@@ -18,8 +18,10 @@
 - [js中数组常用方法整理](./array-methods.html)
 - [一些js的使用小技巧](./js-skills.html)
 
-- [一些笔试题](./js-interview.html)
-- [js笔试题整理](./interview.html)
+- [JS算法](./arithmetic.html)
+
+- [JS笔试题收集](./js-interview.html)
+- [JS异步题集](./async-interview.html)
 
 
 
@@ -27,7 +29,7 @@
 
 - [正则](./regexp.html)
 
-- [算法](./arithmetic.html)
+
 
 - [js常用库整理](./web.html)
 

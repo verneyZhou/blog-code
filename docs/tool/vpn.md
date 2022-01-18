@@ -241,6 +241,83 @@ root@vultr:~#
 
 参考：[Qv2Ray客户端快速入门](https://blog.qiaohewei.cc/2020/10/28/qv2ray-help/)
 
+
+### 新服务器
+> 之前的服务器突然连不上了，怀疑是没钱了~ 但充了钱还是不行...于是重新换了个服务器就可以了~，操作就是在`vultr`官网`Deploy New Server`，然后按照上面的流程重新配置即可~
+
+``` shell
+---------- V2Ray 配置信息 -------------
+
+# 2021/10
+ 地址 (Address) = 45.76.156.123
+
+ 端口 (Port) = 27343
+
+ 用户ID (User ID / UUID) = 4838c57c-34a2-4b67-badc-74ca4b8fd6f1
+
+ 额外ID (Alter Id) = 0
+
+ 传输协议 (Network) = tcp
+
+ 伪装类型 (header type) = none
+
+---------- END -------------
+
+
+# 2021/11 韩国
+ 地址 (Address) = 141.164.63.201
+
+ 端口 (Port) = 42023
+
+ 用户ID (User ID / UUID) = 2d9a7850-a206-40b5-a407-e83a8af09be3
+
+ 额外ID (Alter Id) = 0
+
+ 传输协议 (Network) = tcp
+
+ 伪装类型 (header type) = none
+
+ 
+```
+
+
+## 问题记录
+
+1. ssh 登录报错：
+``` shell
+➜  ~ ssh root@45.32.23.147
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:0IxBdgGYmLwxJZRFX/ygBmrY9rFlHAb8aXpJr2yyTsA.
+Please contact your system administrator.
+Add correct host key in /Users/admin/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /Users/admin/.ssh/known_hosts:15
+ECDSA host key for 45.32.23.147 has changed and you have requested strict checking.
+Host key verification failed.
+```
+
+> 在平时工作中，有时候需要SSH登陆到别的Linux主机上去，但有时候SSH登陆会被禁止，并弹出如下类似提示；ssh会把你每个你访问过计算机的公钥(public key)都记录在`~/.ssh/known_hosts`。当下次访问相同计算机时，OpenSSH会核对公钥。如果公钥不同，OpenSSH会发出警告， 避免你受到DNS Hijack之类的攻击。
+
+一台主机上有多个Linux系统，会经常切换，那么这些系统使用同一ip，登录过一次后就会把ssh信息记录在本地的`~/.ssh/known_hsots`文件中，切换该系统后再用ssh访问这台主机就会出现冲突警告，需要手动删除修改known_hsots里面的内容。
+
+**解决方案：** `rm -rf /Users/admin/.ssh/known_hosts`
+
+[参考](https://blog.csdn.net/yasaken/article/details/7348441)
+
+
+
+## 其他
+
+- [vultr优惠网](https://www.vultryhw.cn/vultrmatch-up-to-100-credit/)
+- [vultr中文指南网](https://vultr.idcspy.com/1108.html)
+
+
+
 ## 参考
 
 - [Vultr注册并购买服务器搭VPN](https://viencoding.com/article/114)

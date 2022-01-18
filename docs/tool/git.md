@@ -413,6 +413,25 @@ git reset --merge #如果Git版本 >= 1.6.1
 
 
 
+10. git push 的时候报错：`error: You have not concluded your merge (MERGE_HEAD exists).`
+> 原因可能是在以前pull下来的代码自动合并失败
+
+- 舍弃本地代码,远端版本覆盖本地版本(慎重)
+``` shell
+$:git fetch --all
+$:git reset --hard origin/master
+$:git fetch
+```
+
+- 保留本地的更改,中止合并->重新合并->重新拉取
+``` shell
+$:git merge --abort
+$:git reset --merge
+$:git pull
+```
+
+
+
 
 
 
@@ -429,6 +448,14 @@ git reset --merge #如果Git版本 >= 1.6.1
     - 搭梯子翻墙~具体流程在我另一篇博文里[搭梯子](./vpn)；
     - 配置git520，具体参考[GitHub 访问不了？教你几招轻松解决](https://zhuanlan.zhihu.com/p/358183268)
     > [github520](https://github.com/521xueweihan/GitHub520)
+
+
+
+## 参考
+
+- [Git各指令的本质，真是通俗易懂啊](https://juejin.cn/post/6895246702614806542)
+- [一些常用的 Git 进阶知识与技巧](https://juejin.cn/post/7022746201598459940)
+
 
 
 

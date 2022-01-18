@@ -705,6 +705,59 @@ p::fisrt-letter {
 ```
 
 
+### @supports检查是否支持某个css特性
+> @supports是CSS中常见的@规则，可以用来检测当前浏览器是否支持某个css特性。
+``` css
+    .loading{
+         width:10px;
+         heigth:10px;
+         background:url(./loading.gif);
+    }
+    
+    /* 判断是否支持animation 属性,支持则增加动画效果 */
+    @support (animation:none) {
+        .loading{
+             width:10px;
+             heigth:10px;
+             background:url(./loading.png);
+             animation: spin 1s linear infinite;
+        }
+        @keyframes spin{
+            from { transform: rotate(360deg);}
+            to {transform: rotate(0deg);}
+        }
+    }
+
+```
+``` js
+    //js 判断是否支持positon:sticky 属性  CSS.supports(propertyName,value)
+    if( !window.CSS || !CSS.supports || !CSS.supports('position','sticky'){
+        //TODO 
+    }
+    
+```
+
+### 取消鼠标默认的双击选中事件
+
+```
+css:
+ 
+body {
+     -moz-user-select: none;  /*火狐*/
+     -webkit-user-select: none;  /*webkit浏览器*/
+     -ms-user-select: none;  /*IE10*/
+     -khtml-user-select: none;  /*早期浏览器*/
+     user-select: none;
+}
+
+
+js:
+ 
+document.ondragstart = document.onselectstart =  function (){ return  false ;};
+```
+[参考](https://blog.csdn.net/litre_LDS/article/details/78754269)
+
+
 
 ## 常见问题
 

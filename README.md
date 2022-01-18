@@ -44,3 +44,8 @@ npm run dev:hot
 4. h5调试及常见问题
 5. 算法
 6. web性能优化
+
+## 国庆学习计划
+1. chrome dectools技巧
+2. vue3+ts项目实战
+3. vue原理学习

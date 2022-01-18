@@ -1,5 +1,5 @@
 
-# Vue：深入响应式原理
+# Vue深入：响应式原理
 
 这里是我的关于vue响应式原理的学习笔记~
 
@@ -806,6 +806,9 @@ btn.addEventListener('click', function() {
 - [监听一个变量的变化，需要怎么做](https://mp.weixin.qq.com/s/q9PxtmT8hO1o76_IgJ3xyg)
 - [深入响应式原理](https://cn.vuejs.org/v2/guide/reactivity.html)
 - [mvvm](https://github.com/DMQ/mvvm)
+
+
+<!-- 2021-07-10 -->
 
 
 <fix-link label="Back" href="/skills/"></fix-link>

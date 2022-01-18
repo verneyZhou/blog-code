@@ -13,6 +13,10 @@
 - [HTTPS](./https.html)
 - [HTTP进阶](./pro.html)
 
+## 收藏
+
+- [前端-网络协议知识点汇总（2.9万字）](https://mp.weixin.qq.com/s/PdY5fXKOmTN1idiCYSJisw)
+- [肝完《浏览器基本原理与实践》，我总结了这些](https://segmentfault.com/a/1190000040896436)
 
 
 

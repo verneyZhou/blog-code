@@ -1,7 +1,7 @@
----
+<!-- ---
 navbar: false
 # sidebar: false
----
+--- -->
 
 
 
@@ -1046,7 +1046,7 @@ module.exports = {
 
 可以在`package.json`中新加`browserslist`，设置兼容版本；或者在根目录下新建`.browserslistrc`，设置兼容版本
 
-[browserlist](https://www.cnblogs.com/adhehe/p/11175372.html)
+[browserlist](https://blog.csdn.net/good007boy/article/details/99627849)
 
 5. 最后，`npm run build`一下~
 
@@ -1710,6 +1710,34 @@ new HardSourceWebpackPlugin({
 > 配置完成后，重新`npm run dev`试一下，发现在第二次的时候确实快了很多，它是把缓存放在了`dist`文件夹下面了~
 
 
+
+#### ProvidePlugin
+
+`ProvidePlugin`是webpack提供的用于**自动加载模块，而不必到处 import 或 require**的插件。[参考](https://v4.webpack.docschina.org/plugins/provide-plugin)
+
+``` js
+// webpack.config.js
+
+// 语法
+plugins: [
+    new webpack.ProvidePlugin({
+        identifier: 'module1',
+        // identifier: ['module1', 'property1'],
+         $: 'jquery',
+    });
+]
+```
+这就相当于在项目注册了一个全局变量，之后在项目中直接使用就可以，不用单独引用~
+``` js
+$('#item') // 直接使用
+```
+[实用webpack插件之ProvidePlugin](https://segmentfault.com/a/1190000022509809)
+
+
+
+
+
+
 #### 其他插件
 > 除了上面这些，当然还有很多其他的插件，这里先简单记录下，有些是使用比较简单，有些不是很了解；等以后有时间了再完善细节~
 
@@ -1718,10 +1746,14 @@ new HardSourceWebpackPlugin({
 3. 图片压缩：`image-webpack-loader`
 4. 开启多进程 Loader 转换，提升打包效率：`happypack`；[参考](https://blog.csdn.net/u012987546/article/details/100775406)
 5. 增强代码压缩，提升打包效率：`webpack-parallel-uglify-plugin`；[参考](https://www.cnblogs.com/tugenhua0707/p/9569762.html)
-6. 多进程，多实例构建（资源并行解析）：`thread-loader`
+6. 多进程，多实例构建（资源并行解析）：[thread-loader](https://www.npmjs.com/package/thread-loader)
 7. 抽离第三方模块：webpack内置的`DllPlugin DllReferencePlugin`；[参考1](https://juejin.im/post/5cb36a3ef265da03a1581d6d#heading-56)、[参考2](https://juejin.im/post/5c3c55aa51882524b4073394#heading-7)
 8. 给文件添加说明：webpack内置的`BannerPlugin`
 9. 预加载资源：`preload-webpack-plugin`，Preloading，Prefetching
+10. 打包速度分析插件：[speed-measure-webpack-plugin](https://www.npmjs.com/package/speed-measure-webpack-plugin)
+11. 擦除无用的css: purgecss-webpack-plugin
+12. js压缩： [terser-webpack-plugin](https://webpack.docschina.org/plugins/terser-webpack-plugin/)
+
 
 - [配置优化参考](https://juejin.im/post/5de87444518825124c50cd36#heading-22)
 
@@ -1851,6 +1883,49 @@ package-lock=false  // 禁止生成package-lock.json文件
 对于要不要生成`package-lock.json`可以参考这篇文章：[package-lock.json的作用](https://mp.weixin.qq.com/s/heg7oZRjTHKilE0R0e-nvw)
 
 
+### babel插件配置：.babelrc
+> 当我们使用了JavaScript的一些新特性的时候，在类里面可以直接赋值，但是没有配置.babelrc时, webpack会报错
+``` json
+// .babelrc
+
+{
+    "presets": [
+      ["@babel/preset-env", {
+        "modules": "commonjs",
+        "targets": {
+          "browsers": ["> 1%", "last 2 versions", "not ie <= 8"],
+          "node": "current"
+        },
+        "useBuiltIns": false
+      }]
+    ],
+    "plugins": [
+      "@vue/babel-plugin-transform-vue-jsx",
+    //   https://www.jianshu.com/p/84553a7952fc
+      "@babel/plugin-proposal-class-properties", // es6的 class 新语法
+    //   https://blog.csdn.net/qq_41810005/article/details/108106704
+      "@babel/plugin-proposal-optional-chaining", // 可选链：a?.b?.c
+      [
+        // 参考链接：https://www.jianshu.com/p/87efabb6a333
+        "babel-plugin-import", { // 对引入的第三方ui库按需加载~
+          "libraryName":"boss-ui-h5",
+          "libraryDirectory":"dist/es", // 表示从库的package.json的main入口；否则默认为lib文件夹
+          // "camel2DashComponentName": false,  // default: true，将引入的组件名转化为"-"连接的文件名
+          "style": true // true 代表项目编译阶段对包的样式文件进行编译，压缩尺寸；为css则引入直接打包后的样式代码
+        }
+      ],
+      [
+        "babel-plugin-import", {
+          "libraryName":"vant",
+          "libraryDirectory":"es",
+          "style": true
+        },"vant"
+      ]
+    ]
+  }
+```
+
+
 ## 备注
 1. 虽然现在`vue3`已经出来了，webpack也已经更新到`v5+`版本了，但现在公司的大多数项目还是vue2+搭配webpack4+搭建项目，估计得等vue3的坑踩得差不多了才开始大面积使用吧~
 2. 这里主要讲的是搭建`SPA`类项目的配置，关于`vue + webpack`搭建项目的完整配置信息有兴趣的可以看下我github上的项目[vue-webpack](https://github.com/verneyZhou/vue-webpack)，里面包含`SPA`和`MPA`两类项目的搭建配置~
@@ -1912,6 +1987,11 @@ optimization: {
     },
 ```
 
+4. 项目中配置`eslint`代码规范后，自动保存时会进行自动修复，但新建一个项目，沿用相同的代码规范配置，自动保存并不生效？
+
+
+
+
 ## 参考
 
 1. [webpack官方配置](https://www.webpackjs.com/configuration/#%E9%80%89%E9%A1%B9)
@@ -1934,7 +2014,7 @@ optimization: {
 5. thread-loader
 6. historyApiFallback
 
-<!-- <fix-link label="Back" href="/skills/"></fix-link> -->
+<fix-link label="Back" href="/skills/"></fix-link>
 
 <!-- 2021-05-13 -->
 

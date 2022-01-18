@@ -3,7 +3,7 @@
   <div>
     <p>
       <span>MIT Licensed | Copyright © 2021-present</span>
-      <a href="/blog/about/">阿沐</a>
+      <a href="/blog/about/">一苇</a>
       <a href="https://beian.miit.gov.cn/" target="_blank">
         <img
           src="/blog/images/icp.png"

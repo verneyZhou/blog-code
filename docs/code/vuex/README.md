@@ -1819,6 +1819,7 @@ var app = new Vue({
 2. 模块注册中在生成`context`上下文时，有些细节还需要再次阅读熟悉
 3. `_wrappedGetters`中getters的注册及本地缓存是怎么处理的？
 4. 后续完善mini-vuex中的**根模块与子模块的注册**功能（已完成）。
+5. vuex设计上有没有什么缺陷？可参考下这篇文章：[从源码解读 Vuex 的一些缺陷](https://mp.weixin.qq.com/s/RpbcNbLGrMWhCjcr6P4agg)
 
 ### 其他收获
 > 在阅读源码的过程中，发现一些值得学习的写法：
@@ -1826,6 +1827,7 @@ var app = new Vue({
 2. Vue.mixin混入实现store所有组件的注册
 3. 闭包函数的运用
 4. 递归实现模块的注册
+
 
 
 ## 参考

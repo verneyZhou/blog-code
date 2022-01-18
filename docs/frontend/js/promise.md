@@ -814,9 +814,10 @@ end~
 
 
 ### 参考
-1. [Promise实现原理](https://juejin.cn/post/6844903665686282253)
-2. [Promise入门](https://es6.ruanyifeng.com/#docs/promise)
-3. [Promise实现](https://juejin.cn/post/6844904096525189128)
+- [Promise实现原理](https://juejin.cn/post/6844903665686282253)
+- [Promise入门](https://es6.ruanyifeng.com/#docs/promise)
+- [Promise实现](https://juejin.cn/post/6844904096525189128)
+- [手把手一行一行代码教你“手写Promise“，完美通过 Promises/A+ 官方872个测试用例](https://juejin.cn/post/7043758954496655397)
 
 
 

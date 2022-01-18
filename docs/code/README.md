@@ -10,16 +10,17 @@
 
 ## 进行中
 
-- [vue2源码分析](./vue/)
+- [vue2.x源码学习记录](./vue/)
+- [vue3.x源码学习](./vue-next/)
+
+- [vue-draggable源码学习](./vue-draggable.html)
 
 
 
 ## 未开始
 
-- [vue3源码分析](./vue/)
 - [lodash](./lodash)
 - [undersore](./undersore)
-- [vue-draggable](./vue-draggable)
 - [vue-virtual-scroller](./vue-virtual-scroller)
 - [vue-router]
 - [axios](./axios)

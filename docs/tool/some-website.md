@@ -1,7 +1,18 @@
-# 网站收藏
+# 收藏集
 
 
-## 实用类网站
+
+## 工具收藏
+
+### reveal.js
+> reveal.js 是一个展示内容的框架，可以简单的理解为网页版的PPT。我们用 reveal.js 做出来的PPT其实是一个HTML文件。
+
+参考：[github](https://github.com/hakimel/reveal.js/)、[官网](https://revealjs.com/)、[居然可以用 js 写 PPT？](https://mp.weixin.qq.com/s/u6ocl7lVXG-jvaNIRn-IiA)
+
+## 网站收藏
+
+
+### 实用类网站
 
 - [codeif](https://unbug.github.io/codelf/)
 > 当不知道给变量取什么名字时，这个网站可以帮助你
@@ -18,10 +29,7 @@
 
 
 
-
-
-
-## 工具类网站
+### 工具类网站
 
 - [免费图片视频库](https://www.pexels.com/zh-cn/)
 - gif/pdf/图片压缩

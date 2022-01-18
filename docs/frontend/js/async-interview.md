@@ -1,17 +1,23 @@
-# JS笔试题整理
+# JS异步题集
 
 
-## Promise面试题
 
-[Promise](https://mp.weixin.qq.com/s/cN40pHBfttZ3O2oEbVPAcg)
+## 收藏
 
-### 使用promise实现每隔1s输出1，2，3
-
-
-## 同步任务、宏任务、微任务
-https://segmentfault.com/a/1190000016278115
+- [一道字节笔试题，实现一个异步求和函数](https://mp.weixin.qq.com/s/RBk-cLUU-ZT4ylqIR2XdJg)
+- [字节面试官问粉丝，如何实现准时的setTimeout](https://mp.weixin.qq.com/s/AZh1djakcCo798T3OsdOwQ)
+- [高级进阶：深度揭秘 Promise 注册微任务和执行过程](https://mp.weixin.qq.com/s/cN40pHBfttZ3O2oEbVPAcg)
+- [看一道简单的题目，控制台会输出什么？](https://juejin.cn/post/6980962149115887623)
 
 
+
+
+## 笔记
+
+
+### Promise执行顺序
+
+#### 第一题
 
 ```js
 console.log('script start');
@@ -31,6 +37,9 @@ Promise.resolve()
 console.log('script end');
 ```
 
+
+#### 第二题
+
 ```js
 const promise = new Promise((resolve, reject) => {
   console.log(1);
@@ -46,6 +55,9 @@ promise.then((res) => {
 });
 console.log(4);
 ```
+
+
+#### 第三题
 
 ```js
 console.log('script start')
@@ -88,6 +100,8 @@ setTimeout
 ```
 
 
+#### 第四题
+
 ```js
 setTimeout(() => {
   console.log(123);
@@ -112,6 +126,7 @@ setTimeout(() => {
 p.then(r => console.log(r));
 ```
 
+#### 第五题
 
 ```js
 async function b() {
@@ -150,6 +165,7 @@ new Promise(resolve => {
 ```
 
 
+#### 第六题
 ```js
 console.log('1');
 
@@ -190,6 +206,7 @@ setTimeout(function() {
 
 ```
 
+#### 第七题
 
 ```js
 Promise.resolve().then(() => {
@@ -219,6 +236,7 @@ Promise.resolve().then(() => {
 ```
 
 
+#### 第八题
 
 ```js
 var date = new Date() 
@@ -282,5 +300,4 @@ obj[Symbol.iterator] = function() {
 
 ## 参考
 
-- [异步求和](https://mp.weixin.qq.com/s/RBk-cLUU-ZT4ylqIR2XdJg)
-- [实现准时的setTimeout](https://mp.weixin.qq.com/s/AZh1djakcCo798T3OsdOwQ)
+- [带你彻底弄懂Event Loop](https://segmentfault.com/a/1190000016278115)
