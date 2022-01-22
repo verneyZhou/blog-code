@@ -1,3 +1,12 @@
+---
+title: 记一次服务器中毒经历
+date: 2021-05-23 20:24:18
+permalink: /pages/084373/
+categories:
+  - 
+tags:
+  - 
+---
 # 记一次服务器中毒经历
 
 

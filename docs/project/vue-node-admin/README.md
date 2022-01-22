@@ -1,3 +1,14 @@
+---
+title: 全栈项目开发实录：vue-node-admin
+date: 2021-04-26 14:32:02
+permalink: /pages/3c11cd/
+article: false
+categories:
+  - project
+  - vue-node-admin
+tags:
+  - 
+---
 <!-- ---
 navbar: false
 sidebar: false

@@ -1,3 +1,16 @@
+---
+title: vue3+vite+ts 从0到1项目搭建
+date: 2021-11-14 09:02:03
+permalink: /pages/89d3e4/
+categories:
+  - vue
+tags:
+  - vue3
+  - vite
+  - ts
+---
+
+
 
 # vue3+vite+ts 从0到1项目搭建
 

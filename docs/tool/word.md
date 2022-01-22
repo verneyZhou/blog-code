@@ -1,3 +1,12 @@
+---
+title: 名词目录
+date: 2021-11-28 20:47:24
+permalink: /pages/2176eb/
+categories:
+  - 
+tags:
+  - 
+---
 # 名词目录
 
 ## Electron
@@ -41,7 +50,7 @@
 
 [什么是Serverless](https://blog.csdn.net/cc18868876837/article/details/90672971)
 
-[前端开发模式演进](https://www.jianshu.com/p/92632d6c2269}
+[前端开发模式演进](https://www.jianshu.com/p/92632d6c2269)
 
 
 ## WebAssembly

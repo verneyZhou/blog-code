@@ -3,7 +3,7 @@
 
 // 颜色
 // $textColor ?= #2c3e50
-// $accentColor = #f00
+$accentColor = rgb(0,170,170);
 // $grayTextColor ?= #666
 // $lightTextColor ?= #999
 // $borderColor ?= #eaecef
@@ -12,7 +12,7 @@
 // $navbarColor ?= #fff
 // $headerColor ?= #fff
 // $headerTitleColor ?= #fff
-// $nprogressColor ?= $accentColor
+$nprogressColor ?= $accentColor
 
 // // 布局
 // $navbarHeight ?= 3.6rem
@@ -26,3 +26,13 @@
 
 // // 修改meduiumZoomZindex的层级,默认是100
 // $mediumZoomZIndex = 10000
+
+
+// 浅色模式
+.theme-mode-light
+  --textLightenColor: #476582;
+
+  // 代码块深色主题
+  --codeBg: #252526
+  --codeColor: #fff
+  codeThemeDark()

@@ -1,3 +1,13 @@
+---
+title: 数组的reduce学习笔记
+date: 2021-04-17 13:11:38
+permalink: /pages/91f4c0/
+categories:
+  - js
+tags:
+  - js
+  - reduce
+---
 # 数组的reduce学习笔记
 这里是我的数组reduce方法学习记录。
 

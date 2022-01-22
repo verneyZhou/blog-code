@@ -1,5 +1,14 @@
+---
+title: JS深入：var、let、const
+date: 2021-03-31 23:18:48
+permalink: /pages/9157b5/
+categories:
+  - js
+tags:
+  - js
+---
 
-# var、let、const
+# JS深入：var、let、const
 这里对js最基本、常用的`var、let、const`进行简单地梳理~
 
 ## 简介

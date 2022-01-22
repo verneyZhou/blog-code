@@ -1,6 +1,15 @@
+---
+title: 数组常用方法整理
+date: 2021-03-18 19:38:11
+permalink: /pages/cd191e/
+categories:
+  - js
+tags:
+  - js
+  - 数组
+---
 
 # 数组常用方法整理
-（持续更新中...）
 
 ---
 ## 数组扁平化

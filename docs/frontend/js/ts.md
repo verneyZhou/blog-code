@@ -1,3 +1,13 @@
+---
+title: typescript
+date: 2021-10-25 01:44:45
+permalink: /pages/a87881/
+article: false
+categories:
+  - 
+tags:
+  - 
+---
 
 # typescript
 

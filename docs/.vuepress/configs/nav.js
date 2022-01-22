@@ -1,6 +1,6 @@
 module.exports = [
-    { text: '最新', link: '/newest/' },
-    { text: '笔记', 
+    { text: '时间轴', link: '/archives/' },
+    { text: '基础', 
         items: [
             { text: 'JS', link: '/frontend/js/'},
             { text: 'HTML', link: '/frontend/html/' },
@@ -10,8 +10,9 @@ module.exports = [
     {
         text: '进阶',
         items: [
-            { text: '技术栈', link: '/skills/'},
-            { text: '源码学习', link: '/code/' },
+            { text: 'Vue', link: '/skills/vue/'},
+            { text: 'Webpack', link: '/skills/webpack/'},
+            { text: '源码', link: '/code/' },
             { text: '更多', link: '/more/' }
         ]
     },
@@ -21,6 +22,9 @@ module.exports = [
                 text: 'PC端',
                 items: [
                     {text: 'vue-node-admin', link: '/project/vue-node-admin/'},
+                    {text:'vue3-vite-admin', link: '/skills/vue/vue3-vite-admin'},
+                    {text:'vue3-cli-admin', link: '/skills/vue/vue3-cli-admin'},
+                    {text:'vue3-webpack5-admin', link: '/skills/vue/vue3-webpack5-admin'},
                 ]
             },
             {

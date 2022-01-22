@@ -16,6 +16,7 @@ module.exports = {
     description: '这是阿沐的博客哦~',
     head,
     lastUpdated: true, // 显示更新时间,设置true，开启最后更新时间
+    theme: 'vdoing', // 主题插件：vuepress-theme-vdoing
     themeConfig,
     markdown,
     alias: {

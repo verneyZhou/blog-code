@@ -1,3 +1,12 @@
+---
+title: 手写Promise
+date: 2021-03-18 19:31:53
+permalink: /pages/cc0cb6/
+categories:
+  - js
+tags:
+  - promise
+---
 # 手写Promise
 
 <!-- [[toc]] -->

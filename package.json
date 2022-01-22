@@ -23,6 +23,7 @@
     "vuepress-plugin-flowchart": "^1.4.3",
     "vuepress-plugin-reading-progress": "^1.0.10",
     "vuepress-plugin-smooth-scroll": "0.0.10",
+    "vuepress-theme-vdoing": "^1.9.4",
     "watchpack": "^2.1.1"
   }
 }

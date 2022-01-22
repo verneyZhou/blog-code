@@ -33,7 +33,8 @@ export default {
 <style scoped>
 .fix-link {
     position: fixed;
-    display: inline-block;
+    /* display: inline-block; */
+    display: none;
     white-space: wrap;
     min-width: 32px;
     z-index: 999;
@@ -42,7 +43,7 @@ export default {
     right: 4px;
     font-size: 14px;
     border-radius: 4px;
-    border: 1px solid #3eaf7c;
+    border: 1px solid rgb(0,170,170);
     background: #e2f5ec;
     text-align: center;
 }

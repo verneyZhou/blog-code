@@ -1,3 +1,13 @@
+---
+title: vue3+vue-cli+ts 项目搭建
+date: 2021-11-14 09:02:43
+permalink: /pages/21af71/
+categories:
+  - vue
+tags:
+  - vue3
+  - vue-cli
+---
 
 
 # vue3+vue-cli+ts 项目搭建

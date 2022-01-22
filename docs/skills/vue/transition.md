@@ -1,3 +1,14 @@
+---
+title: vue的transition动画学习
+date: 2021-09-20 11:10:14
+permalink: /pages/855887/
+article: false
+categories:
+  - 
+  - 
+tags:
+  - 
+---
 
 # vue的transition动画学习
 

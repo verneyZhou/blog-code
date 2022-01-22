@@ -1,3 +1,15 @@
+---
+title: 防抖与节流
+date: 2021-04-09 23:57:34
+permalink: /pages/2fee8d/
+categories:
+  - js
+tags:
+  - debounce
+  - throttle
+---
+
+
 # 防抖与节流
 这里是我的防抖和节流函数学习记录。
 

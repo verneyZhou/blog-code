@@ -1,6 +1,13 @@
 ---
-# navbar: false
-# sidebar: false
+title: Vuex源码分析
+date: 2021-03-02 21:59:37
+permalink: /pages/de36e8/
+categories:
+  - vue
+  - code
+  - vuex
+tags:
+  - 源码
 ---
 
 # Vuex源码分析

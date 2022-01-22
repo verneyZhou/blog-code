@@ -1,3 +1,12 @@
+---
+title: js的事件循环
+date: 2021-03-18 19:38:21
+permalink: /pages/812cd9/
+categories:
+  - js
+tags:
+  - js基础
+---
 # js的事件循环
 
 这里简单梳理下js的事件循环机制。

@@ -1,3 +1,13 @@
+---
+title: 组件封装
+date: 2021-08-16 21:48:28
+permalink: /pages/8e5791/
+article: false
+categories:
+  - 
+tags:
+  - 
+---
 # 组件封装
 
 

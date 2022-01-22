@@ -1,3 +1,15 @@
+---
+title: 新机配置（mac）
+date: 2021-04-28 21:12:04
+permalink: /pages/c3d445/
+categories:
+  - 
+tags:
+  - 
+---
+
+
+
 # 新机配置（mac）
 
 

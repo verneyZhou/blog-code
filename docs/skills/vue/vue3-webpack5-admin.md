@@ -1,3 +1,14 @@
+---
+title: vue3+webpack5+ts 项目搭建
+date: 2021-11-14 09:02:21
+permalink: /pages/4344ed/
+categories:
+  - vue
+tags:
+  - vue3
+  - webpack5
+  - ts
+---
 
 # vue3+webpack5+ts 项目搭建
 

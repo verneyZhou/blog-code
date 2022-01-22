@@ -1,3 +1,12 @@
+---
+title: JS手写系列
+date: 2021-03-31 23:33:13
+permalink: /pages/d2fc3b/
+categories:
+  - js
+tags:
+  - js手写
+---
 
 # JS手写系列
 (持续更新中...)

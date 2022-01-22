@@ -1,3 +1,13 @@
+---
+title: VSCode使用笔记
+date: 2021-04-28 21:04:41
+permalink: /pages/a94002/
+article: false
+categories:
+  - 
+tags:
+  - 
+---
 # VSCode使用笔记
 
 ## 收藏

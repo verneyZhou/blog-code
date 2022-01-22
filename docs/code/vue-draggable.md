@@ -1,3 +1,13 @@
+---
+title: vue-draggable 源码学习
+date: 2021-12-21 20:48:53
+permalink: /pages/128147/
+article: false
+categories:
+  - 
+tags:
+  - 
+---
 # vue-draggable 源码学习
 
 

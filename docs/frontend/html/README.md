@@ -1,9 +1,28 @@
+---
+title: html学习记录
+date: 2020-09-27 11:18:08
+permalink: /pages/085a49/
+article: false
+categories:
+  - 
+  - 
+tags:
+  - 
+---
 
 
 # html学习记录
+> 这里是我的 html 相关的学习记录~
 
 
-## 笔记
+## 已完成
+
+
+## 进行中
+
+
+
+## 未开始
 
 - [一些html使用小技巧](./some-skills.html)
 - [audio、video媒体元素](./media-html.html)

@@ -1,3 +1,13 @@
+---
+title: Vue深入：响应式原理
+date: 2021-05-26 01:12:05
+permalink: /pages/a4ff3a/
+categories:
+  - vue
+tags:
+  - vue
+  - 响应式
+---
 
 # Vue深入：响应式原理
 

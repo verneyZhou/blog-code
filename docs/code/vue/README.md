@@ -1,3 +1,13 @@
+---
+title: vue2.x源码学习记录
+date: 2021-05-11 00:29:07
+permalink: /pages/da28b8/
+categories:
+  - code
+  - vue
+tags:
+  - 源码
+---
 # vue2.x源码学习记录
 
 

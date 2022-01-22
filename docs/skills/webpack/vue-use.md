@@ -1,3 +1,14 @@
+---
+title: vue+webpack从0到1搭建项目
+date: 2021-05-19 23:51:31
+permalink: /pages/bc5a85/
+categories:
+  - vue
+  - webpack
+tags:
+  - vue
+  - webpack
+---
 <!-- ---
 navbar: false
 # sidebar: false

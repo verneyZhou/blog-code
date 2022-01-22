@@ -1,3 +1,12 @@
+---
+title: JS深入：ES6、ES7、ES8...
+date: 2021-04-22 10:01:47
+permalink: /pages/e0d25e/
+categories:
+  - js
+tags:
+  - es6
+---
 
 
 # JS深入：ES6、ES7、ES8...

@@ -1,4 +1,14 @@
 
+
+
+## 主题
+
+[ vuepress-theme-vdoing](https://doc.xugaoyi.com/)
+
+
+
+## 运行及部署
+
 - 本地运行
 npm run dev:hot
 

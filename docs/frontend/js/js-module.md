@@ -1,3 +1,12 @@
+---
+title: JS深入：CommonJS、AMD、CMD、ES6
+date: 2021-05-16 00:33:58
+permalink: /pages/ab708b/
+categories:
+  - js
+tags:
+  - js模块化
+---
 
 
 # JS深入：CommonJS、AMD、CMD、ES6
