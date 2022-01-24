@@ -19,6 +19,7 @@ vue3、@vue/cli、typescript、element-plus、vuex4、vue-router4
 
 
 - [项目Github地址](https://github.com/verneyZhou/vue3-cli-admin)
+- [项目线上地址](https://www.verneyzhou-code.cn/vue3-cli-admin)
 
 
 

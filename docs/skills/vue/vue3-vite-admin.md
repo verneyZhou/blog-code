@@ -21,6 +21,7 @@ vue3、vite2、typescript、element-plus、vuex4、vue-router4
 
 
 - [项目Github地址](https://github.com/verneyZhou/vue3-vite-admin)
+- [项目线上地址](https://www.verneyzhou-code.cn/vite-admin)
 
 
 ## 前言
