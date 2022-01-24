@@ -1,12 +1,13 @@
 ---
 title: 移动端调试
 date: 2021-05-18 22:23:59
-permalink: /pages/de7cf6/
+# permalink: false # de7cf6/
 article: false
-categories:
-  - 
-tags:
-  - 
+categories: 
+  - null
+tags: 
+  - null
+permalink: false # efd9fd/
 ---
 
 

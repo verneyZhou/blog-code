@@ -1,12 +1,13 @@
 ---
 title: js学习笔记
 date: 2020-09-27 11:18:20
-permalink: /pages/c6fcf5/
+# permalink: false # c6fcf5/
 article: false
-categories:
-  - 
-tags:
-  - 
+categories: 
+  - null
+tags: 
+  - null
+permalink: false # 40e551/
 ---
 
 # js学习笔记

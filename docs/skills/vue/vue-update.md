@@ -1,11 +1,12 @@
 ---
 title: vue2与vue3的差异
 date: 2021-09-01 23:12:04
-permalink: /pages/0194e6/
-categories:
+# permalink: false # 0194e6/
+categories: 
   - vue
-tags:
+tags: 
   - vue3
+permalink: false # 0e94b1/
 ---
 
 # vue2与vue3的差异

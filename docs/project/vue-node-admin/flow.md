@@ -1,12 +1,13 @@
 ---
 title: 项目开发流程
 date: 2021-04-26 14:45:04
-permalink: /pages/95023d/
-categories:
+# permalink: false # 95023d/
+categories: 
   - project
   - vue-node-admin
-tags:
+tags: 
   - nginx
+permalink: false # 8d92b6/
 ---
 # 项目开发流程
 

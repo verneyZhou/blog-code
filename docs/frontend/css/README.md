@@ -1,13 +1,14 @@
 ---
 title: CSS
 date: 2020-09-27 11:17:52
-permalink: /pages/22929d/
+# permalink: null
 article: false
-categories:
-  -
-  -
-tags:
-  -
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # 23f87d/
 ---
 
 # CSS

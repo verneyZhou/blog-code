@@ -5,7 +5,7 @@ bannerBg: /images/poster05.jpeg
 heroText: 一苇
 tagline: 谁谓河广？一苇以航。
 # actionText: 开始阅读 →
-actionLink: /newest/
+# actionLink: /newest/
 # features:
 #   - title: 学习
 #     details: 学习使人熬夜，熬夜让人头秃。

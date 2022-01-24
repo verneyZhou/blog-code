@@ -16,6 +16,10 @@ module.exports = {
     // repo: 'verneyzhou', // 导航栏右侧生成Github链接
     searchMaxSuggestions: 10, // 搜索结果显示最大数
     lastUpdated: '上次更新', // 更新的时间，及前缀文字   string | boolean (取值为git提交时间)
+    // docsDir: 'docs', // 编辑的文件夹
+    // editLinks: true, // 启用编辑
+    // editLinkText: '编辑',
+
     // 以下配置是Vdoing主题改动的和新增的配置
     category: true, // 是否打开分类功能，默认true。 如打开，会做的事情有：1. 自动生成的frontmatter包含分类字段 2.页面中显示与分类相关的信息和模块 3.自动生成分类页面（在@pages文件夹）。如关闭，则反之。
     tag: true, // 是否打开标签功能，默认true。 如打开，会做的事情有：1. 自动生成的frontmatter包含标签字段 2.页面中显示与标签相关的信息和模块 3.自动生成标签页面（在@pages文件夹）。如关闭，则反之。
@@ -30,7 +34,7 @@ module.exports = {
     //     '/img/dragon/1.png',
     //     '/img/dragon/2.png',
     // ],
-    sidebar: 'structuring',
+    // sidebar: 'structuring', // 'structuring' | { mode: 'structuring', collapsable: Boolean} | 'auto' | 自定义
     sidebarOpen: false, // 初始状态是否打开侧边栏，默认true
     updateBar: { // 最近更新栏
       showToArticle: true, // 显示到文章页底部，默认true

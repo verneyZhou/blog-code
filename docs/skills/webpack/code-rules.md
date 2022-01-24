@@ -1,12 +1,13 @@
 ---
 title: webpack配置之代码规范
 date: 2021-11-23 23:48:41
-permalink: /pages/d9b5bc/
-categories:
+# permalink: false # d9b5bc/
+categories: 
   - webpack
-tags:
+tags: 
   - webpack
   - eslint
+permalink: false # 5628d9/
 ---
 
 

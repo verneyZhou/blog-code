@@ -12,7 +12,8 @@ module.exports = [
         // medium-zoom options here
         // See: https://github.com/francoischalifour/medium-zoom#options
         options: {
-          margin: 16
+          margin: 16,
+          bgColor: 'rgba(0,0,0,0.6)'
         }
       }
     ],
@@ -35,5 +36,11 @@ module.exports = [
             appKey: 'Eo2mcmVrgCbKURVS6KP58ywG'
           }
         }
-      ]
+    ],
+    ['one-click-copy', { // 代码块复制按钮
+      copySelector: ['div[class*="language-"] pre', 'div[class*="aside-code"] aside'], // String or Array
+      copyMessage: '复制成功', // default is 'Copy successfully and then paste it for use.'
+      duration: 1000, // prompt message display time.
+      showInMobile: false // whether to display on the mobile side, default: false.
+  }],
 ]

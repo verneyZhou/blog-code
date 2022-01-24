@@ -1,12 +1,13 @@
 ---
 title: vue3+vue-cli+ts 项目搭建
 date: 2021-11-14 09:02:43
-permalink: /pages/21af71/
-categories:
+# permalink: false # 21af71/
+categories: 
   - vue
-tags:
+tags: 
   - vue3
   - vue-cli
+permalink: false # b29339/
 ---
 
 
@@ -15,6 +16,11 @@ tags:
 ::: tip 技术栈
 vue3、@vue/cli、typescript、element-plus、vuex4、vue-router4
 :::
+
+
+- [项目Github地址](https://github.com/verneyZhou/vue3-cli-admin)
+
+
 
 ## 准备
 
@@ -605,9 +611,6 @@ module.exports = {
 面包屑导航、tags-view
 
 
-## 项目地址
-
-[vue3-vite-admin]()
 
 
 

@@ -1,11 +1,12 @@
 ---
 title: css3使用笔记
 date: 2021-06-09 00:02:05
-permalink: /pages/b98e85/
-categories:
+# permalink: null
+categories: 
   - css
-tags:
+tags: 
   - css
+permalink: false # e24770/
 ---
 # css3使用笔记
 

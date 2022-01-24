@@ -1,12 +1,13 @@
 ---
 title: 中后台项目梳理
 date: 2021-04-26 14:48:36
-permalink: /pages/566b51/
-categories:
+# permalink: false # 566b51/
+categories: 
   - project
   - vue-node-admin
-tags:
-  - 
+tags: 
+  - null
+permalink: false # a54141/
 ---
 
 

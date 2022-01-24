@@ -1,12 +1,13 @@
 ---
 title: 数组常用方法整理
 date: 2021-03-18 19:38:11
-permalink: /pages/cd191e/
-categories:
+# permalink: null
+categories: 
   - js
-tags:
+tags: 
   - js
   - 数组
+permalink: false # c7ce06/
 ---
 
 # 数组常用方法整理

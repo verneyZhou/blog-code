@@ -1,13 +1,14 @@
 ---
 title: canvas相关知识点收集
 date: 2021-04-23 17:19:28
-permalink: /pages/40db23/
+# permalink: null
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # 074c34/
 ---
 # canvas相关知识点收集
 

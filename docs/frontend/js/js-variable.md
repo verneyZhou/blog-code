@@ -1,11 +1,12 @@
 ---
 title: JS深入：var、let、const
 date: 2021-03-31 23:18:48
-permalink: /pages/9157b5/
-categories:
+# permalink: false # 9157b5/
+categories: 
   - js
-tags:
+tags: 
   - js
+permalink: false # f00614/
 ---
 
 # JS深入：var、let、const

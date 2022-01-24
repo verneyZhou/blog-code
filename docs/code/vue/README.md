@@ -1,12 +1,13 @@
 ---
 title: vue2.x源码学习记录
 date: 2021-05-11 00:29:07
-permalink: /pages/da28b8/
-categories:
+# permalink: null
+categories: 
   - code
   - vue
-tags:
+tags: 
   - 源码
+permalink: false # 7eeb1a/
 ---
 # vue2.x源码学习记录
 

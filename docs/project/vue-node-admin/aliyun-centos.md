@@ -1,13 +1,14 @@
 ---
 title: 阿里云centOS服务器搭建
 date: 2021-04-26 14:45:16
-permalink: /pages/fa9546/
-categories:
+# permalink: false # fa9546/
+categories: 
   - project
   - vue-node-admin
-tags:
+tags: 
   - centOS
   - 阿里云
+permalink: false # 50935d/
 ---
 # 阿里云centOS服务器搭建
 

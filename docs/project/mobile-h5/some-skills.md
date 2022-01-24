@@ -1,12 +1,13 @@
 ---
 title: 一些移动端开发小技巧
 date: 2021-07-25 21:51:14
-permalink: /pages/9544b3/
+# permalink: false # 9544b3/
 article: false
-categories:
-  - 
-tags:
-  - 
+categories: 
+  - null
+tags: 
+  - null
+permalink: false # 375e62/
 ---
 
 # 一些移动端开发小技巧

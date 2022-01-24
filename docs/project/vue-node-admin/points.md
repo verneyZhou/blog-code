@@ -1,12 +1,13 @@
 ---
 title: 其他功能点
 date: 2021-04-26 19:54:43
-permalink: /pages/19f47d/
-categories:
+# permalink: false # 19f47d/
+categories: 
   - project
   - vue-node-admin
-tags:
-  - 
+tags: 
+  - null
+permalink: false # 4464b4/
 ---
 # 其他功能点
 

@@ -1,12 +1,13 @@
 ---
 title: JS深入：js常用的设计模式
 date: 2021-08-10 11:37:29
-permalink: /pages/8a3db0/
-categories:
+# permalink: false # 8a3db0/
+categories: 
   - js
-tags:
+tags: 
   - js基础
   - 设计模式
+permalink: false # 16ec70/
 ---
 # JS深入：js常用的设计模式
 

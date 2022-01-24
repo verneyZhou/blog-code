@@ -1,12 +1,13 @@
 ---
 title: webpack与vite
 date: 2021-07-28 20:16:04
-permalink: /pages/a90c7f/
-categories:
+# permalink: false # a90c7f/
+categories: 
   - webpack
-tags:
+tags: 
   - webapck
   - vite
+permalink: false # 3e8a49/
 ---
 
 # webpack与vite

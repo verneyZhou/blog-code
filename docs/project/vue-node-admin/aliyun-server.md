@@ -1,13 +1,14 @@
 ---
 title: 阿里云服务器相关
 date: 2021-04-26 14:45:31
-permalink: /pages/2dc970/
-categories:
+# permalink: false # 2dc970/
+categories: 
   - project
   - vue-node-admin
-tags:
+tags: 
   - 服务器
   - 阿里云
+permalink: false # 1b4c54/
 ---
 # 阿里云服务器相关
 

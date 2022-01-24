@@ -1,12 +1,13 @@
 ---
 title: Vue深入：Virtual-DOM与Diff算法
 date: 2021-09-04 21:11:17
-permalink: /pages/a38ec3/
-categories:
+# permalink: false # a38ec3/
+categories: 
   - vue
-tags:
+tags: 
   - vue
   - diff
+permalink: false # e5af23/
 ---
 
 # Vue深入：Virtual-DOM与Diff算法

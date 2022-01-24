@@ -1,12 +1,13 @@
 ---
 title: 手写简易版webpack
 date: 2021-09-11 19:54:59
-permalink: /pages/2ec8f5/
+# permalink: false # 2ec8f5/
 article: false
-categories:
-  - 
-tags:
-  - 
+categories: 
+  - null
+tags: 
+  - null
+permalink: false # ce6494/
 ---
 
 

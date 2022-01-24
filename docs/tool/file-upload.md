@@ -1,12 +1,13 @@
 ---
 title: 文件的上传与下载
 date: 2021-08-31 21:29:07
-permalink: /pages/61e482/
+# permalink: false # 61e482/
 article: false
-categories:
-  - 
-tags:
-  - 
+categories: 
+  - null
+tags: 
+  - null
+permalink: false # b9398f/
 ---
 # 文件的上传与下载
 

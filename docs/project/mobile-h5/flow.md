@@ -1,11 +1,12 @@
 ---
 title: 微信H5项目开发流程
 date: 2021-04-28 11:38:54
-permalink: /pages/656cd8/
-categories:
+# permalink: false # 656cd8/
+categories: 
   - h5
-tags:
+tags: 
   - 微信h5
+permalink: false # d8b874/
 ---
 
 

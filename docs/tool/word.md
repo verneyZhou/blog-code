@@ -1,11 +1,12 @@
 ---
 title: 名词目录
 date: 2021-11-28 20:47:24
-permalink: /pages/2176eb/
-categories:
-  - 
-tags:
-  - 
+# permalink: false # 2176eb/
+categories: 
+  - null
+tags: 
+  - null
+permalink: false # 7c9ee2/
 ---
 # 名词目录
 

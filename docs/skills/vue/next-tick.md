@@ -1,11 +1,12 @@
 ---
 title: 深入vue.$nextTick实现原理
 date: 2021-10-10 23:11:46
-permalink: /pages/497095/
-categories:
+# permalink: false # 497095/
+categories: 
   - vue
-tags:
+tags: 
   - vue
+permalink: false # 849f8c/
 ---
 # 深入vue.$nextTick实现原理
 

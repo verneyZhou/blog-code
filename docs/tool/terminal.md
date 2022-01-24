@@ -1,11 +1,12 @@
 ---
 title: 终端学习笔记
 date: 2021-04-28 21:16:47
-permalink: /pages/be4775/
-categories:
+# permalink: false # be4775/
+categories: 
   - terminal
-tags:
+tags: 
   - terminal
+permalink: false # e2cd19/
 ---
 
 

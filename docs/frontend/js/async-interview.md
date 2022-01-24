@@ -1,12 +1,13 @@
 ---
 title: JS异步题集
 date: 2021-03-31 22:38:21
-permalink: /pages/fa5344/
-categories:
-  - 
-  - 
-tags:
-  - 
+# permalink: false # fa5344/
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # 6c998e/
 ---
 # JS异步题集
 

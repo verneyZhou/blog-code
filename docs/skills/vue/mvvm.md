@@ -1,13 +1,14 @@
 ---
 title: MVVM
 date: 2022-01-09 23:58:11
-permalink: /pages/1eb621/
+# permalink: false # 1eb621/
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # 001f59/
 ---
 
 # MVVM

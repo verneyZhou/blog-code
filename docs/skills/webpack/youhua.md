@@ -1,13 +1,14 @@
 ---
 title: webpack优化
 date: 2021-09-11 19:27:19
-permalink: /pages/640c05/
+# permalink: false # 640c05/
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # c5bf02/
 ---
 
 # webpack优化

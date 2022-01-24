@@ -1,11 +1,12 @@
 ---
 title: git使用笔记
 date: 2021-04-28 21:04:33
-permalink: /pages/f0e7be/
-categories:
+# permalink: false # f0e7be/
+categories: 
   - git
-tags:
+tags: 
   - git
+permalink: false # 86acb5/
 ---
 
 

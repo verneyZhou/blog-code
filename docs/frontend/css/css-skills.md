@@ -1,11 +1,12 @@
 ---
 title: 一些CSS使用小技巧
 date: 2021-04-08 17:05:47
-permalink: /pages/d7d87c/
-categories:
+# permalink: null
+categories: 
   - css
-tags:
+tags: 
   - css
+permalink: false # 3f6a4d/
 ---
 # 一些CSS使用小技巧
 

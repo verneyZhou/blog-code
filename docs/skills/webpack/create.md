@@ -1,11 +1,12 @@
 ---
 title: Webpack原理深析（实践篇）
 date: 2021-12-13 23:49:07
-permalink: /pages/57ff8a/
-categories:
+# permalink: false # 57ff8a/
+categories: 
   - webpack
-tags:
+tags: 
   - webpack
+permalink: false # 311a26/
 ---
 
 # Webpack原理深析（实践篇）

@@ -1,11 +1,12 @@
 ---
 title: HTTP的前世今生
 date: 2021-05-01 19:40:19
-permalink: /pages/2ea6d2/
-categories:
+# permalink: false # 2ea6d2/
+categories: 
   - http
-tags:
+tags: 
   - http
+permalink: false # 8a2db2/
 ---
 
 

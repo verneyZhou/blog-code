@@ -1,12 +1,13 @@
 ---
 title: 前端工程化-webpack入门
 date: 2021-06-29 23:43:30
-permalink: /pages/80a730/
-categories:
+# permalink: false # 80a730/
+categories: 
   - webpack
-tags:
+tags: 
   - webpack
   - 工程化
+permalink: false # 8a3013/
 ---
 
 # 前端工程化-webpack入门

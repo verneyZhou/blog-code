@@ -1,13 +1,14 @@
 ---
 title: JS深入系列
 date: 2021-05-13 23:48:42
-permalink: /pages/d1e997/
+# permalink: false # d1e997/
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # afc974/
 ---
 # JS深入系列
 这里我会利用空闲时间重新对JS的一些基础知识点进行深入学习，也算是对自己JS知识体系的回顾和梳理，查漏补缺，温故知新。

@@ -1,12 +1,13 @@
 ---
 title: vscode插件开发
 date: 2021-10-08 22:23:45
-permalink: /pages/073de5/
+# permalink: false # 073de5/
 article: false
-categories:
-  - 
-tags:
-  - 
+categories: 
+  - null
+tags: 
+  - null
+permalink: false # 3d11e8/
 ---
 # vscode插件开发
 

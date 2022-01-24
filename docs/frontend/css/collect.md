@@ -1,12 +1,13 @@
 ---
 title: css网址收藏
 date: 2021-08-03 23:47:37
-permalink: /pages/2255eb/
-categories:
+# permalink: null
+categories: 
   - css
-tags:
+tags: 
   - css
   - 收藏
+permalink: false # c8283a/
 ---
 
 

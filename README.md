@@ -39,6 +39,21 @@ npm run dev:hot
 
 
 
+## 报错记录
+
+- `npm run build`报错：
+```
+error Error rendering /tool/vscode-plugin.html: false
+undefined
+error Error rendering /tool/interview.html: false
+undefined
+error Error rendering /tool/vscode.html: false
+undefined
+ReferenceError: canonicalLink is not defined
+```
+> vuepress版本过低，升级到`v1.8.0`以上即可~
+
+
 
 ## TODO
 

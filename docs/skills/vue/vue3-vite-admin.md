@@ -1,13 +1,14 @@
 ---
 title: vue3+vite+ts 从0到1项目搭建
 date: 2021-11-14 09:02:03
-permalink: /pages/89d3e4/
-categories:
+# permalink: false # 89d3e4/
+categories: 
   - vue
-tags:
+tags: 
   - vue3
   - vite
   - ts
+permalink: false # 7b5278/
 ---
 
 
@@ -17,6 +18,10 @@ tags:
 ::: tip 技术栈
 vue3、vite2、typescript、element-plus、vuex4、vue-router4
 :::
+
+
+- [项目Github地址](https://github.com/verneyZhou/vue3-vite-admin)
+
 
 ## 前言
 
@@ -990,11 +995,6 @@ https://github.com/anncwb/vue-vben-admin/blob/main/README.zh-CN.md
 
 - 国际化
 
-
-
-## 项目地址
-
-[vue3-vite-admin]()
 
 
 

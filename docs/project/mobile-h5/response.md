@@ -1,13 +1,14 @@
 ---
 title: 移动端开发-响应式布局
 date: 2021-08-03 00:37:26
-permalink: /pages/dbdfaa/
+# permalink: false # dbdfaa/
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # 38acbd/
 ---
 # 移动端开发-响应式布局
 

@@ -1,13 +1,14 @@
 ---
 title: vue-cli+webpack搭建项目
 date: 2021-12-05 21:52:12
-permalink: /pages/5f9e7a/
-categories:
+# permalink: false # 5f9e7a/
+categories: 
   - vue
   - webpack
-tags:
+tags: 
   - vue-cli
   - webpack
+permalink: false # 8a065f/
 ---
 
 # vue-cli+webpack搭建项目

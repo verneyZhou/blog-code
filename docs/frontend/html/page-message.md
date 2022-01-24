@@ -1,13 +1,14 @@
 ---
 title: 页面通信
 date: 2021-05-12 17:21:51
-permalink: /pages/78d091/
+# permalink: null
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # 5c98fc/
 ---
 
 

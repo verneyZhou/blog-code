@@ -1,12 +1,13 @@
 ---
 title: 前端打包工具
 date: 2021-11-14 09:20:58
-permalink: /pages/819ca8/
+# permalink: false # 819ca8/
 article: false
-categories:
-  - 
-tags:
-  - 
+categories: 
+  - null
+tags: 
+  - null
+permalink: false # 3ef5fe/
 ---
 
 # 前端打包工具

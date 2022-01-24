@@ -1,11 +1,12 @@
 ---
 title: JS深入：js的跨域解决方案
 date: 2021-05-18 22:19:54
-permalink: /pages/870d2f/
-categories:
+# permalink: false # 870d2f/
+categories: 
   - js
-tags:
+tags: 
   - js基础
+permalink: false # 28953f/
 ---
 
 # JS深入：js的跨域解决方案

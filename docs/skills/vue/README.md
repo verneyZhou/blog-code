@@ -6,7 +6,8 @@ categories:
   - null
 tags: 
   - null
-permalink: /pages/9b7f7f/
+# permalink: false # 9b7f7f/
+permalink: false # 067e28/
 ---
 # Vue相关学习笔记
 

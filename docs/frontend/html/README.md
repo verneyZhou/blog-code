@@ -1,13 +1,14 @@
 ---
 title: html学习记录
 date: 2020-09-27 11:18:08
-permalink: /pages/085a49/
+# permalink: null
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # 94c330/
 ---
 
 

@@ -1,11 +1,12 @@
 ---
 title: Vue项目性能优化技巧
 date: 2021-07-06 00:05:36
-permalink: /pages/6a2eed/
-categories:
+# permalink: false # 6a2eed/
+categories: 
   - vue
-tags:
+tags: 
   - vue
+permalink: false # 3d5b35/
 ---
 # Vue项目性能优化技巧
 

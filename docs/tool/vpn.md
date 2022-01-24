@@ -1,11 +1,12 @@
 ---
 title: 搭梯子
 date: 2021-05-09 16:23:53
-permalink: /pages/1ffab9/
-categories:
+# permalink: false # 1ffab9/
+categories: 
   - vpn
-tags:
+tags: 
   - vpn
+permalink: false # d2b295/
 ---
 
 

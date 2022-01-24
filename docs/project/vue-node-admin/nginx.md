@@ -1,12 +1,13 @@
 ---
 title: nginx的安装与配置
 date: 2021-04-26 14:45:45
-permalink: /pages/1e268b/
-categories:
+# permalink: false # 1e268b/
+categories: 
   - project
   - vue-node-admin
-tags:
+tags: 
   - nginx
+permalink: false # 88fba5/
 ---
 # nginx的安装与配置
 

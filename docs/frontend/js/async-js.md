@@ -1,11 +1,12 @@
 ---
 title: js的事件循环
 date: 2021-03-18 19:38:21
-permalink: /pages/812cd9/
-categories:
+# permalink: false # 812cd9/
+categories: 
   - js
-tags:
+tags: 
   - js基础
+permalink: false # 93581e/
 ---
 # js的事件循环
 

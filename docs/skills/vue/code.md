@@ -1,13 +1,14 @@
 ---
 title: Vue原理分析
 date: 2021-09-12 18:56:15
-permalink: /pages/35f520/
+# permalink: false # 35f520/
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # 522d1a/
 ---
 
 # Vue原理分析

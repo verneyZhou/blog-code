@@ -1,12 +1,13 @@
 ---
 title: 一些关于css的问题
 date: 2021-08-03 23:51:30
-permalink: /pages/87cd3c/
+# permalink: null
 article: false
-categories:
+categories: 
   - css
-tags:
+tags: 
   - css
+permalink: false # a2c276/
 ---
 # 一些关于css的问题
 

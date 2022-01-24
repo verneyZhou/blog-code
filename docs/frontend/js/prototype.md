@@ -1,11 +1,12 @@
 ---
 title: JS深入：JS的原型与原型链
 date: 2021-04-05 09:42:21
-permalink: /pages/27645e/
-categories:
+# permalink: false # 27645e/
+categories: 
   - js
-tags:
+tags: 
   - js基础
+permalink: false # de079f/
 ---
 
 

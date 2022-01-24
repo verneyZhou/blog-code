@@ -1,13 +1,14 @@
 ---
 title: Vuex源码分析
 date: 2021-03-02 21:59:37
-permalink: /pages/de36e8/
-categories:
+# permalink: null
+categories: 
   - vue
   - code
   - vuex
-tags:
+tags: 
   - 源码
+permalink: false # e2f4db/
 ---
 
 # Vuex源码分析

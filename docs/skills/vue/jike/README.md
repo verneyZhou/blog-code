@@ -1,12 +1,13 @@
 ---
 title: 《玩转 Vue 3 全家桶》学习笔记
 date: 2022-01-03 19:55:52
-permalink: /pages/4babd4/
+# permalink: false # 4babd4/
 article: false
-categories:
+categories: 
   - vue
-tags:
+tags: 
   - vue3
+permalink: false # 8840a4/
 ---
 
 # 《玩转 Vue 3 全家桶》学习笔记

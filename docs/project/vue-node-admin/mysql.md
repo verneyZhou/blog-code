@@ -1,12 +1,13 @@
 ---
 title: msql的安装与使用
 date: 2021-04-26 14:45:53
-permalink: /pages/a45b16/
-categories:
+# permalink: false # a45b16/
+categories: 
   - project
   - vue-node-admin
-tags:
+tags: 
   - mysql
+permalink: false # 15f47b/
 ---
 # msql的安装与使用
 

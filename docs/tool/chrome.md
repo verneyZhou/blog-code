@@ -1,12 +1,13 @@
 ---
 title: 关于Chrome浏览器
 date: 2021-05-01 10:40:11
-permalink: /pages/036f16/
+# permalink: false # 036f16/
 article: false
-categories:
-  - 
-tags:
-  - 
+categories: 
+  - null
+tags: 
+  - null
+permalink: false # 0c5d83/
 ---
 
 # 关于Chrome浏览器

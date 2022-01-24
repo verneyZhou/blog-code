@@ -1,12 +1,13 @@
 ---
 title: 防抖与节流
 date: 2021-04-09 23:57:34
-permalink: /pages/2fee8d/
-categories:
+# permalink: false # 2fee8d/
+categories: 
   - js
-tags:
+tags: 
   - debounce
   - throttle
+permalink: false # e5261c/
 ---
 
 

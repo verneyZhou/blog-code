@@ -1,12 +1,13 @@
 ---
 title: 地球往事
 date: 2020-09-27 11:02:59
-permalink: /pages/7568e0/
+# permalink: null
 article: false
-categories:
-  - 
-tags:
-  - 
+categories: 
+  - null
+tags: 
+  - null
+permalink: false # 1fc24a/
 ---
 
 <img :src="$withBase('/images/poster08.jpeg')" width="auto"/>

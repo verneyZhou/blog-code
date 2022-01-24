@@ -1,13 +1,14 @@
 ---
 title: vue3+webpack5+ts 项目搭建
 date: 2021-11-14 09:02:21
-permalink: /pages/4344ed/
-categories:
+# permalink: false # 4344ed/
+categories: 
   - vue
-tags:
+tags: 
   - vue3
   - webpack5
   - ts
+permalink: false # 69be38/
 ---
 
 # vue3+webpack5+ts 项目搭建
@@ -15,6 +16,9 @@ tags:
 ::: tip 技术栈
 vue3、webpack5、typescript、element-plus、vuex4、vue-router4
 :::
+
+
+- [项目Github地址](https://github.com/verneyZhou/vue3-webpack5-admin)
 
 
 ## 准备
@@ -41,8 +45,6 @@ node版本`v10.x.x`
 - typescript: `v4.4.4`
 :::
 
-
-[项目预览](12345)
 
 
 ## 项目搭建与配置

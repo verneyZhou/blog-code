@@ -1,11 +1,12 @@
 ---
 title: 一些常用的js代码技巧
 date: 2021-03-31 23:24:16
-permalink: /pages/27acf6/
-categories:
+# permalink: false # 27acf6/
+categories: 
   - js
-tags:
+tags: 
   - utils
+permalink: false # 3e85b8/
 ---
 
 

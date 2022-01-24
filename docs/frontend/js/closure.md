@@ -1,12 +1,13 @@
 ---
 title: js深入：从执行上下文到闭包
 date: 2021-03-18 19:39:52
-permalink: /pages/2ec98c/
-categories:
+# permalink: false # 2ec98c/
+categories: 
   - js
-tags:
+tags: 
   - js基础
   - 闭包
+permalink: false # 1b372f/
 ---
 # js深入：从执行上下文到闭包
 

@@ -1,13 +1,14 @@
 ---
 title: 微信小程序开发笔记
 date: 2021-04-26 15:00:30
-permalink: /pages/22e8ca/
+# permalink: false # 22e8ca/
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # 88cb28/
 ---
 # 微信小程序开发笔记
 

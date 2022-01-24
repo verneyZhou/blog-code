@@ -1,11 +1,12 @@
 ---
 title: Vue使用技巧
 date: 2021-06-01 23:33:23
-permalink: /pages/caf74d/
-categories:
+# permalink: false # caf74d/
+categories: 
   - vue
-tags:
+tags: 
   - vue
+permalink: false # d4d7a8/
 ---
 
 # Vue使用技巧

@@ -1,12 +1,12 @@
 ---
 title: 收藏集
 date: 2021-04-28 21:14:53
-permalink: /pages/3db378/
-categories:
+# permalink: false # 3db378/
+categories: 
   - 收藏
-tags:
+tags: 
   - 收藏
-  
+permalink: false # 4bf61a/
 ---
 # 收藏集
 

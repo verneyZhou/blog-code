@@ -1,11 +1,12 @@
 ---
 title: 浅拷贝与深拷贝
 date: 2021-04-12 18:01:38
-permalink: /pages/53a977/
-categories:
+# permalink: false # 53a977/
+categories: 
   - js
-tags:
+tags: 
   - js基础
+permalink: false # 7a53f5/
 ---
 
 

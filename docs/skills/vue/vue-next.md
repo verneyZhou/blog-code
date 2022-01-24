@@ -1,13 +1,14 @@
 ---
 title: vue3学习
 date: 2021-07-28 20:20:41
-permalink: /pages/3d8c75/
+# permalink: false # 3d8c75/
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # e98e08/
 ---
 
 # vue3学习

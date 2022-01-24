@@ -1,13 +1,14 @@
 ---
 title: vue组件库开发
 date: 2021-09-12 19:33:07
-permalink: /pages/adda01/
+# permalink: false # adda01/
 article: false
-categories:
-  - 
-  - 
-tags:
-  - 
+categories: 
+  - null
+  - null
+tags: 
+  - null
+permalink: false # 190313/
 ---
 
 # vue组件库开发

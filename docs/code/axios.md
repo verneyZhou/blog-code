@@ -1,13 +1,16 @@
 ---
 title: axios 源码学习
 date: 2021-05-15 00:08:24
-permalink: /pages/df91c0/
+# permalink: null
 article: false
-categories:
+categories: 
   - 
-tags:
+tags: 
   - 
+permalink: false # 928b5e/
 ---
+
+
 # axios 源码学习
 
 

@@ -1,11 +1,12 @@
 ---
 title: 《透视HTTP协议》学习笔记
 date: 2021-05-01 16:44:27
-permalink: /pages/ddc449/
-categories:
+# permalink: false # ddc449/
+categories: 
   - http
-tags:
+tags: 
   - http
+permalink: false # 83dc8d/
 ---
 
 # 《透视HTTP协议》学习笔记
