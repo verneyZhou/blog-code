@@ -30,3 +30,19 @@ permalink: false # 72e280/
 
 - [fullPage.js](https://alvarotrigo.com/fullPage/zh/)
 > fullPage.js 是一个开源库，可帮助你轻松创建具有一页的全屏滚动网站。这个库有很多有用的特性，比如自动滚动、添加滑块、延迟加载、框架支持等等
+
+
+
+- [lax.js](https://github.com/alexfoxy/lax.js)
+> 滚动特效库，压缩完只有 2kb，很轻量
+
+- [HAMMER.JS](http://hammerjs.github.io/)
+> 移动端手势库~
+
+
+- [Day.js](https://dayjs.gitee.io/zh-CN/)
+> 用 JavaScript 解析、验证、操作和显示日期和时间, 和 Moment.js 一样的API，但是比 Moment.js 轻量、小很多
+
+- [axios](https://github.com/axios/axios)
+> http 请求库~
+
