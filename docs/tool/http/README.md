@@ -23,12 +23,17 @@ permalink: false # 83dc8d/
 - [HTTPS](./https.html)
 - [HTTP进阶](./pro.html)
 
+
+
 ## 收藏
 
 - [前端-网络协议知识点汇总（2.9万字）](https://mp.weixin.qq.com/s/PdY5fXKOmTN1idiCYSJisw)
 - [肝完《浏览器基本原理与实践》，我总结了这些](https://segmentfault.com/a/1190000040896436)
 
 
+## 备注
 
+- Q: 从输入url到页面渲染完成，浏览器经历了什么？
+> [史上最详细的经典面试题 从输入URL到看到页面发生了什么？](https://juejin.cn/post/6844903832435032072)
 
 

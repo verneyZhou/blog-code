@@ -34,4 +34,4 @@ permalink: false # 1fc24a/
 
 可以点击下方链接进行查看哦~
 
-[点我点我点我！！！](./xugouji.html)
+[点我点我点我](./xugouji.html)

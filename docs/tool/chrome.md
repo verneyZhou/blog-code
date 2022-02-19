@@ -24,6 +24,13 @@ permalink: false # 0c5d83/
 ## 调试
 
 
+
+## 记录
+
+- chrome升98版本后无法种cookie~
+> [https://blog.csdn.net/weixin_44552249/article/details/122864958](https://blog.csdn.net/weixin_44552249/article/details/122864958)
+
+
 ## 参考
 - [11个程序员必须知道的实用Chrome DevTools开发技巧](https://mp.weixin.qq.com/s/uuiXyDYJbElkSB6hFbvMOQ)
 - [走进chrome内心，了解V8引擎是如何工作的](https://segmentfault.com/a/1190000040331440)

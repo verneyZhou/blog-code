@@ -30,7 +30,11 @@ permalink: false # 7eeb1a/
 :::
 
 
+
+
+
 ## 源码阅读
+> 注：本篇博客大部分内容都是参考[Vue.js 技术揭秘](https://ustbhuangyi.github.io/vue-analysis/)，为什么会重新写一遍，主要是为了方便自己梳理思路，加深记忆~
 
 ### 源码目录结构分析
 首先从`github`上`clone`下来`vue2.x`的源码，然后打开项目，分析下源码目录结构：

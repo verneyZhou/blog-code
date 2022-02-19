@@ -805,6 +805,28 @@ Array.prototype.some2 = function(fun, thisArg) {
 
 
 
+### `Array.prototype.flat`模拟实现
+> [Array.prototype.flat()](https://es6.ruanyifeng.com/#docs/array#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%EF%BC%9Aflat%EF%BC%8CflatMap)是es6提供的新方法，用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。
+
+``` js
+Array.prototype.flat = function() {
+    var arr = [];
+    this.forEach((item,idx) => {
+        if(Array.isArray(item)) {
+            arr = arr.concat(item.flat()); //递归去处理数组元素
+        } else {
+            arr.push(item)   //非数组直接push进去
+        }
+    })
+    return arr;   //递归出口
+}
+
+// 使用
+[[2],[[2,3],[2]],3,4].flat() // [2, 2, 3, 2, 3, 4]
+```
+
+
+
 
 ## 参考
 

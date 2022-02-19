@@ -37,7 +37,6 @@ permalink: false # fc73f4/
 - [前端登录相关知识梳理](./login.html)
 - [文件的上传与下载](./file-upload.html)
 - [面试题收集](./interview.html)
-- [从输入url到页面渲染完成，浏览器经历了什么]
 - [vscode插件开发](./vscode-plugin.html)
 - [chrome插件开发](./chrome-plugin.html)
 - sso单点登录

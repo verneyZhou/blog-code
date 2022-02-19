@@ -21,3 +21,4 @@ permalink: false # b9398f/
 - [文件下载，搞懂这9种场景就够了](https://mp.weixin.qq.com/s/7Cz4n-9OY8DgMRNSKV-R9g)
 - [JavaScript 中如何实现大文件并发上传？](https://mp.weixin.qq.com/s?__biz=MzI2MjcxNTQ0Nw==&mid=2247491853&idx=1&sn=aa59ee95df84a81f7b4700fa4fec9436)
 - [基于js管理大文件上传以及断点续传](https://juejin.cn/post/7000654161297539079)
+- [字节跳动面试官：请你实现一个大文件上传和断点续传](https://maimai.cn/article/detail?fid=1401888066&efid=qc9Wk4qmaPEZChD-CWp1FQ&share_channel=2&webid=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1Ijo0MDA0OTUyMywiZmlkIjoxNDAxODg4MDY2fQ.VS4fdU-FcvrvWKL_w3Fk4mxsSP7k3VgPEQPdQ9t4lOQ&use_rn=1)
