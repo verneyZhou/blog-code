@@ -17,7 +17,7 @@ permalink: false # 315c9f/
 - [JavaScript Questions](https://github.com/lydiahallie/javascript-questions)
 - [一些代码片段](https://mp.weixin.qq.com/s/CxrzdjEDFuaL57lh3dLgpg)
 - [这45道面试可能被问到的JS判断题！你能答对几道？](https://juejin.cn/post/7021704952586174478)
-- [avascript 里的奇葩知识](https://segmentfault.com/a/1190000023941089)
+- [Javascript 里的奇葩知识](https://segmentfault.com/a/1190000023941089)
 - [44道JS难题，做对一半就是高手](https://www.jianshu.com/p/e161bd720e64)
 - [牛客网最新百道前端 JavaScript 笔试题](https://juejin.cn/post/7023271065392513038)
 

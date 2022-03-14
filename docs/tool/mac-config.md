@@ -23,7 +23,8 @@ permalink: false # 67ff26/
 ### 常用工具
 
 - 浏览器：谷歌浏览器、Safari(mac自带)、Firefox
->设置搜索引擎为百度，安装扩展程序（FeHelper、）
+>设置搜索引擎为百度，安装扩展程序（[FeHelper](https://www.baidufe.com/fehelper/index/index.html)、）[chrome导入书签](https://jingyan.baidu.com/article/a378c960ed561fb32828309d.html)
+
 - 笔记：有道云笔记、xmind
 - 网盘：百度云网盘
 - host代理：switchHost!
@@ -58,7 +59,29 @@ permalink: false # 67ff26/
 - **安装xcode命令行开发工具**
 > 首先打开终端，输入：`xcode-select --install`；出现弹框，点击安装
 
-> 如果安装提示网络问题参照此[链接](https://blog.csdn.net/ccmedu/article/details/86682645)手动安装
+> 如果安装提示网络问题参照此[链接](https://blog.csdn.net/ccmedu/article/details/86682645)手动安装；[Mac安装Xcode](https://blog.csdn.net/qq_32284189/article/details/109682641)、[Developer Apple](https://developer.apple.com/download/all/)
+
+``` shell
+# 显示当前Xcode版本，如果已安装，会出现如下提示
+xcode-select --version 
+xcode-select version 2354.
+
+# 如果未安装，可通过下方命令安装；如果已安装会出现下面提示
+xcode-select --install
+xcode-select: error: command line tools are already installed, use "Software Update" to install updates
+
+# 查看当前xcode的版本目录
+xcode-select -p
+/Library/Developer/CommandLineTools
+
+# 查看版本信息
+gcc --version
+Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include/c++/4.2.1
+Apple LLVM version 10.0.1 (clang-1001.0.46.4)
+Target: x86_64-apple-darwin18.2.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+```
 
 
 - **安装Homebrew**
@@ -68,6 +91,28 @@ permalink: false # 67ff26/
 2. 安装完成后输入：`brew --version`，出现版本号即表示安装成功；
 3. 接着安装`wget、curl、git`；一般mac终端默认已安装`curl、git`；输入：`git --verison/curl --version`出现版本号即可验证；若无则安装；以wget为例：`brew install wget`；安装成功，输入：`wget --version`即可验证是否安装成功
 :::
+
+``` shell
+# 查看配置
+brew config 
+HOMEBREW_VERSION: 2.2.16
+ORIGIN: https://github.com/Homebrew/brew
+HEAD: c0f5a52d85d3606e7600162a9d38936ab4b46f4f
+Last commit: 1 year, 10 months ago
+Core tap ORIGIN: https://github.com/Homebrew/homebrew-core
+Core tap HEAD: d7102825baf8116da0e12de7155427f6626cb700
+Core tap last commit: 1 year, 10 months ago
+HOMEBREW_PREFIX: /usr/local
+HOMEBREW_MAKE_JOBS: 8
+CPU: octa-core 64-bit kabylake
+Homebrew Ruby: 2.6.3 => /usr/local/Homebrew/Library/Homebrew/vendor/portable-ruby/2.6.3/bin/ruby
+Clang: 10.0 build 1001
+Git: 2.20.1 => /Library/Developer/CommandLineTools/usr/bin/git
+Curl: 7.54.0 => /usr/bin/curl
+macOS: 10.14.1-x86_64
+CLT: 10.3.0.0.1.1562985497
+Xcode: N/A
+```
 
 
 - **安装`iTerm2 + oh-my-zsh`**

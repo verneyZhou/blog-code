@@ -87,6 +87,7 @@ permalink: false # 7c9ee2/
 [官方文档](https://www.tslang.cn/)
 
 ## PWA
+> 一个新的前端技术，PWA（ 全称：Progressive Web App ）也就是说这是个渐进式的网页应用程序。是 Google 在 2015 年提出，2016年6月才推广的项目。是结合了一系列现代Web技术的组合，在网页应用中实现和原生应用相近的用户体验。
 
 [参考](https://segmentfault.com/a/1190000015705532)
 
