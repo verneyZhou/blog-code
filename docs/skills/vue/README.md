@@ -48,3 +48,9 @@ permalink: false # 067e28/
 - [vue面试题收集](./interview.html)
 - [深入vue.prototype.$xxx实现原理]
 - [Vue ssr项目开发]
+
+
+
+## 收藏
+
+- [Vue + Node.js 从 0 到 1 实现自动化部署工具](https://juejin.cn/post/7070921715492061214)

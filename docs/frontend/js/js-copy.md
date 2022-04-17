@@ -310,6 +310,7 @@ console.log(c.a1 === c.a2) // false
 - 对其他引用类型的兼容
 > js的有好几种引用数据类型，包含：`Set、Map、Function、RegExp`等等，在上一个方法中只兼容了`Object`和`Array`类型，还需要对其他类型进行兼容处理
 
+
 接下来先用`while`循环来实现深拷贝，解决递归爆栈的问题：
 
 ### 3. 轻奢版：while循环实现
@@ -730,6 +731,84 @@ fac1(5, 1) // 120
 2. 还有许多需要优化的点，比如对`Buffer`的兼容，对函数的复制等等，有精力再研究
 3. 解决循环引用用的是`Map`来进行缓存，也可以用`WeakMap`来进行缓存，因为WeakMap的键名所引用的对象都是弱引用，只要所引用的对象的其他引用都被清除，垃圾回收机制就会释放该对象所占用的内存，不用手动删除引用，会避免Map会对内存造成非常大的额外消耗的问题。
 4. 对于性能优化这块有时间还可以再继续深究下。
+
+
+
+## 后记
+
+### 递归优化版
+
+``` js
+/**
+ * 2022-04-04 添加
+ * 
+*/
+
+// 判断类型的方法移到外部，避免递归过程中多次执行
+const judgeType = origin => {
+    return Object.prototype.toString.call(origin).replaceAll(new RegExp(/\[|\]|object /g), "");
+};
+const reference = ["Set", "WeakSet", "Map", "WeakMap", "RegExp", "Date", "Error"];
+
+function deepClone(obj) {
+    let res = null;
+    const type = judgeType(obj);
+    if (reference.includes(type)) { // 其他类型
+        res = new obj.constructor(obj);
+    } else if (['Array', 'Object'].includes(type)) { // 对象，数组
+        res = type === 'Array' ? [] : {};
+        for(let key in obj) {
+            // for...in会将原型中新增的属性和方法遍历出来, 所以需要判断一下是否是自身属性
+            if (obj.hasOwnProperty(key)) {
+                res[key] = deepClone(obj[key]); // 递归
+            }
+        }
+    } else {
+        res = obj;
+    }
+    return res;
+}
+
+
+const map = new Map();
+map.set("key", "value");
+map.set("ConardLi", "coder");
+
+const set = new Set();
+set.add("ConardLi");
+set.add("coder");
+
+const target = {
+    field1: 1,
+    field2: undefined,
+    field3: {
+        child: "child",
+    },
+    field4: [2, 4, 8],
+    empty: null,
+    map,
+    set,
+    bool: new Boolean(true),
+    num: new Number(2),
+    str: new String(2),
+    symbol: Object(Symbol(1)),
+    date: new Date(),
+    reg: /\d+/,
+    error: new Error(),
+    func1: () => {
+        let t = 0;
+        console.log("coder", t++);
+    },
+    func2: function (a, b) {
+        return a + b;
+    },
+};
+//测试代码
+const test1 = deepClone(target);
+target.field4.push(9);
+console.log('test1: ', test1);
+```
+[参考](https://juejin.cn/post/7075351322014253064)
 
 
 ## 参考

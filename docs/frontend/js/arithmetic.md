@@ -1,8 +1,7 @@
 ---
-title: JS算法
-date: 2021-04-01 19:33:06
+title: JS算法整理笔记
+date: 2022-04-01 19:33:06
 permalink: false
-article: false
 categories: 
   - js
 tags: 
@@ -11,7 +10,8 @@ tags:
 
 
 
-# JS算法
+# JS算法整理笔记
+
 
 ## 简介
 > **算法（Algorithm）是指用来操作数据、解决程序问题的一组方法。** 对于同一个问题，使用不同的算法，也许最终得到的结果是一样的，但在过程中消耗的资源和时间却会有很大的区别。
@@ -2642,3 +2642,6 @@ console.log(shellSort(arr,gap))
 - [别再说你不懂Top K问题了](https://mp.weixin.qq.com/s/0_Rr6Pjshvd7Om2zTYMriQ)
 - [前端进阶算法：常见算法题及完美题解](https://mp.weixin.qq.com/s/23fwxjhHag-WwLsS9Z9Caw)
 - [前端笔试&面试爬坑系列---算法](https://juejin.cn/post/6844903656865677326)
+
+
+<!-- 2022-04-17 -->

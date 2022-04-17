@@ -18,26 +18,33 @@ permalink: false # e82559/
 ## 题目
 
 - localStorage、cookie 区别
-> [https://blog.csdn.net/net343/article/details/84989452](https://blog.csdn.net/net343/article/details/84989452)
+
+  [cookie和localstorage的区别](https://blog.csdn.net/net343/article/details/84989452)
 
 - http 缓存
-> [https://www.jianshu.com/p/227cee9c8d15](https://www.jianshu.com/p/227cee9c8d15)
+
+  [一文读懂http缓存（超详细）](https://www.jianshu.com/p/227cee9c8d15)
 
 - 如何获取页面的所有标签种类
 > `[...new Set(Array.from(document.querySelectorAll('*')).map(v => v.tagName))]`
 
 - 盒模型有几种?有什么区别？
-> [https://blog.csdn.net/konghouy/article/details/80643610](https://blog.csdn.net/konghouy/article/details/80643610)
+
+  [HTML的两种盒子模型](https://blog.csdn.net/konghouy/article/details/80643610)
 
 
 - 前端性能优化？
-> [https://segmentfault.com/a/1190000022205291](https://segmentfault.com/a/1190000022205291)
+
+  [前端性能优化 24 条建议（2020）](https://segmentfault.com/a/1190000022205291)
 
 
 - node.js的运行原理
-> [https://www.cnblogs.com/peiyu1988/p/8032982.html](https://www.cnblogs.com/peiyu1988/p/8032982.html)
+
+  [Nodejs的运行原理-科普篇](https://www.cnblogs.com/peiyu1988/p/8032982.html)
+
 
 - koa、express的对比
+
 
 - http / https 区别
 ```
@@ -61,6 +68,7 @@ HTTP协议连接很简单，是无状态的；HTTPS协议是有SSL和HTTP协议�
 
 
 - webpack编译流程
+::: tip webpack编译流程
 1. 初始化参数：从配置文件和 Shell 语句中读取与合并参数，得出最终的参数；
 2. 开始编译：用上一步得到的参数初始化 Compiler 对象，加载所有配置的插件，执行对象的 run 方法开始执行编译；
 3. 确定入口：根据配置中的 entry 找出所有的入口文件；
@@ -68,6 +76,7 @@ HTTP协议连接很简单，是无状态的；HTTPS协议是有SSL和HTTP协议�
 5. 完成模块编译：在经过第4步使用 Loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系；
 6. 输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk 转换成一个单独的文件加入到输出列表，这步是可以修改输出内容的最后机会；
 7. 输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。
+:::
 
 
 
@@ -76,6 +85,7 @@ HTTP协议连接很简单，是无状态的；HTTPS协议是有SSL和HTTP协议�
 
 - [三本毕业（非科班），四次阿里面试，终拿 offer](https://mp.weixin.qq.com/s/8N14ABzLrAJyUZsZmvpTrA)
 - [阿里终面：如何才能盛下最多的水？](https://mp.weixin.qq.com/s/PMsFcmKAk7-fVk9aUwjygA)
+- [阿里巴巴前端面试分享-社招（p6）](https://blog.csdn.net/weixin_34096182/article/details/91462396)
 - [前端面试集合](https://juejin.cn/column/7004656346549207077)
   - [最新的前端大厂面经（详解答案）](https://juejin.cn/post/7004638318843412493)
   - [30 道 Vue 面试题，内含详细讲解（涵盖入门到精通，自测 Vue 掌握程度）](https://juejin.cn/post/6844903918753808398)

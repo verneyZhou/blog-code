@@ -39,7 +39,7 @@ permalink: false # 67ff26/
 - 终端工具：[iTerm2](http://www.iterm2.com/)
 - 终端提示工具：[oh-my-zsh](https://ohmyz.sh)
 - api调试工具：postMan
-- 抓包工具：[Charles](https://xclient.info/s/charles.html) （或 百度云下载）
+- 抓包工具：[Charles](https://xclient.info/s/charles.html) （或 百度云下载）、[whistle](https://github.com/avwo/whistle/blob/master/README-zh_CN.md)
 - 代码编辑工具：[WebStorm](https://www.jetbrains.com/zh-cn/webstorm/)、[VSCode](https://code.visualstudio.com/)
 - 搭梯子：v2Ray
 - 娱乐工具：网易云、qq音乐、B站、youtube...
@@ -200,6 +200,93 @@ source ~/.profile
 - **eslint配置**
 > code ==> 首选项 ===> 设置 ===> `serting.json` 中添加配置；[参考](https://www.jianshu.com/p/23a5d6194a4b)
 
+``` json
+{
+  // 系统配置
+  "window.zoomLevel": -1, // 缩放比例
+  "editor.fontSize": 16, // 字体大小
+  "editor.tabSize": 4, // tab 空格数
+  "breadcrumbs.enabled": false,
+  "git.path": "D:\\Program Files (x86)\\Git\\bin\\git.exe",
+  "terminal.integrated.shell.windows": "D:\\Program Files (x86)\\Git\\bin\\bash.exe",
+  "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
+  // "gitlens.hovers.currentLine.over": "line",
+  // "gitlens.currentLine.enabled": false,
+  // "gitlens.hovers.enabled": false,
+  // "gitlens.codeLens.enabled": false,
+  "workbench.statusBar.visible": true,
+  "window.menuBarVisibility": "default",
+  // eslint配置
+  "eslint.run": "onSave", // 保存的时候执行校验
+  // eslint 自动修复
+  "eslint.autoFixOnSave": true, // 默认只支持.js
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": [ // eslint校验
+    "javascript",
+    "javascriptreact",
+    "html",
+    {
+      "language": "html", // 检测.html
+      "autoFix": true
+    },
+    {
+      "language": "vue", // 检测.vue
+      "autoFix": true
+    },
+    {
+      "language": "typescript", // 检测.ts
+      "autoFix": true
+    },
+  ],
+  "eslint.options": {
+    "plugins": [
+      "html"
+    ]
+  },
+  "eslint.trace.server": "messages",
+  "javascript.suggest.autoImports": false,
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "typescript.suggest.autoImports": false,
+  // Pritter
+  "prettier.tabWidth": 4,
+  "prettier.singleQuote": true,
+  "files.autoSave": "onFocusChange",
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.minimap.enabled": true,
+  "editor.renderWhitespace": "none",
+  "editor.renderControlCharacters": false,
+  "terminal.integrated.experimentalUseTitleEvent": true,
+  "window.openFoldersInNewWindow": "on",
+  "editor.wordWrap": "on",
+  "editor.dragAndDrop": false,
+  "terminal.integrated.splitCwd": "initial",
+  "stylusSupremacy.insertColons": true, // 是否插入冒号
+  "stylusSupremacy.insertSemicolons": false, // 是否插入分好
+  "stylusSupremacy.insertBraces": false, // 是否插入大括号
+  "stylusSupremacy.insertNewLineAroundImports": false, // import之后是否换行
+  "stylusSupremacy.insertNewLineAroundBlocks": false,
+  "gitlens.advanced.messages": {
+    "suppressFileNotUnderSourceControlWarning": true
+  },
+  "gitlens.gitCommands.closeOnFocusOut": true,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  } // 两个选择器中是否换行
+}
+```
+
+
+- **配置`Code`命令**
+> [参考](https://www.cnblogs.com/ryanzheng/p/10705892.html)
+
+
+- **配置`·vue`模板**
+> [参考](https://www.jianshu.com/p/8610215a8a84)
+
 
 - **扩展工具**
 ``` shell
@@ -213,11 +300,68 @@ Debugger for Chrome    # 在vs中启动chrome控制台
 any-rule(正则大全)
 ```
 
+
+
+
+
 ## 常见问题
-> 暂无~
 
 
-<!-- 2021-04-29 -->
+1. 安装 homebrew 报错
+``` shell
+mac@localhost ~ % /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+curl: (7) Failed to connect to raw.githubusercontent.com port 443: Connection refused
+```
+
+> 解决办法：使用国内源:`/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"`
+该地址提供多个国内源地址，安装非常简便，亲测有效。
+查检安装结果：`brew -v`, 如果能正确打印版本信息，则安装成功！[参考](https://www.jianshu.com/p/8c417b6f4739)
+
+2. `npm install -g npm` 报错:
+`npm ERR! Error: EACCES: permission denied, rename '/usr/local/lib/node_modules/npm' -> '/usr/local/lib/node_modules/.npm-i9nnxROI'`
+``` shell
+# 权限问题，sudo一下
+sudo npm install -g npm
+# 输入密码即可~
+```
+> 问题：如何配置免密下载?
+
+
+3. `brew install wget`报错：
+``` shell
+mac@localhost .ssh % brew install wget
+Error: The following directories are not writable by your user:
+/usr/local/share/doc
+/usr/local/share/man
+/usr/local/share/man/man1
+
+You should change the ownership of these directories to your user.
+  sudo chown -R $(whoami) /usr/local/share/doc /usr/local/share/man /usr/local/share/man/man1
+
+And make sure that your user has write permission.
+  chmod u+w /usr/local/share/doc /usr/local/share/man /usr/local/share/man/man1
+```
+
+> 解决办法：按提示操作即可~[参考](https://blog.csdn.net/qq_33801641/article/details/117377455)
+``` shell
+sudo chown -R $(whoami) /usr/local/share/doc /usr/local/share/man /usr/local/share/man/man1
+chmod u+w /usr/local/share/doc /usr/local/share/man /usr/local/share/man/man1
+brew install wget
+```
+
+
+4. `ohmyzsh`下载被`443`拒绝连接: `Failed to connect to raw.githubusercontent.com port 443: Connection refused`
+> 使用国内的项目地址下载，[参考](https://blog.csdn.net/qq_35104586/article/details/103604964)
+```
+sh -c "$(wget -O- https://gitee.com/shmhlsy/oh-my-zsh-install.sh/raw/master/install.sh)"
+```
+
+
+
+
+
+
+
 
 
 

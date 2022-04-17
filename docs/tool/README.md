@@ -25,6 +25,7 @@ permalink: false # fc73f4/
 ## 进行中
 - [收藏集](./some-website.html)
 - [名词目录](./word.html)
+- [关于代理：Charles、whistle...](./proxy.html)
 
 
 
@@ -33,13 +34,14 @@ permalink: false # fc73f4/
 ## 未开始
 - [vscode使用笔记](./vscode.html)
 - [关于chrome浏览器](./chrome.html)
-- [移动端调试](./mobile-debug.html)
+
 - [前端登录相关知识梳理](./login.html)
 - [文件的上传与下载](./file-upload.html)
-- [面试题收集](./interview.html)
 - [vscode插件开发](./vscode-plugin.html)
 - [chrome插件开发](./chrome-plugin.html)
+- [interview](./interview/)
 - sso单点登录
 - 微服务
 
 - nginx
+

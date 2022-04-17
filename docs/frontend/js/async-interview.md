@@ -135,6 +135,14 @@ setTimeout(() => {
 });
 
 p.then(r => console.log(r));
+
+/*
+p1
+123
+55
+p
+456
+*/
 ```
 
 #### 第五题
@@ -151,7 +159,7 @@ async function c() {
 async function a() {
   console.log('2');
   await b();
-  //console.log(3);
+  console.log(3);
   await c();
   console.log(8);
 }
@@ -171,8 +179,12 @@ setTimeout(() => {
 });
 
 new Promise(resolve => {
+  console.log('promise')
   setTimeout(() => resolve());
 }).then(() => console.log(55555555));
+
+
+// 2 1 5 promise 3 7 4 8 6 123 55555
 ```
 
 
@@ -214,6 +226,9 @@ setTimeout(function() {
         console.log('12')
     })
 })
+
+// 需在node环境执行：
+// 1 7 6 8 2 4 9 11 3 10 5 12
 
 ```
 

@@ -18,8 +18,14 @@ permalink: false # bb5154/
 
 
 ### 实现Object.create
+> Object.create(proto, [propertiesObject])  创建一个新对象，使用现有的对象来提供新创建的对象的proto。
+
+- proto : 必须。表示新建对象的原型对象，即该参数会被赋值到目标对象(即新对象，或说是最后返回的对象)的原型上。该参数可以是null， 对象， 函数的prototype属性 （创建空的对象时需传null , 否则会抛出TypeError异常）; Object.getPrototypeOf(obj)获取指定对象的原型
+- propertiesObject : 可选。 添加到新创建对象的可枚举属性（即其自身的属性，而不是原型链上的枚举属性）对象的属性描述符以及相应的属性名称。这些属性对应Object.defineProperties()的第二个参数； Object.getOwnPropertyDescriptors(obj)返回指定对象所有自身属性（非继承）
+    > 例：`const newObj = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));`
 
 ``` js
+
 function create(proto, propsObj = undefined){ // proto 新创建对象的原型对象, propsObj 要定义其可枚举属性或修改的属性描述符的对象
   if(typeof proto !== 'object' && proto !== null typeof proto !== 'function') // 只能是 null 或者 object
     throw Error('Uncaught TypeError: Object prototype may only be an Object or null');

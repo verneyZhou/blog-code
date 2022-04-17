@@ -16,16 +16,16 @@ permalink: false # 292799/
 ## 前端工程化
 > 前端工程化可以分成四个方面来说，分别为模块化、组件化、规范化和自动化。
 
+
 - [前端工程化-webpack入门](./engineer-start.html)
 - [rollup项目打包](./rollup.html)
 - [前端打包工具](./package-tools.html)
+
 
 ### 收藏
 - [[Jenkins进阶]-前端CI/CD](https://segmentfault.com/a/1190000040534015)
 - [Gitlab-ci:从零开始的前端自动化部署](https://zhuanlan.zhihu.com/p/184936276)
 - [前端构建这十年](https://segmentfault.com/a/1190000040496020)
-
-
 
 
 ## web性能优化
@@ -60,7 +60,14 @@ permalink: false # 292799/
 
 - [微前端服务](./wei-fe.html)
 - [组件封装](./comp-design.html)
-- [万字详文：彻底搞懂 Jest 单元测试框架](https://segmentfault.com/a/1190000040539268)
+- [SSR](./ssr.html)
 
-- [ssr](./ssr.html)
+- [万字详文：彻底搞懂 Jest 单元测试框架](https://segmentfault.com/a/1190000040539268)
+- [跨端技术的本质是什么？现状如何？](https://mp.weixin.qq.com/s/VGZVnoTGT6BTS101jOPiQw)
+
+
+
+
+
+
 

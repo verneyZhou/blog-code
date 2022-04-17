@@ -144,3 +144,17 @@ Vant 是有赞前端团队开源的移动端组件库, 轻量、可靠的小程�
 飞冰是阿里出的一套中后台解决方案，基于 React 的应用研发框架 icejs，支持 Vite & Webpack 模式，同时提供了微前端、Hooks、一体化等解决开发，让前端开发更加简单规范。
 
 [官网](https://ice.work/)
+
+
+
+## Lerna
+Lerna 是一个多 package 的项目管理工具，针对 使用 git 和 npm 管理多软件包代码仓库的工作流程进行优化。[官网](https://www.lernajs.cn/)
+
+[Lerna 运行流程剖析](https://www.zoo.team/article/lerna-js)
+
+## pnpm
+速度快、节省磁盘空间的软件包管理器, [官网](https://www.pnpm.cn/)
+
+[都2022年了，pnpm快到碗里来！](https://juejin.cn/post/7053340250210795557)、[One For All：基于pnpm + lerna + typescript的最佳项目实践 - 理论篇](https://juejin.cn/post/7043998041786810398)
+
+

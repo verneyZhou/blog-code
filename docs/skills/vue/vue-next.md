@@ -34,3 +34,4 @@ permalink: false # e98e08/
 - [composition-api](https://v3.cn.vuejs.org/api/composition-api.html)
 - [[Vue官方教程笔记]- 尤雨溪手写mini-vue](https://juejin.cn/post/6911897255087702030)
 - [vue-next-template-explorer](https://vue-next-template-explorer.netlify.app/)
+- [焕然一新的 Vue 3 中文文档来了](https://juejin.cn/post/7077701166397653028)

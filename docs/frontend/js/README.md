@@ -19,6 +19,7 @@ permalink: false # 40e551/
 - [防抖与节流](./debounce-throttle.html)
 - [手写Promise](./promise.html)
 - [数组的reduce方法](./array-reduce.html)
+- [JS算法整理笔记](./arithmetic.html)
 
 
 
@@ -30,7 +31,7 @@ permalink: false # 40e551/
 - [js中数组常用方法整理](./array-methods.html)
 - [一些js的使用小技巧](./js-skills.html)
 
-- [JS算法](./arithmetic.html)
+
 
 - [JS笔试题收集](./js-interview.html)
 - [JS异步题集](./async-interview.html)

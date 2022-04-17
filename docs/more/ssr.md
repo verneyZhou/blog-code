@@ -1,5 +1,5 @@
 ---
-title: ssr
+title: SSR
 date: 2022-02-20 14:07:56
 permalink: false
 article: false
@@ -10,10 +10,11 @@ tags:
 ---
 
 
-# ssr
+# SSR
 
 
 
 ## 参考
 
 - [前端搜索引擎优化（SEO）的技巧](https://juejin.cn/post/6980167371864424456)
+- [服务端渲染SSR及实现原理](https://www.zoo.team/article/web-ssr)

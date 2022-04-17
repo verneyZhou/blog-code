@@ -103,6 +103,10 @@ permalink: false # 86acb5/
 - `git reset --hard commitID`  回退到指定版本	
 
 - `git reset --hard`  撤销失败的合并更改
+> 彻底回退到某个版本，本地的源码也会变为上一个版本的内容，撤销的commit中所包含的更改被冲掉。
+
+- `git reset --soft`  回退到某个版本，只回退`log`中提交的commit的信息
+> 不会撤销该`commit`本地的修改，通过`git status`还能看到本地的修改，可再次通过`git commit -m...`提交
 
 [参考](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000)
 
@@ -138,6 +142,64 @@ permalink: false # 86acb5/
 ### 6. 查看git账号
 - `git config user.name`   :查看账户名
 - `git config user.email`  :查看邮箱
+
+
+
+### 7. stash 保存未commit的代码
+> stash 命令能够将还未 commit 的代码存起来。
+
+``` shell
+# 保存当前未commit的代码
+git stash
+
+# 保存当前未commit的代码并添加备注
+git stash save "备注的内容"
+
+# 列出stash的所有记录
+git stash list
+stash@{0}: WIP on ...
+stash@{1}: WIP on ...
+stash@{2}: On ...
+
+# 应用第二条记录
+$ git stash apply stash@{1}
+
+# 删除stash的所有记录
+git stash clear
+
+# 应用最近一次的stash
+git stash apply
+
+# 应用最近一次的stash，随后删除该记录
+git stash pop
+
+# 删除最近的一次stash
+git stash drop
+
+```
+
+
+### 8. 设置 Git 短命令
+
+- 先设置一条命令，`git push`等于`git ps`：
+``` shell
+git config --global alias.ps push
+```
+
+- 打开全局配置文件
+``` shell
+vim ~/.gitconfig
+
+# 会发现配置文件里存在以下内容
+[user]
+        name = verneyZhou
+        email = verneyZhou@163.com
+[alias]
+        ps = push
+```
+> 之后可以在`alias`下面手动添加命令，如：`l = log`
+
+- 修改成功后，执行`git l`就能查看log了~
 
 
 
