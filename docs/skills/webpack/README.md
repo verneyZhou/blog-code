@@ -39,7 +39,12 @@ permalink: false # 41c8a9/
 
 - [webpack优化](./youhua.html)
 - [手写简易版webpack](./mini.html)
+- [eslint相关](./eslint.html)
 - [webpack构建项目性能优化]
 
 
 
+## 收藏
+
+
+- [简述前端包管理工具机制和相关实践](https://mp.weixin.qq.com/s/BK3rTPCGCkY-xII13Y8Aqg)

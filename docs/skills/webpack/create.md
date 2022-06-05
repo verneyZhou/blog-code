@@ -945,9 +945,9 @@ console.log('=====add', add(1, 3));
 [完整代码]()
 
 
-参考：[一文助你搞懂 AST](http://caibaojian.com/ast.html)
-
-
+> 参考
+- [一文助你搞懂 AST](http://caibaojian.com/ast.html)
+- [手把手教你在Webpack写一个Loader](https://juejin.cn/post/7100534685134454815)
 
 
 

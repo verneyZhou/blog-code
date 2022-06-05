@@ -19,3 +19,4 @@ permalink: false # 3b991a/
 
 - [TypeScript从入门到精通视频教程-2020年新版](https://www.bilibili.com/video/BV1qV41167VD)
 - [一份不可多得的 TS 学习指南（1.8W字）](https://juejin.cn/post/6872111128135073806)
+- [如何进阶TypeScript功底？一文带你理解TS中各种高级语法](https://juejin.cn/post/7089809919251054628)

@@ -529,6 +529,7 @@ $:git pull
 
 - [Git各指令的本质，真是通俗易懂啊](https://juejin.cn/post/6895246702614806542)
 - [一些常用的 Git 进阶知识与技巧](https://juejin.cn/post/7022746201598459940)
+- [chrome Github加速插件](http://www.itmind.net/11438.html)
 
 
 

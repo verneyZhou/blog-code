@@ -41,6 +41,7 @@ permalink: false # c8283a/
 - [最强大的 CSS 布局 —— Grid 布局](https://juejin.cn/post/6854573220306255880)
 - [几种常见的CSS布局](https://github.com/ljianshu/Blog/issues/40)
 - [实现三栏布局的几种方法](https://github.com/ljianshu/Blog/issues/14)
+- [如何用一行 CSS 实现 10 种现代布局](https://mp.weixin.qq.com/s/vN01-HQviky2lqR143c99g)
 
 
 
@@ -65,3 +66,4 @@ permalink: false # c8283a/
 - [好玩的 CSS - 40 个有趣的 CSS 网站](https://juejin.cn/post/6982363593241002014)
 - [CSS实现一只自由飞翔的鸟儿](https://juejin.cn/post/7032876592544088101)
 - [把收藏力拉满，前端 50 个优质 Web 在线资源~](https://juejin.cn/post/7030572979868139551)
+- [不能光会摸鱼，用css3告诉你鱼要怎么养](https://juejin.cn/post/7085138867560382494)

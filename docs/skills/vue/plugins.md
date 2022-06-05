@@ -35,6 +35,8 @@ permalink: false # 44acc4/
 - [VueUse](https://vueuse.org/guide/)
 > vue工具库
 
+[5 个可以加速开发的 VueUse 函数库](https://mp.weixin.qq.com/s/_9N-3EilBlxQkY-SgidCEA)
+
 
 
 

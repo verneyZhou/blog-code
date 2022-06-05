@@ -16,6 +16,8 @@ permalink: false # 72e280/
 - [three.js](http://www.webgl3d.cn/)
 > `three.js`是JavaScript编写的WebGL第三方库。提供了非常多的3D显示功能。当开发可视化项目，需要开发一些比较炫酷的3d场景时，可以考虑使用这个库，目前[github](https://github.com/mrdoob/three.js/)上已经有69K+个star了。
 
+[Three.js实现跳一跳(在线玩)](https://juejin.cn/post/7086493323136876552)
+
 - [Underscorejs](https://underscorejs.org/)
 > Underscore.js 是一个很棒的 JavaScript 库，它允许你使用一系列不同的函数来执行 JavaScript 中的各种编程任务。这个实用程序库创建于 2009 年，几乎与所有浏览器兼容。
 

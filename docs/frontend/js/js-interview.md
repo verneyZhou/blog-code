@@ -20,6 +20,7 @@ permalink: false # 315c9f/
 - [Javascript 里的奇葩知识](https://segmentfault.com/a/1190000023941089)
 - [44道JS难题，做对一半就是高手](https://www.jianshu.com/p/e161bd720e64)
 - [牛客网最新百道前端 JavaScript 笔试题](https://juejin.cn/post/7023271065392513038)
+- [js烧脑面试题大赏](https://juejin.cn/post/6989433079760683022)
 
 
 ## 记录

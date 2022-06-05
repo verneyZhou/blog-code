@@ -35,3 +35,5 @@ permalink: false # e98e08/
 - [[Vue官方教程笔记]- 尤雨溪手写mini-vue](https://juejin.cn/post/6911897255087702030)
 - [vue-next-template-explorer](https://vue-next-template-explorer.netlify.app/)
 - [焕然一新的 Vue 3 中文文档来了](https://juejin.cn/post/7077701166397653028)
+- [vue3中可以帮助你早点下班的9个开发技巧！](https://juejin.cn/post/7080875763162939429)
+- [看了9个开源的 Vue3 组件库，发现了这些前端的流行趋势](https://juejin.cn/post/7092766235380678687)

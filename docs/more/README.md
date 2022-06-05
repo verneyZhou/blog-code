@@ -26,9 +26,10 @@ permalink: false # 292799/
 - [[Jenkins进阶]-前端CI/CD](https://segmentfault.com/a/1190000040534015)
 - [Gitlab-ci:从零开始的前端自动化部署](https://zhuanlan.zhihu.com/p/184936276)
 - [前端构建这十年](https://segmentfault.com/a/1190000040496020)
+- [我是如何带领团队从零到一建立前端规范的？🎉🎉🎉](https://juejin.cn/post/7085257325165936648)
 
 
-## web性能优化
+## Web性能优化
 
 - [你知道的前端优化手段](https://juejin.cn/post/6966857691381645325)
 
@@ -44,15 +45,35 @@ permalink: false # 292799/
 
 - [应用性能前端监控，字节跳动这些年经验都在这了](https://juejin.cn/post/7010647775880708133)
 
+- [边缘渲染是如何提高前端性能的？](https://mp.weixin.qq.com/s/8k2kRc3oxZgnINW5R3c9lQ)
+
+- [vue项目你一定会用到的性能优化！](https://juejin.cn/post/7089241058508275725)
+
+- [使用 Performance 看看浏览器在做什么](https://juejin.cn/post/6904582930174705677)
 
 
-## react
+
+## React
+
+- [50天用react.js重写50个web项目，我学到了什么？](https://segmentfault.com/a/1190000040813435)
 
 
-## node
+## Node
 
 - [express中间件实现原理]
 - [挑战一轮大厂后的面试总结 (含六个方向) - nodejs 篇](https://juejin.cn/post/6844904071501971469)
+
+
+
+
+## Nginx
+
+- [手撸架构，Nginx 面试40问](https://blog.csdn.net/wuzhiwei549/article/details/122758937)
+
+## Web3
+
+- [Web3.0开发入门](https://mp.weixin.qq.com/s/4ypEvNF58-1pIyZE1Yd5kA)
+- [《区块链技术与应用》学习笔记](./blockchain-note.html)
 
 
 
@@ -64,6 +85,9 @@ permalink: false # 292799/
 
 - [万字详文：彻底搞懂 Jest 单元测试框架](https://segmentfault.com/a/1190000040539268)
 - [跨端技术的本质是什么？现状如何？](https://mp.weixin.qq.com/s/VGZVnoTGT6BTS101jOPiQw)
+- [别卷了，快来玩 | React+Lingo 实现一个超好玩的3D游戏：美女与龙珠](https://juejin.cn/post/7087730315531141128)
+
+
 
 
 

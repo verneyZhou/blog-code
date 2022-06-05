@@ -49,7 +49,7 @@ rm -r -f filename    # 强制删除文件夹
 # 注：rm表示删除文件；-r 表示删除当前路径下所有子文件；-f表示无视被保护的文件依旧删除
 open fileName  # 使用默认程序打开文件夹
 touch fileName # 新建文件
-vim filename # 终端打开文件；打开之后输入 i 进入编辑模式；点击 ESC 退出编辑模式；输入 :wq 保存并退出
+vim filename # 终端打开文件；打开之后输入 i 进入编辑模式；点击 ESC 退出编辑模式；输入 :wq 保存并退出 :q!强制退出 :wq!强制保存退出
     :set nu  # 当vim nginx.conf 打开配置文件后可输入此命令显示行数
 cp -r copyUrl newUrl   # 拷贝文件   copyUrl：被拷贝文件路径   newUrl：新路径
 du -hd 1 .   # 查看文件存储大小

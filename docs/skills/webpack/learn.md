@@ -141,9 +141,10 @@ const {
 
 在 webpack 编译阶段会生成 Compiler 对象，而 Compiler 是继承了 Tapable 的，同时 webpack 的生命周期 hooks 都是各种各样的钩子。
 
-> 参考：[Webpack插件机制之Tapable-源码解析](https://juejin.cn/post/6844904004435050503)
 
+[Webpack插件机制之Tapable-源码解析](https://juejin.cn/post/6844904004435050503)
 
+[从使用到原理，吃透Tapable](https://mp.weixin.qq.com/s/3huqZYQBNN0gfMsS0xc0KA)
 
 - **编写`Plugin`**
 > 在创建完成`Compiler`对象后，就开始调用`_loadPlugin`方法进行插件注册。

@@ -31,5 +31,6 @@ function check(url){
 
 ## 参考
 
-- [https://juejin.cn/post/6844903648309297166](https://juejin.cn/post/6844903648309297166)
+- [可能是最好的正则表达式的教程笔记了吧...](https://juejin.cn/post/6844903648309297166)
+- [这些常用正则表达式是怎么写出来的？](https://juejin.cn/post/7073360739410378760)
 
