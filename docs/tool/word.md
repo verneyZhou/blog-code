@@ -32,6 +32,12 @@ permalink: false # 7c9ee2/
 [文档](https://uniapp.dcloud.io/)
 
 
+## Quasar
+
+[Quasar](http://www.quasarchs.com/)是基于Vue的跨端解决方案，无论您是仅构建桌面网站、桌面应用还是移动应用。编写代码一次并同时将其部署为网站、移动应用和/或Electron应用，所有这些应用都用一个代码库，通过使用最先进的CLI并辅以精心编写的、性能导向的Quasar Web组件，帮助您以最短时间开发应用。
+
+
+
 
 ## Flutter
 `Flutter`是谷歌的移动UI框架，可以快速在`iOS`和`Android`上构建高质量的原生用户界面。
@@ -156,5 +162,7 @@ Lerna 是一个多 package 的项目管理工具，针对 使用 git 和 npm 管
 速度快、节省磁盘空间的软件包管理器, [官网](https://www.pnpm.cn/)
 
 [都2022年了，pnpm快到碗里来！](https://juejin.cn/post/7053340250210795557)、[One For All：基于pnpm + lerna + typescript的最佳项目实践 - 理论篇](https://juejin.cn/post/7043998041786810398)
+
+
 
 

@@ -16,7 +16,7 @@ permalink: false # 067e28/
 
 ## 已完成
 
-- [Vue使用技巧记录](./log.html)
+- [Vue2使用技巧记录](./log.html)
 - [Vue项目性能优化技巧](./performance.html)
 - [Vue深入：响应式原理](./proxy.html)
 - [Vue深入：Virtual-DOM与Diff算法](./diff.html)

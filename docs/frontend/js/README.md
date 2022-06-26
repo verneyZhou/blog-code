@@ -37,13 +37,13 @@ permalink: false # 40e551/
 - [JS异步题集](./async-interview.html)
 
 - [js常用库整理](./web.html)
-
+- [Typescript入门笔记](./ts.html)
 
 
 ## 未开始
 
 - [正则](./regexp.html)
-- [Typescript](./ts.html)
+
 
 
 

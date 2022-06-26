@@ -1,5 +1,5 @@
 ---
-title: Vue使用技巧
+title: Vue2使用技巧记录
 date: 2021-06-01 23:33:23
 # permalink: false # caf74d/
 categories: 
@@ -9,7 +9,8 @@ tags:
 permalink: false # d4d7a8/
 ---
 
-# Vue使用技巧
+# Vue2使用技巧记录
+> 以下用法主要适用于`vue2`项目~
 
 
 ## 小技巧
@@ -416,6 +417,43 @@ const router = new VueRouter({
 ```
 
 
+### v-for的解构
+
+``` vue
+<template>
+  // 对象解构
+  <li v-for="(value, key, index) in {name: 'tom', age: 12, gender: 'boy'}">
+    {{index+1}}. {{key}}: {{value}}
+  </li>
+
+  // es6解构
+  <li v-for="{name, age} in [{name: 'tom', age: 12}, {name: 'rose', age: 24}]">
+    {{name}}: {{age}}
+  </li>
+
+  // 遍历范围
+   <li v-for="n in 5">
+    {{n}} // 从1开始，以指定的数字结束
+  </li>
+</template>
+```
+
+###  prop添加validator校验
+``` js
+export default {
+  name: 'Image',
+  props: {
+    src: {
+      type: String,
+    },
+    style: {
+      type: String,
+      validator: s => ['square', 'rounded'].includes(s)
+    }
+  }
+};
+```
+这个验证函数接受一个prop，如果prop有效或无效，则返回true或false。
 
 
 
@@ -451,6 +489,11 @@ const router = new VueRouter({
     <slot></slot> 
     <!--  -->
     <slot name="footer"></slot>
+
+    <!-- 对于需要用容器包裹的slot, 可用$slots[name]加判断,避免渲染无效div -->
+    <div v-if="$slots.btn">
+      <slot name="btn"></slot>
+    </div>
 </div>
 
 
@@ -505,6 +548,64 @@ const router = new VueRouter({
 ```
 > `v-slot:header="scope"`可进行解构，如：`v-slot="{ user }"`
 
+
+4. 递归插槽实现v-for组件
+
+- 常规递归v-for组件写法
+``` vue
+<!-- VFor.vue -->
+<template>
+    <div>
+        <!--  渲染第一项 -->
+    {{ list[0] }}
+        <!-- 如果我们有更多的项目，继续!但是不要使用我们刚刚渲染的项 -->
+    <v-for
+      v-if="list.length > 1"
+            :list="list.slice(1)"
+        />
+    </div>
+</template>
+
+
+<!-- 使用 -->
+<template>
+  <v-for :list="list" />
+</template>
+```
+
+- 递归插槽实现
+``` vue
+<!-- VFor.vue -->
+<template>
+  <div>
+    <!-- Pass the item into the slot to be rendered -->
+    <slot v-bind:item="list[0]">
+      <!-- Default -->
+      {{ list[0] }}
+    </slot>
+
+    <v-for
+      v-if="list.length > 1"
+      :list="list.slice(1)"
+    >
+      <!-- Recursively pass down scoped slot -->
+      <template v-slot="{ item }">
+        <slot v-bind:item="item" />
+      </template>
+    </v-for>
+  </div>
+</template>
+
+
+<!--使用-->
+<template >
+     <v-for :list="list">
+        <template v-slot="{ item }">
+          <strong>{{ item }}</strong>
+        </template>
+    </v-for>
+</template>
+```
 
 
 
@@ -922,7 +1023,8 @@ compsCtx.keys().forEach(filename => {
 
 ## 参考
 - [实战技巧，Vue原来还可以这样写](https://juejin.cn/post/6844904196626448391)
-- [一个合格的中级前端工程师应该掌握的 20 个 Vue 技巧](https://juejin.cn/post/6872128694639394830#heading-17)
+- [一个合格的中级前端工程师应该掌握的 20 个 Vue 技巧](https://juejin.cn/post/6872128694639394830)
+- [25个 Vue 技巧,学了这么久才知道还能这么用](https://juejin.cn/post/7098688018663342111)
 
 
 

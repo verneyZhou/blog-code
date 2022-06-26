@@ -29,6 +29,28 @@ window.typeof = function (value) {
 ### 实现图片懒加载lazyLoad
 
 
+``` js
+function lazyload() {
+  const imgs = document.getElementsByTagName('img');
+  const len = imgs.length;
+  // 视口的高度
+  const viewHeight = document.documentElement.clientHeight;
+  // 滚动条高度
+  const scrollHeight = document.documentElement.scrollTop || document.body.scrollTop;
+  for (let i = 0; i < len; i++) {
+    const offsetHeight = imgs[i].offsetTop;
+    if (offsetHeight < viewHeight + scrollHeight) {
+      const src = imgs[i].dataset.src;
+      imgs[i].src = src; // 给img标签统一自定义属性data-src='default.png'，当检测到图片出现在窗口之后再补充src属性，此时才会进行图片资源加载。
+    }
+  }
+}
+
+// 可以使用节流优化一下
+window.addEventListener('scroll', lazyload);
+```
+
+
 [参考](https://github.com/yeyan1996/practical-javascript/blob/master/lazyLoad.js)
 
 
@@ -97,8 +119,32 @@ function download(link, name) {
     document.body.removeChild(eleLink)
 }
 
+
+
+/*
+form表单提交
+*/
+ function downloadFileByForm (downloadUrl, fileName) {
+    // 创建表单
+    const formObj = document.createElement('form');
+    formObj.action = downloadUrl;
+    formObj.method = 'get';
+    formObj.style.display = 'none';
+    // 创建input，主要是起传参作用
+    const formItem = document.createElement('input');
+    formItem.value = fileName; // 传参的值
+    formItem.name = 'fileName'; // 传参的字段名
+    // 插入到网页中
+    formObj.appendChild(formItem);
+    document.body.appendChild(formObj);
+    formObj.submit(); // 发送请求
+    document.body.removeChild(formObj); // 发送完清除掉
+}
+
 //下载excel
 download('http://111.229.14.189/file/1.xlsx')
+
+downloadFileByForm('http://111.229.14.189/file/1.xlsx', 'test.xlsx')
 
 // 使用
 downloadFile('1.txt','lalalallalalla')
