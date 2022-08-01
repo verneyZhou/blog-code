@@ -50,5 +50,6 @@ permalink: false # 40e551/
 ## 收藏
 
 - [Web 中的“选区”和“光标”](https://mp.weixin.qq.com/s/EgWOcjLldO5VQrto5XYNJQ)
+- [TypeScript 深水区：3 种类型来源和 3 种模块语法](https://juejin.cn/post/7111112135903543332)
 
 

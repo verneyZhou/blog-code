@@ -814,7 +814,7 @@ devtool:'source-map' // 单独生成.map文件 可定位到源代码
 
 
 
-<fix-link label="Back" href="/skills/"></fix-link>
+<fix-link label="Back" href="/skills/webpack/"></fix-link>
 
 <!-- 2021-12-19 -->
 

@@ -29,3 +29,4 @@ permalink: false # e791af/
 - [Vite 从入门到精通](https://juejin.cn/column/7074954144817086472)
 - [手把手教你用 vite+vue3+ts+pinia+vueuse 打造大厂企业级前端项目](https://juejin.cn/post/7079785777692934174)
 - [教你使用 koa2 + vite + ts + vue3 + pinia 构建前端 SSR 企业级项目](https://juejin.cn/post/7086467466703929358)
+- [你还不会写 vite 插件吗？没关系，我教你啊！](https://juejin.cn/post/7103165205483356168)

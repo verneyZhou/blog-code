@@ -1028,7 +1028,7 @@ module.exports = {
 - `npm run build`，打包，会发现`dist`中生成了`index.md`文件，说明自定义的插件`TestWebpackPlugin`生效了~
 
 
-<fix-link label="Back" href="/skills/"></fix-link>
+<fix-link label="Back" href="/skills/webpack/"></fix-link>
 
 
 <!-- 2021-12-19 -->

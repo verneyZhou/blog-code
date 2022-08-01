@@ -19,7 +19,7 @@ permalink: false # 4bf61a/
 - [reveal.js](https://revealjs.com/)
 > reveal.js 是一个展示内容的框架，可以简单的理解为网页版的PPT。我们用 reveal.js 做出来的PPT其实是一个HTML文件。
 
-参考：[github](https://github.com/hakimel/reveal.js/)、[居然可以用 js 写 PPT？](https://mp.weixin.qq.com/s/u6ocl7lVXG-jvaNIRn-IiA)
+参考：[github](https://github.com/hakimel/reveal.js/)、[居然可以用 js 写 PPT？](https://mp.weixin.qq.com/s/u6ocl7lVXG-jvaNIRn-IiA)、[reveal.js 入门使用方法](https://blog.csdn.net/qq_43477721/article/details/107351569)
 
 
 
@@ -73,6 +73,7 @@ permalink: false # 4bf61a/
 ### 工具类网站
 
 - [免费图片视频库](https://www.pexels.com/zh-cn/)
+- [图片背景消除](https://www.remove.bg/zh)
 - gif/pdf/图片压缩
     - [https://docsmall.com/](https://docsmall.com/)
     - [https://www.ilovepdf.com/zh-cn](https://www.ilovepdf.com/zh-cn)

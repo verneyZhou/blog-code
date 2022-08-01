@@ -505,6 +505,11 @@ $:git pull
 ```
 
 
+11. 往新建的gitlab项目`git push`的时候的时候报错：`remote: GitLab: You are not allowed to push code to protected branches on this project.`
+> 使用GitLab系统管理员账户登录，更改代码仓库的master主分支开放权限为：Developers + Maintainers即可。[参考](https://blog.csdn.net/weixin_44917045/article/details/123826523)
+
+12. 往新建的gitlab项目`git push`的时候的时候报错: `remote: Ask a project Owner or Maintainer to create a default branch:`
+> 这个是gitlab的特性问题，必须要管理员第一次推代码创建master分支；或者把我改成Maintainer角色。
 
 
 

@@ -48,3 +48,4 @@ permalink: false # 41c8a9/
 
 
 - [简述前端包管理工具机制和相关实践](https://mp.weixin.qq.com/s/BK3rTPCGCkY-xII13Y8Aqg)
+- [package.json 与 package-lock.json 的关系](https://juejin.cn/post/7078233610683170824)

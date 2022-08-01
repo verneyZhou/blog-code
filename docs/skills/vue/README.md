@@ -54,3 +54,6 @@ permalink: false # 067e28/
 ## 收藏
 
 - [Vue + Node.js 从 0 到 1 实现自动化部署工具](https://juejin.cn/post/7070921715492061214)
+- [Github上8个很棒的Vue项目](https://mp.weixin.qq.com/s/m7UU1HaZDrUn3Ywbk4S1qw)
+- [Vue 源码中的工具函数](https://segmentfault.com/a/1190000042073070)
+- [一文解析Pinia和Vuex，带你全面理解这两个Vue状态管理模式](https://juejin.cn/post/7121209657678364685)

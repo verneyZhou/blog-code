@@ -702,7 +702,8 @@ rules: {
 - [最全的Eslint配置模板，从此统一团队的编程习惯](https://juejin.cn/post/6844903859488292871)
 
 
-<fix-link label="Back" href="/skills/"></fix-link>
+<fix-link label="Back" href="/skills/webpack/"></fix-link>
+
 
 
 <!-- 2021-11-27 -->

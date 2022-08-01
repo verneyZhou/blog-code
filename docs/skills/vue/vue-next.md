@@ -37,3 +37,5 @@ permalink: false # e98e08/
 - [焕然一新的 Vue 3 中文文档来了](https://juejin.cn/post/7077701166397653028)
 - [vue3中可以帮助你早点下班的9个开发技巧！](https://juejin.cn/post/7080875763162939429)
 - [看了9个开源的 Vue3 组件库，发现了这些前端的流行趋势](https://juejin.cn/post/7092766235380678687)
+- [分享15个vue3全家桶开发的避坑经验](https://mp.weixin.qq.com/s/uqBjGamvpMQA9TjpaRed5w)
+- [完成第一个vue3.2项目有感](https://juejin.cn/post/7083685762092236830)

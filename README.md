@@ -75,3 +75,42 @@ ReferenceError: canonicalLink is not defined
 1. chrome dectools技巧
 2. vue3+ts项目实战
 3. vue原理学习
+
+
+
+
+
+## TODO
+### 2022.07 todo
+- 梳理前端自动生成助记词，公私钥逻辑；本地储存是否安全？
+    - web3笔记梳理
+- 公众号
+
+- h5开发调试，ios兼容性问题记录
+- whistle, 代理的原理
+- 翻墙
+- nginx,ftp, 部署原理
+- web3项目开发总结
+    - metamask钱包使用
+
+
+    
+- 考研，买房
+
+
+
+### 2022.08 todo
+
+- nginx梳理, caddy熟悉
+- 实践：Vue + Node.js 自动化
+- vue3，vite开发总结
+- Vue 组件库开发
+
+
+
+### 2022.09 todo
+
+- 微前端服务
+- 工程化
+- chrome插件
+- vscode插件

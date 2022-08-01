@@ -12,8 +12,8 @@ export default {
     components: {},
     data() {
     return {
-        preffix: '/blog',
-        // preffix: '',
+        // preffix: '/blog',
+        preffix: '',
     };
     },
     computed: {
@@ -33,8 +33,8 @@ export default {
 <style scoped>
 .fix-link {
     position: fixed;
-    /* display: inline-block; */
-    display: none;
+    display: inline-block !important;
+    /* display: none; */
     white-space: wrap;
     min-width: 32px;
     z-index: 999;

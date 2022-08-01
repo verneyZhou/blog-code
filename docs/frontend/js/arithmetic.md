@@ -2642,6 +2642,7 @@ console.log(shellSort(arr,gap))
 - [别再说你不懂Top K问题了](https://mp.weixin.qq.com/s/0_Rr6Pjshvd7Om2zTYMriQ)
 - [前端进阶算法：常见算法题及完美题解](https://mp.weixin.qq.com/s/23fwxjhHag-WwLsS9Z9Caw)
 - [前端笔试&面试爬坑系列---算法](https://juejin.cn/post/6844903656865677326)
+- [面试官：请使用JS完成一个LRU缓存？](https://juejin.cn/post/7105654083347808263)
 
 
 <!-- 2022-04-17 -->

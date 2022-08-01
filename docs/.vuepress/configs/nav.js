@@ -32,6 +32,7 @@ module.exports = [
                 items: [
                     {text: '微信h5', link: '/project/mobile-h5/'},
                     {text: '微信小程序', link: '/project/mini-program/'},
+                    {text: '移动端开发笔记', link: '/project/mobile/'},
                 ]
             }
             

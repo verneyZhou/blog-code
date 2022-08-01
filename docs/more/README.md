@@ -51,6 +51,8 @@ permalink: false # 292799/
 
 - [使用 Performance 看看浏览器在做什么](https://juejin.cn/post/6904582930174705677)
 
+- [腾讯三面：说说前端监控平台/监控SDK的架构设计和难点亮点？](https://juejin.cn/post/7108660942686126093)
+
 
 
 ## React
@@ -62,6 +64,7 @@ permalink: false # 292799/
 
 - [express中间件实现原理]
 - [挑战一轮大厂后的面试总结 (含六个方向) - nodejs 篇](https://juejin.cn/post/6844904071501971469)
+- [看了就会的 Node.js 常用三方工具包](https://juejin.cn/post/6947856427247468551)
 
 
 
@@ -69,12 +72,21 @@ permalink: false # 292799/
 ## Nginx
 
 - [手撸架构，Nginx 面试40问](https://blog.csdn.net/wuzhiwei549/article/details/122758937)
+- [Nginx的这些妙用，你肯定有不知道的！](https://mp.weixin.qq.com/s/9VZi2suAlomu1IRGy-qdCA)
+- [超越 Nginx！号称下一代 Web 服务器，用起来够优雅！](https://juejin.cn/post/7085519712901136392)
+
+
+
+
+## 低代码
+
+- [前端低代码平台-CodeFun](https://code.fun/)
+
+
 
 ## Web3
 
-- [Web3.0开发入门](https://mp.weixin.qq.com/s/4ypEvNF58-1pIyZE1Yd5kA)
-- [《区块链技术与应用》学习笔记](./blockchain-note.html)
-
+- [Web3相关学习笔记](./web3/)
 
 
 ## 其他
@@ -87,6 +99,8 @@ permalink: false # 292799/
 - [万字详文：彻底搞懂 Jest 单元测试框架](https://segmentfault.com/a/1190000040539268)
 - [跨端技术的本质是什么？现状如何？](https://mp.weixin.qq.com/s/VGZVnoTGT6BTS101jOPiQw)
 - [别卷了，快来玩 | React+Lingo 实现一个超好玩的3D游戏：美女与龙珠](https://juejin.cn/post/7087730315531141128)
+- [Docker 边学边用](https://jartto.wang/2020/07/04/learn-docker/)
+- [前端新宠 Svelte 带来哪些新思想？赶紧学起来！](https://juejin.cn/post/7121759118070644772)
 
 
 
