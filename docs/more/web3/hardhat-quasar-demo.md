@@ -203,7 +203,7 @@ npm init quasar
 ✔ Package name: … client
 ✔ Project product name: (must start with letter if building mobile apps) … Quasar App
 ✔ Project description: … A Quasar Project
-✔ Author: … zhouyuan <zhouyuan10@staff.weibo.com>
+✔ Author: … xxx <xxxxx@xxxx.com>
 ✔ Pick a Vue component style: › Composition API
 ✔ Pick your CSS preprocessor: › Sass with indented syntax
 ✔ Check the features needed for your project: › ESLint, State Management (Vuex) [DEPRECATED by Vue Team], Axios

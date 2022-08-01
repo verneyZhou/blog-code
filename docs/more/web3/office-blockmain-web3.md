@@ -278,7 +278,7 @@ message: "execution reverted: ERC20: transfer amount exceeds balance"
 
 
 
-- 以太坊线上网络、Ganache启动后的本地测试网络（http://127.0.0.1:7545）、hardhat项目启动服务后的本地测试网络（http://127.0.0.1:8545）、公司自己的weibo chain测试网络（http://10.182.10.193:4000）;在每个网络下进行的交易只能在该网络下进行查询；Ganache和hardhat启动的本地测试网络都会生成一些有eth的测试账号方便开发使用；
+- 以太坊线上网络、Ganache启动后的本地测试网络（http://127.0.0.1:7545）、hardhat项目启动服务后的本地测试网络（http://127.0.0.1:8545）、公司自己的 chain测试网络（http://xx.xx.xx.xx）;在每个网络下进行的交易只能在该网络下进行查询；Ganache和hardhat启动的本地测试网络都会生成一些有eth的测试账号方便开发使用；
 
 
 

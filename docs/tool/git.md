@@ -257,7 +257,7 @@ git reset HEAD^  # 此时本地代码保留，回到 git add 之前
 git log // 查看提交记录，找到自己merge的提交
 //commit 89e5a9e9867cfcd65e9ff479c91746276c4ce663
 //Merge: cb50d57 7a4bdf7   // 一般第一个代表master分支 第二个代表自己的分支
-//Author: zhouyuan <zhouyuan@kanzhun.com>
+//Author: xxxx <xxx@xxx.com>
 //Date:   Mon Sep 7 22:07:04 2020 +0800
 // Merge branch 'feature/test'
 
