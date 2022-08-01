@@ -94,73 +94,16 @@ node包管理工具推荐：`pnpm > yarn > npm`
 
 - nginx添加配置；
 
-可下载 [Cyberduck](https://cyberduck.io/download/) 查看niginx配置~
-1. 打开 `infrastructure` 项目，打开 `machine.js` 文件，找到部署的测试环境的host,账号，密码；
-2. 打开软件，点击 新建连接，添加上述信息，连接，即可查看该测试环境上的nginx配置，和静态资源；
-3. 静态资源目录：`/opt/nginx/html9006`; nginx配置目录：`/opt/nginx/conf/nginx9006.conf`
 
-``` js
-server {
-    listen 80;
-    server_name ob.weibo.com;
-    add_header Access-Control-Allow-Origin *;
-    root /bin/www/office/web3/;
-    index  index.html index.htm;
+- `vite.config.ts`中修改配置; 
 
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$ {
-        expires      30d;
-    }
-    location ~ .*\.(js|css)?$ {
-        expires      12h;
-    }
-}
+- `package.json`中添加部署命令`deploy`：
 
-
-server {
-    listen 80;
-    server_name js.t.sinajs.cn;
-    add_header Access-Control-Allow-Origin *;
-    root /bin/www/;
-    autoindex off;
-    location ^~ /t6/ec/office/web3 {
-        autoindex off;
-        alias  /bin/www/office/web3/;
-    }
-    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$ {
-        expires      30d;
-    }
-    location ~ .*\.(js|css)?$ {
-        expires      12h;
-    }
-}
-
-```
-
-
-- `vite.config.ts`中修改配置:`base: '//js.t.sinajs.cn/t6/ec/office/web3/'`；
-
-- `package.json`中添加部署命令：
-``` json
-"deploy": "node ../infrastructure/scripts/deploy-ftp.js --path /opt/nginx/html9006/office/web3 --source dist"
-```
-
-- 接着`npm run build`打包；`npm run deploy`部署，选择测试机器（如 `10.41.42.63`）, 部署~
+- 接着`npm run build`打包；`npm run deploy`部署，选择测试机器, 部署~
 
 - whistle 中添加代理
-``` shell
-# 后端接口
-10.182.10.193:9546 ob.weibo.com/api ob.weibo.com/article ob.weibo.com/decentralize 
 
-# 前端
-10.41.42.63:9006 ob.weibo.com
-# 静态资源
-10.41.42.63:9006 js.t.sinajs.cn
-```
-
-- 浏览器访问：http://ob.weibo.com
+- 浏览器访问
 
 
 
@@ -174,7 +117,7 @@ server {
 - 上线平台操作上线，模板给后端，后端给一个地址
 
 
-线上访问：http://i.ob.e.weibo.com
+线上访问
 
 
 ## 问题记录
