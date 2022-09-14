@@ -20,7 +20,6 @@ permalink: false # 067e28/
 - [Vue项目性能优化技巧](./performance.html)
 - [Vue深入：响应式原理](./proxy.html)
 - [Vue深入：Virtual-DOM与Diff算法](./diff.html)
-- [vue2与vue3的差异](./vue-update.html)
 - [vue3+vite+ts 从0到1项目搭建](./vue3-vite-admin.html)
 - [vue3+vue-cli+ts 项目搭建](./vue3-cli-admin.html)
 - [vue3+webpack5+ts 项目搭建](./vue3-webpack5-admin.html)
@@ -29,11 +28,12 @@ permalink: false # 067e28/
 
 ## 进行中
 
+- [vue3学习笔记吐血整理！！！](./vue-diff.html)
+
 - [深入vue.$nextTick实现原理](./next-tick.html)
 - [《玩转 Vue 3 全家桶》学习笔记](./jike/)
 - [Vue原理分析](./code.html)
 - [vue第三方组件插件库收集](./plugins.html)
-
 
 
 
@@ -57,3 +57,5 @@ permalink: false # 067e28/
 - [Github上8个很棒的Vue项目](https://mp.weixin.qq.com/s/m7UU1HaZDrUn3Ywbk4S1qw)
 - [Vue 源码中的工具函数](https://segmentfault.com/a/1190000042073070)
 - [一文解析Pinia和Vuex，带你全面理解这两个Vue状态管理模式](https://juejin.cn/post/7121209657678364685)
+- [你知道前端水印功能是怎么实现的吗？](https://juejin.cn/post/7132620574198595597)
+- [使用Vue.js编写命令行界面,前端开发CLI的利器](https://juejin.cn/post/7129665321127903246)、[Temir中文文档](https://github.com/webfansplz/temir/blob/main/README.zh-CN.md)

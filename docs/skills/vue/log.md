@@ -456,7 +456,20 @@ export default {
 这个验证函数接受一个prop，如果prop有效或无效，则返回true或false。
 
 
+### 使用一个对象绑定多个 prop
 
+``` vue
+const post = {
+  id: 1,
+  title: 'My Journey with Vue'
+}
+
+
+<BlogPost v-bind="post" />
+
+// 等价于
+<BlogPost :id="post.id" :title="post.title" />
+```
 
 
 ## 进阶技能

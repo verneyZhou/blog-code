@@ -231,6 +231,24 @@ console.log(a); // #82efaa
 
 
 
+### 6. 生成随机字符串
+
+``` js
+function randomString(len) {　　
+    len = len || 32;
+    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let timestamp =  +new Date();
+    let maxPos = chars.length;
+    let pwd = '';　　
+    for (let i = 0; i < len; i++) {　　　　
+        pwd += chars.charAt(Math.floor(Math.random() * maxPos));　　
+    }　　
+    return `${timestamp}@${pwd}`;
+}
+randomString(8);
+```
+
+
 ## if-else的替代方案
 > 项目经常会用到`if-else`，但当逻辑比较复杂还继续用`if-else`来判断，代码就会显得很臃肿，而且可读性也很差，不够简洁；这里罗列了几个`if-else`的替代方案，可以使代码的书写更加优雅。
 

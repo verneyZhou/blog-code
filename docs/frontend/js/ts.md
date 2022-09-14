@@ -84,7 +84,7 @@ console.log(test());
 ## 入门
 
 
-- demo01
+### demo01
 ``` ts
 // 静态类型: 声明之后不能改变类型
 // 定义了为数字类型
@@ -114,7 +114,7 @@ console.log('====tom', tom);
 
 ```
 
-- demo02
+### demo02
 ``` ts
 // 基础静态类型: number,string,null,symbol,undifined,null,viod,boolean
 let count: number = 1;
@@ -166,7 +166,7 @@ console.log('====person', person);
 
 
 
-- demo03
+### demo03
 ``` ts
 // 函数参数和返回类型注解
 
@@ -198,7 +198,7 @@ function add({a, b}: {a:number, b: number}) {
 const num = add({a: 1, b: 3});
 ```
 
-- demo04
+### demo04
 ``` ts
 // 自定义接口
 interface Model {
@@ -255,7 +255,7 @@ getRes(person);
 ```
 
 
-- demo05
+### demo05
 ``` ts
 
 // 类
@@ -316,7 +316,7 @@ const boy = new Boy();
 console.log(boy.sayWeight());
 ```
 
-- demo06
+### demo06
 ``` ts
 // 
 // 父类
@@ -396,7 +396,7 @@ Lady.sayHello(); //  ===hello
 // }
 ```
 
-- demo07
+### demo07
 ``` ts
 // 联合类型 类型守护
 
@@ -456,7 +456,7 @@ console.log(addObj({count: 1}, {count: 2}));
 
 ```
 
-- demo08
+### demo08
 ``` ts
 // 枚举类型
 // 默认从0开始,
@@ -472,7 +472,7 @@ console.log(Status.STUDY, Status[2]); // 2 STUDY
 ```
 
 
-- demo09
+### demo09
 ``` ts
 /**
  * 泛型
@@ -528,8 +528,9 @@ console.log(selectLang.getLang(2)); // html
 
 
 
-## 参考
+## 收藏
 
 - [TypeScript从入门到精通视频教程-2020年新版](https://www.bilibili.com/video/BV1qV41167VD)
 - [一份不可多得的 TS 学习指南（1.8W字）](https://juejin.cn/post/6872111128135073806)
 - [如何进阶TypeScript功底？一文带你理解TS中各种高级语法](https://juejin.cn/post/7089809919251054628)
+- [2022年了，我才开始学 typescript ，晚吗？（7.5k字总结）](https://juejin.cn/post/7124117404187099172)

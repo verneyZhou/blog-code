@@ -18,8 +18,10 @@ permalink: false # 292799/
 
 
 - [前端工程化-webpack入门](./engineer-start.html)
-- [rollup项目打包](./rollup.html)
+- [rollup项目实践整理](./rollup.html)
 - [前端打包工具](./package-tools.html)
+- [前端监控学习笔记](./monitor.html)
+- [前端自动化](./ci-cd.html)
 
 
 ### 收藏
@@ -53,6 +55,9 @@ permalink: false # 292799/
 
 - [腾讯三面：说说前端监控平台/监控SDK的架构设计和难点亮点？](https://juejin.cn/post/7108660942686126093)
 
+- [如何让前端拥有后端的计算能力？一文彻底了解Web Worker](https://juejin.cn/post/7137728629986820126)
+
+
 
 
 ## React
@@ -81,8 +86,12 @@ permalink: false # 292799/
 ## 低代码
 
 - [前端低代码平台-CodeFun](https://code.fun/)
+- [低代码都做了什么？(为什么？怎么实现Low-Code？)](https://juejin.cn/post/7127409867123327012)
 
 
+## 微前端
+
+- [微前端服务](./wei-fe.html)
 
 ## Web3
 
@@ -92,7 +101,6 @@ permalink: false # 292799/
 ## 其他
 
 - [前端登录相关知识梳理](./login.html)
-- [微前端服务](./wei-fe.html)
 - [组件封装](./comp-design.html)
 - [SSR](./ssr.html)
 
@@ -101,7 +109,7 @@ permalink: false # 292799/
 - [别卷了，快来玩 | React+Lingo 实现一个超好玩的3D游戏：美女与龙珠](https://juejin.cn/post/7087730315531141128)
 - [Docker 边学边用](https://jartto.wang/2020/07/04/learn-docker/)
 - [前端新宠 Svelte 带来哪些新思想？赶紧学起来！](https://juejin.cn/post/7121759118070644772)
-
+- [图文结合简单易学的npm包的发布流程](https://juejin.cn/post/7125709933709885448)
 
 
 

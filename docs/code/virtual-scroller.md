@@ -18,3 +18,10 @@ permalink: false # 540010/
 - [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller)
 
 - [vue-virtual-scroll-list](https://github.com/tangbc/vue-virtual-scroll-list)
+
+
+
+
+## 参考
+
+- [花三个小时，完全掌握分片渲染和虚拟列表～](https://juejin.cn/post/7121551701731409934)

@@ -51,5 +51,7 @@ permalink: false # 40e551/
 
 - [Web 中的“选区”和“光标”](https://mp.weixin.qq.com/s/EgWOcjLldO5VQrto5XYNJQ)
 - [TypeScript 深水区：3 种类型来源和 3 种模块语法](https://juejin.cn/post/7111112135903543332)
+- [Async是如何被JavaScript实现的](https://juejin.cn/post/7069317318332907550)
+- [从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理](https://segmentfault.com/a/1190000012925872)
 
 

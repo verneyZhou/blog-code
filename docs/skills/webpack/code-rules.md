@@ -686,6 +686,24 @@ rules: {
 [css代码规范工具stylelint](https://zhuanlan.zhihu.com/p/138323526)
 
 
+- 根目录下新增`.eslintignore`文件可用于过滤无需校验的文件
+
+```
+*.js
+*.tsx
+*.css
+src/styles/antd-overrides.less
+```
+
+- [stylelint 接入实战踩坑总结](https://blog.csdn.net/weixin_41996102/article/details/121166987)
+- [Stylelint](https://stylelint.io/)
+- [StyleLint使用指南](https://www.cnblogs.com/jiaoshou/p/11284204.html)
+
+
+
+
+
+
 ### Volar
 > 与`vetur`相同，`volar`是一个针对`vue`的`vscode`插件，不过与`vetur`不同的是，`volar`提供了更为强大的功能, 可以对 `ts` 进行支持。
 

@@ -136,5 +136,13 @@ permalink: false # 4bf61a/
 > 图片预览组件，支持移动端，相对上面组件库里面自带的，比较轻量~
 
 
+- [Apache ECharts](https://echarts.apache.org/zh/index.html)
+> 一个基于 JavaScript 的开源可视化图表库, [github地址](https://github.com/apache/echarts)
+
+
+- [IconPark](https://iconpark.oceanengine.com/home)
+> IconPark 提供超过 2400 个高质量图标，还提供了每个图标的含义和来源的描述，便于开发者使用。除此之外，该网站还可以自定义图标，这是与其他图标网站与众不同的地方。该图标库是字节跳动旗下的技术驱动图标样式的开源图标库。
+
+
 
 

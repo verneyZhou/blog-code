@@ -10,7 +10,7 @@
 ## 运行及部署
 
 - 本地运行
-npm run dev:hot
+npm run dev
 
 - 上线：
     - 方式1：上线到`verneyZhou.github.io`，对应线上域名：`http://docs.verneyzhou-code.cn/`
@@ -92,9 +92,6 @@ ReferenceError: canonicalLink is not defined
 - nginx,ftp, 部署原理
 - web3项目开发总结
     - metamask钱包使用
-
-
-    
 - 考研，买房
 
 
@@ -103,9 +100,23 @@ ReferenceError: canonicalLink is not defined
 
 - nginx梳理, caddy熟悉
 - 实践：Vue + Node.js 自动化
-- vue3，vite开发总结
 - Vue 组件库开发
+- 《vue.js设计与实践》学习
 
+- 工作相关
+    - vue3，vite开发总结，ts使用复习，vite项目打包配置总结，vue3实践ppt
+        - vue3组合式api的高级写法，router4跟3有什么不同，vuex4跟3有什么不同
+    - nginx,ftp, 部署原理; 
+        > 互爱町部署原理，为什么有时静态资源部署失败？
+        > infratructure打包部署原理？
+    - whistle, 代理的原理
+
+- h5开发调试，ios兼容性问题记录
+    > whistle: Weinre
+- 翻墙
+- vscode插件
+- 代码规范，eslint规范，git commit规范
+- 前端监控
 
 
 ### 2022.09 todo
@@ -113,4 +124,7 @@ ReferenceError: canonicalLink is not defined
 - 微前端服务
 - 工程化
 - chrome插件
-- vscode插件
+
+
+
+
