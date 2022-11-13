@@ -288,6 +288,11 @@ source ~/.profile
 > [参考](https://www.jianshu.com/p/8610215a8a84)
 
 
+
+- **解决CPU占用过高导致电脑卡顿**
+> [Code Helper占用大量CPU和内存](https://www.cnblogs.com/suihang/p/11946434.html)
+
+
 - **扩展工具**
 ``` shell
 GitLens   # git提交记录

@@ -1192,7 +1192,7 @@ self.addEventListener('fetch', e => {
 - [Sentry](https://sentry.io/welcome/)
 > Sentry是一个基于Django构建的现代化的实时事件日志监控、记录和聚合平台,主要用于如何快速的发现故障。支持几乎所有主流开发语言和平台,并提供了现代化UI,它专门用于监视错误和提取执行适当的事后操作所需的所有信息,而无需使用标准用户反馈循环的任何麻烦。
 
-[前端异常监控之 Sentry的部署和使用](https://juejin.cn/post/6844903657381593096)
+[前端异常监控之 Sentry的部署和使用](https://juejin.cn/post/6844903657381593096)、[学习 sentry 源码整体架构，打造属于自己的前端异常监控SDK](https://juejin.cn/post/6844903984457580551)
 
 
 - [web-tracing](https://m-cheng-web.github.io/web-tracing-docu/)
@@ -1202,6 +1202,7 @@ self.addEventListener('fetch', e => {
 - [bombayjs-admin](https://github.com/bombayjs/bombayjs-admin)，[参考](https://juejin.cn/post/6844903956267663367)
 > 从零开始搭建前端监控系统, bombayjs是前端监控解决方案，包括bombayjs、bombayjs-server、bombayjs-admin三个项目。
 
+- [web.dev指标](https://web.dev/metrics/)
 
 ## 参考
 
@@ -1213,7 +1214,10 @@ self.addEventListener('fetch', e => {
 - [前端搞监控|能翔 - 如何基于错误日志进行分析和告警](https://www.yuque.com/zaotalk/posts/c5-6)
 - [前端监控体系搭建](https://juejin.cn/post/7078512301665419295)
 - [5 分钟撸一个前端性能监控工具](https://juejin.cn/post/6844903662020460552)
-- [web.dev指标](https://web.dev/metrics/)
+- 字节前端监控系列:
+  1. [前端监控系列1｜ 字节的前端监控SDK是怎样设计的](https://juejin.cn/post/7125622436669685774)
+  2. [前端监控系列2 ｜ 聊聊 JS 错误监控那些事儿](https://juejin.cn/post/7129451832396480525)
+  3. [前端监控系列3 ｜ 如何衡量一个站点的性能好坏](https://juejin.cn/post/7130830761137012766)
 
 
 

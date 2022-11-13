@@ -41,5 +41,10 @@ module.exports = [
     },
     { text: '其他', link: '/tool/'},
     { text: 'Github', link: 'https://github.com/verneyZhou'},
-    { text: '关于', link: '/about/' },
+    { text: '关于',
+        items: [
+            {text: 'ME', link: '/about/'},
+            // {text: '考研', link: '/about/kaoyan/'}
+        ]
+    },
 ]

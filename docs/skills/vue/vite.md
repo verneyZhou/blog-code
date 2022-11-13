@@ -32,3 +32,6 @@ permalink: false # e791af/
 - [你还不会写 vite 插件吗？没关系，我教你啊！](https://juejin.cn/post/7103165205483356168)
 - [我是如何利用 prefetch 来提升 Vite 开发模式下懒加载的性能](https://juejin.cn/post/7131636427183357965)
 - [Vite 是怎样利用 Esbuild 来提升性能的 ？](https://juejin.cn/post/7129802255120728100)
+- [备战2021：vite工程化实践，建议收藏](https://juejin.cn/post/6910014283707318279)
+- [vite + Vue3 遇到的一些问题汇总](https://juejin.cn/post/7028137821269393438)
+- [Vite 开发实践 - 打包部署](https://juejin.cn/post/7028773763827105829)

@@ -128,3 +128,9 @@ ReferenceError: canonicalLink is not defined
 
 
 
+### 2023 TODO
+
+- 组件库封装
+- 低代码
+- 微前端
+- 前端监控
