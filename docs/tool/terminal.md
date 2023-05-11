@@ -75,6 +75,11 @@ banner -w 80 hello world  # 打印机械感十足的文字
 > `command + shift + d` :垂直分屏
 
 
+## 收藏
+
+- [万字长文：带你走进shell世界](https://mp.weixin.qq.com/s/qkqo6S8Cas_713GZ14Kk2g)
+- [前端必备的25个CLI命令行](https://juejin.cn/post/7152338517425651720)
+
 ## 参考
 1. [Terminal终端入门](https://www.jianshu.com/p/eedf9209150f)
 2. [linux命令](https://www.cnblogs.com/peida/archive/2012/12/05/2803591.html)

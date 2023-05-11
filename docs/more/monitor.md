@@ -1204,6 +1204,13 @@ self.addEventListener('fetch', e => {
 
 - [web.dev指标](https://web.dev/metrics/)
 
+- [让我们一起写一个前端监控系统吧！（3）](https://juejin.cn/post/7145434130073780231)
+
+- [web-see](https://github.com/xy-sea/web-see): 一款自研的前端监控SDK
+  - [从0到1搭建前端监控平台，面试必备的亮点项目](https://juejin.cn/post/7172072612430872584)
+  - [前端录屏+定位源码，帮你快速定位线上bug](https://juejin.cn/post/7173596154297810957)
+  - [前端白屏的检测方案，让你知道自己的页面白了](https://juejin.cn/post/7176206226903007292)
+
 ## 参考
 
 - [为什么大厂前端监控都在用GIF做埋点？](https://juejin.cn/post/7065123244881215518)
@@ -1218,6 +1225,8 @@ self.addEventListener('fetch', e => {
   1. [前端监控系列1｜ 字节的前端监控SDK是怎样设计的](https://juejin.cn/post/7125622436669685774)
   2. [前端监控系列2 ｜ 聊聊 JS 错误监控那些事儿](https://juejin.cn/post/7129451832396480525)
   3. [前端监控系列3 ｜ 如何衡量一个站点的性能好坏](https://juejin.cn/post/7130830761137012766)
+
+- [你只会用前端数据埋点 SDK 吗？](https://juejin.cn/post/7163046672874864676)
 
 
 

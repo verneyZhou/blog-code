@@ -134,3 +134,55 @@ ReferenceError: canonicalLink is not defined
 - 低代码
 - 微前端
 - 前端监控
+- 自动化部署
+
+
+#### 2023春节
+
+- 前端监控（互爱町）
+- 智能合约低代码部署，合约方法可视化
+    文件的上传与下载
+    shell
+    自动化部署（husky,githook）
+
+
+
+#### 2023.02 todo
+
+- chrome devtools
+- 移动端调试整理
+- 并发请求数量控制
+
+
+
+
+#### 2023.03 todo
+
+
+- 组件、插件开发
+- vue3原理
+- 虚拟列表
+- 有道云笔记整理
+- 自动化部署（husky,githook）
+- farcaster协议去中心化社区
+- 瀑布流布局
+- 公众号添加ChatGPT
+
+
+
+#### 2023.04 todo
+
+- 性能优化
+- 微前端
+- 前端监控
+- 低代码
+- Docker
+- Web Worker
+- react v15 v16 v17 v18 区别
+
+
+#### 2023.05 todo
+
+- Web Component
+- vue3: compositionAPI
+

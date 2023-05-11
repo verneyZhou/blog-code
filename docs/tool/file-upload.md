@@ -13,7 +13,7 @@ permalink: false # b9398f/
 
 
 
-## 参考
+## 收藏
 
 - [你不知道的 Blob](https://mp.weixin.qq.com/s?__biz=MzI2MjcxNTQ0Nw==&mid=2247484522&idx=1&sn=7028aa65a4dec0f2d0cb847838703bc3)
 - [一文读懂base64](https://mp.weixin.qq.com/s?__biz=MzI2MjcxNTQ0Nw==&mid=2247489632&idx=1&sn=68f123f9be1ac5a47528bf0b682e8bfe)
@@ -26,3 +26,12 @@ permalink: false # b9398f/
 - [请问：怎么实现大文件快速上传？](https://juejin.cn/post/7074534222748188685)
 - [前端复杂表格导出excel，一键导出 Antd Table 看这篇就够了（附源码）](https://juejin.cn/post/7071882317953761316)
 - [面试官：如何限制 Gif 图片上传的帧数？](https://mp.weixin.qq.com/s/rHn4GVhu0U80rGVNQ2Z4-A)
+- [前端导出Excel，让后端刮目相看](https://juejin.cn/post/7030291455243452429)
+- [所见即所得——HTML转图片组件开发](https://mp.weixin.qq.com/s/qmE1CBJDrr0TJihzQPXDig)
+- [给我实现一个前端的 Excel 导入和导出功能](https://juejin.cn/post/7135945969425711111)
+- [一个企业级的文件上传组件应该是什么样的](https://juejin.cn/post/7187695113597321275)
+
+- [PDF 预览和下载你是怎么实现的？](https://juejin.cn/post/7207078219215732794)
+- [纯前端实现 Excel在线解析和预览（兼容APP、Web、小程序）](https://juejin.cn/post/7211805251216031801)
+- [File System Access API 让浏览器拥有操作本地文件的能力](https://juejin.cn/post/7203701875530039357)
+- [请问：怎么实现大文件快速上传？](https://mp.weixin.qq.com/s/EkZQSLsGmZ-CFIDtIC1ceQ)

@@ -16,3 +16,4 @@ permalink: false # d38989/
 ## 参考
 
 - [通用组件的设计需要考虑什么](https://juejin.cn/post/6844903847874265101)
+- [使用 Next.js 搭建 Monorepo 组件库文档](https://juejin.cn/post/7168885699507126303)

@@ -538,9 +538,12 @@ async function nftBuy(pwd: string) {
 
 
 
+### 流程图
+> 根据上面的操作，大概画了一张流程图，梳理一下~
 
+<img class="zoom-custom-imgs" :src="$withBase('/images/more/web3-wallet01.jpg')" width="auto"/>
 
-
+> 主要分三步：连接区块链网络、生成本地钱包、连接合约并调用~
 
 
 

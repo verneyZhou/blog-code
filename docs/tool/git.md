@@ -537,6 +537,11 @@ $:git pull
 - [chrome Github加速插件](http://www.itmind.net/11438.html)
 
 
+## 收藏
+
+- [Git 是如何工作的](https://mp.weixin.qq.com/s/DBnbDjY_oXuM-X6m2K5oeQ)
+- [Learn Git Branching](https://learngitbranching.js.org/?locale=zh_CN)
+
 
 
 <!-- 2021-04-29 -->

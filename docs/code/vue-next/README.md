@@ -19,6 +19,7 @@ permalink: false # cdde23/
 
 
 
-## 参考
+## 收藏
 
 - [Vue.js 技术揭秘](https://ustbhuangyi.github.io/vue-analysis)
+- [【源码&库】在调用 createApp 时，Vue 为我们做了那些工作？](https://juejin.cn/post/7188566053293654075)

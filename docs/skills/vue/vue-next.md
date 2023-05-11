@@ -39,3 +39,10 @@ permalink: false # e98e08/
 - [看了9个开源的 Vue3 组件库，发现了这些前端的流行趋势](https://juejin.cn/post/7092766235380678687)
 - [分享15个vue3全家桶开发的避坑经验](https://mp.weixin.qq.com/s/uqBjGamvpMQA9TjpaRed5w)
 - [完成第一个vue3.2项目有感](https://juejin.cn/post/7083685762092236830)
+
+- [我相信这是vue3复用代码的正确姿势！](https://juejin.cn/post/7160480314089799710)
+- [推荐10个基于Vue3.0全家桶的优秀开源项目](https://mp.weixin.qq.com/s/YGhuJ71MAj2NcgW0zEEbgQ)
+- [Vue3 如何实现一个全局搜索框](https://juejin.cn/post/7170345858938961957)
+- [在Vue3这样子写页面更快更高效](https://juejin.cn/post/7172889961446768670)
+
+- [ 如何为 Vue3 组件标注 TS 类型，看这个就够了！](https://mp.weixin.qq.com/s/CuPm7JIAM5Zch2fLGPpxSA)

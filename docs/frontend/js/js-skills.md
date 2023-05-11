@@ -496,3 +496,4 @@ console.log(obj.b.bb) // 直接报错
 - [关于JS中一些重要的api实现, 巩固你的原生JS功底](https://juejin.cn/post/6844903924520992782)
 - [学会这20+个JavaScript单行代码，可以让你的代码更加骚气](https://mp.weixin.qq.com/s/cNLqiSfPNAaXDbLReberag)
 - [56个JavaScript 实用工具函数助你提升开发效率！](https://juejin.cn/post/7019090370814279693)
+- [20个js工具函数助力高效开发（值得收藏）](https://juejin.cn/post/7132714583399071758)

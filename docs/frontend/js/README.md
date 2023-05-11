@@ -20,7 +20,7 @@ permalink: false # 40e551/
 - [手写Promise](./promise.html)
 - [数组的reduce方法](./array-reduce.html)
 - [JS算法整理笔记](./arithmetic.html)
-
+- [JS实现异步请求并发数量控制](./multi-fetch.html)
 
 
 
@@ -50,8 +50,16 @@ permalink: false # 40e551/
 ## 收藏
 
 - [Web 中的“选区”和“光标”](https://mp.weixin.qq.com/s/EgWOcjLldO5VQrto5XYNJQ)
-- [TypeScript 深水区：3 种类型来源和 3 种模块语法](https://juejin.cn/post/7111112135903543332)
 - [Async是如何被JavaScript实现的](https://juejin.cn/post/7069317318332907550)
 - [从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理](https://segmentfault.com/a/1190000012925872)
+- [新来个技术总监，把限流实现的那叫一个优雅，佩服！](https://juejin.cn/post/7145435951899574302)
+- [纯 JS 实现语雀的划词高亮功能](https://juejin.cn/post/7140078451205079054)
+- [IntersectionObserver实现虚拟列表初探](http://zoo.zhengcaiyun.cn/blog/article/intersectionobserver)
+- [什么？后端要一次性返回我10万条数据！且看我这8种方案机智应对！](https://juejin.cn/post/7205101745936416829)
 
+- [关于编码的那些事 - URL 编码](https://mp.weixin.qq.com/s/QQEq-_84SxcLzAbRHSuYVw)
+- [你能手写一个模板引擎吗？](https://juejin.cn/post/7207697872706486328)
 
+- TS
+  - [TypeScript 深水区：3 种类型来源和 3 种模块语法](https://juejin.cn/post/7111112135903543332)
+  - [类型编程原理和编写类型安全代码](https://mp.weixin.qq.com/s/-Use3prQiTvB2U0itEXNuQ)

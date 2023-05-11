@@ -35,3 +35,6 @@ permalink: false # e791af/
 - [备战2021：vite工程化实践，建议收藏](https://juejin.cn/post/6910014283707318279)
 - [vite + Vue3 遇到的一些问题汇总](https://juejin.cn/post/7028137821269393438)
 - [Vite 开发实践 - 打包部署](https://juejin.cn/post/7028773763827105829)
+
+- [vite项目为什么可以直接使用NODE_ENV？](https://juejin.cn/post/7167933987925524516)
+- [Vite项目屏幕适配的两种方案，超详细！](https://juejin.cn/post/7147897102398390308)

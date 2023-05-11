@@ -23,6 +23,10 @@ tags:
 ### Solidity
 > Solidity是最主要的、最常用的智能合约开发语言。Solidity适用于大多数智能合约平台，如Ethereum、Avalanche、Moonbeam、Polygon、BSC，等等。这是由于大多数区块链都采用了以太坊虚拟机（EVM），而solidity就是为其而生的。在目前排名前十的Defi项目中，有九个使用solidity作为他们的主要编程语言。
 
+受 C++、Python 和 JavaScript 的影响，Solidity 继承了这些语言的所有优点，成为智能合约开发最常用的编程语言。
+
+来自世界各地的开发者选择 Solidity 是因为它的可访问性、精确性和极高的灵活性，在区块链行业受到高度重视。从 Uniswap 到 Chainlink，整个 DeFi 领域都是在 Solidity 的帮助下构建的。大多数项目都选择它进行智能合约开发，这也难怪它简洁、定义明确、易于学习和使用。
+
 
 [Solidity 最新(0.8.0)中文文档](https://learnblockchain.cn/docs/solidity/)
 

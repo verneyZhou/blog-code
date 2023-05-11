@@ -16,3 +16,4 @@ permalink: false # 074c34/
 ## 参考
 
 - [为了让你们进阶Canvas，我花7小时写了3个有趣的小游戏！！！](https://juejin.cn/post/6989003710030413838)
+- [前端实现电子签名（web、移动端）通用](https://juejin.cn/post/7174251833773752350)

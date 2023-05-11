@@ -41,3 +41,10 @@ permalink: false #2b25f9/
 - [undersore](./undersore)
 - [vue-router]
 - [axios](./axios)
+
+
+
+## 收藏
+
+- [10 分钟从源码搞懂 big.js 如何解决精度丢失问题](https://juejin.cn/post/7149735186509332510)
+- [十年老库 - NProgress 轻量级的进度条](https://juejin.cn/post/7213582727656243237)

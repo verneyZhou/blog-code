@@ -534,3 +534,4 @@ console.log(selectLang.getLang(2)); // html
 - [一份不可多得的 TS 学习指南（1.8W字）](https://juejin.cn/post/6872111128135073806)
 - [如何进阶TypeScript功底？一文带你理解TS中各种高级语法](https://juejin.cn/post/7089809919251054628)
 - [2022年了，我才开始学 typescript ，晚吗？（7.5k字总结）](https://juejin.cn/post/7124117404187099172)
+- [推荐12个值得学习的TypeScript宝库！](https://mp.weixin.qq.com/s/6EUC2UapqS7i6Dv8lCr-Pg)

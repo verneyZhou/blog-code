@@ -39,7 +39,7 @@ permalink: false # 67ff26/
 - 终端工具：[iTerm2](http://www.iterm2.com/)
 - 终端提示工具：[oh-my-zsh](https://ohmyz.sh)
 - api调试工具：postMan
-- 抓包工具：[Charles](https://xclient.info/s/charles.html) （或 百度云下载）、[whistle](https://github.com/avwo/whistle/blob/master/README-zh_CN.md)
+- 抓包工具：[Whistle](https://wproxy.org/whistle/)、[Charles](https://xclient.info/s/charles.html)
 - 代码编辑工具：[WebStorm](https://www.jetbrains.com/zh-cn/webstorm/)、[VSCode](https://code.visualstudio.com/)
 - 搭梯子：v2Ray
 - 娱乐工具：网易云、qq音乐、B站、youtube...

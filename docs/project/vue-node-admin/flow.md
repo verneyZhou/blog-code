@@ -153,9 +153,21 @@ ECS控制台 》 网络与安全 》 安全组 》 手动添加
 
 
 
+8. 执行 `ssh root@123.57.172.182` 时报错：`kex_exchange_identification: read: Connection reset by peer`
+> 在 [ip138](https://www.ip138.com/)中查询自己本机外网ip地址，然后在[阿里云服务器安全规则](https://ecs.console.aliyun.com/securityGroupDetail/region/cn-beijing/groupId/sg-2ze0p2g1civnu847xgde/detail/intranetIngress) `22/22` 端口中添加即可~
 
 
 
+9. 用FileZilla连接远程ip站点时报错：
+``` shell
+狀態:	正在解析 verney-zhou 的 IP 位址
+狀態:	正在連線到 123.57.172.182:21...
+錯誤:	20 秒後無動作, 連線逾時
+錯誤:	無法連線到伺服器 
+# 或者
+狀態:	以 "ECONNREFUSED - 連線被伺服器拒絕" 嘗試連線失敗.
+```
+> 左上角【文件】 》 站点 》 设置 》协议：选择`SFTP协议`即可，即选择ssh传输~
 
 
 

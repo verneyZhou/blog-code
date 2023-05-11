@@ -29,3 +29,7 @@ permalink: false # 24f2a0/
 - [万字长文+图文并茂+全面解析微前端框架 qiankun 源码 - qiankun 篇](https://github.com/a1029563229/Blogs/tree/master/Source-Code/qiankun/1.md)
 - [微前端架构的几种技术选型](https://juejin.cn/post/7113503219904430111)
 - [将微前端做到极致-无界方案](https://mp.weixin.qq.com/s/Yt_KKme8rS9p8Fmoq5atDw)、[无界github](https://github.com/Tencent/wujie)、[无界官方文档](https://wujie-micro.github.io/doc/)
+- [2022 你还不会微前端吗 (上) — 从巨石应用到微应用](https://juejin.cn/post/7155266023568965640)、[2022 你还不会微前端吗 (下) — 揭秘微前端核心原理](https://juejin.cn/post/7157863160068702239)
+- [微前端的前世今生](https://mp.weixin.qq.com/s/wlO5xaMz_DYYy01VkCRkZA)
+
+- [从零开始，一步步学习微前端](https://juejin.cn/post/7204723936914554937)

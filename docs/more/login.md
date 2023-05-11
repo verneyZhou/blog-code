@@ -29,3 +29,5 @@ permalink: false # 7790d9/
 
 - [前端鉴权必须了解的5个兄弟：cookie、session、token、jwt、单点登录](https://juejin.cn/post/6898630134530752520)
 - [关于鉴权，看懂这篇就够了](https://mp.weixin.qq.com/s/qBizMF4MwcX4ORU_nrVUmg)
+- [关于无感刷新Token，我是这样子做的](https://juejin.cn/post/7170278285274775560)
+- [前端实现登录拼图验证](https://juejin.cn/post/7175818459379417146)

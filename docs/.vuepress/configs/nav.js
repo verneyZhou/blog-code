@@ -13,6 +13,7 @@ module.exports = [
             { text: 'Vue', link: '/skills/vue/'},
             { text: 'Webpack', link: '/skills/webpack/'},
             { text: '源码', link: '/code/' },
+            { text: 'Web3', link: '/more/web3/' },
             { text: '更多', link: '/more/' }
         ]
     },

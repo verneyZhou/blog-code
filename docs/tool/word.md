@@ -56,9 +56,10 @@ permalink: false # 7c9ee2/
 
 ## Serverless 
 
-[什么是Serverless](https://blog.csdn.net/cc18868876837/article/details/90672971)
-
-[前端开发模式演进](https://www.jianshu.com/p/92632d6c2269)
+- [什么是Serverless](https://blog.csdn.net/cc18868876837/article/details/90672971)
+- [前端开发模式演进](https://www.jianshu.com/p/92632d6c2269)
+- [美团基于 Serverless 的前端研发体系建设和业务实践](https://mp.weixin.qq.com/s/hVeYdX-EjHT9cvZ_RW2rPA)
+- [字节跳动Serverless 高密度部署与 Web-interoperable Runtime实践](https://mp.weixin.qq.com/s/L3sg62V1rEOCKQifrfRryQ)
 
 
 ## WebAssembly
@@ -107,6 +108,10 @@ permalink: false # 7c9ee2/
 [服务端渲染](https://www.jianshu.com/p/10b6074d772c)
 
 
+
+## Next
+
+Next.js 是一个 React 服务端渲染框架。[Next.js](https://nextjs.org/)
 
 ## Nuxt
 基于`vue.js`的服务端渲染框架，[官方文档](https://www.nuxtjs.cn/guide)
@@ -171,4 +176,44 @@ Lerna 是一个多 package 的项目管理工具，针对 使用 git 和 npm 管
 API 文档、API 调试、API Mock、API 自动化测试, Apifox = Postman + Swagger + Mock + JMeter.
 
 [Apifox](https://www.apifox.cn/)
+
+
+
+## Tailwind CSS
+
+Tailwind CSS 是一个功能类优先的 CSS 框架，它集成了诸如 flex, pt-4, text-center 和 rotate-90 这样的的类，它们能直接在脚本标记语言中组合起来，构建出任何设计。
+
+[https://www.tailwindcss.cn/](https://www.tailwindcss.cn/)、[TailwindCSS的使用，看这一篇就够了！](https://juejin.cn/post/7200782261997338681)
+
+
+
+## SolidJS
+
+一个用于构建用户界面，简单高效、性能卓越的JavaScript库，它既包含了 React 的语法和天生的 TS 支持，又拥有比 Vue 还彻底的响应式设计，让你不用为 Deps 烦恼。
+
+[https://www.solidjs.com/](https://www.solidjs.com/)、[新开源项目（solidjs-use）随想录](https://juejin.cn/post/7198774823966670903)
+
+
+## Rspack
+
+Rspack 是字节跳动自研的基于 Rust 的高性能 Web 构建工具，号称启动速度快，HMR 速度极快，兼容Webpack~
+
+[Rspack官方文档](https://www.rspack.dev/zh/)、[字节跳动自研 Web 构建工具 Rspack 正式发布](https://mp.weixin.qq.com/s/knV1b_VHkH61inE9VjjNeA)
+
+
+## Quark Design
+
+Quark（夸克） Design 是由哈啰平台 UED 和增长&电商前端团队联合打造的一套面向移动端的跨框架 UI 组件库。与业界第三方组件库不一样，Quark Design 底层基于 Web Components 实现，它能做到一套代码，同时运行在各类前端框架中。
+
+[quark官方文档](https://quark-design.hellobike.com)、[github地址](https://github.com/hellof2e/quark-design)
+
+
+## Astro
+
+Astro 是一个新兴的前端渲染框架，它提出了一种创新的 Web 架构，有时也被称为孤岛架构。在 Astro 中，每个页面都被视为单独的孤立单元，具有自己的 HTML、CSS、JavaScript 和数据。这样的设计可以提高页面构建和部署的效率，同时可以降低对整个站点的影响。当一个页面发生变化时，只需要重新构建和部署该页面，而不需要重新构建整个站点，可以大大缩短构建和部署时间。
+
+Astro 的孤岛架构还允许每个页面都使用不同的开发工具和技术栈，例如 React、Vue、Svelte 等，从而可以根据具体需求和开发人员的技能选择最适合的开发工具和技术栈，提高开发效率和质量。
+
+[Astro官方文档](https://docs.astro.build/zh-cn/getting-started/)、[https://github.com/withastro/astro](https://github.com/withastro/astro)
+
 

@@ -21,6 +21,8 @@ permalink: false # 4563a8/
 
 ## 参考
 
+- [rollup.js 中文文档](https://www.rollupjs.com/)
 - [使用Rollup打包JavaScript](https://juejin.cn/post/6844903570974703629)
 - [使用 rollup 打包 JS](https://juejin.cn/post/6844903731343933453)
 - [rollup 最佳实践！可调试、编译的小型开源项目思路](https://mp.weixin.qq.com/s/nnZFbNpLnrgfcsi1_y3rrA)
+- [Rollup 与 Webpack 的 Tree-shaking](https://mp.weixin.qq.com/s/R68sDHMZiizYGX2m1qdHTw)

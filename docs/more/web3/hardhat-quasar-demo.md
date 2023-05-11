@@ -26,7 +26,7 @@ tags:
 
 ## 客户端：quasar + ts + ethers
 
-- [quasar官方文档](https://quasar.dev/)、[github](https://github.com/quasarframework/quasar)
+- [quasar官方文档](https://quasar.dev/)、[github](https://github.com/quasarframework/quasar)、[quasar中文文档](http://www.quasarchs.com/)
 > quasar 是基于 Vue 的前端框架，对于 Typescript 有良好的类型支持
 
 - [Ethers.js](https://learnblockchain.cn/docs/ethers.js/)
