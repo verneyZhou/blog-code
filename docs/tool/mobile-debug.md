@@ -203,6 +203,55 @@ i.ob.e.weibo.com weinre://huaiding_local
 这里是用`Whistle`内置的`weinre`来真机调试的，其实可以直接用`weinre`来进行调试，只是这里`Whistle`已经集成了`weinre`，就不用单独介绍了，用法其实都差不多，具体使用可参考这里[wenire真机调试](https://blog.csdn.net/Chenming_321/article/details/98190588)
 
 
+
+
+### Whistle修改接口返回值
+> 若有修改返回值需求，则先抓包，获取自己所需的接口。
+
+1. 抓包：在`Network`中找到需修改返回值的接口，点击该接口，点击右侧的`response`的`body`，可查看到该接口的返回值。点击copy，将返回值复制：
+
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/debug101.png')" width="auto"/>
+
+2. 在`Values`中新建一个`json`文件，将复制的内容黏贴到该文件中，修改参数为自己所需的接口返回（可新增/修改/删除返回值）：
+
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/debug102.png')" width="auto"/>
+
+<img class="zoom-custom-imgs" :src="$withBase('/images/tool/debug103.png')" width="auto"/>
+
+
+3. 在`Rules`中设置规则
+  - 抓包页面右击该接口，`Copy-->URL`
+  - `Rules-->Create` 添加规则，格式：`该接口的请求URL file://{values中存放该接口返回的文件名+文件后缀}`，点击菜单中的`Save`即可生效。即使有请求体，也无需添加请求体，执行后该接口会按照你填写的返回体展示。
+
+  <img class="zoom-custom-imgs" :src="$withBase('/images/tool/debug104.png')" width="auto"/>
+  
+  > 如果不需要该规则（无需再修改该接口的返回值时，注释该规则），可在Url前加`#`
+
+  - 如果是修改请求头，则`http://网址 reqHeaders://{values中存放该接口返回的文件名+文件后缀}`:
+  - 修改请求体，则`http://网址 reqBody://{values中存放该接口返回的文件名+文件后缀}`:
+  - 修改响应体，则`http://网址 resBody://{values中存放该接口返回的文件名+文件后缀}`:
+
+  <img class="zoom-custom-imgs" :src="$withBase('/images/tool/debug108.png')" width="auto"/>
+
+
+4. 在`Values`中添加对应自定义数据：
+
+  - 自定义请求头： 
+ <img class="zoom-custom-imgs" :src="$withBase('/images/tool/debug105.png')" width="auto"/>
+
+  - 自定义请求体：
+ <img class="zoom-custom-imgs" :src="$withBase('/images/tool/debug106.png')" width="auto"/>
+
+  - 自定义响应体：
+ <img class="zoom-custom-imgs" :src="$withBase('/images/tool/debug107.png')" width="auto"/>
+
+
+5. 重新进入该接口页面，即可生效~
+
+
+[whistle修改接口返回步骤](https://www.cnblogs.com/lv-lxz/p/16030338.html)
+
+
 ## 其他
 
 - [前端人必须掌握的抓包技能](https://juejin.cn/post/7140040425129115684)

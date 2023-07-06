@@ -179,7 +179,22 @@ console.log(searchQuery(`?a=1&b=2&c=${window.encodeURIComponent('url=https://www
 ```
 当需要获取url的传参时，这个方法算是比较实用的。
 
-### 9. 使用`reduce`实现`map`方法
+
+
+
+
+### 9. 将对象转换成查询字符串
+
+`{a: 1, b: 2, c: 3}` => `?a=1&b=2&c=3`
+
+``` js
+const queryString = (params) => Object.entries(params).reduce((acc, [key, value]) => {
+  return `${acc}${key}=${value}&`;
+}, "?").slice(0, -1);
+console.log(queryString({a: 1, b: 2, c: 3})); // ?a=1&b=2&c=3
+```
+
+### 10. 使用`reduce`实现`map`方法
 ```js
 // callback：回调函数  context：this指向
 Array.prototype.map2 = function(callback, context) {

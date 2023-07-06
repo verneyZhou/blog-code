@@ -48,3 +48,5 @@ permalink: false #2b25f9/
 
 - [10 分钟从源码搞懂 big.js 如何解决精度丢失问题](https://juejin.cn/post/7149735186509332510)
 - [十年老库 - NProgress 轻量级的进度条](https://juejin.cn/post/7213582727656243237)
+- [Vue 3.2 发布了，那尤雨溪是怎么发布 Vue.js 的？](https://juejin.cn/post/6997943192851054606)
+- [学习源码整体架构系列](https://juejin.cn/column/6960551178908205093)

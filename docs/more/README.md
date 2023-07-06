@@ -39,6 +39,8 @@ permalink: false # 292799/
 
 - [如何通过 Git 和 Husky 添加提交钩子并实现代码任务自动化](https://juejin.cn/post/6904150964266074119)
 
+- [再也不用手动改package.json的版本号](https://juejin.cn/post/7220164534316433467)
+
 - Monorepo
   - [现代前端工程化-彻底搞懂基于 Monorepo 的 lerna 模块(从原理到实战)](https://mp.weixin.qq.com/s/uBxa24nbg9PXyTfO0TmzVg)
   - [Monorepo，大型前端项目管理模式实践](https://mp.weixin.qq.com/s/N0CZABDD0TKTmdljH3y74A)
@@ -90,6 +92,7 @@ permalink: false # 292799/
 ## React
 
 - [50天用react.js重写50个web项目，我学到了什么？](https://segmentfault.com/a/1190000040813435)
+- [React 性能优化 | 包括原理、技巧、Demo、工具使用](https://juejin.cn/post/6935584878071119885)
 
 
 ## Node
@@ -97,7 +100,7 @@ permalink: false # 292799/
 - [express中间件实现原理]
 - [挑战一轮大厂后的面试总结 (含六个方向) - nodejs 篇](https://juejin.cn/post/6844904071501971469)
 - [看了就会的 Node.js 常用三方工具包](https://juejin.cn/post/6947856427247468551)
-
+- [为什么 Node 应用要用 PM2 来跑？](https://mp.weixin.qq.com/s/GLTn28eBkBlNR7TsN_Gtlw)
 
 
 
@@ -138,6 +141,7 @@ permalink: false # 292799/
 - [前端登录相关知识梳理](./login.html)
 - [组件化](./comp-design.html)
 - [SSR](./ssr.html)
+- [Turbopack初印象](./turbopack.html)
 
 - [万字详文：彻底搞懂 Jest 单元测试框架](https://segmentfault.com/a/1190000040539268)
 - [跨端技术的本质是什么？现状如何？](https://mp.weixin.qq.com/s/VGZVnoTGT6BTS101jOPiQw)
@@ -155,6 +159,7 @@ permalink: false # 292799/
 - [内网穿透你真的了解吗？](https://mp.weixin.qq.com/s/SNS9SpqgEBIv7IPXYB4rFw)
 
 - [走进 WebAssembly 的世界](https://juejin.cn/column/7212491760734535740)
+
 
 
 

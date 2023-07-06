@@ -186,3 +186,11 @@ ReferenceError: canonicalLink is not defined
 - Web Component
 - vue3: compositionAPI
 
+
+
+
+### 2023技能GET
+
+- 插件封装：瀑布流，虚拟滚动
+- 自研组件库
+- 低代码

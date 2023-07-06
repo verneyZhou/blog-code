@@ -20,4 +20,10 @@ sidebar: false # 侧边栏
 - [前端异步处理规范及应用](./02.html)
 - [前端模块化](./03.html)
 - [浏览器相关](./04.html)
-
+- [JS性能优化](./05.html)
+- [JS性能优化](./05.html)
+- [JavaScript的运行机制](./06.html)
+- [TS与编译器](./07.html)
+- [ES6、ESNext规范及编译工具简介](./08.html)
+- [Vue笔记](./09.html)
+- [Vue核心模块源码解析](./10.html)

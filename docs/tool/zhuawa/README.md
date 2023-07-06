@@ -19,6 +19,12 @@ tags:
 - [前端异步处理规范及应用](./02.html)
 - [前端模块化](./03.html)
 - [浏览器相关](./04.html)
+- [JS性能优化](./05.html)
+- [JavaScript的运行机制](./06.html)
+- [TS与编译器](./07.html)
+- [ES6、ESNext规范及编译工具简介](./08.html)
+- [Vue笔记](./09.html)
+- [Vue核心模块源码解析](./10.html)
 
 
 ## 备注
@@ -27,22 +33,38 @@ tags:
 - this指向的 Reference 类型没太懂，也需要再听一下；
 - js：类数组对象和arguments需要看一下；
 - promise的其他方法实现，Promise A+规范，await/async，generator
+- 熟悉 Chrome Devtool 控制台的使用，方便高效定位前端问题
+- 函数编程：柯里化？代码组合？
+- Compiler编译器：Babel, webpack; es6 => es5?
+
 
 
 ## 其他
 
+- [课程链接](https://per.h5.xeknow.com/sl/4EaDpC)
+<!-- 密码：zhaowa888 -->
+
 - [2023前端面试&框架高频考点解析](https://www.yuque.com/lpldplws/web/uuss7rkipi810f92)
 <!-- sr3k -->
 
+- [课程讲义下载](https://vgbixa7nr9.feishu.cn/drive/folder/fldcnIqkiBFoMEkG8sZCc86lyzc)
+
 - [xianzao-cli](https://github.com/xianzao/xianzao-cli)
 
+- 前端进阶算法：[JavaScript-Algorithms](https://github.com/sisterAn/JavaScript-Algorithms)
+
+- 函数式编程面试题相关：[xianzao-interview/issues](https://github.com/xianzao/xianzao-interview/issues)
 
 
 
 
-https://www.yuque.com/lpldplws/web/my01zht47ol0dh2u?singleDoc# 《JavaScript的LAJI回收和内存泄漏》 密码：kb86
-https://www.yuque.com/lpldplws/web/xpzv1mgsqh7s7b0a?singleDoc# 《函数式编程》 密码：hcu6
-https://www.yuque.com/lpldplws/web/xnudhigbps5in504?singleDoc# 《JavaScript的运行机制》 密码：zglx
+
+
+
+
+
+
+
 
 
 
@@ -68,3 +90,9 @@ https://www.yuque.com/lpldplws/web/xnudhigbps5in504?singleDoc# 《JavaScript的�
 
 - 前端的性能体验优化
   - 秒开率 bundler 构建工具
+
+
+
+- 1~3年：熟练工
+- 3~5年：解决问题
+- 5+：带领团队解决问题

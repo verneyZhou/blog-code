@@ -183,7 +183,7 @@ API 文档、API 调试、API Mock、API 自动化测试, Apifox = Postman + Swa
 
 Tailwind CSS 是一个功能类优先的 CSS 框架，它集成了诸如 flex, pt-4, text-center 和 rotate-90 这样的的类，它们能直接在脚本标记语言中组合起来，构建出任何设计。
 
-[https://www.tailwindcss.cn/](https://www.tailwindcss.cn/)、[TailwindCSS的使用，看这一篇就够了！](https://juejin.cn/post/7200782261997338681)
+[https://www.tailwindcss.cn/](https://www.tailwindcss.cn/)、[TailwindCSS的使用，看这一篇就够了！](https://juejin.cn/post/7200782261997338681)、[TailwindCSS 高级使用技巧](https://mp.weixin.qq.com/s/mvnLzsLWhKY-YlL9hzrAlA)
 
 
 
@@ -192,6 +192,14 @@ Tailwind CSS 是一个功能类优先的 CSS 框架，它集成了诸如 flex, p
 一个用于构建用户界面，简单高效、性能卓越的JavaScript库，它既包含了 React 的语法和天生的 TS 支持，又拥有比 Vue 还彻底的响应式设计，让你不用为 Deps 烦恼。
 
 [https://www.solidjs.com/](https://www.solidjs.com/)、[新开源项目（solidjs-use）随想录](https://juejin.cn/post/7198774823966670903)
+
+
+
+## Turbopack
+
+Turbopack 是一个Vercel公司22年底推出的打包工具，由原 Webpack 和 Next.js 作者用 Rust 编写；声称“在大型应用中，展示出了 10 倍于 Vite 的速度，700 倍于 Webpack 的速度”~
+
+[Turbopack官网](https://turbo.build/pack/docs)、[前端又开撕了：用Rust写的Turbopack，比Vite快10倍？](https://mp.weixin.qq.com/s/SHyGq7siczG5TPIBB3HQ0Q)、[Turbopack初印象](https://juejin.cn/post/7220301128990212154)
 
 
 ## Rspack

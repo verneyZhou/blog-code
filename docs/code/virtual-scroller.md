@@ -25,3 +25,4 @@ permalink: false # 540010/
 ## 参考
 
 - [花三个小时，完全掌握分片渲染和虚拟列表～](https://juejin.cn/post/7121551701731409934)
+- [虚拟滚动是怎么做性能优化的?](https://mp.weixin.qq.com/s/w6-zey50_zA8D49nq6TyJg)

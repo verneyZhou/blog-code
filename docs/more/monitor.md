@@ -1211,6 +1211,9 @@ self.addEventListener('fetch', e => {
   - [前端录屏+定位源码，帮你快速定位线上bug](https://juejin.cn/post/7173596154297810957)
   - [前端白屏的检测方案，让你知道自己的页面白了](https://juejin.cn/post/7176206226903007292)
 
+- [我开源了一款轻量级前端监控sdk](https://juejin.cn/post/7210970258369708092)
+  - [heimdallr-sdk](https://github.com/LuciferHuang/heimdallr-sdk)
+
 ## 参考
 
 - [为什么大厂前端监控都在用GIF做埋点？](https://juejin.cn/post/7065123244881215518)
