@@ -35,3 +35,6 @@ permalink: false # b9398f/
 - [纯前端实现 Excel在线解析和预览（兼容APP、Web、小程序）](https://juejin.cn/post/7211805251216031801)
 - [File System Access API 让浏览器拥有操作本地文件的能力](https://juejin.cn/post/7203701875530039357)
 - [请问：怎么实现大文件快速上传？](https://mp.weixin.qq.com/s/EkZQSLsGmZ-CFIDtIC1ceQ)
+
+- [前端加载超大图片(100M以上)实现秒开解决方案](https://juejin.cn/post/7212270321622106170)
+- [前端如何进行单文件上传云服务存储](http://zoo.zhengcaiyun.cn/blog/article/cloudservicestorage)

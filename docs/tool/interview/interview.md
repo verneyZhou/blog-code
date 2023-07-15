@@ -103,3 +103,6 @@ HTTP协议连接很简单，是无状态的；HTTPS协议是有SSL和HTTP协议�
 - [面试官：你确定多窗口之间sessionStorage不能共享状态吗？？？🤔](https://juejin.cn/post/7076767687828832286)
 
 - [25 道常见的 TypeScript 面试题及答案](https://mp.weixin.qq.com/s/jb3B9ltv3gvg2V4G8ESGZw)
+
+- [大专前端，三轮面试，终与阿里无缘](https://juejin.cn/post/7239715208792342584)
+- [高频前端开发面试问题集锦，让你离offer更近一步！](https://mp.weixin.qq.com/s/jM9JOC27DbVpDDYiNPRgPg)

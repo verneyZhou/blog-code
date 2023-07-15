@@ -59,3 +59,5 @@ permalink: false # 067e28/
 - [一文解析Pinia和Vuex，带你全面理解这两个Vue状态管理模式](https://juejin.cn/post/7121209657678364685)
 - [你知道前端水印功能是怎么实现的吗？](https://juejin.cn/post/7132620574198595597)
 - [使用Vue.js编写命令行界面,前端开发CLI的利器](https://juejin.cn/post/7129665321127903246)、[Temir中文文档](https://github.com/webfansplz/temir/blob/main/README.zh-CN.md)
+
+- [ChatGPT教我用200行代码写一个简版Vue框架——OpenTiny](https://mp.weixin.qq.com/s/M5p7TxRsnonvkYCZVYDrCA)

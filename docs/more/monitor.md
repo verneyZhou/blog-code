@@ -1231,6 +1231,8 @@ self.addEventListener('fetch', e => {
 
 - [你只会用前端数据埋点 SDK 吗？](https://juejin.cn/post/7163046672874864676)
 
+- [babel埋点：🚀芜湖，埋点还可以这么做？这也太简单了](https://juejin.cn/post/7238431954126929981)
+
 
 
 ## TODO

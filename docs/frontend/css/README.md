@@ -34,5 +34,5 @@ permalink: false # 23f87d/
 - [又出 bug 了 ？Safari 下文字和省略号重叠问题](https://mp.weixin.qq.com/s/eG-Fno9Ocy9XuxGek2Bm6A)
 - [用了那么久的 CSS ，但你还是不懂它: z-index](https://mp.weixin.qq.com/s/xu4AeJQ8hfnh4ffsw6pKqQ)
 
-
+- [如何理解 CSS step 函数中的 jump-* 关键词？](https://mp.weixin.qq.com/s/PgY2BeEByJs8rHhKwVqbjw)
 

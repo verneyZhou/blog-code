@@ -40,5 +40,8 @@ permalink: false # e791af/
 - [Vite项目屏幕适配的两种方案，超详细！](https://juejin.cn/post/7147897102398390308)
 
 vite插件开发：
-- [你还不会写 vite 插件吗？没关系，我教你啊！](https://juejin.cn/post/7103165205483356168)
 - [为了不和测试扯皮, 我抄了这个vite插件:vite-plugin-gitlab-flow](https://juejin.cn/post/7211428447921422396)
+- [Vite 实战：手把手教你写一个 Vite 插件](https://segmentfault.com/a/1190000041558913)
+- vite-plugin-progress插件开发：
+  - [你还不会写 vite 插件吗？没关系，我教你啊！](https://juejin.cn/post/7103165205483356168)
+  - [为了让vite打包更顺畅，我开发了这个vite插件](https://juejin.cn/post/7110920974379253791)

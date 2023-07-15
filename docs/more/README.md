@@ -41,6 +41,11 @@ permalink: false # 292799/
 
 - [再也不用手动改package.json的版本号](https://juejin.cn/post/7220164534316433467)
 
+- [作为前端 leader，怎么快速搭建多环境CICD自动化部署？](https://juejin.cn/post/7250083673189253176)
+- [Vue + Node.js 从 0 到 1 实现自动化部署工具](https://juejin.cn/post/7070921715492061214)
+
+- [实现前后端全自动化部署，解放你的双手。——从零开始搭建一个高颜值后台管理系统全栈框架(五)](https://juejin.cn/post/7245613765693702201)
+
 - Monorepo
   - [现代前端工程化-彻底搞懂基于 Monorepo 的 lerna 模块(从原理到实战)](https://mp.weixin.qq.com/s/uBxa24nbg9PXyTfO0TmzVg)
   - [Monorepo，大型前端项目管理模式实践](https://mp.weixin.qq.com/s/N0CZABDD0TKTmdljH3y74A)
@@ -93,6 +98,8 @@ permalink: false # 292799/
 
 - [50天用react.js重写50个web项目，我学到了什么？](https://segmentfault.com/a/1190000040813435)
 - [React 性能优化 | 包括原理、技巧、Demo、工具使用](https://juejin.cn/post/6935584878071119885)
+- [「记录篇」我是如何一步步为公司搭建react项目脚手架的](https://juejin.cn/post/7235547967112806437)
+- [一篇文章带你理解 React 中最“臭名昭著”的 useMemo 和 useCallback](https://juejin.cn/post/7165338403465068552)
 
 
 ## Node
@@ -101,6 +108,7 @@ permalink: false # 292799/
 - [挑战一轮大厂后的面试总结 (含六个方向) - nodejs 篇](https://juejin.cn/post/6844904071501971469)
 - [看了就会的 Node.js 常用三方工具包](https://juejin.cn/post/6947856427247468551)
 - [为什么 Node 应用要用 PM2 来跑？](https://mp.weixin.qq.com/s/GLTn28eBkBlNR7TsN_Gtlw)
+- [用 Node.js 手写 WebSocket 协议](https://mp.weixin.qq.com/s/H_ArkbL_m_HXHX4AVfRkhg)、[前后端实时双向通信WebSocket技术](https://mp.weixin.qq.com/s/NAZvFWUwg-FAikxFzAYtjQ)
 
 
 
@@ -109,6 +117,7 @@ permalink: false # 292799/
 - [手撸架构，Nginx 面试40问](https://blog.csdn.net/wuzhiwei549/article/details/122758937)
 - [Nginx的这些妙用，你肯定有不知道的！](https://mp.weixin.qq.com/s/9VZi2suAlomu1IRGy-qdCA)
 - [超越 Nginx！号称下一代 Web 服务器，用起来够优雅！](https://juejin.cn/post/7085519712901136392)
+- [Nginx 简单入门指北不指南](https://mp.weixin.qq.com/s/UCtlOUCHQYmpXNai7NonSg)
 
 
 
@@ -126,8 +135,14 @@ permalink: false # 292799/
 ## 微前端
 
 - [微前端服务](./wei-fe.html)
+- [完美搭配，微前端与Monorepo的架构设计](https://juejin.cn/post/7225800207329230905)
 
 
+## 组件库
+
+- [使用vite开发一个自己的Vue3组件库](./npm-package.html)
+- [组件化](./comp-design.html)
+- [想要开发组件库？那你一定要提前了解一下这个神器](https://mp.weixin.qq.com/s/XuEc1TnLuzMokylde4DkhQ)
 
 
 ## AI
@@ -136,10 +151,15 @@ permalink: false # 292799/
 - [公众号最低成本接入ChatGPT及如何优化体验？](https://juejin.cn/post/7200769439335546935)
 
 
+
+
+
+
+
 ## 其他
 
 - [前端登录相关知识梳理](./login.html)
-- [组件化](./comp-design.html)
+
 - [SSR](./ssr.html)
 - [Turbopack初印象](./turbopack.html)
 
@@ -159,6 +179,8 @@ permalink: false # 292799/
 - [内网穿透你真的了解吗？](https://mp.weixin.qq.com/s/SNS9SpqgEBIv7IPXYB4rFw)
 
 - [走进 WebAssembly 的世界](https://juejin.cn/column/7212491760734535740)
+
+- [物理世界的互动之旅：Matter.js入门指南](https://juejin.cn/post/7221550123193811002)
 
 
 

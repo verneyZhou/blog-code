@@ -55,13 +55,17 @@ permalink: false # 40e551/
 - [从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理](https://segmentfault.com/a/1190000012925872)
 - [新来个技术总监，把限流实现的那叫一个优雅，佩服！](https://juejin.cn/post/7145435951899574302)
 - [纯 JS 实现语雀的划词高亮功能](https://juejin.cn/post/7140078451205079054)
+
 - [IntersectionObserver实现虚拟列表初探](http://zoo.zhengcaiyun.cn/blog/article/intersectionobserver)
+- [浏览器的 5 种 Observer，你用过几种？](https://zhuanlan.zhihu.com/p/467452575)
 
 - [关于编码的那些事 - URL 编码](https://mp.weixin.qq.com/s/QQEq-_84SxcLzAbRHSuYVw)
 - [你能手写一个模板引擎吗？](https://juejin.cn/post/7207697872706486328)
 
 - [什么？后端要一次性返回我10万条数据！且看我这8种方案机智应对！](https://juejin.cn/post/7205101745936416829)
 - [批量任务导致页面卡死？试试requestIdleCallback对任务进行拆分](https://juejin.cn/post/7221793823705268284)
+
+- [因为写不出拖拽移动效果，我恶补了一下Dom中的各种距离](https://juejin.cn/post/7225206098692407355)
 
 - TS
   - [TypeScript 深水区：3 种类型来源和 3 种模块语法](https://juejin.cn/post/7111112135903543332)

@@ -58,3 +58,4 @@ JavaScript	V8 11.0.226.16
 - [11 个很酷的 Chrome Devtools 技巧](https://mp.weixin.qq.com/s/3xBSIudqTWPjfNoaDniPUQ)
 - [Chrome DevTools中的这些骚操作，你都知道吗？](https://mp.weixin.qq.com/s/zwmFoz0bf8O04fwCLjMiLA)
 - [11+ chrome 高级调试技巧，学会效率直接提升 666%](https://juejin.cn/post/7085135692568723492)
+- [快速掌握 Performance 性能分析：一个真实的优化案例](https://mp.weixin.qq.com/s/oboA3aOw8BdzvMwMmPMSJg)
