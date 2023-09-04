@@ -23,6 +23,10 @@ permalink: false # 292799/
 - [前端监控学习笔记](./monitor.html)
 - [前端自动化](./ci-cd.html)
 
+- [《从 0 到 1 实现一套 CI/CD 流程》学习笔记](./ci-cd-note.html)
+- [Docker入门学习笔记](./docker-note.html)
+- [Jenkins前端自动化部署](./jenkins-deploy.html)
+
 
 ### 收藏
 

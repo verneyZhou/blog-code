@@ -18,22 +18,31 @@ permalink: false # 067e28/
 
 - [Vue2使用技巧记录](./log.html)
 - [Vue项目性能优化技巧](./performance.html)
-- [Vue深入：响应式原理](./proxy.html)
-- [Vue深入：Virtual-DOM与Diff算法](./diff.html)
+- [vue3学习笔记吐血整理！！！](./vue-diff.html)
+- [vue2与vue3的差异](./vue-update.html)
+
 - [vue3+vite+ts 从0到1项目搭建](./vue3-vite-admin.html)
 - [vue3+vue-cli+ts 项目搭建](./vue3-cli-admin.html)
 - [vue3+webpack5+ts 项目搭建](./vue3-webpack5-admin.html)
+
+- [Vue深入：响应式原理](./proxy.html)
+- [Vue深入：Virtual-DOM与Diff算法](./diff.html)
+- [Vue深入：vue中slot插槽的实现原理](./slot.html)
+- [Vue深入：vue中v-model的实现原理](./v-model.html)
+- [Vue深入：vue中keep-alive的实现原理](./keep-alive.html)
 
 
 
 ## 进行中
 
-- [vue3学习笔记吐血整理！！！](./vue-diff.html)
+
 
 - [深入vue.$nextTick实现原理](./next-tick.html)
 - [《玩转 Vue 3 全家桶》学习笔记](./jike/)
 - [Vue原理分析](./code.html)
 - [vue第三方组件插件库收集](./plugins.html)
+
+
 
 
 
@@ -48,6 +57,8 @@ permalink: false # 067e28/
 - [vue面试题收集](./interview.html)
 - [深入vue.prototype.$xxx实现原理]
 - [Vue ssr项目开发]
+
+
 
 
 

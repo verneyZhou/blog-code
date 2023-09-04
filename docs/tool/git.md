@@ -513,6 +513,17 @@ $:git pull
 
 
 
+13. 把本地项目推送到github仓库时报错：
+``` sh
+➜  jenkins-vite-test git:(main) ✗ git push --set-upstream origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'github.com:verneyZhou/jenkins-vite-test.git'
+```
+> 可能是github仓库没有main分支，远程随便新建个文件就添加了分支；之后本地代码`git commit -am...`提交，再 `git push --set-upstream origin main -f`强推一下~
+
+
+
+
 
 ## 备注
 
