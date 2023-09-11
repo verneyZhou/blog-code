@@ -194,3 +194,6 @@ ReferenceError: canonicalLink is not defined
 - 插件封装：瀑布流，虚拟滚动
 - 自研组件库
 - 低代码
+- react
+- ci/cd jenkins docker  DevOps
+- ai

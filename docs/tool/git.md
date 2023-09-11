@@ -523,6 +523,36 @@ error: failed to push some refs to 'github.com:verneyZhou/jenkins-vite-test.git'
 
 
 
+14. 在阿里云服务器上`git clone`项目报错：
+
+``` sh
+[root@iz2zef9ue9eyhqrvjxs3aqz workspace]# git clone git@github.com:verneyZhou/jenkins-vite-test.git
+正克隆到 'jenkins-vite-test'...
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+SHA256:uNiVztksCsDhcc0u9e8BujQXVUpKZIDTMczCvj3tD2s.
+Please contact your system administrator.
+Add correct host key in /root/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /root/.ssh/known_hosts:1
+RSA host key for github.com has changed and you have requested strict checking.
+Host key verification failed.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+> 当我在github上添加服务器的 ssh key 之后，就报错了~ 可通过执行`ssh-keygen -R github.com`命令更新`~/.ssh/known_hosts`信息，然后重新`git clone`即可~
+
+> 最简单粗暴的方法就是直接删除`~/.ssh/known_hosts`文件，然后再重新clone~
+
+[参考](https://github.com/orgs/community/discussions/50878)
+
+
 
 
 ## 备注

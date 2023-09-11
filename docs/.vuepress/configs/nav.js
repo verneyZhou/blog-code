@@ -26,6 +26,7 @@ module.exports = [
                     {text:'vue3-vite-admin', link: '/skills/vue/vue3-vite-admin'},
                     {text:'vue3-cli-admin', link: '/skills/vue/vue3-cli-admin'},
                     {text:'vue3-webpack5-admin', link: '/skills/vue/vue3-webpack5-admin'},
+                    {text: 'teach-react-mono', link: '/project/mono-react-project'},
                 ]
             },
             {

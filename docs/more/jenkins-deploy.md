@@ -148,28 +148,61 @@ f63310f95***********bc45b2
 
 
 
-### Node配置
+### 配置Node
 
 > 在构建流程中，想要部署前端项目，需要执行我们编写的shell脚本，还需要依赖一个 Node 环境~
 
-1. Manage Jenkins   =>  System Configuration   =>  插件管理  =>  Available Plugins =>  输入 `NodeJS`，安装：
+1. 安装：Manage Jenkins   =>  System Configuration   =>  插件管理  =>  Available Plugins =>  输入 `NodeJS`，安装：
 
 <img :src="$withBase('/images/more/jenkins04.jpg')" width="auto"/>
 
 
-2.  安装完成后，Manage Jenkins  =>  Tools => 滑到底部，选择 NodeJS 安装：
+2.  配置：安装完成后，Manage Jenkins  =>  Tools => 滑到底部，选择 NodeJS 安装：
 
 <img :src="$withBase('/images/more/jenkins041.jpg')" width="auto"/>
 
 > 之后创建的构建任务时，在 【构建环境】 中会多出一个选项 `Provide Node & npm bin/ folder to PATH` 勾选即可~
 
 
+
+### 配置Publish Over SSH
+
+> 在真实的开发场景中，Jenkins 几乎不会和前端资源放到一个服务器。大多数情况下 Jenkins 所处的服务器环境就是一个工具用的服务器，放置了一些公司中常用的工具。因此构建到指定的服务器也至关重要。所以部署到目标主机就需要安装这个插件~
+
+1. 安装：Manage Jenkins   =>  System Configuration   =>  插件管理  =>  Available Plugins =>  输入 `Publish Over SSH`，安装：
+
+<img :src="$withBase('/images/more/jenkins16.jpg')" width="auto"/>
+> 安装完成后，原本默认的英文界面可能会自动转成中文~~~
+
+
+2. 配置：安装重启后jenkins后，`系统管理 => 系统配置`，页面往下滑，找到` Publish over SSH`，点击新增`SSH Servers`：
+
+<img :src="$withBase('/images/more/jenkins17.jpg')" width="auto"/>
+
+
+如图所示添加服务器信息，填完后点击下方的`Test Configuration`进行连接测试，如果测试成功，会显示`Success`；之后保存即可~
+
+> 我这里配置的就是jenkins所在的服务器，刚开始报错了，后来在阿里云安全规则里添加了如下配置，重新测试就连上了~
+
+<img :src="$withBase('/images/more/jenkins18.jpg')" width="auto"/>
+
+
+
+
+
+
+
 ### 添加 Github Token
 > 为了我们能够在`github`上拉取代码，需要我们添加`git token`，在`github`中添加一个 `token`~
+
 
 使用 GitHub API 或命令行时，可使用 Personal access token 替代密码向 GitHub 进行身份验证。[Github-管理个人访问令牌](https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
 > Personal access token 旨在代表你自己访问 GitHub 资源。
+
+
+- 安装Github API
+> 在配置`Github Token`之前需要先安装`Github API`插件，安装方式跟上面的`Publish Over SSH`一样；可以现在插件管理的`avaliable plugins`处查询是否已安装该插件，如果没有则需要安装（因为刚开始 配置jenkins 选择 安装推荐插件 时可能已经安装了~）
 
 
 1. 进入 [GitHub](https://github.com/settings/apps)，点击右上角 头像 - 【Settings】； 滑到最底部，点击【Developer settings】，然后选中 【Personal access tokens】，点击右上角 【Generate new token】：
@@ -256,7 +289,7 @@ f63310f95***********bc45b2
 
 ## 报错记录
 
-- 安装`jenkins`提示：
+1. 安装`jenkins`提示：
 
 ``` sh
 [root@iz2zef9ue9eyhqrvjxs3aqz ~]# sudo yum install jenkins
@@ -307,13 +340,123 @@ base-debuginfo/x86_64               CentOS-7 - Debuginfo                        
 
 
 
+2. jenkins新建任务时，添加git项目时报错：
+
+- 报错1：
+``` sh
+无法连接仓库：Command "git ls-remote -h https://github.com/verneyZhou/jenkins-vite-test.git HEAD" returned status code 128:
+stdout:
+stderr: fatal: unable to access 'https://github.com/verneyZhou/jenkins-vite-test.git/': Failed connect to github.com:443; Connection timed out
+```
+> 可能是权限问题，可以在 `Credentials` 中添加凭证；可以选择`Secret Text` 或  `SSH Username with private key`;
+
+`Secret Text`在github中生成的Token, `private key`就是在服务器的`/root/.ssh/id_rsa`中的内容，添加见下方备注~
+
+
+
+- 报错2：
+``` sh
+Failed to connect to repository : Command "git ls-remote -h -- git@github.com:xxx/xxx.git HEAD" returned status code 128:
+stdout:
+stderr: No ECDSA host key is known for github.com and you have requested strict checking.
+Host key verification failed.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+> 权限校验问题，可能是更新了github的ssh key导致的~
+
+
+3. jenkins构建过程报错：
+
+``` sh
+# 报错1：
+ERROR: Error fetching remote repo 'origin'
+hudson.plugins.git.GitException: Failed to fetch from https://github.com/verneyZhou/jenkins-vite-test.git
+	at hudson.plugins.git.GitSCM.fetchFrom(GitSCM.java:999)
+	at hudson.plugins.git.GitSCM.retrieveChanges(GitSCM.java:1241)
+	at hudson.plugins.git.GitSCM.checkout(GitSCM.java:1305)
+	at hudson.scm.SCM.checkout(SCM.java:540)
+	at hudson.model.AbstractProject.checkout(AbstractProject.java:1240)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.defaultCheckout(AbstractBuild.java:649)
+	at jenkins.scm.SCMCheckoutStrategy.checkout(SCMCheckoutStrategy.java:85)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.run(AbstractBuild.java:521)
+	at hudson.model.Run.execute(Run.java:1900)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:44)
+	at hudson.model.ResourceController.execute(ResourceController.java:101)
+	at hudson.model.Executor.run(Executor.java:442)
+Caused by: hudson.plugins.git.GitException: Command "git fetch --tags --progress https://github.com/verneyZhou/jenkins-vite-test.git +refs/heads/*:refs/remotes/origin/*" returned status code 128:
+stdout: 
+stderr: fatal: unable to access 'https://github.com/verneyZhou/jenkins-vite-test.git/': Encountered end of file
+# 暂无无解，可能也是权限问题
+
+
+# 报错2：
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+# 权限问题
+
+
+# 报错3：
+eturned status code 128:
+stdout: 
+stderr: Warning: the ECDSA host key for 'github.com' differs from the key for the IP address '20.205.243.166'
+Offending key for IP in /root/.ssh/known_hosts:3
+Matching host key in /root/.ssh/known_hosts:4
+Exiting, you have requested strict checking.
+Host key verification failed.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+# 警告:“github.com”的 ecdsa 主机密钥与 ip 地址“20.205.243.166”的密钥不同，更新了github的ssh key导致的~
+```
+
+
+权限问题：登录服务器，修改 `/lib/systemed/system/jenkins.service` 文件，将 `User=jenkins` 修改为 `User=root`，表示给 Jenkins 赋权限。修改配置文件后记得重启服务。
+
+
+
+ssh key不一致问题：最简单粗暴的方法就是ssh登录服务器，**直接删除`~/.ssh/known_hosts`文件**，然后再重新clone~
+
+[Has GitHub changed his remote host key](https://github.com/orgs/community/discussions/50878)
+
+
+
 
 
 
 ## 备注
 
 
-- 查看内存占用：
+
+### jenkins工作目录
+
+jenkins默认安装目录是在：`/var/lib/jenkins`，可在`系统管理 => 系统配置 => 主目录`中查看~
+
+当执行构建任务时，Jenkins 的执行目录是 `/var/lib/jenkins/workspace/deploy-test01`, 前面的`/var/lib/jenkins/workspace/`是前缀，后面的`deploy-test01`是构建任务名称。
+
+
+
+
+### 添加 SSH Username with private key
+
+
+1. ssh登录服务器，进入`vim /root/.ssh/id_rsa`, 复制private key; 
+
+2. Credentials > 添加 > 类型选【SSH Username with private key】 > 范围选【全局】，Username自定义 > Private Key处点击【Enter directly】, 【Add】，粘贴 > 保存；
+
+[Jenkins连接gitlab报错：returned status code 128](https://blog.csdn.net/tt75281920/article/details/105434989)
+
+
+
+
+
+
+### 查看内存占用
 
 ``` sh
 # free 命令是Linux系统中最简单和最常用的内存查看命令
@@ -340,7 +483,8 @@ available 表示可用内存;
 ```
 
 
-- top 命令一般用于查看进程的CPU和内存使用情况: 
+### top 命令
+> 一般用于查看进程的CPU和内存使用情况~
 
 ``` sh
 # CentOS
@@ -368,7 +512,7 @@ KiB Swap:        0 total,        0 free,        0 used.   119020 avail Mem
 20274 root      10 -10  167036  39552   1944 S   1.7  2.1 258:36.61 AliYunDunMonito
 ```
 
-- centos查看文件占用空间大小:
+### centos查看文件占用空间大小
 
 ``` sh
 du -sh # 查看当前目录总共占的容量。而不单独列出各子项占用的容量
@@ -379,6 +523,8 @@ du -sk filename    # 查看指定文件大小
 
 du -lh --max-depth=1    # 查看当前目录下一级子文件和子目录占用的磁盘容量
 ```
+
+
 
 
 
