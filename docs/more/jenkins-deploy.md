@@ -24,15 +24,16 @@ Jenkins 是一款以插件化的方式实现 CI/CD 的软件。
 docker-compose版本信息：[https://github.com/docker/compose/releases](https://github.com/docker/compose/releases)
 
 
-## 笔记
 
 
-### 准备
+## 准备
 
 1. 阿里云 CentOS 服务器
 
 
-> 在操作之前，假设你的服务器已经安装了`git, nginx, node`~
+> 我的服务器为：2核(vCPU) 2 GiB~
+
+> 在操作之前，假设你的服务器已经安装了`git, nginx, node`，并且已经配置了`nginx.conf`~
 
 
 
@@ -41,7 +42,7 @@ docker-compose版本信息：[https://github.com/docker/compose/releases](https:
 
 
 
-### 安装jenkins
+## 安装jenkins
 
 
 - 登录ECS云服务器
@@ -171,20 +172,20 @@ f63310f95***********bc45b2
 
 1. 安装：Manage Jenkins   =>  System Configuration   =>  插件管理  =>  Available Plugins =>  输入 `Publish Over SSH`，安装：
 
-<img :src="$withBase('/images/more/jenkins16.jpg')" width="auto"/>
+<img :src="$withBase('/images/more/jenkins16.jpeg')" width="auto"/>
 > 安装完成后，原本默认的英文界面可能会自动转成中文~~~
 
 
 2. 配置：安装重启后jenkins后，`系统管理 => 系统配置`，页面往下滑，找到` Publish over SSH`，点击新增`SSH Servers`：
 
-<img :src="$withBase('/images/more/jenkins17.jpg')" width="auto"/>
+<img :src="$withBase('/images/more/jenkins17.jpeg')" width="auto"/>
 
 
 如图所示添加服务器信息，填完后点击下方的`Test Configuration`进行连接测试，如果测试成功，会显示`Success`；之后保存即可~
 
 > 我这里配置的就是jenkins所在的服务器，刚开始报错了，后来在阿里云安全规则里添加了如下配置，重新测试就连上了~
 
-<img :src="$withBase('/images/more/jenkins18.jpg')" width="auto"/>
+<img :src="$withBase('/images/more/jenkins18.jpeg')" width="auto"/>
 
 
 
@@ -267,10 +268,14 @@ f63310f95***********bc45b2
 
 <img :src="$withBase('/images/more/jenkins13.jpg')" width="auto"/>
 
+> 也可添加 `SSH Username with private key`，都是一种获取github登录权限的凭据~
+
 
 5. 之后选择新生成的凭证，报错消失则说明凭证生效了：
 
 <img :src="$withBase('/images/more/jenkins14.jpg')" width="auto"/>
+
+
 
 
 6. 之后配置构建触发器和构建环境，如图所示勾选：
@@ -278,9 +283,279 @@ f63310f95***********bc45b2
 <img :src="$withBase('/images/more/jenkins15.jpg')" width="auto"/>
 
 
+
 7. 接着添加构建步骤：
 
+点击【增加构建步骤】 ===>  选择 【执行shell】, 然后可先输入如下简单的打包命令试下是否能执行成功~
 
+<img :src="$withBase('/images/more/jenkins19.jpeg')" width="auto"/>
+
+
+8. 保存配置之后回到构建任务，点击【立即构建】下方会出现构建历史记录，点击则能查看脚本执行详情~
+
+<img :src="$withBase('/images/more/jenkins20.jpeg')" width="auto"/>
+
+
+9. 点击【控制台输出】则能看到详细的脚本执行信息，可看到执行了刚才在配置的脚本命令~
+
+<img :src="$withBase('/images/more/jenkins21.jpeg')" width="auto"/>
+
+> 不出意外的话，构建任务结束后会提示`success`，但刚开始执行也很可能会出现报错，一般可能是权限相关问题~
+
+
+
+
+## 继续配置jenkins
+
+
+### 优化构建脚本
+
+接下来，继续添加构建脚本，把构建后的打包文件复制到指定目录:
+
+``` sh
+git ls-remote -t # 查看远程tags
+git tag -l #查看本地tag
+
+echo "当前目录为："
+pwd # 查看当前目录
+node -v
+npm -v
+
+# rm -rf node_modules
+
+echo "正在加载安装包..."
+# npm install
+echo "下载安装包成功！！！"
+echo "正在构建..."
+npm run build
+
+echo "构建成功！！！"
+
+rm -rf /root/nginx/upload/jenkins-vite-test/
+mkdir /root/nginx/upload/jenkins-vite-test/
+echo "正在复制..."
+cp -rf ./dist/* /root/nginx/upload/jenkins-vite-test
+echo "复制成功！！！"
+
+```
+
+这里的 `/root/nginx/upload/` 是已经在`nginx.conf`里配置好的项目访问目录：
+
+``` sh
+# nginx.conf
+
+server {
+        listen 80;
+        #  http默认端口号80,这里用了80之后，直接在浏览器输入ip就可以访问了~
+        #  最好把/usr/local/nginx/conf/nginx.conf中的端口改成其他，不然会有冲突
+        server_name localhost;
+        root /root/nginx/upload;  # 资源访问路径
+        autoindex on; # 打开索引
+        add_header Cache-Control "no-cache,must-revalidate";  #  http中添加不进行缓存的配置
+        location / { # 所有路由匹配
+                add_header Access-Control-Allow-Origin *;  #  添加跨域支持
+        }
+}
+```
+
+- 构建成功后，我们的项目就已经部署到服务器上了，直接访问`http://123.57.172.182/jenkins-vite-test`即可访问最新的页面！！！
+
+> 至此，我们也算是大致完成了jenkins自动部署的主要流程，接下来继续优化~
+
+
+
+
+
+### SSH推送部署
+
+上面部署脚本中，在`run build`之后是通过执行`cp`来将打包后的产物复制到指定目录，接下来我试试通过配置`SSH`来自动推送部署~
+
+
+1. 首先进到`deplot-test01`的`Configure`，增加【构建后操作】：
+
+<img :src="$withBase('/images/more/jenkins31.jpeg')" width="auto"/>
+
+
+
+2. 选择在配置`Publish Over SSH`时添加的服务器，配置路径，保存；
+
+<img :src="$withBase('/images/more/jenkins32.jpeg')" width="auto"/>
+
+- `Rransfer Set Source files`：要上传到目标服务器的文件。它是一个相对路径，相对于 Jenkins 的工作目录，默认是`/var/lib/jenkins/workspace/deploy-test01`
+
+- `Remove prefix`：去前缀。
+> 假设此时打包文件在 `/var/lib/jenkins/workspace/deploy-test01/dist/`，那么 `Rransfer Set Source files` 则应该为 `/dist/**/*`，此时 `Remove prefix` 配置为 `dist` 则可以去除这个前缀，否则会在目标服务中创建 `dist` 。
+
+- `Remote directory`：远程的静态资源托管目录。由于配置服务器默认为` /`，所以 `root/nginx/upload/jenkins-vite-test` 不用以 `/` 开头。
+
+
+- `Exec command`：远程机执行 `shell`，由于配置服务器默认为 `/`， 所以 工作目录也是以 `/` 开始。
+
+
+
+3. 注释掉【Build Steps】中的脚本命令，然后重新构建：
+
+``` sh
+##### 注释掉复制部分代码
+# rm -rf /root/nginx/upload/jenkins-vite-test/
+# mkdir /root/nginx/upload/jenkins-vite-test/
+# echo "正在复制..."
+# cp -rf ./dist/* /root/nginx/upload/jenkins-vite-test
+# echo "复制成功！！！"
+```
+
+
+
+4. 构建成功后，可点击【控制台输出】查看构建详情：
+
+<img :src="$withBase('/images/more/jenkins33.jpeg')" width="auto"/>
+
+> 如果 `Transferred 0 file` 则需要查看配置的路径是否正确。表示文件并没有被移动到远程主机中。
+
+
+5. 构建成功后访问`http://123.57.172.182/jenkins-vite-test`也可以看到最新的修改；
+> 这里我配置的服务器ip就是jenkins所在的服务器（因为我只有这一个服务器...），以后如果想推送到其他服务器也是完全可以的，在`SSH`里更新配置即可~
+
+
+
+
+### Git Webhooks
+
+
+> 我们向github/码云等远程仓库push我们的代码时，jenkins能知道我们提交了代码，这是自动构建自动部署的前提，钩子的实现原理是在远端仓库上配置一个Jenkins服务器的接口地址，当本地向远端仓库发起push时，远端仓库会向配置的Jenkins服务器的接口地址发起一个带参数的请求，jenkins收到后开始工作。
+
+
+- 在上面`新建构建任务  => 构建触发器` 时，我已经选择的是【**GitHub hook trigger for GITScm polling**】，意思就是：
+
+**在上面的源码管理中指定的 main 分支的代码有改动，就会触发自动构建**。
+
+
+- 接着可以看下github上是否已经添加了`webhooks`:
+
+<img :src="$withBase('/images/more/jenkins34.jpeg')" width="auto"/>
+
+> 可以看到 github 上已经添加了我的jenkins服务器所在的地址: http://123.57.172.182:8080/github-webhook/，可能是在配置构建任务勾选【GitHub hook trigger for GITScm polling】就自动加上了吧，如果没有，那就手动加上~
+
+
+- 如果上面配置没问题，之后我们每次`git push`代码到github，我们的jenkins应该都会自动构建`deploy-test01`项目~
+
+
+
+
+
+
+### 增加钉钉提醒
+
+
+[钉钉机器人插件](https://jenkinsci.github.io/dingtalk-plugin/guide/getting-started.html)
+
+
+1. 首先在jenkins插件管理中安装 `DingTalk` 插件：
+
+<img :src="$withBase('/images/more/jenkins41.jpg')" width="auto"/>
+
+
+2. 之后在钉钉中新建一个群，添加机器人：
+
+<img :src="$withBase('/images/more/jenkins43.jpg')" width="auto"/>
+
+
+然后填写机器人信息：
+
+<img :src="$withBase('/images/more/jenkins44.jpg')" width="auto"/>
+
+复制Webhook: 
+
+<img :src="$withBase('/images/more/jenkins45.jpg')" width="auto"/>
+
+
+3. 之后回到 `Jenkins => 系统管理` 中，配置钉钉机器人：
+> 当我们安装了 `DingTalk` 插件后，系统配置下方中就会自动出现钉钉tab~
+
+<img :src="$withBase('/images/more/jenkins42.jpg')" width="auto"/>
+
+
+
+4. 【新增】，配置信息：id随便输入，名称自定义，webhook是刚在钉钉复制的链接，关键词是刚在钉钉中输入的；
+
+<img :src="$withBase('/images/more/jenkins46.jpg')" width="auto"/>
+
+输入完成，点击右下角【测试】，显示`测试成功`即表示配置成功，【submit】~
+
+
+5. 最后进入需要钉钉通知的构建任务，修改构建配置：
+
+<img :src="$withBase('/images/more/jenkins47.jpg')" width="auto"/>
+
+
+6. 提交之后，重新构建，构建成功后，不出意外我们的钉钉群就会收到如下通知~
+
+<img :src="$withBase('/images/more/jenkins48.jpg')" width="auto"/>
+
+
+
+
+
+### 参数化构建
+
+> 在实际项目构建中，我们需要部署不同的分支，也需要部署到不同的环境，所以也需要参数化构建~
+
+
+
+#### 配置分支和环境
+
+
+1. jenkins插件管理，安装`Git Parameter`:
+
+<img :src="$withBase('/images/more/jenkins51.jpg')" width="auto"/>
+
+
+2. 安装完成后，进入构建任务【配置】，这是会出现如下【参数化构建过程】选项，选中，新增【选项参数】，填入自己的分支和环境信息：
+
+<img :src="$withBase('/images/more/jenkins52.jpg')" width="auto"/>
+
+
+3. 之后修改【源码管理】配置，分支修改为`*/${feature}`：
+
+<img :src="$withBase('/images/more/jenkins53.jpg')" width="auto"/>
+
+
+4. 然后在【构建触发器】中取消【GitHub hook trigger for GITScm polling】勾选，之后在 github 上 Webhooks 中就会自动取消该配置项~
+> 因为这里需要用户手动选择分支和环境，所以就暂不需要监听`git push`提交，自动构建功能了~
+
+
+5. 接着修改 SSH 中的 `Remote direcotory`路径如下：
+
+<img :src="$withBase('/images/more/jenkins54.jpg')" width="auto"/>
+
+
+6. 还需要修改下项目代码的构建配置：
+> 因为现在是用户手动选择环境，所以构建的目录是不固定的，那就需要获取用户所选环境参数来进行静态资源的构建~
+
+``` js
+// vite.config.js
+
+// 获取环境变量
+const env = process.env.ENV || ''; // 环境
+export default ({command, mode}) => {
+  return defineConfig({
+    base: env ? `/${env}/jenkins-vite-test/` : '/jenkins-vite-test/', // 根据环境变量生成公共路径前缀
+    plugins: [vue()],
+  })
+}
+```
+
+7. 最后回到jenkins的构建任务配置，修改【Build Steps】的 Shell 脚本命令：
+
+``` sh
+# npm run build
+ENV=${env} npm run build  #  获取用户选择的环境变量
+```
+
+
+8. 至此配置完成，项目提交后，选择分支，环境，重新构建；
+
+成功后，直接访问：`http://123.57.172.182/dev/jenkins-vite-test`就可以访问到我们的项目了~~
 
 
 
@@ -526,6 +801,38 @@ du -lh --max-depth=1    # 查看当前目录下一级子文件和子目录占用
 
 
 
+### scp命令
+
+> SCP (Secure Copy) 是一种在 Linux 和 Unix 系统之间进行文件传输的方式。它使用 SSH (Secure Shell) 协议进行加密，可以安全地、可靠地将文件从一个系统复制到另一个系统。
+
+- 基本语法：`scp [options] source_file destination_file`
+
+- 将本地文件复制到远程服务器：`scp local_file user@remote_host:remote_folder`
+
+- SCP命令默认使用22号端口进行传输，但是有时候需要使用其他端口进行传输。可以使用-P选项指定端口号。
+
+``` sh
+# 将本地文件 /home/user/test.txt 复制到远程服务器 192.168.1.100 的 /home/user 目录下:
+scp /home/user/test.txt user@192.168.1.100:/home/user/
+
+# 使用端口号 2222 将本地文件复制到远程服务器 192.168.1.100 的 /home/user 目录下
+scp -P 2222 /home/user/test.txt user@192.168.1.100:/home/user/
+
+scp -r  # -r 递归复制整个目录
+
+scp -v  # SCP命令默认不显示传输进度，但是可以使用-v选项显示详细输出，包括传输进度
+
+
+# SCP命令默认复制所有文件，但是有时候只需要复制新文件。可以使用-u选项只复制新文件。
+scp -ru /home/user/test user@192.168.1.100:/home/user/
+
+
+scp /home/user/*.test user@192.168.1.100:/home/user/ # 通配符匹配：将本地目录下所有以.test结尾的文件复制到远程服务器的/home/user目录下
+
+```
+
+[scp命令详解](https://blog.csdn.net/tott_0322/article/details/88107026)
+
 
 
 
@@ -533,7 +840,13 @@ du -lh --max-depth=1    # 查看当前目录下一级子文件和子目录占用
 
 ## 参考
 
+
+- [如何使用jenkins搭建一个中小企业前端项目部署环境](https://juejin.cn/post/7191076198506561573)
 - [CentOS 安装Jenkins踩坑](https://juejin.cn/post/7144989607757611045)
+
+- [前端工程化：保姆级教学 Jenkins 部署前端项目](https://juejin.cn/post/7102360505313918983)
+- [写给前端的 Jenkins 教程——10分钟实现前端/ Node.js 项目的 CI/CD](https://juejin.cn/post/6896151951545729031)
+
 
 
 
