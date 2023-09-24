@@ -1,0 +1,24 @@
+
+
+/* 默认样式重置 */
+h2 {
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+}
+
+
+  
+
+#valine-vuepress-comment {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+
+#valine-vuepress-comment .vheader input[name="link"] {
+  display: none;
+}
+
+#valine-vuepress-comment .vheader .vinput {
+  width: 50%;
+}
