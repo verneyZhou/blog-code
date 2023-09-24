@@ -18,24 +18,16 @@ Jenkins 是一款以插件化的方式实现 CI/CD 的软件。
 
 [jenkins](https://www.jenkins.io/zh/)
 
-
-
-
-docker-compose版本信息：[https://github.com/docker/compose/releases](https://github.com/docker/compose/releases)
-
-
-
-
 ## 准备
 
-1. 阿里云 CentOS 服务器
+1. ECS服务器
 
 
-> 我的服务器为：2核(vCPU) 2 GiB~
+> 一个ECS服务器，我的是阿里云 CentOS 服务器：2核(vCPU) 2 GiB~
 
 > 在操作之前，假设你的服务器已经安装了`git, nginx, node`，并且已经配置了`nginx.conf`~
 
-
+2. 有一个开发完成，即将推送到github的项目，我的项目地址是[jenkins-vite-test](https://github.com/verneyZhou/jenkins-vite-test)
 
 
 
@@ -173,6 +165,7 @@ f63310f95***********bc45b2
 1. 安装：Manage Jenkins   =>  System Configuration   =>  插件管理  =>  Available Plugins =>  输入 `Publish Over SSH`，安装：
 
 <img :src="$withBase('/images/more/jenkins16.jpeg')" width="auto"/>
+
 > 安装完成后，原本默认的英文界面可能会自动转成中文~~~
 
 
@@ -496,13 +489,9 @@ server {
 
 
 
-### 参数化构建
+### 配置分支和环境
 
 > 在实际项目构建中，我们需要部署不同的分支，也需要部署到不同的环境，所以也需要参数化构建~
-
-
-
-#### 配置分支和环境
 
 
 1. jenkins插件管理，安装`Git Parameter`:
@@ -688,6 +677,7 @@ fatal: Could not read from remote repository.
 Please make sure you have the correct access rights
 and the repository exists.
 # 警告:“github.com”的 ecdsa 主机密钥与 ip 地址“20.205.243.166”的密钥不同，更新了github的ssh key导致的~
+
 ```
 
 

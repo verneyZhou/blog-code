@@ -156,6 +156,8 @@ ECS控制台 》 网络与安全 》 安全组 》 手动添加
 8. 执行 `ssh root@123.57.172.182` 时报错：`kex_exchange_identification: read: Connection reset by peer`
 > 在 [ip138](https://www.ip138.com/)中查询自己本机外网ip地址，然后在[阿里云服务器安全规则](https://ecs.console.aliyun.com/securityGroupDetail/region/cn-beijing/groupId/sg-2ze0p2g1civnu847xgde/detail/intranetIngress) `22/22` 端口中添加即可~
 
+> 也有可能是公司网络的限制，因为遇到过在公司登录时会报错，在家里就可以的情况~
+
 
 
 9. 用FileZilla连接远程ip站点时报错：

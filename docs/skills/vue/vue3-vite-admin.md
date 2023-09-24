@@ -862,6 +862,9 @@ vue3-vite-admin npx eslint --init
 - ` vue-test-utils` + `jest`
 
 
+- [vitest](https://cn.vitest.dev/guide/)
+
+- [Jest](https://jestjs.io/zh-Hans/)
 ## 自动部署
 
 GitHub Actions

@@ -878,6 +878,8 @@ docker exec -it my-node-container ash # 进入容器；因为使用 apline 版�
 - [Docker技术入门与实战](https://yeasy.gitbook.io/docker_practice/)
 - [面向WEB开发人员的Docker](https://juejin.cn/column/6965049243660714021)
 
+- docker-compose版本信息：[https://github.com/docker/compose/releases](https://github.com/docker/compose/releases)
+
 
 ## 参考
 
