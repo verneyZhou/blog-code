@@ -24,7 +24,7 @@ npm run dev
     3. 然后`cd /vue-blog`，执行上线脚本：`./update-blog.sh` -->
 
     1. 先在 `config.js` 修改` base: '/blog/'`
-    2. npm run aliyun 本地打包
+    2. `npm run aliyun` 本地打包
     > 这里本地打包是因为我的jenkins服务器可能内存不够，每次在服务器上打包都会崩...
 
     3. 然后push上去之后，jenkins会自动部署~

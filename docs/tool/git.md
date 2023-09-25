@@ -554,6 +554,18 @@ and the repository exists.
 
 
 
+15. `git push`报错：
+
+``` sh
+Enumerating objects: 496, done.
+Counting objects: 100% (496/496), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (462/462), done.
+client_loop: send disconnect: Broken pipe
+send-pack: unexpected disconnect while reading sideband packet
+fatal: the remote end hung up unexpectedly
+```
+
 
 ## 备注
 
