@@ -715,7 +715,9 @@ ERROR: Exception when publishing, exception message [Failed to connect and initi
 Build step 'Send build artifacts over SSH' changed build result to UNSTABLE
 Finished: UNSTABLE
 ```
-> 
+> `Publish Over SSH`的权限问题，在系统配置中添加服务器私钥：
+
+<img :src="$withBase('/images/more/jenkins55.jpeg')" width="auto"/>
 
 
 
