@@ -566,6 +566,11 @@ send-pack: unexpected disconnect while reading sideband packet
 fatal: the remote end hung up unexpectedly
 ```
 
+解决方法：[参考](https://blog.csdn.net/qq_34466755/article/details/113748527)
+- 方法一：将git 远程地址改为自己的`ssh`地址: `git remote set-url origin git@github.com:github用户名/仓库名.git`
+- 方法二：增加git缓冲区大小: `git config --global http.postBuffer 524288000`
+
+
 
 ## 备注
 

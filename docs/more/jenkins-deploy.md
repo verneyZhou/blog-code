@@ -173,6 +173,7 @@ f63310f95***********bc45b2
 
 <img :src="$withBase('/images/more/jenkins17.jpeg')" width="auto"/>
 
+> 上面的密码是服务器密码~
 
 如图所示添加服务器信息，填完后点击下方的`Test Configuration`进行连接测试，如果测试成功，会显示`Success`；之后保存即可~
 
@@ -688,6 +689,33 @@ and the repository exists.
 ssh key不一致问题：最简单粗暴的方法就是ssh登录服务器，**直接删除`~/.ssh/known_hosts`文件**，然后再重新clone~
 
 [Has GitHub changed his remote host key](https://github.com/orgs/community/discussions/50878)
+
+
+
+
+
+- jenkins部署, 准备从git上拉取代码时报错：
+
+``` sh
+You're using 'Known hosts file' strategy to verify ssh host keys, but your known_hosts file does not exist, please go to 'Manage Jenkins' -> 'Configure Global Security' -> 'Git Host Key Verification Configuration' and configure host key verification.
+```
+> 应该是服务器上的`known_hosts`文件被误删了，该文件会把每一个访问过服务器的公钥（public key）保存下来，这里服务器准备访问github，但`known_hosts`被删了，公钥核验不通过，就会报错；
+
+解决方法：`ssh`登录服务器，手动`git clone`一个项目到服务器，会提示是否添加`github`的`rsa`信息到`known_hosts`，按提示输入`yes`后就会自动添加上了；之后`git clone`就不会报错了~
+
+
+
+
+- jenkins部署时报错：
+
+``` sh
+SSH: Connecting from host [iz2zef9ue9eyhqrvjxs3aqz]
+SSH: Connecting with configuration [阿里云] ...
+ERROR: Exception when publishing, exception message [Failed to connect and initialize SSH connection. Message: [Failed to connect session for config [阿里云]. Message [Auth fail for methods 'publickey,gssapi-keyex,gssapi-with-mic']]]
+Build step 'Send build artifacts over SSH' changed build result to UNSTABLE
+Finished: UNSTABLE
+```
+> 
 
 
 

@@ -27,7 +27,7 @@ npm run dev
     2. `npm run aliyun` 本地打包
     > 这里本地打包是因为我的jenkins服务器可能内存不够，每次在服务器上打包都会崩...
 
-    3. 然后push上去之后，jenkins会自动部署~
+    3. 然后push上去之后，jenkins会自动部署~~~~
 
 
 
