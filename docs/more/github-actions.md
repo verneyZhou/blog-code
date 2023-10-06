@@ -43,6 +43,9 @@ CI（持续集成）由很多操作组成，比如拉取最新代码、运行测
 [Actions 市场](https://github.com/marketplace?type=actions)
 
 
+[GitHub 官方的 actions](https://github.com/actions)
+
+
 
 > 公共仓库和自托管运行器免费使用 GitHub Actions。 对于私有仓库，每个 GitHub 帐户可获得一定数量的免费记录和存储，具体取决于帐户所使用的产品。 超出包含金额的任何使用量都由支出限制控制。
 
@@ -1064,10 +1067,205 @@ jobs:
 
 
 
-### 搭配Docker
+### 添加Docker自动部署
+
+> 关于docker的介绍之前整理过一篇笔记[Docker入门学习笔记](./docker-note.html)，这里不做过多赘述~
 
 
-### Gitlab-ci
+**Docker自动部署的大致原理是**：本地打包 docker 镜像，然后上传到 docker 镜像服务器，然后在服务器上登录 docker 账号拉取镜像，最后启动容器，完成部署~
+
+> 准备工作：首先服务器上需保证已安装docker~
+
+1. 项目根目录下新建`Dockerfile`文件：
+
+``` sh
+# Dockerfile
+
+# 依赖node镜像进行构建
+# 这里把这一个stage用 as 语法命名为 builder, 然后在后面的 stage 中通过名称 builder 进行引用 --from=builder。通过使用命名的 stage， Dockerfile 更容易阅读了。
+FROM node:16-alpine as builder
+
+# 设置工作目录
+WORKDIR /data/web
+
+# 把安装依赖所需的 package.json AND package-lock.json 复制到 当前目录
+COPY package*.json ./
+
+# 安装依赖，如果上面文件没有改动，就不会重现安装依赖。
+RUN npm install
+
+# 把当前仓库代码拷贝到镜像中
+COPY . .
+# 运行build命令，可以替换成 npm run build
+RUN npm run build
+# 上面我们把代码编译完成后，会在镜像里生成dist文件夹。
+RUN pwd & ls
+
+# 下面我们把打包出来的静态资源放到nginx中部署
+# 使用nginx做基础镜像
+FROM nginx:stable-alpine
+# 设置时区
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone 
+# 设置工作目录
+WORKDIR /data/web
+# 在nginx镜像中创建 /app/www 文件夹
+RUN mkdir -p /app/www
+RUN pwd & ls
+# 把上一步编译出来dist文件夹拷贝到刚才新建的/app/www文件夹中
+COPY --from=builder /data/web/dist /app/www
+
+
+# 暴露 80端口和443端口，因为我们服务监听的端口就是80，443端口是为了支持https。
+EXPOSE 80 
+EXPOSE 443
+
+# 复制nginx配置
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+
+```
+
+
+2. 在项目根目录下新建`nginx/default.conf`文件：
+> 上面代码最后一行需要将ng配置复制到docker容器内，所以这里也需要新建ng配置~
+
+``` sh
+server {
+    listen 80;
+    server_name localhost;
+    location / {
+        # root /usr/share/nginx/html;
+        root /app/www;
+        index index.html index.htm;
+        proxy_set_header Host $host;
+        if (!-f $request_filename) { # 将不访问文件的请求全部重定向到/index.html
+            rewrite ^.*$ /index.html break;
+        }
+    }
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        # root /usr/share/nginx/html;
+        root /app/www;
+    }
+}
+
+```
+
+
+3. 在项目根目录创建 `.dockerignore` 文件
+> 设置 `.dockerignore` 文件能防止 `node_modules` 和其他中间构建产物被复制到镜像中导致构建问题。
+
+```
+Dockerfile
+
+.git
+.gitignore
+.config
+
+.npm
+.vscode
+node_modules
+README.md
+```
+
+
+
+4. 然后我们还需要添加`docker.yml`，利用 `Github Actions` 实现自动部署：
+> 通过监听代码变化，触发定制任务，进行自动打包代码，镜像上传和登录服务器进行脚本执行，完成部署~
+
+``` yml
+# .github/workflows/docker.yml
+
+
+name: Docker
+# 触发条件为 push
+on:
+  push:
+    branches:
+      - feature/docker  # 监听分支
+# 任务
+jobs:
+  docker-deploy:
+    # 运行的环境
+    runs-on: ubuntu-latest
+    # 步骤
+    steps:
+      - uses: actions/checkout@v2 # git pull
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      # 1.登录docker; 2. 执行Dockerfile,生成镜像；3.推送到镜像仓库 Docker hub
+      - name: 打包镜像, 上传 Docker Hub
+        run: |
+          docker login -u ${{ secrets.DOCKER_REGISTRY_USERNAME }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+          docker build -t="verneyzhou/githook-vite-test:latest" . 
+          docker push verneyzhou/githook-vite-test:latest
+
+      # ssh登录服务器，传入dockerhub账号密码，登录，并执行 docker-deploy.sh
+      - name: SSH Command
+        uses: D3rHase/ssh-command-action@v0.2.1
+        with:
+          HOST: ${{ secrets.ALIYUN_HOST }}
+          PORT: 22 
+          USER: root
+          PRIVATE_SSH_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
+          # chmod 添加可执行权限 => 执行
+          COMMAND: pwd & ls & chmod +x ./docker-deploy.sh & sh ./docker-deploy.sh ${{ secrets.DOCKER_REGISTRY_USERNAME }} ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+
+```
+
+5. 上面的工作流登录服务器后会执行`docker-deploy.sh`文件，这个文件需要先添加到服务器根目录下：
+
+``` sh
+# 登录服务器，根目录下添加 docker-deploy.sh 文件：
+
+#!/usr/bin/env sh
+
+echo -e "---------docker Login--------"
+docker login -u $1  -p $2 # 这个是yml文件最后一行所传递的参数，你docker的用户名和密码
+echo -e "---------docker Pull--------"
+docker pull verneyzhou/githook-vite-test:latest  # 拉取镜像, 如果没有指定tag就会默认是latest
+# 如果已经有同名的容器，删除掉
+if [ "$(docker ps -aq -f name=githook-aliyun-container)" ]; then
+  echo 'docker rm ...'
+  docker stop githook-aliyun-container  # 停止容器
+  docker rm githook-aliyun-container  # 删除容器
+fi
+echo -e "---------docker Create and Start--------"
+docker run -d -p 8397:80 --name githook-aliyun-container verneyzhou/githook-vite-test:latest  # 运行容器
+echo -e "---------deploy Clear--------"
+
+# 清除一下没有使用的容器和镜像
+docker image prune -f
+docker container prune -f
+echo -e "---------deploy Success---!!!!-----"
+```
+
+
+6. 配置完成后，在`feature/docker`分支修改代码，进行 push 提交后，Github Actions 就会自动执行`docker.yml`工作流，然后在github上就会看到该工作流自动执行：
+
+<img :src="$withBase('/images/more/git24.png')" width="auto"/>
+
+
+等到执行成功，浏览器访问`http://[服务器ip]:[8397]`，理论上就可以访问到我们打包后的页面了~~~！！！（待验证...）
+
+
+
+
+### 项目地址
+
+
+上述所有实践的项目完整代码可参考这里：[githook-vite-test](https://github.com/verneyZhou/githook-vite-test)
+
+
+
+## 其他
+
+
+
+### Gitlab-CI
 
 
 - **gitlab-ci && 自动化部署工具的运行机制**
@@ -1093,13 +1291,16 @@ jobs:
 
 
 
+## TODO
 
 
+- 阿里云效
 
 
+- docker-compose.yml
 
-## 备注
 
+- docker jenkins
 
 
 ### 与其他CI/CD工具的比较
@@ -1111,10 +1312,6 @@ Travic CI：限时免费，过后按进程收费
 Drone CI：执行任务时，国内机器从Github拉取仓库代码时会偶尔超时，从而导致任务失败
 
 Jenkins CI：除了存在与Drone CI一样的缺点外，自身比较重量，占用宿主机较多资源
-
-
-
-
 
 
 
@@ -1173,13 +1370,20 @@ Error: R] rsync exited with code 255
 
 
 
+- ECS服务器上`docker run`运行容器成功后，通过`http://123.57.172.182:8397/`访问不到页面，但在服务器内通过`curl http://localhost:8397`是能读取页面内容的~
+> 暂时无解...
+
 
 
 ## 参考
 
+- [GitHub Actions 入门教程](https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 - [GitHub Actions 自动部署前端 Vue 项目](https://mp.weixin.qq.com/s/_MhYVCoJwgd0VsFVxPpxuw)
 - [Github Actions 自动构建前端项目并部署到服务器](https://juejin.cn/post/6887751398499287054#heading-7)
 - [GitHubActions详解](https://blog.csdn.net/unreliable_narrator/article/details/124468384)
 - [手把手教你用 Github Actions 部署前端项目](https://juejin.cn/post/6950799922178310152)
 - [作为前端，要学会用Github Action给自己的项目加上CICD](https://juejin.cn/post/7113562222852309023)
 - [前端工程化配置指南](https://juejin.cn/post/6971812117993226248)
+
+- [从零开始搭建一个高颜值后台管理系统全栈框架](https://juejin.cn/post/7245613765693702201)
+- [『前端进阶』🐳 Docker 部署 —> GitHub Active 自动部署](https://juejin.cn/post/7119759020533448711)

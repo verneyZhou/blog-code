@@ -51,6 +51,9 @@ permalink: false # 292799/
 
 - [实现前后端全自动化部署，解放你的双手。——从零开始搭建一个高颜值后台管理系统全栈框架(五)](https://juejin.cn/post/7245613765693702201)
 
+- [前端 DevOps](https://juejin.cn/column/6960547897611911205)
+
+
 - Monorepo
   - [现代前端工程化-彻底搞懂基于 Monorepo 的 lerna 模块(从原理到实战)](https://mp.weixin.qq.com/s/uBxa24nbg9PXyTfO0TmzVg)
   - [Monorepo，大型前端项目管理模式实践](https://mp.weixin.qq.com/s/N0CZABDD0TKTmdljH3y74A)
@@ -63,7 +66,9 @@ permalink: false # 292799/
   - [0基础实现项目自动化部署](http://zoo.zhengcaiyun.cn/blog/article/automated-deployment)
   - [写给前端的 Docker 入门终极指南，别再说不会用 Docker 了！](https://mp.weixin.qq.com/s/k86Q-Q_SSaJs-umDElNEJQ)
   - [手摸手教你docker+jenkins+gitlab部署你的vue前端项目](https://juejin.cn/post/6950280074876682276)
-
+  - [从零搭建docker+jenkins+node.js自动化部署环境](https://juejin.cn/post/6844903669381464071)
+  - [Docker+Nginx+Jenkins实现前端自动化部署](https://juejin.cn/post/6869736425953165319)
+  - [解析Node.js镜像原理，轻松构建高效CI/CD流程](https://juejin.cn/post/7270398955732926483)
 
 ## Web性能优化
 
@@ -188,7 +193,9 @@ permalink: false # 292799/
 - [物理世界的互动之旅：Matter.js入门指南](https://juejin.cn/post/7221550123193811002)
 
 
+- [写给5年前端妹子的三万字脚手架教程](https://juejin.cn/post/7260144602471776311)
 
+- react + vite: [fluxy-admin后台管理系统开发记录](https://juejin.cn/column/7233324859932393528)
 
 
 

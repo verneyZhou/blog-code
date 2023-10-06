@@ -46,3 +46,5 @@ permalink: false # e98e08/
 - [在Vue3这样子写页面更快更高效](https://juejin.cn/post/7172889961446768670)
 
 - [ 如何为 Vue3 组件标注 TS 类型，看这个就够了！](https://mp.weixin.qq.com/s/CuPm7JIAM5Zch2fLGPpxSA)
+
+- [【vue3】写hook三天，治好了我的组件封装强迫症。](https://juejin.cn/post/7181712900094951483)

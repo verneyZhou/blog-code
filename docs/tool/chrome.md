@@ -59,3 +59,7 @@ JavaScript	V8 11.0.226.16
 - [Chrome DevTools中的这些骚操作，你都知道吗？](https://mp.weixin.qq.com/s/zwmFoz0bf8O04fwCLjMiLA)
 - [11+ chrome 高级调试技巧，学会效率直接提升 666%](https://juejin.cn/post/7085135692568723492)
 - [快速掌握 Performance 性能分析：一个真实的优化案例](https://mp.weixin.qq.com/s/oboA3aOw8BdzvMwMmPMSJg)
+
+- [深入前端调试原理](https://mp.weixin.qq.com/s/ttrPW--3Hs3fjpAnVd793w)
+- [如何在 Chrome 中调试 TypeScript](https://mp.weixin.qq.com/s/GFHeCwMEdGROCCtTv1pHhw)
+- [Chrome Devtools 高级调试指南](https://mp.weixin.qq.com/s/xpnBlI2QGdEB2GDrCcp2LQ)

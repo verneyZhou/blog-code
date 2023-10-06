@@ -276,7 +276,7 @@ Docker是在操作系统进程层面的隔离，而虚拟机是在物理资源�
 #### 基础操作
 
 ``` shell
-docker login -u username  # 登录 Docker Hub
+docker login -u [username] -p [password]  # 登录 Docker Hub
 docker verion # 打印docker的版本信息
 
 docker images   # 列出所有镜像, 或：docker image ls
@@ -347,6 +347,11 @@ docker stats container_id  # 查看容器资源占用
 docker logs container_id  # 查看正在运行的容器的日志,比如看看为什么没有运行起来、为什么报错了、谁来访问过了等等
 docker container cp [containID]:[/path/to/file] .  # 从正在运行的 Docker 容器里面，将文件拷贝到本机当前目录
 
+docker inspect [containerId]  # 查看容器信息
+
+docker cp /tmp [containerId]:/usr/local/ # 将宿主机 tmp 文件夹复制到容器中的 /usr/local/ 路径下面
+docker cp [containerId]:/usr/local/ # 将容器中的 /usr/local/ 下的文件复制到宿主机下
+
 
 ```
 
@@ -354,8 +359,16 @@ docker container cp [containID]:[/path/to/file] .  # 从正在运行的 Docker �
 1. `docker run`流程：
   - Docker首先在本机中寻找该镜像  `=>` 如果没有安装 `=>` Docker 在 Docker Hub 上查找该镜像 `=>` 并拉取下载安装到本机 `=>` 最后 Docker 创建一个新的容器并启动该程序
   - 第二次执行  docker run 时  `=>` Docker 在本机中已经安装该镜像  `=>` Docker 会直接创建一个新的容器并启动该程序
+  > 当执行`docker run`时，Docker会启动一个进程，同时给这个进程分配其独占的文件系统~
+
+
+[软件测试|深入解析Docker Run命令：创建和启动容器的完全指南](https://blog.csdn.net/Tester_muller/article/details/131639725)
+
+
 
 2. `docker stop` 和 `docker kill` 略有不同，`docker stop` 发送 `SIGTERM` 信号，然后过一段时间再发出 `SIGKILL` 信号; 而 `docker kill` 是直接发送 `SIGKILL` 信号
+
+
 
 
 
@@ -369,6 +382,9 @@ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | 
 # 安装完之后可能当前 session 读不到 nvm 命令，可以 exit 之后再进入中终端环境
 nvm install 8.0.0
 node -v
+
+
+cat /etc/hosts  # 查看容器ip信息
 
 
 # commit 容器，创建新镜像
@@ -508,7 +524,9 @@ docker push verneyzhou/nginx-test:v1
 
 
 
-### docker-compose.yaml
+### docker-compose
+
+docker-compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。
 
 > 在 `docker compose v2` 中，使用了 `docker compose` 命令去替代了 `docker-compose` 命令，可以通过 `docker compose version` 查看版本号。
 
@@ -683,17 +701,55 @@ docker push verneyzhou/docker-vite-test # 将该镜像推送到 hub.docker 上
 
 
 
-7. 自动化部署
-> 上面的整个流程中，不管是镜像构建还是容器运行，都是手动去敲命令的，然而，重复的工作都可以被优化。现在使用 `sh` 脚本来自动化执行整个部署流程。
 
-- sh 脚本文件一般放在 `bin` 目录下，在 `bin` 目录下新建文件 `setup_for_host.sh` 文件：
+### 例二：Docker实现ECS自动部署
+
+> 上面关于Docker的安装，生成镜像，容器，运行都是在本地操作的，那如果想把我们的项目自动部署到远程ECS服务器应该怎么办呢？
+
+这里继续使用上面的vite项目`docker-vite-test`来实现服务器部署~
+
+1. 流程跟在本地的操作差不多，首先是在服务器上安装`docker`:
+
+> 本地直接安装客户端即可，服务器上需要通过`yum`安装`docker`安装包; 我的服务器安装环境为`centos7`~
 
 ``` sh
-# setup_for_host.sh
+# 首先需要 ssh 登录服务器，然后安装docker
+yum install docker -y
+
+docker -v # 查看是否安装成功
+
+service docker start # 启动
+service docker restart  # 重启docker服务
+service docker stop     # 停止docker服务
+```
+
+
+2. docker安装完成后，因为在例一中已经将镜像`verneyzhou/docker-vite-test`push到dockerhub了，之后直接拉下来使用即可~
+
+``` sh
+docker login -u [docker-username] -p [docker-password] # 登录docker
+
+docker pull verneyzhou/docker-vite-test # 拉取镜像
+
+docker run -d -p 8894:80 --name vite-test-container verneyzhou/docker-vite-test # 运行容器
+```
+
+
+之后如果运行成功的话，访问`http://[服务器ip]:8894`应该就能访问到该项目了~（待验证...）
+
+
+3. 自动化部署
+> 上面的整个流程中，不管是镜像构建还是容器运行，都是手动去敲命令的，然而，重复的工作都可以被优化。现在使用 `sh` 脚本来自动化执行整个部署流程。
+
+- sh 脚本文件一般放在服务器的 `root` 目录下: 登录服务器，在 `root` 目录下新建文件 `setup_host.sh` 文件：
+
+``` sh
+# setup_host.sh
 
 # 构建镜像
 image_name=verneyzhou/docker-vite-test # 表示镜像名称
-version=$(date +'%Y%m%d-%H%M%S') # 表示镜像版本（用时间表示）
+# version=$(date +'%Y%m%d-%H%M%S') # 表示镜像版本（用时间表示）
+version=latest
 contianer_name=vite-test-container # 运行的容器名称
 host_port=8894 # 本机端口
 container_port=80 # 运行的容器端口
@@ -711,14 +767,13 @@ docker run -d --name $contianer_name -p $host_port:$container_port $image_name:$
 echo 'Done!'
 
 ```
+> 如果有其他容器占用了`8894`端口，则需要先删除该容器：`docker rm container_id`
 
-- 如果有其他容器占用了`8894`端口，则需要先删除该容器：`docker rm container_id`
-
-- 项目根目录执行脚本：
+- 登录服务器，根目录下执行脚本：
 
 ``` sh
-chmod +x bin/setup_host.sh # 添加可执行权限
-bin/setup_host.sh # 执行自动化部署
+chmod +x ./setup_host.sh # 添加可执行权限
+./setup_host.sh # 执行自动化部署
 ```
 
 
@@ -732,7 +787,19 @@ docker start vite-test-container # 重启容器
 
 
 
-### 例二：部署Node服务应用
+
+- 查看docker安装目录：
+
+``` sh
+[root@iz2zef9ue9eyhqrvjxs3aqz ~]# whereis docker
+docker: /usr/bin/docker /etc/docker /usr/libexec/docker /usr/share/man/man1/docker.1.gz
+[root@iz2zef9ue9eyhqrvjxs3aqz ~]#
+```
+
+
+
+
+### 例三：部署Node服务应用
 
 
 1. 新建一个node项目：
@@ -868,8 +935,54 @@ docker exec -it my-node-container ash # 进入容器；因为使用 apline 版�
 
 
 
+
 ## 备注
 
+
+
+### 报错记录
+
+
+- 在执行`docker build -t="verneyzhou/githook-vite-test" .`，想通过`Dockerfile`编译镜像时报错：
+
+``` sh
+Dockerfile:39
+--------------------
+  37 |     RUN pwd & ls
+  38 |     # 把上一步编译出来dist文件夹拷贝到刚才新建的/app/www文件夹中
+  39 | >>> COPY --from=builder /data/web/dist /app/www
+  40 |     
+  41 |     
+--------------------
+ERROR: failed to solve: builder: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+```
+> 上面`COPY`命令后面加了参数`--from=builder`, 意思是引用前一步骤的`builder`的构建产物，需要前面有声明,如：`FROM node:16-alpine as builder`, 才能调用~
+
+
+
+- 报错：`bash: ./docker-githook-deploy.sh: Permission denied`
+> 权限受限，添加命令：`chmod +x ./docker-githook-deploy.sh`再执行 `./docker-githook-deploy.sh`~
+
+
+
+
+- 服务器使用`docker run`后状态为容器状态为`Exited (1)`，未运行~
+> 暂时无解...
+
+
+
+
+### 其他
+
+``` sh
+# 查看服务器linux版本
+[root@iz2zef9ue9eyhqrvjxs3aqz ~]# uname -sr
+Linux 3.10.0-1160.95.1.el7.x86_64
+
+# 查看centos的版本信息
+[root@iz2zef9ue9eyhqrvjxs3aqz ~]# cat /etc/redhat-release
+CentOS Linux release 7.9.2009 (Core)
+```
 
 
 

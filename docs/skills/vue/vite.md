@@ -39,6 +39,8 @@ permalink: false # e791af/
 - [vite项目为什么可以直接使用NODE_ENV？](https://juejin.cn/post/7167933987925524516)
 - [Vite项目屏幕适配的两种方案，超详细！](https://juejin.cn/post/7147897102398390308)
 
+- [尤大推荐的神器unplugin-vue-components,解放双手!](https://juejin.cn/post/7012446423367024676)
+
 vite插件开发：
 - [为了不和测试扯皮, 我抄了这个vite插件:vite-plugin-gitlab-flow](https://juejin.cn/post/7211428447921422396)
 - [Vite 实战：手把手教你写一个 Vite 插件](https://segmentfault.com/a/1190000041558913)

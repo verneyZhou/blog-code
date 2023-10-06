@@ -106,3 +106,7 @@ HTTP协议连接很简单，是无状态的；HTTPS协议是有SSL和HTTP协议�
 
 - [大专前端，三轮面试，终与阿里无缘](https://juejin.cn/post/7239715208792342584)
 - [高频前端开发面试问题集锦，让你离offer更近一步！](https://mp.weixin.qq.com/s/jM9JOC27DbVpDDYiNPRgPg)
+
+- [京东一面：post为什么会发送两次请求？](https://juejin.cn/post/7269952188927017015)
+- [工作了5年你居然不知道版本号有这些规范？](https://mp.weixin.qq.com/s/0Gp1v-keVlSJv7Fe5dGqWw)
+- [【5年以上前端】Vue 和 React 的区别看这里](https://mp.weixin.qq.com/s/442bKGhhbhefSbQ8MP7Ajw)

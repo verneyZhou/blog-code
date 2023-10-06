@@ -257,3 +257,5 @@ i.ob.e.weibo.com weinre://huaiding_local
 - [前端人必须掌握的抓包技能](https://juejin.cn/post/7140040425129115684)
 - [Hybrid 远程调试的前世今生](https://mp.weixin.qq.com/s/rm_7vNNhd4WukjHRW0cl0w)
 - [Remote debug Android devices](https://developer.chrome.com/docs/devtools/remote-debugging/)
+
+- 基于Chrome Devtools的远程调试实现: [Devtools Remote Debugger](https://github.com/Nice-PLQ/devtools-remote-debugger)
