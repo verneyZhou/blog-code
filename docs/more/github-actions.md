@@ -1252,8 +1252,6 @@ echo -e "---------deploy Success---!!!!-----"
 等到执行成功，浏览器访问`http://[服务器ip]:[8397]`，理论上就可以访问到我们打包后的页面了~~~！！！（待验证...）
 
 
-
-
 ### 项目地址
 
 
@@ -1290,19 +1288,6 @@ echo -e "---------deploy Success---!!!!-----"
 [Gitlab-ci:从零开始的前端自动化部署](https://zhuanlan.zhihu.com/p/184936276)
 
 
-
-## TODO
-
-
-- 阿里云效
-
-
-- docker-compose.yml
-
-
-- docker jenkins
-
-
 ### 与其他CI/CD工具的比较
 
 Gitlab CI：与Gitlab高度绑定，项目放在Gitlab就谈不上开源了
@@ -1314,6 +1299,18 @@ Drone CI：执行任务时，国内机器从Github拉取仓库代码时会偶尔
 Jenkins CI：除了存在与Drone CI一样的缺点外，自身比较重量，占用宿主机较多资源
 
 
+
+
+## TODO
+
+
+- 阿里云效
+
+
+- docker-compose.yml
+
+
+- docker jenkins
 
 
 

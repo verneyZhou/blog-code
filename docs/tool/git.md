@@ -573,6 +573,10 @@ fatal: the remote end hung up unexpectedly
 
 
 
+16. `git merge master`到main分支时报错：`fatal: refusing to merge unrelated histories`
+
+> `git merge master --allow-unrelated-histories`
+
 ## 备注
 
 - 如何下载公司`gitlab`上的项目？

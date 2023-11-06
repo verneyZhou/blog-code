@@ -31,6 +31,8 @@ permalink: false # fc73f4/
 
 - [zhuawa](./zhuawa/)
 
+- [chrome-devtools使用技巧记录](./chrome-devtool.html)
+
 
 
 

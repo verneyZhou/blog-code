@@ -27,6 +27,7 @@ permalink: false # 292799/
 - [Docker入门学习笔记](./docker-note.html)
 - [Jenkins前端自动化部署](./jenkins-deploy.html)
 - [Github Actions自动部署](./github-actions.html)
+- [Vercel部署笔记](./vercel-deploy.html)
 
 
 ### 收藏
@@ -133,6 +134,8 @@ permalink: false # 292799/
 
 
 ## 低代码
+
+- 笔记：[低代码平台搭建实战](./low-code.html)
 
 - [前端低代码平台-CodeFun](https://code.fun/)
 - [低代码都做了什么？(为什么？怎么实现Low-Code？)](https://juejin.cn/post/7127409867123327012)

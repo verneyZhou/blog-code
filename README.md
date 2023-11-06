@@ -203,3 +203,4 @@ ReferenceError: canonicalLink is not defined
 - react
 - ci/cd jenkins docker  DevOps
 - ai
+- 脚手架

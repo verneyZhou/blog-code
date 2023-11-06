@@ -563,6 +563,8 @@ networks:
 > 此时可通过 `docker compose up` 启动容器。
 
 
+[docker-compose教程（安装，使用, 快速入门）](https://blog.csdn.net/pushiqiang/article/details/78682323)
+
 
 ### .dockerignore
 
@@ -936,11 +938,19 @@ docker exec -it my-node-container ash # 进入容器；因为使用 apline 版�
 
 
 
-## 备注
+## TODO
+
+
+- 创建Docker私服
 
 
 
-### 报错记录
+
+
+
+
+
+## 报错记录
 
 
 - 在执行`docker build -t="verneyzhou/githook-vite-test" .`，想通过`Dockerfile`编译镜像时报错：
@@ -972,7 +982,7 @@ ERROR: failed to solve: builder: pull access denied, repository does not exist o
 
 
 
-### 其他
+## 其他
 
 ``` sh
 # 查看服务器linux版本
