@@ -204,3 +204,8 @@ ReferenceError: canonicalLink is not defined
 - ci/cd jenkins docker  DevOps
 - ai
 - 脚手架
+
+
+### 2024TODO
+
+- 从0到1参与一个开源项目

@@ -47,7 +47,7 @@ module.exports = {
     blogger: { // 博主信息，显示在首页侧边栏
         avatar: 'images/poster03.jpeg',
         // name: '阿沐',
-        slogan: '光阴缝隙，时间盛典。'
+        slogan: '光陰縫隙，時間盛典。'
     },
     social: { // 社交图标，显示于博主信息栏和页脚栏
         // iconfontCssFile: '//at.alicdn.com/t/font_1879460_0lacnxoigx9.css', // 可选，阿里图标库在线css文件地址，对于主题没有的图标可自由添加

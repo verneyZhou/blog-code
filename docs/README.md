@@ -2,8 +2,8 @@
 home: true
 bannerBg: /images/poster05.jpeg
 # heroImage: /images/poster03.jpeg
-heroText: 一苇
-tagline: 谁谓河广？一苇以航。
+heroText: 一葦
+tagline: 誰謂河廣，一葦以航。
 # actionText: 开始阅读 →
 # actionLink: /newest/
 # features:
