@@ -198,12 +198,15 @@ ReferenceError: canonicalLink is not defined
 ### 2023技能GET
 
 - 插件封装：瀑布流，虚拟滚动
-- 自研组件库
+- 自研组件库: 
+    - wx呼端，新手引导，toast，dialog
+    - vitepress搭建组件门户网站
+
 - 低代码
 - react
 - ci/cd jenkins docker  DevOps
-- ai
-- 脚手架
+- ai: 数据报表查询
+- 脚手架: 搭建一个vite+vue3项目的脚手架
 
 
 ### 2024TODO

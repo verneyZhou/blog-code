@@ -50,16 +50,8 @@ JavaScript	V8 11.0.226.16
 - Chrome浏览器输入：`chrome://inspect`，可以进行安卓手机远程真机调试，具体见这篇博文：[移动端远程真机调试](/tool/mobile-debug.html)
 
 ## 收藏
-- [11个程序员必须知道的实用Chrome DevTools开发技巧](https://mp.weixin.qq.com/s/uuiXyDYJbElkSB6hFbvMOQ)
 - [走进chrome内心，了解V8引擎是如何工作的](https://segmentfault.com/a/1190000040331440)
-- [不常见但是有用的 chrome 调试技巧](https://mp.weixin.qq.com/s/GVMcoJCQvtFI-9ZIUX9Ihw)
-- [5个chrome简单实用的日常开发功能详解，赶快解锁让你提升更多效率！](https://juejin.cn/post/7115345192055963656)
-- [浏览器DevTools你真的会用吗?](https://juejin.cn/post/7126188054821208100)
-- [11 个很酷的 Chrome Devtools 技巧](https://mp.weixin.qq.com/s/3xBSIudqTWPjfNoaDniPUQ)
-- [Chrome DevTools中的这些骚操作，你都知道吗？](https://mp.weixin.qq.com/s/zwmFoz0bf8O04fwCLjMiLA)
-- [11+ chrome 高级调试技巧，学会效率直接提升 666%](https://juejin.cn/post/7085135692568723492)
 - [快速掌握 Performance 性能分析：一个真实的优化案例](https://mp.weixin.qq.com/s/oboA3aOw8BdzvMwMmPMSJg)
 
 - [深入前端调试原理](https://mp.weixin.qq.com/s/ttrPW--3Hs3fjpAnVd793w)
 - [如何在 Chrome 中调试 TypeScript](https://mp.weixin.qq.com/s/GFHeCwMEdGROCCtTv1pHhw)
-- [Chrome Devtools 高级调试指南](https://mp.weixin.qq.com/s/xpnBlI2QGdEB2GDrCcp2LQ)

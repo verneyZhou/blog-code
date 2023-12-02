@@ -19,6 +19,10 @@ permalink: false # fc73f4/
 - [新机配置（mac）](./mac-config.html)
 - [搭梯子](./vpn.html)
 
+- [常用代理工具整理](./proxy.html)
+- [移动端远程真机调试](./mobile-debug.html)
+- [Chrome-DevTools使用笔记](./chrome-devtool.html)
+
 
 
 
@@ -26,12 +30,10 @@ permalink: false # fc73f4/
 
 - [收藏集](./some-website.html)
 - [名词目录](./word.html)
-- [常用代理工具整理](./proxy.html)
-- [移动端远程真机调试](./mobile-debug.html)
+
 
 - [zhuawa](./zhuawa/)
-
-- [Chrome-DevTools使用笔记](./chrome-devtool.html)
+- [interview](./interview/)
 
 
 
@@ -47,6 +49,6 @@ permalink: false # fc73f4/
 - [文件的上传与下载](./file-upload.html)
 - [vscode插件开发](./vscode-plugin.html)
 - [chrome插件开发](./chrome-plugin.html)
-- [interview](./interview/)
+
 
 
