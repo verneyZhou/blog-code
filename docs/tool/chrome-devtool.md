@@ -13,7 +13,7 @@ tags:
 # Chrome-DevTools使用笔记
 
 
-Chrome开发者工具（简称DevTools）是一组网页制作和调试的工具，内嵌于Google Chrome浏览器中。DevTools使开发者更加深入的了解浏览器内部以及他们编写的应用。通过使用DevTools，可以更加高效的定位页面布局问题，设置JavaScript断点并且更好的理解代码优化。
+> Chrome开发者工具（简称DevTools）是一组网页制作和调试的工具，内嵌于Google Chrome浏览器中。DevTools使开发者更加深入的了解浏览器内部以及他们编写的应用。通过使用DevTools，可以更加高效的定位页面布局问题，设置JavaScript断点并且更好的理解代码优化。
 
 
 **打开DevTools：**
@@ -583,6 +583,7 @@ Event Loop 就是循环执行宏任务。每个 Task 都有自己的调用栈，
 
 ## Lighthouse
 
+> 待补充...
 
 
 ## 截图
@@ -1034,3 +1035,4 @@ addEventListener('message', function(evt) {
 
 - [11个程序员必须知道的实用Chrome DevTools开发技巧](https://mp.weixin.qq.com/s/uuiXyDYJbElkSB6hFbvMOQ)
 - [浏览器DevTools你真的会用吗?](https://juejin.cn/post/7126188054821208100)
+- [脱发秘籍：前端Chrome调试技巧最全汇总](https://juejin.cn/post/7248118049584316472)

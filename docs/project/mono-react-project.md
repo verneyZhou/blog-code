@@ -3,10 +3,10 @@ title: MonoRepo——React项目实践
 date: 2023-09-11 19:56:00
 permalink: false
 categories:
-  - MonoRepo
+  - monoRepo
   - React
 tags:
-  - MonoRepo
+  - monoRepo
   - React
   - 工程化
 ---
@@ -108,7 +108,9 @@ import { getRandom } from "@proz/utils";
 
 
 - 如果说要自己构建：
+
 packages/libs/utils:  `npm link`
+
 packages/apps/react-x: `npm link @proz/utils`
 
 

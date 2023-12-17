@@ -225,3 +225,22 @@ Astro 的孤岛架构还允许每个页面都使用不同的开发工具和技�
 [Astro官方文档](https://docs.astro.build/zh-cn/getting-started/)、[https://github.com/withastro/astro](https://github.com/withastro/astro)
 
 
+
+## VTable
+> [VisActor](https://visactor.io/blog/visactor)是字节的一个数据可视化解决方案, [VTable](https://visactor.io/vtable)字节跳动开源高性能表格组件库, 支持百万数据秒级渲染~
+
+[支持百万数据秒级渲染，字节跳动开源高性能表格组件库 VTable](https://mp.weixin.qq.com/s/MZm0b607B5W4u5U1Yklo4Q)
+
+
+
+
+## Mitosis
+> Angular之父新出的一个跨框架开发工具，写一份代码，就能编译成 `React, Vue, Qwik, Solid, Angular, Svelte` 等不同框架的代码
+
+[mitosis](https://github.com/BuilderIO/mitosis)、[想要开发组件库？那你一定要提前了解一下这个神器](https://mp.weixin.qq.com/s/XuEc1TnLuzMokylde4DkhQ)
+
+
+## Storybook
+> Storybook 是一个 ui 组件开发管理的工具，我们可以通过 story 独立创建组件，并且每个组件都有一个独立开发调试环境。
+
+[storybook](https://storybook.js.org/)、[Storybook Vue 教程](https://storybook.js.org/tutorials/intro-to-storybook/vue/zh-CN/get-started/)

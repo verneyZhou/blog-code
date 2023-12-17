@@ -604,6 +604,7 @@ fatal: the remote end hung up unexpectedly
 
 - [Git 是如何工作的](https://mp.weixin.qq.com/s/DBnbDjY_oXuM-X6m2K5oeQ)
 - [Learn Git Branching](https://learngitbranching.js.org/?locale=zh_CN)
+- [搭建 Github 免费图床](https://mp.weixin.qq.com/s/wEomQC6Q0D_LShPkIQIBbg)
 
 
 

@@ -42,6 +42,9 @@ permalink: false # 067e28/
 - [Vue原理分析](./code.html)
 - [vue第三方组件插件库收集](./plugins.html)
 
+- [从0到1搭建vue组件库](./vue-design.html)
+- [开发一个快速搭建vue3项目的脚手架](./vue3-cli-repo.html)
+
 
 
 

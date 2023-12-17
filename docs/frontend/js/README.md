@@ -67,6 +67,11 @@ permalink: false # 40e551/
 
 - [因为写不出拖拽移动效果，我恶补了一下Dom中的各种距离](https://juejin.cn/post/7225206098692407355)
 
+- [浏览器跨 Tab 窗口通信原理及应用实践](https://juejin.cn/post/7306040473542213644)
+- [原生“跨组件”通信方式](https://mp.weixin.qq.com/s/xNgTM1OCh4djQjfC0dYGjA)
+
+- [前端调取摄像头并实现拍照功能](https://juejin.cn/post/7289662055183597603)
+
 - TS
   - [TypeScript 深水区：3 种类型来源和 3 种模块语法](https://juejin.cn/post/7111112135903543332)
   - [类型编程原理和编写类型安全代码](https://mp.weixin.qq.com/s/-Use3prQiTvB2U0itEXNuQ)

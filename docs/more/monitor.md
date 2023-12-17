@@ -1214,6 +1214,8 @@ self.addEventListener('fetch', e => {
 - [我开源了一款轻量级前端监控sdk](https://juejin.cn/post/7210970258369708092)
   - [heimdallr-sdk](https://github.com/LuciferHuang/heimdallr-sdk)
 
+- [学着写一个简版前端监控SDK](https://juejin.cn/post/7287117489304453177)
+
 ## 参考
 
 - [为什么大厂前端监控都在用GIF做埋点？](https://juejin.cn/post/7065123244881215518)

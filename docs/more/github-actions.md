@@ -709,6 +709,7 @@ husky - pre-commit hook exited with code 1 (error)
 
 
 1. 安装`Commitlint`: `npm i @commitlint/config-conventional @commitlint/cli -D`
+> `@commitlint/config-conventional` 是一个规范配置,标识采用什么规范来执行消息校验, 这个默认是 `Angular` 的提交规范; `@commitlint/cli` 是一个使用 `lint` 规则来校验提交记录的命令行工具
 
 
 

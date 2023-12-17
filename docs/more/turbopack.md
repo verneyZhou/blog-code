@@ -355,6 +355,7 @@ Monorepo 的概念最早是由 Google 提出并实践的，随着各种技术的
 参考：
 - [带你了解更全面的 Monorepo - 优劣、踩坑、选型](https://juejin.cn/post/7215886869199896637)
 - [Monorepo---让跨项目合作像搭积木一样简单](https://zhuanlan.zhihu.com/p/513171061)
+- [Monorepo，大型前端项目管理模式实践](https://mp.weixin.qq.com/s/6_yGXHS_R6abx-G3yOCT8w)
 
 
 
