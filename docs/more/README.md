@@ -56,6 +56,8 @@ permalink: false # 292799/
 
 - Dom快照录制: [还原现场🔍前端录制用户行为技术方案](https://juejin.cn/post/7280429214607769658)
 
+- [从零到亿系统性的建立前端构建知识体系✨（开篇）](https://juejin.cn/post/7145855619096903717)
+
 
 - Monorepo
   - [现代前端工程化-彻底搞懂基于 Monorepo 的 lerna 模块(从原理到实战)](https://mp.weixin.qq.com/s/uBxa24nbg9PXyTfO0TmzVg)
@@ -118,6 +120,7 @@ permalink: false # 292799/
 - [React 性能优化 | 包括原理、技巧、Demo、工具使用](https://juejin.cn/post/6935584878071119885)
 - [「记录篇」我是如何一步步为公司搭建react项目脚手架的](https://juejin.cn/post/7235547967112806437)
 - [一篇文章带你理解 React 中最“臭名昭著”的 useMemo 和 useCallback](https://juejin.cn/post/7165338403465068552)
+- [用TypeScript编写React的最佳实践](https://mp.weixin.qq.com/s/XhwVwTw8ZXZdqY9cCJWsQg)
 
 
 ## Node
@@ -175,8 +178,11 @@ permalink: false # 292799/
 
 - [《Stable Diffusion终极宝典》](https://ry5hwpuf7b.feishu.cn/docx/HYrZdLBMRorB0qxKqFFcQ075nWf)
 
-
-
+- Gemini:
+  - [Gemini API文档](https://ai.google.dev/docs)
+  - [Google AI Studio API keys](https://makersuite.google.com/app/apikey)
+  - [媲美GPT4，一键搭建谷歌 Gemini](https://mp.weixin.qq.com/s/0FSltuCkaYJ0EFBxFtSYfA)
+  - [GeminiProChat](https://github.com/babaohuang/GeminiProChat)
 
 
 ## 其他

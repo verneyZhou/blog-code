@@ -243,4 +243,4 @@ Astro 的孤岛架构还允许每个页面都使用不同的开发工具和技�
 ## Storybook
 > Storybook 是一个 ui 组件开发管理的工具，我们可以通过 story 独立创建组件，并且每个组件都有一个独立开发调试环境。
 
-[storybook](https://storybook.js.org/)、[Storybook Vue 教程](https://storybook.js.org/tutorials/intro-to-storybook/vue/zh-CN/get-started/)
+[storybook](https://storybook.js.org/)、[Storybook Vue 教程](https://storybook.js.org/tutorials/intro-to-storybook/vue/zh-CN/get-started/)、[Storybook React 教程](https://storybook.js.org/tutorials/intro-to-storybook/react/zh-CN/simple-component/)

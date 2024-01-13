@@ -565,6 +565,26 @@ const getUserNameAPI = async () => {
 
 
 
+
+## 报错记录
+
+- `vercel dev`报错：
+``` sh
+➜  client git:(main) ✗ vercel dev
+Vercel CLI 32.5.0
+> Running Dev Command “npm install”
+
+up to date, audited 127 packages in 1s
+
+19 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+```
+> 首先看下是不是`vercel`版本问题，升级到`v33+`试下；如果不行检查下 vercel 上面`Development Command`的配置是否有问题~
+
+
+
 ## 备注
 
 

@@ -22,6 +22,8 @@ permalink: false # 40e551/
 - [JS算法整理笔记](./arithmetic.html)
 - [JS实现异步请求并发数量控制](./multi-fetch.html)
 
+- [Typescript入门笔记](./ts.html)
+
 
 
 ## 进行中
@@ -38,7 +40,7 @@ permalink: false # 40e551/
 - [JS异步题集](./async-interview.html)
 
 - [js常用库整理](./web.html)
-- [Typescript入门笔记](./ts.html)
+
 
 
 ## 未开始
@@ -75,3 +77,4 @@ permalink: false # 40e551/
 - TS
   - [TypeScript 深水区：3 种类型来源和 3 种模块语法](https://juejin.cn/post/7111112135903543332)
   - [类型编程原理和编写类型安全代码](https://mp.weixin.qq.com/s/-Use3prQiTvB2U0itEXNuQ)
+  - [TypeScript 前端工程最佳实践](https://mp.weixin.qq.com/s/885xoPsAMivkkHRpO3FWzw)

@@ -23,6 +23,8 @@ permalink: false # fc73f4/
 - [移动端远程真机调试](./mobile-debug.html)
 - [Chrome-DevTools使用笔记](./chrome-devtool.html)
 
+- [VSCode插件开发笔记](./vscode-plugins.html)
+
 
 
 
@@ -47,7 +49,6 @@ permalink: false # fc73f4/
 
 
 - [文件的上传与下载](./file-upload.html)
-- [vscode插件开发](./vscode-plugin.html)
 - [chrome插件开发](./chrome-plugin.html)
 
 

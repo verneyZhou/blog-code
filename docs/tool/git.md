@@ -577,6 +577,14 @@ fatal: the remote end hung up unexpectedly
 
 > `git merge master --allow-unrelated-histories`
 
+
+
+17. `git add .`是报错：`error: '[filename]/' does not have a commit checked out`
+> 这是子文件夹下面有`.git`文件，删除即可：`rm -rf [filename]/.git`
+
+
+
+
 ## 备注
 
 - 如何下载公司`gitlab`上的项目？
