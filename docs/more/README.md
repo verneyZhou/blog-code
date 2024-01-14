@@ -169,20 +169,7 @@ permalink: false # 292799/
 - [想要开发组件库？那你一定要提前了解一下这个神器](https://mp.weixin.qq.com/s/XuEc1TnLuzMokylde4DkhQ)
 
 
-## AI
 
-- [花1块钱让你的网站支持 ChatGPT](https://juejin.cn/post/7176539666210881592)
-- [公众号最低成本接入ChatGPT及如何优化体验？](https://juejin.cn/post/7200769439335546935)
-
-- [基于截图页面生成前端项目](https://mp.weixin.qq.com/s/ymVfkWVqF5bI7Aa5uV9Y-w)
-
-- [《Stable Diffusion终极宝典》](https://ry5hwpuf7b.feishu.cn/docx/HYrZdLBMRorB0qxKqFFcQ075nWf)
-
-- Gemini:
-  - [Gemini API文档](https://ai.google.dev/docs)
-  - [Google AI Studio API keys](https://makersuite.google.com/app/apikey)
-  - [媲美GPT4，一键搭建谷歌 Gemini](https://mp.weixin.qq.com/s/0FSltuCkaYJ0EFBxFtSYfA)
-  - [GeminiProChat](https://github.com/babaohuang/GeminiProChat)
 
 
 ## 其他
