@@ -42,4 +42,6 @@
 
 npm run build
 
+
+rm -rf dist
 mv docs/.vuepress/dist dist

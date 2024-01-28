@@ -11,7 +11,7 @@ const path = require('path');
 
 
 module.exports = {
-    // base: '/blog/', // 如果部署到阿里云服务器需要添加这个
+    base: '/blog/', // 如果部署到阿里云服务器需要添加这个
     title: '一葦',
     description: '这是一苇的前端技术博客哦~',
     head,
