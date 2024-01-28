@@ -143,7 +143,7 @@ sudo nginx # 启动nginx服务
 ps -ef|grep nginx # 查看nginx进程
 sudo nginx -s stop # 停止nginx服务
 sudo nginx -s reload # 重启
-sudo nginx -t # 查看是否有语法错误
+sudo nginx -t # 查看是否有语法错误 / 查看nginx安装目录
 which nginx # 查看nginx安装目录
 
 :set nu  # 当vim nginx.conf 打开配置文件后可输入此命令显示行数

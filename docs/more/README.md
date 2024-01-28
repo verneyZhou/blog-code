@@ -29,6 +29,7 @@ permalink: false # 292799/
 - [Github Actions自动部署](./github-actions.html)
 - [Vercel部署笔记](./vercel-deploy.html)
 
+- [Vue+Node实现可视化部署工具](./node-deploy.html)
 
 ### 收藏
 
@@ -58,11 +59,14 @@ permalink: false # 292799/
 
 - [从零到亿系统性的建立前端构建知识体系✨（开篇）](https://juejin.cn/post/7145855619096903717)
 
+- [前端项目构建最佳实践](https://mp.weixin.qq.com/s/vvddrvPeRlzvBecSYj-Wzg)
+
 
 - Monorepo
   - [现代前端工程化-彻底搞懂基于 Monorepo 的 lerna 模块(从原理到实战)](https://mp.weixin.qq.com/s/uBxa24nbg9PXyTfO0TmzVg)
   - [Monorepo，大型前端项目管理模式实践](https://mp.weixin.qq.com/s/N0CZABDD0TKTmdljH3y74A)
   - [React Native工程Monorepo改造实践](https://mp.weixin.qq.com/s/g5wb_BL-oMPl_sxQAaVMEA)
+  - [为什么 pnpm+monorepo 是组件库项目的最佳实践](https://mp.weixin.qq.com/s/dxout7QY6hjzmbK14lvR6A)
 
 
 - Docker&Jekins
@@ -74,6 +78,8 @@ permalink: false # 292799/
   - [从零搭建docker+jenkins+node.js自动化部署环境](https://juejin.cn/post/6844903669381464071)
   - [Docker+Nginx+Jenkins实现前端自动化部署](https://juejin.cn/post/6869736425953165319)
   - [解析Node.js镜像原理，轻松构建高效CI/CD流程](https://juejin.cn/post/7270398955732926483)
+
+
 
 ## Web性能优化
 
@@ -112,6 +118,8 @@ permalink: false # 292799/
 
 - [一个前端非侵入式骨架屏自动生成方案](https://mp.weixin.qq.com/s/CBXN6udTy9MjpNecxEAVtQ)
 
+- [3.40秒到231.84毫秒，我用Performance面板分析性能瓶颈全流程](https://juejin.cn/post/7272632260179542050)
+
 
 
 ## React
@@ -121,6 +129,7 @@ permalink: false # 292799/
 - [「记录篇」我是如何一步步为公司搭建react项目脚手架的](https://juejin.cn/post/7235547967112806437)
 - [一篇文章带你理解 React 中最“臭名昭著”的 useMemo 和 useCallback](https://juejin.cn/post/7165338403465068552)
 - [用TypeScript编写React的最佳实践](https://mp.weixin.qq.com/s/XhwVwTw8ZXZdqY9cCJWsQg)
+- [2024 年 React 生态系统一览](https://mp.weixin.qq.com/s/-Qz5v4X3Nm8j3tjUILgwaQ)
 
 
 ## Node
@@ -205,7 +214,7 @@ permalink: false # 292799/
 
 - 在线代码编辑器：[我开源了一个能在浏览器上执行 npm 命令的在线代码编辑器](https://juejin.cn/post/7272869799960281151)、[Web Worker没有使用场景？那只是你没有用到而已](https://juejin.cn/post/7266737898669260835)
 
+- [前端组长应该如何管理前端团队](https://juejin.cn/post/7230026709482766373)
 
-
-
+- 构建 Node.js 云函数的 Serverless 框架: [Midway.js探索与实践](https://mp.weixin.qq.com/s/uyFMAG-avPoHdmSotn4J9A)
 

@@ -36,3 +36,6 @@ permalink: false # 23f87d/
 
 - [如何理解 CSS step 函数中的 jump-* 关键词？](https://mp.weixin.qq.com/s/PgY2BeEByJs8rHhKwVqbjw)
 
+- [2023年原创文章汇总（css相关）](https://mp.weixin.qq.com/s/sboule7fxBQ2qC7bwuJDvw)
+- [dom 获取不到？试试 CSS 动画监听元素渲染吧](https://mp.weixin.qq.com/s/KNIMdROilYYR6S1o7xze1g)
+

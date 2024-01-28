@@ -856,6 +856,31 @@ scp /home/user/*.test user@192.168.1.100:/home/user/ # 通配符匹配：将本�
 
 
 
+### Docker vs Jenkins
+
+- **Jenkins**
+> 它就像一个尽职尽责的管家，时刻替我们监控 git 仓库，当我们提交了新代码，需要让新代码发生作用，我们只需要在 Jenkins 上点击构建，它就会主动去 git 仓库拉取对应分支最新的代码，然后进行build打包，把打包好的文件放置到 nginx 的指定目录去，这样我们就能在浏览器看到最新的效果
+
+
+- **Docker**
+> docker 的中文意思是码头工人，它管理着码头的多个集装箱。docker 可以为每个服务提供一个容器(container)，容器包含服务所需的所有条件，服务运行其中，不同容器之间互不干扰。另外，docker 是根据镜像来创建容器的。
+
+
+它们二者可以分开使用，也可以合作起到更好的效果。jenkins 是构建服务并将服务推送到指定位置去的，这个服务本身也可以是个 docker 镜像。
+
+jenkins 本身就是一个服务，可以把它放进一个 docker 容器来运行，可以在[Dock Hub](https://hub.docker.com/search?q=jenkins)中搜索`jenkins`镜像，服务器上安装`jenkins`服务也可以通过docker镜像安装。
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 参考
