@@ -829,6 +829,33 @@ Array.prototype.flat = function() {
 
 // 使用
 [[2],[[2,3],[2]],3,4].flat() // [2, 2, 3, 2, 3, 4]
+
+
+// 数组拉平flat2: 不传参默认拉取所有，参数为拉平层级
+Array.prototype.flat2 = function() {
+    let limit = arguments[0] || 0;
+    let res = [];
+    let level = arguments[1] || 0;
+    for(let v of this) {
+        if (Array.isArray(v)) {
+            if (limit) {
+                if (level < limit) {
+                    res = res.concat(v.flat2(limit, level+1))
+                } else {
+                    res.push(v);
+                }
+            } else {
+                res = res.concat(v.flat2());
+            }
+        } else {
+            res.push(v);
+        }
+    }
+    return res;
+}
+
+var a = [1,[2,3],[4,[5,[6,7]]],[8]]
+console.log(a.flat2(), a.flat2(1), a.flat2(2))
 ```
 
 

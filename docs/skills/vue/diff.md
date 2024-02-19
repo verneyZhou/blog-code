@@ -1084,4 +1084,4 @@ Q: 平常v-for循环渲染的时候，为什么不建议用index作为循环项�
 
 <!-- 2021-10-04 -->
 
-<fix-link label="Back" href="/skills/"></fix-link>
+<fix-link label="Back" href="/skills/vue"></fix-link>

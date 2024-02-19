@@ -13,3 +13,9 @@ permalink: false
 - [面试题收集](./interview.html)
 - [面试题2022](./interview2022.html)
 - [2022面试记录](./interview-log2022.html)
+
+- [面试题2024](./interview2024.html)
+- [面试题2024-react篇](./interview-react.html)
+- [2024面试记录](./interview-log2024.html)
+
+

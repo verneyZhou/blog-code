@@ -822,4 +822,4 @@ btn.addEventListener('click', function() {
 <!-- 2021-07-10 -->
 
 
-<fix-link label="Back" href="/skills/"></fix-link>
+<fix-link label="Back" href="/skills/vue"></fix-link>

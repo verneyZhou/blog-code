@@ -1041,4 +1041,4 @@ compsCtx.keys().forEach(filename => {
 
 
 
-<fix-link label="Back" href="/skills/"></fix-link>
+<fix-link label="Back" href="/skills/vue"></fix-link>

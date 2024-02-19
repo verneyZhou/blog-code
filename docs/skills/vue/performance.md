@@ -205,4 +205,4 @@ npm install babel-plugin-transform-runtime --save-dev
 ## 参考
 - [关于 Vue 项目性能优化技巧分享](https://mp.weixin.qq.com/s/qAEHZtwxhV4IAub-j-2yqw)
 
-<fix-link label="Back" href="/skills/"></fix-link>
+<fix-link label="Back" href="/skills/vue"></fix-link>
