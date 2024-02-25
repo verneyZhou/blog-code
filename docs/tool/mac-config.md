@@ -27,8 +27,6 @@ permalink: false # 67ff26/
 
 - 笔记：有道云笔记、xmind
 - 网盘：百度云网盘
-- host代理：switchHost!
-- vpn：easy connect
 - 会议：Team Viewer、腾讯会议
 - 词典：网易有道云词典
 - photo shop
@@ -39,14 +37,17 @@ permalink: false # 67ff26/
 - 终端工具：[iTerm2](http://www.iterm2.com/)
 - 终端提示工具：[oh-my-zsh](https://ohmyz.sh)
 - api调试工具：postMan
-- 抓包工具：[Whistle](https://wproxy.org/whistle/)、[Charles](https://xclient.info/s/charles.html)
+- 抓包工具：[Charles](https://xclient.info/s/charles.html)、[Whistle](https://wproxy.org/whistle/)
+- host代理：switchHost!
+- vpn：easy connect
 - 代码编辑工具：[WebStorm](https://www.jetbrains.com/zh-cn/webstorm/)、[VSCode](https://code.visualstudio.com/)
-- 搭梯子：v2Ray
+- 搭梯子：v2Ray，快连VPN
 - 娱乐工具：网易云、qq音乐、B站、youtube...
 
 
 ### 工作涉及
 - 项目工具：shimo+jira(项目管理)、wiki(需求文档)
+- 文档管理：飞书，钉钉
 - UI 设计工具：[蓝湖](https://lanhuapp.com/)
 - 技术社区：[掘金](https://juejin.im/timeline)、极客时间
 

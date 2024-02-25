@@ -67,6 +67,12 @@ caffeinate   # 让电脑不就如休眠状态；恢复正常：ctrl + C
 killall WeChat  # 程序假死了强行退出没用时可用这个命令强退，此为强退weChat
 passwd  # 修改电脑密码
 banner -w 80 hello world  # 打印机械感十足的文字
+
+# 复制 abc-admin 项目到 work 目录下，同时自动过滤掉 abc-admin 目录下的 node_modules 目录
+rsync -av --exclude="abc-admin/node_modules" abc-admin work 
+
+# 使用 find 命令查找 abc-admin 文件夹下的所有的 node_modules 目录，并排除其内容
+find abc-admin -type d -name "node_modules" -exec rm -rf {} \;
 ```
 
 - iTerm

@@ -160,6 +160,8 @@ class MyComponent extends React.Component {
 ```
 
 
+
+
 - 为什么说React中的props是只读的？
 
 保证react的单向数据流的设计模式，使状态更可预测。
@@ -253,7 +255,7 @@ export default App;
 - **React Hooks在平时开发中需要注意的问题**
 
 
-1. 只在最顶层使用 Hook: 不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。
+1. `只在最顶层使用 Hook: 不要在循环，条件或嵌套函数中调用 Hook`， 确保总是在你的 React 函数的最顶层调用他们。
 
 2. 只在 React 函数中调用 Hook: 不要在普通的 JavaScript 函数中调用 Hook, 在 React 的函数组件中调用 Hook; 在自定义 Hook 中调用其他 Hook
 
@@ -317,7 +319,7 @@ useState 返回一个由两个值组成的数组：
 
 ### useEffect
 
-useEffect 钩子允许在功能组件中执行副作用。或者如果您将依赖关系数组作为第二个参数传递，那么每当其中一个依赖关系发生变化时，该函数就会被调用。
+`useEffect 钩子允许在功能组件中执行副作用`。或者如果您将依赖关系数组作为第二个参数传递，那么每当其中一个依赖关系发生变化时，该函数就会被调用。
 
 
 ``` js
@@ -372,7 +374,7 @@ function Welcome(props) {
 
 ### useLayoutEffect
 
-useLayoutEffect是React的一个Hook，它允许你`在浏览器执行绘制之前同步读取DOM布局并触发重渲染`。与useEffect相比，useLayoutEffect会在所有的DOM变更之后同步调用，因此它可以用来读取DOM布局。
+useLayoutEffect是React的一个Hook，它允许你`在浏览器执行绘制之前同步读取DOM布局`。与useEffect相比，useLayoutEffect会在所有的DOM变更之后同步调用，因此它可以用来读取DOM布局。
 
 > useLayoutEffect 可能会影响性能。尽可能使用 useEffect。
 
@@ -532,7 +534,7 @@ function App(props) {
 }
 ```
 
-`useRef` 是一个 React Hook，它能帮助引用一个不需要渲染的值。
+`useRef` 是一个 React Hook，它能帮助`引用一个不需要渲染的值`。
 1. 使用用 ref 引用一个值
 2. 通过 ref 操作 DOM
 3. 避免重复创建 ref 的内容
@@ -540,7 +542,7 @@ function App(props) {
 
 - useRef 返回一个具有单个 current 属性 的 ref 对象，并初始化为你提供的 初始值
 
-- 改变 ref 不会触发重新渲染。
+- `改变 ref 不会触发重新渲染。`
 
 使用ref:
 1. 可以在重新渲染之间 存储信息（普通对象存储的值每次渲染都会重置）。
@@ -720,6 +722,10 @@ React15 的 StackReconciler 方案由于递归不可中断问题，如果 Diff �
 
 
 
+### Redux 中异步的请求怎么处理
+
+借助redux的异步中间件进⾏异步处理。redux异步流中间件其实有很多，当下主流的异步中间件有两种redux-thunk、redux-saga。
+
 
 
 ### JSX
@@ -765,7 +771,7 @@ React.lazy是React中的一项新功能，用于实现组件的懒加载。懒�
 
 React.lazy的原理是基于新的React API中引入的Suspense的实现。在组件中使用React.lazy时，会返回一个懒加载的组件。这个组件并不是真正的组件，而是一个包含了组件加载的Promise对象的中介组件。当这个懒加载的组件被渲染时，React会检查这个组件是否已经被加载。如果已经加载，则直接渲染这个组件。如果还没有加载，就会等待Promise对象的resolve()方法被调用后再进行加载。
 
-> React.lazy函数接受一个函数作为参数，该函数返回一个动态导入的Promise对象。这要求React代码是基于ES6的，且支持动态import()。
+> `React.lazy函数接受一个函数作为参数，该函数返回一个动态导入的Promise对象`。这要求React代码是基于ES6的，且`支持动态import()`。
 
 > React.lazy实质上是React官方使用Suspense配合lazy实现的惰性加载组件功能，这个优化可以使应用整体体积变小，加载速度更快，用户可以更快地看到应用的内容。
 
@@ -797,13 +803,6 @@ Outlet 组件的作用是占位，它会在父路由组件中渲染当前激活�
 
 
 
-### Redux 中异步的请求怎么处理
-
-借助redux的异步中间件进⾏异步处理。redux异步流中间件其实有很多，当下主流的异步中间件有两种redux-thunk、redux-saga。
-
-
-
-
 ### 哪些方法会触发 react 重新渲染?
 
 - setState（）方法被调用: 执行 setState 会触发 render；但当 setState 传入 null 时，并不会触发 render。
@@ -813,12 +812,12 @@ Outlet 组件的作用是占位，它会在父路由组件中渲染当前激活�
 Q: 重新渲染 render 会做些什么?
 
 - 会对新旧 VNode 进行对比，也就是我们所说的Diff算法。
-- 对新旧两棵树进行一个深度优先遍历; 遍历差异对象，根据差异的类型，根据对应对规则更新VNode
+- `对新旧两棵树进行一个深度优先遍历`; 遍历差异对象，根据差异的类型，根据对应对规则更新VNode
 
 
-React 的处理 render 的基本思维模式是每次一有变动就会去重新渲染整个应用。
-
-React 将 render 函数返回的虚拟 DOM 树与老的进行比较，从而确定 DOM 要不要更新、怎么更新。当 DOM 树很大时，遍历两棵树进行各种比对还是相当耗性能的，特别是在顶层 setState 一个微小的修改，默认会去遍历整棵树。
+Reactv16以前的版本：
+1. React 的处理 render 的基本思维模式是每次一有变动就会去重新渲染整个应用。
+2. React 将 render 函数返回的虚拟 DOM 树与老的进行比较，从而确定 DOM 要不要更新、怎么更新。当 DOM 树很大时，遍历两棵树进行各种比对还是相当耗性能的，特别是在顶层 setState 一个微小的修改，默认会去遍历整棵树。
 
 
 
@@ -843,7 +842,7 @@ React 将 render 函数返回的虚拟 DOM 树与老的进行比较，从而确�
 
 ### 受控组件和非受控组件有什么区别？
 
-受控组件和非受控组件之间的区别在于它们如何管理和更新其状态。
+受控组件和非受控组件之间的区别在于`它们如何管理和更新其状态`。
 
 - 受控组件是状态由 React 控制的组件。组件接收其当前值并通过 props 更新它。
 ``` js
@@ -915,7 +914,7 @@ React 框架的 Virtual DOM diff 算法是针对 Virtual DOM 的更新过程进�
 2. 此外，React 17还移除了部分已废弃的API和生命周期方法，如`componentWillMount、componentWillReceiveProps和componentWillUpdate`等，使得React的API更加清晰和一致。
 
 - `React v18`：
-1. 在React 18中，主要关注的是`并发模式（Concurrent Mode）`的优化。并发模式允许React在更新过程中暂停和恢复，从而提高了应用的响应性和性能。为了支持并发模式，React 18对diff算法进行了进一步的优化。例如，它引入了新的调度器（Scheduler）和任务优先级（Task Priorities），使得React可以更加智能地管理组件的更新和渲染。
+1. 在React 18中，主要关注的是`并发模式（Concurrent Mode）`的优化。并发模式`允许React在更新过程中暂停和恢复`，从而提高了应用的响应性和性能。为了支持并发模式，React 18对diff算法进行了进一步的优化。例如，它引入了新的调度器（Scheduler）和任务优先级（Task Priorities），使得React可以更加智能地管理组件的更新和渲染。
 2. 此外，React 18还引入了新的API，如startTransition和useTransition，使得开发者可以更方便地控制组件的更新优先级和过渡效果。
 
 
@@ -991,3 +990,51 @@ const StyledDiv = styled.div`
 
 
 5. Tailwind CSS: 流行的实用型 CSS 解决方案。它提供了预定义的 CSS 类，这使得开发人员更高效，并简化了 React 应用的设计系统。
+
+
+
+### react的setState和useState有什么异同？
+
+1. 用法：
+
+- setState：这是`类组件中用于更新状态的方法`。通常，在类组件的构造函数中初始化状态，然后可以使用this.setState()方法来更新状态。当状态更新时，组件会重新渲染
+
+`this.setState({name: 'xxx'}, callback)`; callback在状态更改, 视图更新完毕后执行
+
+- useState：这是`函数组件中用于管理状态的Hook`。它接受一个初始状态作为参数，并返回一个包含当前状态和一个更新状态函数的数组。你可以使用这个数组来读取和更新状态。每次状态更新时，组件都会重新渲染
+
+`[name, setName] = useState('')`
+
+2. 同步与异步
+
+setState和 useState 只在`合成事件`如onClick等和钩子函数包括`componentDidMount、useEffect`等中是“异步”的，在`原生事件`和 setTimeout、Promise.resolve().then 中都是同步的。
+
+
+这里的“异步”并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，只是`合成事件和钩子函数的调用顺序在更新之前`，导致在合成事件和钩子函数中没法立马拿到更新后的值，形式了所谓的“异步”。
+
+
+`批量更新优化`也是建立在“异步”（合成事件、钩子函数）之上的，在原生事件和setTimeout、Promise.resolve().then 中不会批量更新；在“异步”中如果对同一个值进行多次修改，批量更新策略会对其进行覆盖，取最后一次的执行，结果只会产生一次render。
+
+> 假如在一个合成事件中，循环调用了setState方法n次，如果 React 没有优化，当前组件就要被渲染n次，这对性能来说是很大的浪费.
+
+
+**但要注意的是：**
+
+在React18中，this.setState的操作都是异步的，不论在哪执行（例如：合成事件、周期函数、定时器）目的：为了实现状态的批处理（统一处理）
+这样有效的减少更新次数，降低消耗性能，代码逻辑顺序更加清晰
+> 原理：利用了更新队列机制
+
+在React18之前，只在React合成事件/周期函数期间进行批量更新；默认情况下，不会对promise、setTimeout、原生事件进行批处理操作
+
+
+
+
+### ReactDOM.render和ReactDOM.createRoot的区别？
+
+
+`ReactDOM.render`：这是React中最常用的渲染方法。当你想要显式渲染一个React组件到DOM中时，你会使用这个方法。它会直接渲染给定的React元素到指定的容器DOM元素中，并替换容器内的所有内容。这种方式是同步的，意味着它会阻塞其他代码的执行直到渲染完成。
+
+`ReactDOM.createRoot`：这是React 18及更高版本中引入的新方法，`用于启用新的并发模式和异步渲染`。它`创建了一个可以异步渲染的根容器，并返回一个具有render方法的对象`。这个render方法可以用来渲染React组件，但与ReactDOM.render不同，它是异步的，不会阻塞其他代码的执行。
+
+> createRoot可以在不阻塞主线程的情况下进行渲染工作。这有助于提高应用的响应性和性能，特别是在处理大量数据或复杂的UI时。
+
