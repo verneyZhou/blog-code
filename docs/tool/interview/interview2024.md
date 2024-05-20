@@ -17,12 +17,76 @@ tags:
 ## HTML/CSS部分
 
 
+
+### HTML5新增标签？
+
+`<article>, <aside>, <audio>, <canvas>, <datalist>, <details>, <figure>, <footer>, <header>, <mark>, <nav>, <source>, <video>`
+
+
+
+### CSS3新属性？
+
+text-shadow, box-shadow, border-raduis, transform, transition, animation, RGBA和透明度，媒体查询
+
+
+- css可继承属性：`font-family、font-size、font-style、color、line-height、text-align、text-indent`
+- css不可继承属性：`display、margin、border、padding、background、height、min-height、max-height、width、min-width、max-width、overflow`
+
+
+
+### 伪类选择器有哪些？
+
+- 伪类：css选择器，向已经存在的元素的某些特殊状态添加一些样式；
+
+`:hover, :active, :focus, :visited, :link, :disabeld, :nth-child()`
+
+
+- 伪元素：伪元素是用于在元素之前或之后插入额外的虚拟元素，并为这些虚拟元素应用样式；它们用于创建文档中不存在的元素或者生成特殊的效果
+
+`::before, ::after, ::selection`
+
+
+
+
 ### css盒模型
 
-默认标准盒模型（content-box）：width = content
+默认标准盒模型（content-box）：width = content；`box-sizing:content-box`;
 
-ie盒模型（border-box）: width = content + padding + border
+ie盒模型（border-box）: width = content + padding + border; `box-sizing: border-box;`
 
+
+
+### CSS 实现文本的单行和多行溢出省略效果？
+
+``` css
+.ellipse {
+    overflow: hidden; /*文字长度超出限定宽度，则隐藏超出的内容*/
+    text-overflow: ellipsis; /* 规定当文本溢出时，显示省略符号来代表被修剪的文本 */
+    white-space: nowrap; /* 设置文字在一行显示，不能换行 */
+}
+
+.ellipse-2 {
+    display: -webkit-box; /* 将对象作为弹性伸缩盒子模型显示  */
+    -webkit-line-clamp: 2; /* 用来限制在一个块元素显示的文本的行数, 2 表示最多显示 2 行。 为了实现该效果，它需要组合其他的WebKit属性 */
+    -webkit-box-orient: vertical; /* 设置或检索伸缩盒对象的子元素的排列方式 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ellipse-2 {
+  position: relative;
+  max-height: 40px;
+  overflow: hidden;
+  line-height: 20px;
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0 20px 0 10px;
+    content: '...';
+  }
+}
+```
 
 
 ### BFC
@@ -34,15 +98,56 @@ BFC是浏览器中的一个独立渲染区域，拥有一套渲染规则，决�
 哪些元素会产生BFC：
 - 根元素。
 - float属性不为none。
-- position为absolute或fixed。
-- display为inline-block, table-cell, table-caption, flex, inline-flex。
-- overflow为hidden。
+- `position为absolute或fixed`。
+- display为inline-block, table-cell, table-caption, `flex`, inline-flex。
+- `overflow为hidden`。
 
 
 BFC有以下应用场景：
-- `清除盒子垂直方向上外边距合并`：给其中一个盒子再包裹一个盒子父元素，并触发其BFC功能（例如添加overflow:hidden;）
-- `解决父元素高度塌陷的问题`：当子元素设置成浮动元素时，会产生父元素高度塌陷的问题。可以给父元素设置overflow:hidden;来产生BFC，从而解决这个问题。
+- 防止margin重叠：`清除盒子垂直方向上外边距合并`：给其中一个盒子再包裹一个盒子父元素，并触发其BFC功能（例如添加overflow:hidden;）
+- 清除浮动：`解决父元素高度塌陷的问题`：当子元素设置成浮动元素时，会产生父元素高度塌陷的问题。可以给父元素设置overflow:hidden;来产生BFC，从而解决这个问题。
 
+
+
+### 什么是float浮动？
+
+float属性的使用可以使元素脱离标准流，浮动在其他元素之上，不再占用原本属于该元素的空间，从而导致后面的元素上移并占用原本属于该元素的空间。
+
+准确的说，float浮动属于**半脱离文档流**：`浮动的块虽然脱离的正常的文档流，但是还会占有正常文档流的文本空间`，所以会出现文字环绕的情况
+
+float和absolute都会使元素脱离文档流，但方式有所不同。float是半脱离文档流，元素虽然脱离了正常的文档流，但仍然会影响布局。而absolute则是完全脱离文档流，元素的位置和尺寸不再受文档流的影响。
+
+内联元素使用了float属性后会变成块级元素，可以设置元素的高度和宽度
+
+- **怎么清除浮动？**
+> 清除浮动主要是为了解决`父元素因为子级元素浮动引起的内部高度为0`的问题
+1. 给父元素添加空的子元素，添加`clear: both`;
+2. 给父盒子添加 `overflow: hidden`触发`BFC`;
+> 独立的块级上下文可以包裹浮动流，`全部浮动子元素也不会引起容器高度塌陷`，就是说包含块会把浮动元素的高度也计算在内，所以就不用清除浮动来撑起包含块的高度。
+3. 给父元素添加`::after`伪元素，设置`clear: both`;
+4. 给父元素设置高度
+
+
+
+
+### 什么是flex布局？
+
+Flexbox布局也叫Flex布局，`弹性盒子布局`。它的目标是提供一个更有效地布局、对齐方式。
+
+采用 Flex 布局的元素，称为 `Flex 容器`，简称"容器"。它的所有子元素就是容器成员，称为 `Flex 项目`，简称"项目"。
+
+容器默认存在两个轴：水平轴（main axis）和垂直轴（cross axis），项目默认沿主轴排列（水平轴）
+
+- justify-content：元素在主轴的对齐方式: `flex-start | flex-end | center | space-between | space-around`
+- align-item：元素在交叉轴上的对齐方式: `flex-start | flex-end | center | baseline | stretch`
+
+
+### flex vs grid
+
+1. Flex布局是`一维布局`模型，主要在`一个方向上（行或列）对元素进行排列和对齐`。它更适合于较小的布局范围，如单个组件或页面上的特定区域。
+2. Grid布局是`二维布局`模型，`可以同时处理行和列`，更适合于更复杂的布局，如整个页面的布局或大型区域的布局。
+3. 在Flex布局中，项目通常是沿着`主轴排列`的，而在Grid布局中，项目是在`行和列的交叉点上进行定位`的。
+4. Flex布局更侧重于`项目在容器中的对齐和分布`，而Grid布局则更侧重于`定义行和列的结构以及项目在这些行和列中的位置`。
 
 
 ### flex:1
@@ -59,9 +164,27 @@ BFC有以下应用场景：
 
 ### flex-direction: column; align-item: center; 是怎么布局
 
-- `flex-direction: column`规定子元素排列方向是从上往下垂直排列（主轴是垂直方向）
+- `flex-direction: column`设置flex主轴方向：规定子元素排列方向是从上往下垂直排列（主轴是垂直方向）
 
-- `align-item: center`: 表示子元素水平方向（交叉轴，因为主轴是垂直方向）居中对齐
+- `align-item: center`: 设置交叉轴对齐方式：表示子元素水平方向（交叉轴，因为主轴是垂直方向）居中对齐
+
+
+
+
+### 使用 CSS 预处理的优缺点分别是什么？
+
+css预处理器：less/scss/sass/...
+
+- **优点：**
+1. 提高 CSS 可维护性。
+2. 易于编写`嵌套选择器`。
+3. 引入变量，增添主题功能。可以在不同的项目中共享主题文件。
+4. 通过混合（Mixins）生成重复的 CSS。
+5. 将代码分割成多个文件。不进行预处理的 CSS，虽然也可以分割成多个文件，但需要建立多个 HTTP 请求加载这些文件。
+
+- **缺点：**
+1. 需要预处理工具。
+2. 重新编译的时间可能会很慢。
 
 
 
@@ -79,16 +202,96 @@ BFC有以下应用场景：
 `v-if`通过增删dom节点实现显隐，`v-show`通过设置`display`属性实现dom显隐；两个都会触发回流和重绘；`visibility`属性不会触发重排，会触发重绘。
 
 
-会触发回流的属性：`offsetTop、offsetLeft、 offsetWidth、offsetHeight、scrollTop、scrollLeft、scrollWidth、scrollHeight、clientTop、clientLeft、clientWidth、clientHeight`, 需要通过即时计算得到。因此浏览器为了获取这些值，也会进行回流; 除此还包括getComputedStyle方法，原理是一样的.
+**会触发回流的属性**：`offsetTop、offsetLeft、 offsetWidth、offsetHeight、scrollTop、scrollLeft、scrollWidth、scrollHeight、clientTop、clientLeft、clientWidth、clientHeight`, 需要通过即时计算得到。因此浏览器为了获取这些值，也会进行回流; 除此还包括`getComputedStyle`方法，原理是一样的.
+
+1. 全局范围：就是从根节点html开始对整个渲染树进行重新布局，例如当我们改变了窗口尺寸或方向或者是修改了根元素的尺寸或者字体大小等。
+2. 局部范围：对渲染树的某部分或某一个渲染对象进行重新布局。
 
 
 
-触发重绘：颜色改变，透明度改变，元素的border-radius、visibility、box-shadow等属性发生变化, 不改变大小位置的改变
+**触发重绘**：颜色改变，透明度改变，元素的border-radius、visibility、box-shadow等属性发生变化, 不改变大小位置的改变
 
 `transform、opacity、filters`这些动画不会引起回流重绘
+> 改变 transform 或 opacity 不会触发浏览器重新布局（reflow）或重绘（repaint），只会触发`复合（compositions）`。而改变绝对定位会触发重新布局，进而触发重绘和复合。transform 使浏览器为元素创建一个 `GPU` 图层，但改变绝对定位会使用到 CPU。因此 translate() 更高效，可以缩短平滑动画的绘制时间。
 
 
-避免不必要的回流和重绘: `避免频繁操作样式、避免使用table布局、避免频繁操作DOM、尽量使用CSS3动画代替JS动画`等。
+
+- **如何避免不必要的回流和重绘？**
+
+1. 减少DOM操作：减少DOM访问次数，缓存DOM样式信息；用事件委托；`querySelectorAll`替换`getElementByXX`
+    - `querySelectorAll()`：获取**静态集合**，通过函数获取元素之后，元素之后的改变并不会影响之前获取后存储到的变量。也就是获取到元素之后就和html中的这个元素没有关系了
+    - `getElementByXX()`：获取**动态集合**，通过函数获取元素之后，元素之后的改变还是会动态添加到已经获取的这个元素中。换句话说，通过这个方法获取到元素存储到变量的时候，以后每一次在Javascript函数中使用这个变量的时候都会再去访问一下这个变量对应的html元素。
+
+2. 减少重排：`虚拟dom、避免内联样式、不要使用table布局、visibility:hidden替换display:none、防抖节流、分离读写操作减少重排、缓存布局信息`
+    - 避免设置大量的style内联属性，因为通过设置style属性改变结点样式的话，每一次设置都会触发一次reflow，所以最好是使用class属性。
+    - 不要使用table布局，因为table中某个元素一旦触发了reflow，那么整个table的元素都会触发reflow。
+
+3. css及动画优化：样式集中改变、开启css3动画硬件加速，把渲染计算交给GPU
+    - 能用transform做的就不要用其他的，因为transform可以开启硬件加速，而硬件加速可以规避重排。直接跳过重排、重绘，走合成进程
+
+
+
+
+### 合成（compositions）
+
+> 更改了一个既不要布局也不要绘制的属性，那么渲染引擎会跳过布局和绘制，直接执行后续的合成操作，这个过程就叫合成。
+
+**定义**：合成是一种将页面的各个部分分离成层（Layer Tree），分别将它们栅格化，然后在称为“合成线程”的中组合为页面的技术。
+
+**触发时机和影响范围**：在GUI`渲染线程后执行`，将GUI渲染线程生成的`绘制列表转换为位图`,然后发送绘制图块命令 DrawQuad 给浏览器进程，浏览器进程根据 DrawQuad 消息生成页面，将页面显示到显示器上
+
+比如使用CSS的transform来实现动画效果，避免了回流跟重绘，直接`在非主线程中执行合成动画操作`。显然这样子的效率更高，毕竟这个是在非主线程上合成的，没有占用主线程资源，另外也避开了布局和绘制两个子阶段，所以相对于重绘和重排，合成能大大提升绘制效率。
+
+
+1. 合成层的位图，会交由 `GPU` 合成，比 CPU 处理要快
+2. 当需要 repaint 时，只需要 repaint 本身，不会影响到其他的层
+3. 对于 transform 和 opacity 效果，不会触发 layout 和 paint
+
+`transform, opacity, filter`
+
+**使用：**
+1. 将元素的`will-change` 设置为 `opacity、transform、top、left、bottom、right`, 这样子渲染引擎会为其单独实现一个图层，当这些变换发生时，仅仅只是利用合成线程去处理这些变换，而不牵扯到主线程，大大提高渲染效率。
+2. 对于不支持will-change 属性的浏览器，使用一个3D transform属性来强制提升为合成`transform: translateZ(0)`;
+
+
+- **GPU加速原因？**
+> `直接跳过布局和绘制流程，直接交给合成线程处理`、`没有占用主线程的资源`、`使用GPU进行加速生成，而GPU 是擅长处理位图数据的`。
+
+
+
+### 页面渲染流程？
+
+1. `解析html/css`: 解析HTML,生成HTMLDOM树；同时解析css，生成CSSDOM树；
+2. `构建渲染树`：在DOM树和CSSOM树都构建完成后，浏览器会将它们合并成一个渲染树；
+3. `布局`：在渲染树构建完成后，浏览器会开始布局过程，生成Layout Tree。这个过程主要是计算每个元素在屏幕上的确切位置和大小。这通常包括确定元素的盒模型（即元素的边距、边框、填充和内容区域的大小和位置）以及元素之间的相对位置等。
+4. `绘制`：最后，浏览器会根据计算出的布局信息，将每个元素绘制到屏幕上。这个过程通常包括填充元素的背景、边框和颜色等，并显示文本和图像等内容。渲染绘制(Paint)。根据计算好的绘制列表信息绘制整个页面，并将其提交到合成线程。
+5. `合成`：浏览器会将所有层合并成一个图层，然后将这个图层提交给GPU进行`光栅化`。光栅化的结果就是一块一块的`位图`，这些位图会被合成到屏幕上，最终显示出完整的页面。
+
+总结：`GUI渲染线程 => 合成线程 => 浏览器进程`
+
+
+`css加载不会阻塞DOM树的解析，css加载会阻塞DOM树的渲染，css加载会阻塞后面js语句的执行。`
+
+
+
+### DOMContentLoaded在什么时候触发？
+
+DOMContentLoaded事件在文档对象模型（DOM）完全加载和解析完成后触发，无需等待样式表、图像和子框架的完全加载。
+
+换句话说，`当HTML解析完毕，DOM树构建完毕，且所有延迟脚本（<script defer src="…"> 和 <script type="module">）下载和执行完毕后，但图片和样式表等其他资源还没有加载完成时`，就会触发DOMContentLoaded事件。
+
+这个事件与window.onload事件相似，但有一个主要区别：`window.onload事件必须等到整个页面及所有依赖资源如样式表和图片都已完成加载后才会触发`。因此，如果页面的图片很多，从用户访问到window.onload触发可能需要较长的时间，这会影响用户的体验。
+
+DOMContentLoaded事件在DOM树构建完成后就会触发，因此可以更早地执行脚本和绑定事件到元素，而无需等待所有图片等资源加载完成。
+
+
+> js会阻塞DOM解析，`DOMContentLoaded是在DOM解析完成后才触发`。因此，当css后面有js的时候，css会阻塞js运行，而js会阻塞DOM解析，从而导致DOMContentLoaded必须等到css以及css后面的js执行完成后，才会触发。而当css后面没有js的时候，由于css不阻塞DOM的解析，因此DOMContentLoaded不会等待css的加载。
+
+
+
+`html解析+DOM构建 => defer script => DOMContentLoaded => css/img加载 => onload`
+
+
 
 
 ### meta 标签
@@ -132,12 +335,39 @@ meta: `<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requ
 
 
 
+### visibility: hidden 与 opacity: 0 有什么区别
+
+1. visibility:hidden 会被子元素继承，可以通过设置子元素visibility:visible 使子元素显示出来; opacity: 0 也会被子元素继承，但是不能通过设置子元素opacity: 0使其重新显示; 
+2. visibility:hidden 元素上绑定的事件也无法触发；opacity: 0元素上面绑定的事件是可以触发的。
+
+
+
+### 说说你知道的移动端适配方式?
+
+- 自适应：根据不同的设备屏幕大小来自动调整尺寸、大小
+- 响应式：会随着屏幕的实时变动而自动调整，是一种更强的自适应
+
+**当前流行的几种适配方案**
+
+1. 百分比设置（不推荐）：相对的可能是不同参照物，很难统一
+2. rem单位+动态html的font-size
+    - 通过媒体查询来设置不同尺寸屏幕下 html 的 font-size
+    - 编写js代码：通过监听屏幕尺寸的变化来动态修改 html 元素的 font-size 大小
+    - lib-flexible 库： lib-flexible 是淘宝团队出品的一个移动端自适应解决方案，通过`动态计算 viewport 设置 font-size` 实现不同屏幕宽度下的 UI 自适应缩放。
+
+3. vw单位（推荐）: 100vw 相当于整个视口的宽度 innerWidth，1vw 相当于视口宽度的 1%
+4. flex的弹性布局
+5. 媒体查询`@media`
+
+
+
 
 ### 移动端rem、px 转换逻辑？
 
 rem是指根元素(root element html) 的字体大小
 
 rootFontSize = screenWidth * DPR / baseValue；
+> `根元素 html 的文字大小 = 视口宽度/分成的份数`(一般为10份，方便计算)
 
 1rem等于75px,以width为750px的设计稿为标准，当width为750px时，根元素font-size为37.5px （375 * 1 / 10）
 
@@ -150,6 +380,16 @@ rootFontSize = screenWidth * DPR / baseValue；
 - pt是长度单位，印刷行业会用到，表示绝对长度；
 
 - px是像素单位，是屏幕上显示数据的最基本的点，表示相对大小。不同分辨率下相同长度的px元素显示会不一样
+
+- `设备像素比DPR = 物理像素 / 设备独立像素（css像素）`
+
+`物理像素`（也叫设备像素）是显示器（如手机屏幕）上最小的物理显示单元。物理像素的数量是固定的，且任何设备上1物理像素的大小不会改变，但不同设备上的物理像素大小可能不同。
+
+`设备独立像素`（Device Independent Pixels，简称DIP或DP）则是一种`逻辑单位`，它主要用于程序设计和开发。设备独立像素可以看作是计算机坐标系统中的一个点，这个点代表一个可以由程序使用的虚拟像素（如CSS像素）。
+
+
+
+
 
 
 
@@ -175,39 +415,8 @@ SVG和Canvas都是用于在Web页面上绘制图形的技术
 
 - PNG格式是一种`无损压缩格式`，它支持透明度，可创建带有透明背景的图像, PNG图像的优点是图像质量不会受到损失，但文件大小相对较大，不如JPG和WebP压缩得那么好
 
-- WebP格式是一种新的图像格式，由Google开发。它支持有损和无损压缩，具有更高的压缩比，同时保留较好的图像质量。WebP图像支持透明度，可用于制作带有透明背景的图像，还支持动画。然而，WebP尚未被所有设备和软件广泛支持，但在现代浏览器中得到了很好的支持。图片压缩内存较小
+- WebP格式是一种新的图像格式，由Google开发。它支持有损和无损压缩，`具有更高的压缩比，同时保留较好的图像质量`。WebP图像支持透明度，可用于制作带有透明背景的图像，还支持动画。然而，WebP尚未被所有设备和软件广泛支持，但在现代浏览器中得到了很好的支持。图片压缩内存较小
 
-
-
-### 伪类选择器有哪些？
-
-`:hover, :active, :focus, :visited, :link, :disabeld, :nth-child()`
-
-伪元素：`::before, ::after, ::selection`
-
-
-
-### 页面渲染流程？
-
-1. `解析html/css`: 解析HTML,生成HTMLDOM树；同时解析css，生成CSSDOM树；
-2. `构建渲染树`：在DOM树和CSSOM树都构建完成后，浏览器会将它们合并成一个渲染树；
-3. `布局`：在渲染树构建完成后，浏览器会开始布局过程。这个过程主要是计算每个元素在屏幕上的确切位置和大小。这通常包括确定元素的盒模型（即元素的边距、边框、填充和内容区域的大小和位置）以及元素之间的相对位置等。
-4. `绘制`：最后，浏览器会根据计算出的布局信息，将每个元素绘制到屏幕上。这个过程通常包括填充元素的背景、边框和颜色等，并显示文本和图像等内容。
-
-
-css加载不会阻塞DOM树的解析，css加载会阻塞DOM树的渲染，css加载会阻塞后面js语句的执行。
-
-
-### DOMContentLoaded在什么时候触发？
-
-DOMContentLoaded事件在文档对象模型`（DOM）完全加载和解析完成后触发，无需等待样式表、图像和子框架的完全加载`。换句话说，当HTML解析完毕，DOM树构建完毕，但图片等其他资源还没有加载完成时，就会触发DOMContentLoaded事件。
-
-这个事件与window.onload事件相似，但有一个主要区别：`window.onload事件必须等到整个页面及所有依赖资源如样式表和图片都已完成加载后才会触发`。因此，如果页面的图片很多，从用户访问到window.onload触发可能需要较长的时间，这会影响用户的体验。
-
-DOMContentLoaded事件在DOM树构建完成后就会触发，因此可以更早地执行脚本和绑定事件到元素，而无需等待所有图片等资源加载完成。
-
-
-> js会阻塞DOM解析，DOMContentLoaded是在DOM解析完成后才触发。因此，当css后面有js的时候，css会阻塞js运行，而js会阻塞DOM解析，从而导致DOMContentLoaded必须等到css以及css后面的js执行完成后，才会触发。而当css后面没有js的时候，由于css不阻塞DOM的解析，因此DOMContentLoaded不会等待css的加载。
 
 
 
@@ -218,17 +427,70 @@ DOMContentLoaded事件在DOM树构建完成后就会触发，因此可以更早�
 
 
 
+
+### 基本类型和引用类型
+
+基本类型就包括`Number、String、Boolean、null、undefined、Symbol、BigInt`这几种，剩下的（`Array、Regex、Object、Function`等等）都是引用类型。
+
+基本类型的值是直接在栈中保存它的值；引用类型的值是保存在堆空间中的，它的引用地址保存在栈中；
+
+
+`let string = 'abc'; string2 = 'dcba'`
+> 这一句，计算机在执行这个语句时，并不是简单的把栈空间中叫做`string2`的内存块中存储的值修改为dcba，而是会重新申请一块内存块并命名为string2，再将dcba存入这个内存块；这种现象只有在字符串才会发生，因为存储在栈中的数据大小都是固定的，数字等其他基本类型的重新赋值之后在内存中所占的大小都是一样的，所以不需要重新申请空间，直接修改原有的值就可以。而对于字符串，比如上面的例子，它的长度比之前增加了1，因此原本存储abc的空间是无法存储dcba的，因此编译器在处理字符串的重新赋值时是统一重新申请栈空间。这就是`字符串的不可变性`（字符串的值是无法被修改的）。
+
+
+
+
+### js数据类型判断
+
+
+- `typeof`: `undefined、object、boolean、number、string、function`, 常用于检查基本数据类型
+
+- `Object.prototype.toString`: 常用于检查引用数据类型
+``` js
+// 以下是11种：
+var number = 1;          // [object Number]
+var string = '123';      // [object String]
+var boolean = true;      // [object Boolean]
+var und = undefined;     // [object Undefined]
+var nul = null;          // [object Null]
+var obj = {a: 1}         // [object Object]
+var array = [1, 2, 3];   // [object Array]
+var date = new Date();   // [object Date]
+var error = new Error(); // [object Error]
+var reg = /a/g;          // [object RegExp]
+var func = function a(){}; // [object Function]
+function checkType() {
+    for (var i = 0; i < arguments.length; i++) {
+        console.log(Object.prototype.toString.call(arguments[i]))
+    }
+}
+checkType(number, string, boolean, und, nul, obj, array, date, error, reg, func)
+```
+
+
+### js浮点数运算不精确 如何解决? 
+
+JavaScript中的浮点数运算不精确问题主要源于`计算机内部使用二进制表示浮点数，而某些十进制小数无法精确地用二进制小数来表示`。这会导致在进行浮点数运算时，结果可能会有微小的精度损失。
+
+1. 使用toFixed()或toPrecision()方法格式化输出：`num.toFixed(2); num.toPrecision(2)`
+2. 使用第三方库：`decimal.js`
+
+
+
+
+
 ### 原型
 
 
 - **什么是原型？**
 
-> 我们创建的每一个构造函数都会有一个 `prototype` 属性，这个属性指向一个对象，这个对象包含该构造函数创建的所有实例能够共享的属性和方法；这个对象就是原型，也叫做原型对象。
+> 我们创建的每一个构造函数都会有一个 `prototype` 属性，这个属性指向一个对象，这个对象`包含该构造函数创建的所有实例能够共享的属性和方法`；这个对象就是原型，也叫做原型对象。
 
 
 - **什么是原型链？**
 
-> js的每个对象都会从它的原型对象那里继承一些属性，而原型对象也会有自己的原型；这样每个对象沿着它的原型一层层往上面查找形成的链式结构，就称为原型链，一般原型链找到最顶层`Object.prototype`就停止查找了。js对象间就是通过原型链产生关联, 实现继承。
+> js的每个对象都会从它的原型对象那里继承一些属性，而原型对象也会有自己的原型；这样`每个对象沿着它的原型一层层往上面查找形成的链式结构`，就称为原型链，一般原型链找到最顶层`Object.prototype`就停止查找了。js对象间就是通过原型链产生关联, 实现继承。
 
 `__proto__`查找: person ===> Person.prototype ===> Object.prototype ===> null
 
@@ -256,7 +518,7 @@ Chrome：每打开一个Tab页就会产生一个进程。
 **渲染进程：页面的渲染，JS的执行，事件的循环，都在渲染进程内执行。**
 1. GPU的渲染线程：负责渲染浏览器界面，解析HTML, 布局和绘制；与JS的执行线程互斥，GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行
 2. **JS引擎线程**：负责处理js脚本（v8引擎）, 浏览器同时只能有一个JS引擎线程在运行JS程序，所以js是单线程运行的。
-    - `defer`: 要等到整个页面在内存中正常渲染结束（DOM 结构完全生成，以及其他脚本执行完成），才会执行；
+    - `defer`: 要等到整个页面在内存中正常渲染结束（DOM 结构完全生成，以及其他脚本执行完成），`在DOMContentLoaded事件之前执行`；
     - `async`: js加载时不阻塞渲染，一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染；
 3. 事件触发线程：属于浏览器而不是JS引擎，用来控制事件循环，并且管理着一个事件队列(task queue)
 4. 定时器触发线程：setInterval与setTimeout
@@ -291,6 +553,9 @@ Chrome：每打开一个Tab页就会产生一个进程。
 
 `microtasks`: process.nextTick（node独有）、Promises、Object.observe(废弃)、MutationObserver
 
+- `requestAnimationFrame`回调的执行与task和microtask无关，而是与浏览器是否渲染相关联的。`它是在浏览器渲染前，在微任务执行后执行`。
+- requestAnimationFrame会在每次屏幕刷新的时候被调用，而`requestIdleCallback`则会在每次屏幕刷新时，判断当前帧是否还有多余的时间，如果有，则会调用requestAnimationFrame的回调函数; requestIdleCallback中的回调函数仅会在`每次屏幕刷新并且有空闲时间时才会被调用`。
+
 
 ### node.js的运行机制
 
@@ -314,7 +579,7 @@ node中的Event Loop跟浏览器中执行流程大致类似，也是`同步任�
 ### js执行流程
 
 
-js执行主要分为分析（预编译）和执行两个阶段。
+js执行主要分为`分析（预编译）`和`执行`两个阶段。
 
 
 **作用域链**
@@ -335,6 +600,23 @@ js执行主要分为分析（预编译）和执行两个阶段。
 
 
 
+### 变量提升（hoisted）
+
+1. 在js的`分析`阶段，会进行`上下文初始化：创建作用域链、创建变量对象、创建this指向`；在`创建对象`的时候会首先进行`函数声明`，并将函数名指向函数在内存中的地址；之后便进行`变量声明`，赋值为undefined;
+2. 等到上下文进行`执行`阶段再对已经声明的变量进行赋值，这就是js中出现变量提升和函数提升原因。
+
+
+- **暂时性死区（TDZ）**: let声明的变量在被声明之前不能被访问。
+
+
+**作用域：**
+
+1. let、const可以形成块级作用域，var不会形成块级作用域: {} （es6新增）; 函数全局、函数、块级作用域都会形成
+2. 在全局作用域中，用 let 和 const 声明的全局变量没有在全局对象中，只是一个`块级作用域（Script）`中。
+
+
+
+
 
 
 ### 什么是闭包？
@@ -343,7 +625,7 @@ js执行主要分为分析（预编译）和执行两个阶段。
 
 1. 在代码中引用了自由变量
 2. **自由变量的上下文已经销毁，但还是能引用它**
-> 这是因为当在一个函数上下文中查找变量时，会沿着**作用域链**网上查找；当函数引用自由变量时，即使这个自由变量的上下文被销毁了，但是js依然会让这个上下文的AO活在内存中；函数依然可以通过它的作用域链找到它，正是因为JS做到了这一点，从而实现了闭包这个概念。
+> 这是因为当在一个函数上下文中查找变量时，会沿着**作用域链**往上查找；当函数引用自由变量时，即使这个自由变量的上下文被销毁了，但是js依然会让这个上下文的AO活在内存中；函数依然可以通过它的作用域链找到它，正是因为JS做到了这一点，从而实现了闭包这个概念。
 
 
 
@@ -353,11 +635,11 @@ js执行主要分为分析（预编译）和执行两个阶段。
 
 
 应用场景：
-1. 封装私有变量：闭包可以用来创建私有变量和方法，这些变量和方法对外部是不可见的，只能在闭包内部访问和修改。
-2. 模块化开发：闭包可以用于模块化开发，通过创建私有作用域，可以防止变量污染和命名冲突。
-3. 函数柯里化：闭包可以用于实现函数的柯里化（Currying），即`将一个多参数的函数转换为一系列单参数函数`的过程。
+1. `封装私有变量`：闭包可以用来创建私有变量和方法，这些变量和方法对外部是不可见的，只能在闭包内部访问和修改。
+2. `模块化开发`：闭包可以用于模块化开发，通过创建私有作用域，可以防止变量污染和命名冲突。
+3. `函数柯里化`：闭包可以用于实现函数的柯里化（Currying），即`将一个多参数的函数转换为一系列单参数函数`的过程。
 4. 异步编程：`闭包可以用于处理异步编程中的回调函数，可以捕获和保存回调函数的上下文`，使其在异步执行时仍能访问所需的变量。
-5. 函数记忆：闭包可以用于实现函数记忆（Memoization），即缓存函数的计算结果，避免重复计算，提高性能。
+5. `函数记忆`：闭包可以用于实现函数记忆（Memoization），即缓存函数的计算结果，避免重复计算，提高性能。
 
 
 
@@ -407,7 +689,7 @@ console.log(i);
 
 // iife实现依次输出：0 1 2 3 4 5
 async function sleep (time) {
-    return return new Promise(resolve => setTimeout(resolve, time))
+    return new Promise(resolve => setTimeout(resolve, time))
 }
 (async function() {
         for(var i = 0; i <= 5; i ++) {
@@ -443,14 +725,51 @@ async function sleep (time) {
 
 ### js垃圾回收机制
 
-1. 标记清除
-> 当变量进入执行环境是，就标记这个变量为“进入环境”。当变量离开环境时，则将其标记为“离开环境”。
+在JavaScript中，垃圾回收（Garbage Collection，GC）是由JavaScript引擎自动管理的，引擎会在适当的时候执行垃圾回收，以回收不再使用的对象所占用的内存。
 
-2. 引用计数
-> 跟踪记录每个值被引用的次数。当声明了一个变量并将一个引用类型赋值给该变量时，则这个值的引用次数就是1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数就减1。当这个引用次数变成0时，则说明没有办法再访问这个值了。
+JavaScript的垃圾回收通常会在`程序空闲时间`内运行，或者是在执行过程中检测到`内存使用达到一定阈值时`，会`定期找出那些不再用到的内存`（变量），然后释放其内存
 
+
+1. 引用计数
+> 这其实是早先的一种垃圾回收算法，它把 对象是否不再需要 简化定义为 `对象有没有其他对象引用到它`
+
+`跟踪记录每个值被引用的次数`。当声明了一个变量并将一个引用类型赋值给该变量时，则这个值的引用次数就是1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数就减1。当这个引用次数变成0时，则说明没有办法再访问这个值了, 垃圾回收器会在运行的时候清理掉引用次数为 0 的值占用的内存.
+
+**缺点**：引用计数有一个严重的问题，那就是`循环引用`。例如，如果两个对象相互引用，即使外部没有引用它们，它们的引用计数也永远不会为0，因此它们将永远不会被垃圾回收，从而导致`内存泄漏`。
+
+
+2. 标记清除
+> 目前在 JavaScript引擎 里这种算法是最常用的，到目前为止的大多数浏览器的 JavaScript引擎 都在采用标记清除算法
+
+垃圾收集器在运行时会给内存中的所有变量都加上一个`标记`，假设内存中所有对象都是垃圾，全标记为0；然后`从各个根对象开始遍历`，把不是垃圾的节点改成1；`清理所有标记为0的垃圾`，销毁并回收它们所占用的内存空间；最后，把所有内存中对象标记修改为0，等待下一轮垃圾回收
+
+**缺点**：内存碎片化，空闲内存块是不连续的，`容易出现很多空闲内存块`，还可能会出现分配所需内存过大的对象时找不到合适的块
+> `标记整理（Mark-Compact）算法` 就可以有效地解决，它的标记阶段和标记清除算法没有什么不同，只是标记结束后，标记整理算法会将活着的对象（即不需要清理的对象）向内存的一端移动，最后清理掉边界的内存
 
 常见的内存泄露：`意外的全局变量、没有及时清理的计时器或回调函数、闭包、没有清理的DOM元素引用、Map/Set对象、console`
+
+
+- **V8对GC的优化**
+
+V8 的垃圾回收策略主要基于分代式垃圾回收机制，V8 中`将堆内存分为新生代和老生代两区域`，采用不同的垃圾回收器也就是不同的策略管理垃圾回收
+
+1. `新生代`的对象为存活时间较短的对象，简单来说就是新产生的对象，通常只支持 1～8M 的容量
+> 使用`Cheney算法`：将堆内存一分为二，一个是处于使用状态的空间我们暂且称之为 `使用区`，一个是处于闲置状态的空间我们称之为 `空闲区`
+
+2. `老生代`的对象为存活事件较长或常驻内存的对象，简单来说就是`经历过新生代垃圾回收后还存活下来的对象`，容量通常比较大
+> 使用`标记清除算法`
+
+
+**并行回收(Parallel)**
+> 新生代对象空间就采用并行策略，在执行垃圾回收的过程中，会启动了`多个线程`来负责新生代中的垃圾清理操作
+
+主线程在执行 JavaScript 的过程中，`辅助线程`能够在后台完成执行垃圾回收的操作，辅助线程在执行垃圾回收的时候，主线程也可以自由执行而不会被挂起
+
+**增量标记**
+- 三色标记法：`白色`指的是未被标记的对象；`灰色`指自身被标记，成员变量（该对象的引用对象）未被标记；`黑色`指自身和成员变量皆被标记
+
+**懒性清理**: 增量标记完成后，惰性清理就开始了。当增量标记完成后，无需一次性清理完所有非活动对象内存，可以按需逐一进行清理直到所有的非活动对象内存都清理完毕，后面再接着执行增量标记
+
 
 
 
@@ -511,6 +830,16 @@ es6 vs commonjs:
 3. CommonJS 模块的require()是同步加载模块，ES6 模块的import命令是异步加载，有一个独立的模块依赖的解析阶段。
 
 
+### this指向
+
+1. 方法调用模式下，`this 总是指向调用它所在方法的对象`，this 的指向与所在方法的调用位置有关，而与方法的声明位置无关（箭头函数特殊）；
+2. 函数调用下，this 指向 window ,`调用方法没有明确对象的时候，this 指向 window`，如 setTimeout、匿名函数等；
+3. `构造函数调用模式下，this 指向被构造的对象`；
+4. `apply,call,bind` 调用模式下，this 指向第一个参数；
+5.  箭头函数里面的 this 是上下文( context ), 外部作用域的 this 就是箭头函数内的 this。
+6. 严格模式下，如果 this 没有被执行环境（execution context）定义，那 this是 为undefined；
+
+
 
 - **箭头函数**
 
@@ -518,6 +847,24 @@ es6 vs commonjs:
 2. 不能作为构造函数，没有prototype，arguments 属性；
 3. 适用于需要匿名函数的地方
 
+
+
+
+### ES6及ES6+新增了哪些新语法特性
+
+- es6(es2015): `let,const,箭头函数,map,set,promise,变量的解构赋值，模板字符串`${}`,Proxy, class类，块级作用域`
+- es7: Array.prototype.includes()
+- es8: async/await, 字符串：padStart()用于头部补全，padEnd()用于尾部补全；Object.values()和Object.entries
+- es9: for await of、 Promise.finally()
+
+
+
+### Map和WeakMap的区别？
+
+- `键的类型`：Map 允许任何类型的键（对象或原始值）。`WeakMap 只接受对象作为键`。如果尝试使用非对象作为键，它会抛出错误。
+- `键的弱引用：` Map 保持对其键的`强引用`，就不会被垃圾回收。WeakMap 对其键持有`弱引用`, 如果外部没有其他引用指向某个键，垃圾回收器也可以将其清理掉: 可以`帮助防止内存泄漏`。
+- `迭代`：两者都可以被迭代，但 WeakMap 不暴露其键的列表。不能获取 WeakMap 的所有键，也不能检查某个对象是否作为键存在于 WeakMap 中。你只能通过键来访问或删除对应的值。
+- `用途`：Map 通常用于需要存储键值对且需要保留这些键值对直到`显式删除它们`的情况。WeakMap 特别适用于存储与对象关联的数据，且这些数据不需要在对象被垃圾回收后继续存在。
 
 
 
@@ -548,7 +895,7 @@ es6 vs commonjs:
 ### js跨域方案
 
 1. jsonp: 利用script向服务器端发送请求，仅支持get, 不安全，容易被攻击；
-2. CORS: 跨越资源共享, 服务端设置 Access-Control-Allow-Origin 就可以开启 CORS
+2. CORS: 跨越资源共享, 服务端设置 `Access-Control-Allow-Origin` 就可以开启 CORS
 3. postMessage: 允许来自不同源的脚本采用异步方式进行有限的通信，可以实现跨文本档、多窗口、跨域消息传递。
 4. websocket: Websocket是HTML5的一个持久化的协议，它实现了浏览器与服务器的全双工通信，同时也是跨域的一种解决方案
 5. node正向代理：前端在webpack中配置`proxy`
@@ -572,7 +919,7 @@ es6 vs commonjs:
 
 反向代理服务器可以实现**负载均衡**，将请求分发到多个后端服务器上，从而提高服务器的性能和可靠性。
 
-`正向代理代替客户端向服务端发送请求, 反向代理代替服务端向客户端相应请求。`
+`正向代理代替客户端向服务端发送请求, 反向代理代替服务端向客户端响应请求。`
 
 
 ### 如何解决递归容易造成的栈溢出？
@@ -590,18 +937,57 @@ fn(5) = 120;
 
 ### 深拷贝问题
 
+`赋值`：对于引用数据类型来说，在进行赋值操作时，实际上是按址传递，两个变量就指向同一个地址
+
+`浅拷贝`：创建一个新对象，只复制对象的顶层属性。
+> 如果属性是基本类型，拷贝的就是基本类型的值，如果属性是引用类型，拷贝的就是内存地址 ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。
+
+`深拷贝`：创建一个新对象，该对象有着对原始对象所有层级属性的递归精确拷贝。
+> 将一个对象从内存中完整的拷贝一份出来,从堆内存中开辟一个新的区域存放新对象,且修改新对象不会影响原对象。
+
+
+
+- **JSON.parse(JSON.stringify(object))弊端**
+1. 会忽略 undefined
+2. 会忽略 symbol
+3. 不能序列化函数
+4. 不能解决循环引用的对象
+
+
+
 **栈溢出**
 > 栈溢出的主要原因还是递归；在js中递归非常耗费内存，因为需要同时保存成千上百个调用帧，很容易发生“栈溢出”错误。解决这个问题的方法就是不用递归，改用循环来实现。`while`
 
 
 **循环引用**
-> 循环引用是因为`对象的属性间接或直接的引用了自身`，最终导致死循环；解决循环引用问题，`可以额外开辟一个存储空间，来存储当前对象和拷贝对象的对应关系`，当需要拷贝当前对象时，先去存储空间中找，有没有拷贝过这个对象，如果有的话直接返回，如果没有的话继续拷贝，这样就巧妙化解的循环引用的问题。`Map`
+> 循环引用是因为`对象的属性间接或直接的引用了自身`，最终导致死循环；解决循环引用问题，`可以额外开辟一个存储空间，来存储当前对象和拷贝对象的对应关系`，当需要拷贝当前对象时，先去存储空间中找，有没有拷贝过这个对象，如果有的话直接返回，如果没有的话继续拷贝，这样就巧妙化解的循环引用的问题。`WeakMap`
 
 
 **引用丢失**
 > 一个对象a，a下面的两个键值都引用同一个对象b，经过深拷贝后，a的两个键值会丢失引用关系，从而变成两个不同的对象.
 
 > 如果我们发现一个新对象就把这个对象和他的拷贝存下来，每次拷贝对象前，都先看一下这个对象是不是已经拷贝过了，如果拷贝过了，就不需要拷贝了，直接用原来的，这样我们就能够保留引用关系了；解决方法和循环引用的方法差不多。
+
+
+
+
+### 浅比较与深比较
+
+- `浅比较`也称引用相等，基本类型会比较值是否相等，复杂类型会比较引用地址是否相等; 在 javascript 中， `===` 是作浅比较,只检查左右两边是否是同一个对象的引用
+
+- `深比较`也称原值相等，深比较是指`检查两个对象的所有属性是否都相等`,深比较需要以`递归`的方式遍历两个对象的所有属性，操作比较耗时，深比较不管这两个对象是不是同一对象的引用。
+
+``` js
+console.log({a:1} === {a:1}) // false
+const m = {a:1};
+const n = {a:1};
+console.log(m === n) // false
+const k = m;
+console.log(k === m); // true
+```
+
+
+
 
 
 
@@ -618,7 +1004,11 @@ fn(5) = 120;
 
 - 改变函数this指向；
 - apply传参是数组；call是多个参数依次列出；都会立即执行；
-- bind返回一个新的函数,不会立即执行
+- bind函数的特点：
+1. 返回一个新的函数,`不会立即执行`
+2. 函数在声明和执行的时候都可以传参
+3. 返回的函数`可以作为构造函数使用`
+4. 生成实例能获取绑定函数原型中的值
 
 
 
@@ -660,6 +1050,59 @@ boundFunction2(); // 输出: Object 1，因为已经绑定的上下文不受新�
 
 
 
+
+### js中常用的对象继承有哪些？
+
+1. 原型链继承
+2. 构造函数继承：在子类型构造函数的内部调用超类型构造函数来实现继承。
+3. 组合继承（原型链 + 借用构造函数）：这是最常用的继承模式，结合了原型链和借用构造函数的特点，可以充分发挥二者优势。
+4. es6 class继承：extend
+
+``` js
+// 使用原型链实现继承
+function SuperType(age) {
+  this.name = 'a';
+  this.age = age;
+}
+SuperType.prototype.sayName = function() {
+  console.log(this.name);
+}
+
+function SubType(name) {
+  this.name = name;
+  this.age = 18;
+}
+SubType.prototype = new SuperType(10);
+const instance = new SubType('b');
+instance.sayName() // b
+
+
+// 使用构造函数继承
+function  SuperType(){
+    this.color=["red","green","blue"];
+}
+function  SubType(){
+    //继承自SuperType
+    SuperType.call(this);
+}
+var instance1 = new SubType();
+instance1.color.push("black");
+alert(instance1.color);//"red,green,blue,black"
+
+// es6 继承
+class Square extends Rectangle {...}
+```
+
+
+### js中 new 有什么用？
+
+1. 创建临时对象，并将this指向临时对象；
+2. 将构造函数的prototype挂载到新对象的原型指针`__proto__`上；
+3. 返回新对象
+
+
+
+
 ### IntersectionObserver
 
 
@@ -684,22 +1127,265 @@ boundFunction2(); // 输出: Object 1，因为已经绑定的上下文不受新�
 
 定时器的回调函数，会受到js的事件队列宏任务、微任务影响，可能设定的是17毫秒执行一次，但是实际上这次是17毫秒、下次21毫秒、再下次13毫秒执行，所以并不是严格的卡住了这个60HZ的时间，所以有时页面会卡；
 
-requestAnimationFrame能在浏览器下次重绘之前执行指定的回调，能够做到精准严格的卡住显示器刷新的时间，所以不卡
+requestAnimationFrame能在`浏览器下次重绘之前执行指定的回调`，能够做到精准严格的卡住显示器刷新的时间，所以不卡
 
 
+
+
+### 请描述一下 cookies、 sessionStorage和localstorage区别？
+
+1. 存储位置：`Cookie是由服务器端写入的`，而sessionStorage和localStorage都是由前端写入的。
+2. 存储大小：Cookie的存储空间比较小，大概为`4KB`，因此只适合保存很小的数据，如会话标识。相比之下，sessionStorage和localStorage的存储空间要大得多，可以达到`5MB`或更大。
+
+3. 生命周期：
+    - Cookie的生命周期是由服务器端在写入的时候就设置好的，它可以在浏览器关闭后依然存在，直到过期时间。
+    - sessionStorage的生命周期则仅限于当前浏览器窗口或标签页的生命周期，当窗口或标签页关闭时，sessionStorage中的数据就会被清除。
+    - 而localStorage的生命周期则是永久的，除非用户手动清除数据或者开发人员通过代码删除数据，否则数据将一直存在。
+
+4. 数据共享：`sessionStorage的作用域是限制在同一个窗口或标签页中`，即使两个窗口或标签页属于同一个源，它们也无法共享sessionStorage中的数据。而`localStorage和Cookie则可以在同源的所有窗口或标签页中共享数据`。
+
+5. 与服务器之间的交互方式：`Cookie的数据会自动传递到服务器`，服务器端也可以写Cookie到客户端。而sessionStorage和localStorage则不会自动把数据发给服务器，仅在`本地保存`。
+
+
+- **服务端是怎么给浏览器写入cookie的?**
+
+> 服务端给浏览器写入cookie通常是`在HTTP响应头中设置Set-Cookie字段`来完成的。当浏览器接收到包含Set-Cookie字段的HTTP响应时，它会根据这个字段的内容创建或更新一个cookie，并将其保存在本地。之后，浏览器在发送请求时会自动携带这个cookie，以便服务端能够识别出用户身份或状态等信息。
+
+
+
+
+- **localStorage存储能够在刷新页面后还保留存储数据，它是怎么实现的呢？**
+
+> localStorage 是 Web Storage API 的一部分，它允许网页在用户的浏览器中存储键值对数据。这些数据没有过期时间，除非被脚本显式删除或用户清除浏览器缓存，否则它们会持久保留。localStorage 之所以能够在刷新页面后还保留存储数据，是因为它利用了浏览器的持久化存储机制。
+
+1. `浏览器内部存储`：当你使用 localStorage.setItem(key, value) 方法存储数据时，浏览器会在其内部存储机制中为该网站创建一个存储区域。这个存储区域与该网站相关联，通常基于网站的域名。这意味着不同的网站有它们自己的 localStorage 空间，彼此之间不会相互干扰。
+
+2. `键值对存储`：存储的数据是以键值对的形式保存的。这意味着你可以为每个存储项指定一个唯一的键，并通过这个键来检索或更新相应的值。这种存储方式使得数据查找和更新非常高效。
+
+3. `持久化机制`：浏览器使用了一种持久化机制来保存 localStorage 中的数据。这通常涉及到`将数据写入到浏览器的存储系统中，可能是文件系统的一部分，或者是浏览器使用的特定数据库系统`。这样，即使浏览器关闭或页面刷新，数据仍然保留在浏览器中。
+
+4. `安全性`：由于 localStorage 存储的数据是持久化的，并且与特定网站相关联，因此它提供了一定程度的安全性。`只有来自同一域名的脚本才能访问和修改与该域名关联的 localStorage 数据`。这有助于防止跨站脚本攻击（XSS）中恶意脚本访问或篡改其他网站的数据。
+
+5. `限制和配额`：尽管 localStorage 提供了持久化存储的能力，但它通常有一定的存储配额限制。不同的浏览器可能会有不同的配额限制，并且这些限制可能会随着浏览器的更新而发生变化。当达到配额限制时，尝试存储更多数据可能会导致错误。
+
+
+
+- **在js中，不使用localStorage，有其他方案实现持久化存储吗?**
+
+1. `IndexedDB`: IndexedDB 是一个事务型数据库系统，用于客户端存储大量结构化数据（包括文件/blobs）。它使用索引实现高性能搜索，并且可以在Web Worker中运行，不会阻塞主线程。IndexedDB比localStorage更复杂，但提供了更多的功能和灵活性。
+2. `WebSQL`: WebSQL是一个早期的浏览器数据库规范，它提供了一套完整的SQL数据库操作接口。然而，WebSQL已被大多数现代浏览器弃用，因此不推荐使用。
+3. `Cookies`: 虽然Cookies主要用于跟踪用户会话，但它们也可以用于存储少量数据。Cookies的大小有限制（通常不超过4KB），并且每次HTTP请求都会发送它们，这可能会影响性能。因此，Cookies不适合存储大量数据或敏感信息。
+4. `SessionStorage`: 与localStorage类似，sessionStorage也在用户的浏览器中提供了存储机制。然而，与localStorage不同的是，sessionStorage中的数据只在当前浏览器窗口或标签页的生命周期内存在。一旦窗口或标签页关闭，数据就会被删除。
+5. `缓存（Cache API）`: Cache API 提供了一种存储和检索网络请求响应的方法。虽然它主要用于缓存网络资源以提高性能，但也可以用于存储数据。然而，Cache API主要用于与Service Workers结合使用，以拦截和修改网络请求，因此可能不适合所有用例。
+6. `文件系统API（例如File System Access API）`: 在支持的环境中，可以使用文件系统API直接读取和写入用户的本地文件系统。这允许应用创建、读取和修改文件，从而实现持久化存储。然而，这种方法可能需要用户的明确许可，并且可能受到浏览器安全策略的限制。
+7. `第三方服务`: 如果你的应用运行在服务器端或需要与后端交互，你可以考虑使用第三方服务（如数据库、对象存储等）来存储数据。然后，你的JavaScript应用可以通过API与这些服务进行通信，以读取和写入数据。
+
+
+
+### 什么IndexedDB？
+
+IndexedDB 就是`浏览器提供的本地数据库`，它可以被网页脚本创建和操作。IndexedDB 允许储存大量数据，提供查找接口，还能建立索引。这些都是 LocalStorage 所不具备的。就数据库类型而言，IndexedDB 不属于关系型数据库（不支持 SQL 查询语句），更接近 NoSQL 数据库。
+
+
+特点：
+1. `键值对储存。` IndexedDB 内部采用对象仓库（object store）存放数据。所有类型的数据都可以直接存入，包括 JavaScript 对象。对象仓库中，数据以"键值对"的形式保存，每一个数据记录都有对应的主键，主键是独一无二的，不能有重复，否则会抛出一个错误。
+2. `异步。` IndexedDB 操作时不会锁死浏览器，用户依然可以进行其他操作，这与 LocalStorage 形成对比，后者的操作是同步的。异步设计是为了防止大量数据的读写，拖慢网页的表现。
+3. `支持事务。` IndexedDB 支持事务（transaction），这意味着一系列操作步骤之中，只要有一步失败，整个事务就都取消，数据库回滚到事务发生之前的状态，不存在只改写一部分数据的情况。
+4. `同源限制` IndexedDB 受到同源限制，每一个数据库对应创建它的域名。网页只能访问自身域名下的数据库，而不能访问跨域的数据库。
+5. `储存空间大` IndexedDB 的储存空间比 LocalStorage 大得多，一般来说不少于 250MB，甚至没有上限。
+6. `支持二进制储存。` IndexedDB 不仅可以储存字符串，还可以储存二进制数据（ArrayBuffer 对象和 Blob 对象）。
+
+
+
+### cookie 与 session 的区别
+
+Session是在服务端保存的一个数据结构，用来跟踪用户的状态，这个数据可以保存在集群、数据库、文件中；
+> 服务端要为特定的用户创建了特定的Session，用于标识这个用户，并且跟踪用户
+
+Cookie是客户端保存用户信息的一种机制，用来记录用户的一些信息，也是实现Session的一种方式。
+
+
+
+
+
+### 多窗口之间sessionStorage能共享状态吗?
+
+多窗口之间，sessionStorage不能共享状态。这是因为sessionStorage是`浏览器会话级别的存储机制`，它只在单个浏览器标签页（tab）或窗口之间共享数据。每当用户打开一个新的tab页或一个窗口时，sessionStorage会重新初始化，`每个tab页和窗口都有自己独立的sessionStorage`。
+
+但如果通过A页面打开的B页面（例如使用`window.open或a链接`打开同源网址），那么B页面会复制A页面的sessionStorage数据：`在该标签或窗口打开一个新页面时会复制顶级浏览会话的上下文作为新会话的上下文`
+> 然而，这种`复制并不意味着共享`，因为修改A页面的sessionStorage数据，并不会影响B页面中的sessionStorage数据。
+
+
+
+
+
+### setTimeout 和 setInterval
+
+> JavaScript 定时器函数像 setTimeout 和 setInterval 都不是 ECMAScript 规范或者任何 JavaScript 实现的一部分。 `定时器功能由浏览器实现，它们的实现在不同浏览器之间会有所不同`。 定时器也可以由 Node.js 运行时本身实现。
+
+
+- **js中setTimeout和setInterval都能实现定时器效果，但二者有什么区别？**
+> setTimeout只会往队列中添加一次，而setInterval会每隔一段时间往队列中添加一次；setInterval 的性能可能会更低，因为它的回调函数每隔一定时间就会被执行一次，如果`回调函数的执行时间比时间间隔还长，那么会导致回调函数的堆积，多个回调函数同时进行，从而导致性能问题`；而 setTimeout 则可以通过递归的方式实现反复执行的效果，这样每次只有一个回调函数正在执行，相对来说更容易控制性能。
+
+
+
+
+### js异步接口请求方案
+
+- `ajax`: Asynchronous JavaScript And XML，翻译过来就是“异步的 Javascript 和 XML”。
+
+Ajax 是一种思想，`XMLHttpRequest` 只是实现 Ajax 的一种方式。其中 XMLHttpRequest 模块就是实现 Ajax 的一种很好的方式。
+
+``` js
+/*
+1. 创建XMLHttpRequest对象
+2. 设置请求方法、URL和是否异步处理; 使用setRequestHeader()方法设置请求头
+3. send()方法发送请求
+4. 监听 onreadystatechange 事件，当请求状态发生变化时执行回调函数
+*/
+var xhr = new XMLHttpRequest();  
+xhr.open('GET', 'https://api.example.com/data', true);  
+xhr.onreadystatechange = function() {  
+    if (xhr.readyState === 4 && xhr.status === 200) {  
+        var response = xhr.responseText;  
+        console.log(response);  
+    }  
+};  
+xhr.send();
+```
+
+
+- `fetch`: Fetch 是 ES6 新推出的一套异步请求方案，它天生自带 Promise，同时也是原生的
+
+- `axios`: axios是一个用于网络请求的第三方库，是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端
+
+
+
+### 怎么取消已经发出去的接口请求？
+
+- `fetch`: 原生的Fetch API本身并不直接支持取消请求。然而，你可以使用`AbortController`和`AbortSignal`接口来实现这一功能。
+
+``` js
+// 通过 AbortController 创建一个控制器对象  
+const controller = new AbortController();  
+const signal = controller.signal;  
+  
+// 发起fetch请求，并传入signal  
+fetch('https://api.example.com/data', { signal })  
+  .then(response => response.json())  
+  .then(data => console.log(data))  
+  .catch(error => {  
+    if (error.name === 'AbortError') {  
+      console.log('Fetch aborted');  
+    } else {  
+      console.error('Error:', error);  
+    }  
+  });  
+  
+// 当需要取消请求时  
+controller.abort();
+```
+
+
+
+- Axios库: Axios库提供了内置的取消请求功能。你可以使用`CancelToken`来创建一个可以取消的请求。
+
+> 当我们中止请求后，网络请求就会变成`canceled`状态~
+
+
+
+### axios面试题
+
+
+- **问：为什么 axios 既可以当函数调用，也可以当对象使用，比如axios({})、axios.get**
+> 答：axios本质是函数，赋值了一些别名方法，比如get、post方法，可被调用，最终调用的还是Axios.prototype.request函数。
+
+- **问：简述 axios 调用流程**
+> 答：实际是调用的Axios.prototype.request方法，最终返回的是promise链式调用，实际请求是在dispatchRequest中派发的
+
+- **问：有用过拦截器吗？原理是怎样的**
+> 答：用过，用`axios.interceptors.request.use`添加请求成功和失败拦截器函数，用`axios.interceptors.response.use`添加响应成功和失败拦截器函数。在Axios.prototype.request函数组成promise链式调用时，Interceptors.protype.forEach遍历请求和响应拦截器添加到真正发送请求dispatchRequest的两端，从而做到请求前拦截和响应后拦截。拦截器也支持用Interceptors.protype.eject方法移除
+
+
+- **问：有使用axios的取消功能吗？是怎么实现的**
+> Axios 提供了一个取消请求的功能，通过创建一个 `CancelToken` 的源，并将其传递给请求配置，你可以在任何时候取消请求。Axios 的取消功能依赖于 Promise 的特性，因此它只能在支持 Promise 的环境中使用
+
+``` js
+import axios from 'axios';  
+let CancelToken = axios.CancelToken;  
+let source = CancelToken.source();  
+  
+axios.get('/user/12345', {  
+  cancelToken: source.token  
+}).catch(function (thrown) {  // 如果请求被取消，那么 catch 块中的代码将被执行。
+  if (axios.isCancel(thrown)) {  
+    console.log('Request canceled', thrown.message);  
+  } else {  
+    // 处理错误  
+  }  
+});
+// 要取消请求，你可以调用源上的 cancel 方法，并传递一个可选的消息字符串：
+// 这将导致 axios.get 请求被取消，并且 catch 块中的代码将被执行。如果提供了消息字符串，那么它将被包含在取消错误中，并可以通过 thrown.message 访问。
+source.cancel('Operation canceled by the user.');
+```
+> 原理：当 `cancel` 触发处于 pending 中的 tokens.promise ，取消请求，把 axios 的 promise 走向 `rejected` 状态
+
+
+
+
+- **问：为什么支持浏览器中发送请求也支持node发送请求**
+> 答：`axios.defaults.adapter`默认配置中根据环境判断是浏览器还是node环境，使用对应的适配器。适配器支持自定义
+
+
+
+
+### 前端接口防止重复请求实现方案
+
+
+- 通过使用axios拦截器，`在请求拦截器中开启全屏Loading，然后在响应拦截器中将Loading关闭`。
+> 不太美观，可能会出现Loading套Loading
+
+- 使用防抖（debounce）和节流（throttle）
+
+- 设置请求标志位：在发起请求前，设置一个标志位（如isFetching）为true，请求结束后设置为false
+
+- 使用队列或堆栈管理请求：所有`待处理的请求放入一个队列`或堆栈中，每次只处理队列或堆栈顶部的请求。`如果相同的请求再次被加入，可以先检查队列或堆栈中是否已存在该请求，如果存在则不加入`。
+
+- 取消未完成的请求：如果使用axios等支持取消请求的库，可以`在发起新请求前取消之前的请求`。这通常用于搜索、分页等场景，当用户输入新的搜索词或点击新的页码时，取消之前的请求。
+
+- 使用请求ID或唯一键识别重复请求：为每个请求生成一个唯一的ID或键，并在请求前检查这个ID或键是否已存在。如果存在，则认为是重复请求并拒绝处理。
+
+- 在服务器端处理重复请求, 设置请求超时时间
 
 
 
 ## TS部分
 
+TypeScript 是一种静态类型的面向对象的编程语言; TypeScript 是 JavaScript 的超集; Typescript 使用类型系统在编译时执行类型检查;
+
+
+**常用类型**
+
+- `Enum` 类型：枚举类型用于定义数值集合，使用枚举我们可以定义一些带名字的常量。 使用枚举可以清晰地表达意图或创建一组有区别的用例。
+- 基本类型：`数组[]，undefined, null, string, number, object, boolean`
+- `any, void, unknown, never`
+> void 意思就是无效的, 一般只用在函数上，告诉别人这个函数没有返回值; never 类型表示的是那些不存在的值的类型; any <=> 任何类型，unknown 任何类型的值都可以赋值给它，但它只能赋值给unknown和any。
+- interface, type, 
+- 继承：implements, extends
+- `public` 类的内部和外部都能访问; `private` 只能在类的内部进行访问; `protected` 只能在类的内部，和类的继承中使用
+- class; abstract: 抽象类做为其它派生类的基类使用, 它们一般不会直接被实例化。 
+
+
 ### 泛型
+
+泛型（Generics）是 TypeScript 中的一个重要概念，它允许在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再为其指定类型。泛型提供了类型参数化，即可以将类型当作参数来传递和使用。
 
 是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。 `<T>`
 
 
 ### type和interface的区别
 
-`type 是 类型别名`，给一些类型的组合起别名，这样能够更方便地在各个地方使用: `type ID = string | number;`
+`type 是 类型别名`，`给一些类型的组合起别名`，这样能够更方便地在各个地方使用: `type ID = string | number;`
 
 `interface 是 接口`。有点像 type，可以用来代表一种类型组合，但它范围更小一些，只能描述对象结构:
 
@@ -711,7 +1397,7 @@ interface Position {
 ```
 
 1. type 能表示的任何类型组合。interface 只能表示对象结构的类型。
-2. `interface`可以重复声明，`type`不行，继承方式不一样，interface使用extends实现; type 可以通过 `&` 的写法来继承 type 或 interface，得到一个交叉类型：
+2. `interface`可以重复声明，`type`不行，继承方式不一样，interface使用`extends`实现; type 可以通过 `交叉类型&` 的写法来继承 type 或 interface，得到一个交叉类型：
 ``` ts
 interface Rect extends Shape {
   width: number;
@@ -720,7 +1406,31 @@ interface Rect extends Shape {
 type Circle = Shape & { r: number }
 ```
 
-3. interface 支持声明合并，文件下多个同名的 interface，它们的属性会进行合并, 但同名属性的不能进行类型覆盖修改，否则编译不通过；type 不支持声明合并，一个作用域内不允许有多个同名 type。
+3. interface 支持声明合并，文件下多个同名的 interface，它们的属性会进行合并, 但同名属性的不能进行类型覆盖修改，否则编译不通过；type 不支持声明合并，`一个作用域内不允许有多个同名 type`。
+
+
+
+### 装饰器
+
+TypeScript 装饰器是一种向类、方法或属性添加额外行为的方法。
+
+在 TypeScript 中，装饰器（Decorators）是一种特殊类型的声明，它可以被附加到类声明、方法、属性或参数上，以修改其行为。装饰器使用 `@expression` 这样的形式，其中 expression 必须计算为一个函数，该函数将在运行时被调用。
+
+``` js
+function Logger(target: any, propertyKey: string) {
+  console.log(`Calling ${propertyKey}`);
+}
+
+class MyClass {
+  @Logger
+  greet() {
+    console.log('Hello');
+  }
+}
+
+const instance = new MyClass();
+instance.greet(); // Calling greet \n Hello
+```
 
 
 
@@ -744,18 +1454,49 @@ type Circle = Shape & { r: number }
 2. 响应式：Object.defineProperty 和 Proxy
     - defineProperty缺点：不能监听数组的变化、只能劫持对象的属性、必须递归深层遍历
     - proxy优点：针对整个对象、支持数组、api丰富
-3. diff算法提升: vue3对于静态的标签和属性会作静态标记
+3. diff算法提升: vue3对于静态的标签和属性会作`静态标记`
 4. 写法改变：
     - setup, createApp, 声明周期，...
-    - ref, reactive, toRefs, computed,watch,watchEffect
+    - `ref, reactive, toRefs, computed,watch,watchEffect`
     - vue3支持多个v-model绑定，
     - vue3新增Teleport组件：可以将一个组件内部的一部分模板“传送”到该组件的 DOM 结构外层的位置去
 5. ts支持：vue2是用flow.js做类型检查，vue3直接用ts写
 6. vue3有更好的tree shaking
 
 
+### ref VS reactive?
 
-### React Hooks 与 Vue3 composiiton API 的比较?
+- ref可以存放任何数据类型，而reactive声明的数据类型则仅限于引用数据类型。
+- ref 用于将基本类型的数据和引用数据类型（对象）转换为响应式数据，通过 `.value` 访问和修改。reactive 用于将对象转换为响应式数据，可以直接访问和修改属性，适用于复杂的嵌套对象和数组。
+- `reactive 使用不当会失去响应`：reactive 重新赋值丢失响应是因为`引用地址变了`，被 proxy 代理的对象已经不是原来的那个，所以丢失响应了。
+
+
+
+### vue如何控制按钮权限？
+
+1. v-if
+2. 封装一个权限检验组件
+3. 封装一个指令
+
+
+### vue 3 中用 proxy 缺点是什么？除了兼容性，还有其它缺点吗？
+
+1. `性能开销`：虽然 Proxy 在大多数情况下性能足够好，但它确实比传统的 Object.defineProperty 方法有一些额外的性能开销。
+> 因为 Proxy 需要创建一个新的代理对象，并且在每次访问或修改属性时都需要进行额外的拦截和处理。
+
+2. `无法检测原生对象或函数的属性`：Proxy 只能拦截目标对象自身的属性，对于继承自原型链的属性或原生对象（如 Date、RegExp 等）的属性，Proxy 无法进行拦截。
+
+3. `需要谨慎处理循环引用`：在 Vue 3 中，如果响应式对象之间存在循环引用，可能会导致一些问题。因为 `Proxy 是基于引用进行拦截的`，所以`循环引用可能会导致无限递归或内存泄漏`等问题。
+
+4. `调试和排查问题可能更困难`：由于 Proxy 的工作方式相对复杂，当出现问题时，调试和排查可能会比使用 Object.defineProperty 更困难。
+
+
+
+
+
+
+
+### React Hooks 与 Vue3 compositon API 的比较?
 
 > Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。
 
@@ -765,6 +1506,8 @@ type Circle = Shape & { r: number }
 
 3. 子组件默认更新，并需要显式的调用 useCallback 作优化。这个优化同样需要正确的依赖数组；vue无需手动缓存回调函数来避免不必要的组件更新。Vue 细粒度的响应性系统能够确保在绝大部分情况下组件仅执行必要的更新。
 
+4. React Hooks 有严格的调用顺序，并不可以写在条件分支中; Vue组合式 API 也并不限制调用顺序，还可以有条件地进行调用。
+
 
 [和 React Hooks 的对比](https://cn.vuejs.org/guide/extras/composition-api-faq.html#comparison-with-react-hooks)
 
@@ -772,12 +1515,12 @@ type Circle = Shape & { r: number }
 
 ### MVC 和 MVVM
 
-mvc: view => controller => model => view；通信是单向的
+mvc: `view => controller => model => view`；通信是单向的
 
 > View 传送指令到 Controller；Controller 完成业务逻辑后，要求 Model 改变状态；Model 将新的数据发送到 View，用户得到反馈。
 
 
-mvvm: view <===> viewmodel <===> model；
+mvvm: `view <===> viewmodel <===> model`；
 
 >【模型】指的是后端传递的数据。【视图】指的是所看到的页面。【视图模型】mvvm 模式的核心，它是连接 view 和 model 的桥梁。
 
@@ -802,8 +1545,8 @@ mvvm: view <===> viewmodel <===> model；
 
 基于数据劫持实现双向绑定的实现思路:
 1. 利用`Proxy或Object.defineProperty`对对象/对象的属性进行"劫持",在属性发生变化后通知订阅者;
-2. 解析器解析模板中的指令，收集指令所依赖的方法和数据, 等待数据变化然后进行渲染;
-3. 订阅者接收到数据发生变化,并根据解析器提供的指令进行视图渲染, 使得数据变化促使视图变化。
+2. 解析器`解析模板中的指令，收集指令所依赖的方法和数据`, 等待数据变化然后进行渲染;
+3. 订阅者接收到数据发生变化,并`根据解析器提供的指令进行视图渲染`, 使得数据变化促使视图变化。
 4. 实现一个调度中心：用来收集订阅者，对监听器和订阅者进行统一管理
 
 
@@ -847,7 +1590,7 @@ Vue3 的 Diff 算法与 Vue2 的 Diff 算法一样，也会先进行双端比对
 
 Vue模板到真实DOM渲染的过程都会经历：`编译 =》 生成AST => 生成可执行性代码（codegen）` 的过程；
 
-1. 首先父组件在编译过程中，遇到带有slot属性的dom会生成一个特定属性，并给生成的AST元素节点添加该属性；
+1. 首先父组件在编译过程中，遇到带有`slot属性或v-slot`的dom会生成一个特定属性，并给生成的AST元素节点添加该属性；
 
 2. 之后在生成可执行性代码过程中，会给当前父组件 data 添加一个 slot 属性，指向该带有slot属性的dom；
 
@@ -860,17 +1603,22 @@ Vue模板到真实DOM渲染的过程都会经历：`编译 =》 生成AST => 生
 
 ### v-model实现原理
 
-v-model是`value属性+$emit('input')事件`的语法糖。
+v-model是`value属性+$emit('input')事件`的语法糖。数据双向绑定
 
 1. 首先在编译阶段，v-model 被当做普通的指令解析到 el.directives 中；在编译的时候会传入vue内置的指令：`v-model, v-text, v-html...`；
 2. 接着在 `生成可执行性代码` 阶段，会遍历 el.directives，然后获取`v-model`指令对应的方法；
 3. 其实就是动态绑定了 input 的 value 指向了 msg 变量，并且在触发 input 事件的时候去动态把 msg 设置为目标值，这样实际上就完成了数据双向绑定了，所以说 v-model 实际上就是语法糖。
+
+`v-bind`数据单向绑定：数据 => 视图
 
 
 
 ### vue中keep-alive的实现原理
 
 keep-alive 组件是一个抽象组件，它的实现通过自定义 render 函数并且利用了插槽，会 缓存 vnode。
+
+- 最常用的两个属性：`include 、 exculde` ，用于组件进行有条件的缓存，可以用逗号分隔字符串、正则表达式或一个数组来表示
+- 在 2.5.0 版本中，keep-alive 新增了 `max` 属性，用于最多可以缓存多少组件实例
 
 1. 在组件首次渲染的时候，它的父组件`<keep-alive>` 的 `render` 函数会先执行，keep-alive会将该组件实例缓存起来；
 2. 当再次渲染该组件时，在它的父组件`keep-alive`做 `diff` 数据更新的逻辑中，需要对自己的 `children`，也就是这些 `slots` 做重新解析, 并触发 `<keep-alive`> 组件实例 `$forceUpdate` 逻辑，也就是重新执行 `<keep-alive>` 的 render 方法；
@@ -881,6 +1629,23 @@ keep-alive 组件是一个抽象组件，它的实现通过自定义 render 函�
 
 keep-alive 的中还运用了 `LRU(最近最少使用) 算法`，选择最近最久未使用的组件予以淘汰
 > LRU 的核心思想是如果数据最近被访问过，那么将来被访问的几率也更高，所以我们将命中缓存的组件 key 重新插入到 `缓存队列` 的尾部，这样一来，缓存组件队列 中越往头部的数据即将来被访问几率越低，所以当缓存数量达到最大值时，我们就删除将来被访问几率最低的数据，即 缓存队列 中第一个缓存的组件。
+
+
+- **LRU 缓存淘汰策略**
+
+> 浏览器中的缓存是一种在本地保存资源副本，它的大小是有限的，当我们请求数过多时，缓存空间会被用满，此时，继续进行网络请求就需要确定缓存中哪些数据被保留，哪些数据被移除，这就是浏览器缓存淘汰策略，最常见的淘汰策略有 `FIFO（先进先出）、LFU（最少使用）、LRU（最近最少使用）`。
+
+
+**LRU （ Least Recently Used ：最近最少使用 ）缓存淘汰策略**，故名思义，就是根据数据的历史访问记录来进行淘汰数据，其核心思想是 `如果数据最近被访问过，那么将来被访问的几率也更高 ，优先淘汰最近没有被访问到的数据`。
+
+
+**keep-alive 中LRU的实现：**
+1. 如果命中缓存，则从缓存中获取 vnode 的组件实例，并且调整 key 的顺序放入 keys 数组的末尾
+2. 如果没有命中缓存,就把 vnode 放进缓存；如果配置了 max 并且缓存的长度超过了 this.max，还要从缓存中删除第一个
+
+
+
+
 
 
 
@@ -921,6 +1686,51 @@ keep-alive 的中还运用了 `LRU(最近最少使用) 算法`，选择最近最
 > defineReactive 方法就是  Vue 在初始化对象时，给对象属性采用 Object.defineProperty 动态添加 getter 和 setter 的功能所调用的方法
 
 
+
+### provide/inject实现原理？
+
+
+``` js
+///// vue2使用：
+// 父组件
+provide() {
+    return elRoot: {name: 'test'}
+}
+
+// 子组件
+inject: ['elRoot']
+
+
+///// vue3使用：
+// 父组件
+import { ref, provide } from 'vue'
+const count = ref(0)
+provide('key', count)
+
+// 子组件
+import { inject } from 'vue'
+const message = inject('key')
+```
+
+依赖注入`provide/inject`的优缺点如下：
+- 优点：
+1. 祖先组件不需要知道哪些后代组件使用它提供的数据；
+2. 后代组件不需要知道被注入的数据来自哪里；
+- 缺点：
+1. 组件间的耦合较为紧密，不易重构；
+2. vue2中提供的属性是非响应式的；
+
+
+**实现原理：**
+1. 在vue初始化的时候，在初始化data/props之前，会执行`initInjections(vm)`方法, 这样做的目的是让用户可以在data/props中使用inject所注入的内容；
+2. `initInjections`方法首先根据注册的inject，通过$parent向上查找对应的provide;
+3. 然后`通过$parent一层一层向上查找祖先节点的provide，找到则对inject进行赋值`；
+4. 在初始化data/props之后，会执行`initProvide(vm)`, 该方法单纯把组件注册的provide值，赋值给`vm._provided`，initInjections中有使用到。
+
+https://github.com/webharry/blog/issues/2
+
+
+
 ### vue mixins有什么缺点?
 
 1. 命名冲突：如果不小心，混入的属性或方法可能会`与组件本身的属性或方法产生命名冲突`，导致意外行为或错误。
@@ -935,7 +1745,24 @@ keep-alive 的中还运用了 `LRU(最近最少使用) 算法`，选择最近最
 
 
 
+
+
 ### new Vue()执行了哪些流程?
+
+
+``` js
+// Vue.prototype._init源码：
+
+vm._self = vm
+initLifecycle(vm)
+initEvents(vm)
+initRender(vm)
+callHook(vm, 'beforeCreate')
+initInjections(vm) // resolve injections before data/props
+initState(vm)
+initProvide(vm) // resolve provide after data/props
+callHook(vm, 'created')
+```
 
 1. `初始化Vue实例`： 创建一个新的 Vue 实例对象，并执行 Vue 构造函数。
 
@@ -965,7 +1792,7 @@ keep-alive 的中还运用了 `LRU(最近最少使用) 算法`，选择最近最
 
 ### vue组件中style标签设置scoped的作用是什么，原理是什么
 
-在Vue组件中，当你使用 scoped 属性添加到 `<style>` 标签时，它的作用是限制该样式仅在当前组件内生效，而不会影响到其他组件或全局样式。这种方式被称为 "Scoped CSS"。
+在Vue组件中，当你使用 scoped 属性添加到 `<style>` 标签时，它的作用是`限制该样式仅在当前组件内生效`，而不会影响到其他组件或全局样式。这种方式被称为 "Scoped CSS"。
 
 
 原理是通过 Vue 编译器`在编译过程中`，将 scoped 属性添加到样式标签后，`会自动为该组件的每个样式规则（包括选择器）生成一个唯一的属性`，用于标识当前组件内的元素; 然后将该属性添加到相应的 HTML 元素上。这样一来，该样式规则就只会应用于带有相应唯一属性的元素，从而实现了`样式的局部作用域`。
@@ -979,8 +1806,47 @@ keep-alive 的中还运用了 `LRU(最近最少使用) 算法`，选择最近最
 
 ### vue子组件在哪一个生命周期可以获取props？
 
-created: 实例创建完成后调用，此时可以访问到 props、methods、computed 和 data 等属性。
+`created`: 实例创建完成后调用，此时可以访问到 props、methods、computed 和 data 等属性。
 > 但$el 属性还没有显示出来，$refs 属性也没有被填充。
+
+
+
+### watchEffect执行机制
+
+watchEffect 的回调函数会在所有依赖变化后执行一次。
+
+watchEffect 的回调函数在 Vue 的渲染过程中是`在组件的 beforeMount 和 mounted 生命周期钩子之间`执行的，具体地说，是在组件的 DOM 被挂载之前执行。
+
+watchEffect 是`在组件实例被创建后，但在 DOM 挂载之前`立即执行的。这意味着在 watchEffect 的回调函数中，你可以安全地访问组件的响应式数据，但此时组件的 DOM 可能还没有被创建。如果你需要在 DOM 挂载后执行某些操作，你应该在 mounted 或 onMounted 钩子中执行这些操作。
+
+
+
+
+### 做过哪些Vue的性能优化?
+
+1. `编码阶段`:
+    - 如果需要使用v-for给每项元素绑定事件时使用事件代理；
+    - SPA 页面采用keep-alive缓存组件；
+    - v-if/v-show；
+    - key保证唯一；
+    - 使用路由懒加载、异步组件；
+    - 防抖、节流；
+    - 第三方模块按需导入；
+    - 长列表优化：虚拟滚动，分页，瀑布流布局；
+    - 图片懒加载；
+
+2. `用户体验`：骨架屏；PWA；缓存(客户端缓存、服务端缓存)优化、服务端开启gzip压缩等。
+> PWA，全称Progressive Web App，即`渐进式web应用`。它使用多种技术来增强web app的功能，让网站的体验变得更好，`能够模拟一些原生功能`，比如通知推送。PWA具有快速加载、离线访问、推送通知等特性，能够提升用户体验并节省企业成本。
+
+3. `SEO优化`: 预渲染；服务端渲染SSR；
+
+4. `打包优化`: 压缩代码；Tree Shaking/Scope Hoisting；使用cdn加载第三方模块；多线程打包happypack；splitChunks抽离公共文件；sourceMap优化；
+
+
+
+
+
+
 
 
 
@@ -1143,7 +2009,7 @@ tapable提供了各种各样的hook来帮我们管理事件是如何执行; 比�
 
 ### webpack Loader
 
-Webpack中的Loader本质上就是一个函数，这个函数会在我们在我们加载一些文件时执行, 比如常见的file-loader、vue-loader、babel-loader等，专门用于打包时解析各种类型的文件。
+Webpack中的Loader本质上就是一个函数，这个函数会在我们加载一些文件时执行, 比如常见的file-loader、vue-loader、babel-loader等，专门用于打包时解析各种类型的文件。
 
 实现箭头函数转普通函数：
 1. 分析AST结构: 变成普通函数之后就不叫箭头函数ArrowFunctionExpression，而是函数表达式FunctionExpression
@@ -1225,6 +2091,34 @@ package-lock.json： 锁定node包版本号，对整个依赖树进行版本固�
 
 
 
+### npm run serve 执行流程？
+
+``` js
+"scripts": {
+  "start": "node index.js",
+  "serve": "vue-cli-service serve",
+  // 其他命令...
+```
+运行 `npm run serve` 实际上是在执行 `vue-cli-service serve` 命令。
+
+1. `查找命令`：npm 首先在当前项目目录的 `node_modules/.bin` 目录下查找是否存在 vue-cli-service 可执行文件。
+2. `查找全局安装`：如果在项目的 node_modules/.bin 中没有找到 vue-cli-service，npm 会继续在`全局 node_modules/.bin 目录下`查找 `<script>` 对应的可执行文件。
+3. `执行命令`：找到 vue-cli-service 后，npm 将执行该命令，相当于执行了 `./node_modules/.bin/vue-cli-service serve`
+
+
+
+### webpack项目中动态引入图片为什么要是require？
+
+> 当我们静态地引入一个图片时，Webpack 可以直接处理这个图片资源，并将其包含在最终的 bundle 中。但是，如果我们尝试动态地引入图片（例如，根据某个变量的值来引入不同的图片），那么 Webpack 就无法提前知道需要包含哪些图片资源。
+
+为了解决这个问题，我们可以使用 require 语法来动态地引入图片。当使用 require来引入图片时，`Webpack 会根据 require 的参数来解析并打包相应的图片资源。`
+
+使用 require 动态引入图片时，`Webpack 会为每个动态引入的图片创建一个单独的模块，这可能会导致打包后的文件体积增大`。因此，在实际应用中，我们应该尽量避免过度使用动态引入图片的方式，而是尽可能地使用静态引入或按需加载的方式来优化性能。
+
+
+
+
+
 ## 前端监控
 
 
@@ -1240,13 +2134,17 @@ uv: user view, 访问某个站点或点击某条新闻的不同 IP 地址的人�
 `异常错误监控`：javascript 的异常监控，样式丢失的异常监控，静态资源加载异常，Promise异常，接口异常，跨域异常 。。。
 
 
+vue 项目在 `Vue.config.errorHandler` 中上报错误，react 项目在 `ErrorBoundary` 中上报错误
+
+
 `前端监控的搭建流程`分以下几个阶段：
 1. 采集阶段：数据的采集, 开发者可以通过 window.performance 属性获取。
     - 页面性能情况：
-        - FP（白屏）First-Paint 首次渲染：表示浏览器从开始请求网站到屏幕渲染第一个像素点的时间。
-        - FCP（灰屏） First-Contentful-Paint 首次内容渲染：表示浏览器渲染出第一个内容的时间，这个内容可以是文本、图片或SVG元素等等，不包括iframe和白色背景的canvas元素。
-        - LCP Largest Contentful Paint,最大内容绘制：LCP 是页面内首次开始加载的时间点，到 可视区域内最大的图像或者文本块完成渲染 的 相对时间
-        - `首次输入延迟（FID）`: FID 是`从用户第一次与页面交互直到浏览器对交互作出响应`，并实际能够开始处理事件处理程序所经过的时间。一般 <= 100ms 最佳
+        - FP（白屏）First-Paint 首次渲染：表示浏览器从开始请求网站到屏幕渲染第一个像素点的时间。`<= 2s`
+        - FCP（灰屏） First-Contentful-Paint 首次内容渲染：表示浏览器渲染出第一个内容的时间，这个内容可以是文本、图片或SVG元素等等，不包括iframe和白色背景的canvas元素。`<= 2s`
+        - FMP: 首次有效绘制；页面渲染过中 元素增量最大的点，因为元素增量最大的时候，页面主要内容也就一般都渲染完成了；
+        - LCP: 最大内容绘制：LCP 是页面内首次开始加载的时间点，到可视区域内最大的图像或者文本块完成渲染的相对时间. `<= 2.5s`
+        - `首次输入延迟（FID）`: FID 是`从用户第一次与页面交互直到浏览器对交互作出响应`，并实际能够开始处理事件处理程序所经过的时间。`<= 100ms`
     - 异常数据收集：`try/catch, window.onerror, window.addEventListener('error'), unhandledrejection`
         - 前端异常：js报错、promise异常、静态资源加载异常...
         - 接口异常：未响应/响应超时，4xx请求异常, 5xx服务器异常
@@ -1254,7 +2152,8 @@ uv: user view, 访问某个站点或点击某条新闻的不同 IP 地址的人�
     - 行为数据：用户行为（pv,uv,点击事件,埋点...）、浏览器行为、控制台打印行为。
 
 2. 数据上报：搭建 API 应用，接收采集到的数据: `sourcemap，第三方sdk, 1*1gif`
-    - `1*1gif优点`：可以进行跨域，不会携带cookie；只需要发送数据；不会阻塞页面加载；只需 new Image 对象，相比于 png/bmp 体积最小，可以节约网络资源
+    - 图片打点上报`1*1gif优点`：可以进行跨域，不会携带cookie；只需要发送数据；不会阻塞页面加载；可以节约网络资源
+    - fetch 请求上报
 
 3. 数据存储：API 应用对接数据库，将采集到的数据存起来: `MongoDB`
     - 数据清洗：削峰处理，预处理，分类，聚合
@@ -1281,6 +2180,78 @@ uv: user view, 访问某个站点或点击某条新闻的不同 IP 地址的人�
 2. `可视化埋点`：这种埋点方式`以业务代码为输入，通过可视化系统配置埋点，最后以耦合的形式输出业务代码和埋点代码`。这种方式可以简化埋点过程，提高开发效率。
 
 3. `无痕埋点（也称为无差别埋点或全埋点）`：这种埋点方式无差别地对全局所有事件和页面加载生命周期等进行拦截全埋点。无痕埋点可以收集到更全面的用户行为数据，但可能会收集到一些不必要的信息, 需要后端进行数据清洗
+
+
+
+### 比较下监控、日志与灰度
+
+
+- **监控**：前端监控主要涉及`页面性能、异常捕获、用户行为`等多个方面。
+> 监控工具通常可以自动收集和分析数据，提供可视化的报表和告警机制，帮助开发者快速定位问题并采取相应的解决措施。通过监控，前端开发者可以更好地了解用户需求，优化用户体验，提升应用的性能和稳定性。
+
+
+- **日志**：前端日志主要用于记录应用运行过程中的关键信息和事件，包括`页面加载、用户操作、网络请求`等。
+> 日志记录可以帮助开发者追踪和调试代码中的错误，分析性能瓶颈，优化代码结构。此外，日志还可以用于监控用户行为，分析用户习惯和需求，为产品迭代和优化提供数据支持。
+
+- **灰度**：灰度发布是一种介于黑与白之间的发布方式，主要`用于新功能的逐步上线和验证`。对于前端开发者来说，灰度发布可以帮助他们在新功能上线前进行充分的测试和优化，确保新功能的稳定性和用户体验。
+> 通过灰度发布，前端开发者可以将新功能逐步推送给一部分用户，观察用户反馈和异常情况，以便及时调整和优化。这种方式可以降低新功能上线带来的风险，确保应用的稳定性和可靠性。
+
+
+### 首屏统计的数据是怎么统计的？
+
+可以通过  `window.performance.timing`  来获取加载过程模型中各个阶段的耗时数据
+> `navigationStart, domContentLoadedEventStart, loadEventStart`
+
+新api: 通过 `PerformanceObserver` 来获取
+
+chrome推出的 web-vitals 库
+
+
+`首屏加载时间`: 首屏加载时间和首页加载时间不一样，首屏指的是屏幕内的 dom 渲染完成的时间
+> 比如首页很长需要好几屏展示，这种情况下屏幕以外的元素不考虑在内
+
+计算`首屏加载时间`流程：
+1. 利用`MutationObserver`监听document对象，每当 dom 变化时触发该事件
+2. 判断监听的 dom 是否在首屏内，如果在首屏内，将该 dom 放到指定的数组中，记录下当前 dom 变化的时间点
+3. 在 MutationObserver 的 callback 函数中，通过防抖函数，监听document.readyState状态的变化
+4. 当`document.readyState === 'complete'`，停止定时器和 取消对 document 的监听
+5. 遍历存放 dom 的数组，找出最后变化节点的时间，用该时间点减去`performance.timing.navigationStart` 得出首屏的加载时间
+
+
+
+
+**上报时机**：可以利用`requestIdleCallback`，浏览器空闲的时候上报，好处是：不阻塞其他流程的进行；如果浏览器不支持该requestIdleCallback，就使用`setTimeout`上报
+> requestIdleCallback 是一个浏览器提供的 API，它允许开发者在浏览器的空闲时段执行低优先级的任务，从而避免阻塞用户界面的渲染和其他高优先级任务。
+
+
+
+**三种错误还原方式**
+- 定位源码：sourcemap
+- 播放录屏：rrweb库支持，保存报错前 10s 的视频
+- 记录用户行为: 用户行为列表记录了`鼠标点击、接口调用、资源加载、页面路由变化、代码报错`等信息
+
+
+
+### 怎么对页面中所有图片的报错进行监控?
+
+window.addEventListener: 当一项资源（如图片或脚本）加载失败，加载资源的元素会触发一个 Event 接口的 error 事件，这些 error 事件不会向上冒泡到 window，但能被捕获。而window.onerror不能监测捕获。
+
+``` js
+// 图片、script、css加载错误，都能被捕获 ✅
+<script>
+  window.addEventListener('error', (error) => {
+     console.log('捕获到异常：', error);
+  }, true)
+</script>
+<img src="https://yun.tuia.cn/image/kkk.png">
+<script src="https://yun.tuia.cn/foundnull.js"></script>
+<link href="https://yun.tuia.cn/foundnull.css" rel="stylesheet"/>
+```
+
+
+
+
+
 
 
 ## CI/CD
@@ -1366,21 +2337,114 @@ Github Actions 是GitHub的持续集成服务。持续集成由很多操作组�
 
 微前端具备的核心价值: `技术栈无关, 独立开发、独立部署, 增量升级（渐进式重构）, 独立运行时`
 
-微前端架构方案：
+
+### 微前端架构方案：
 1. `基座模式`：将多个子应用程序作为模块加载到一个主应用程序中。这些模块是独立的小型应用程序。每个子应用程序都可以独立开发、测试、部署，而主应用程序主要就是将子应用进行集成和协调，子应用程序发生变化，主应用程序也会自动的完成更新。
 
 `Single-SPA`：一个支持多框架、多技术栈的JavaScript微前端框架，用于构建大型单页应用程序。
+> **它做的就是监听路由变化，路由切换的时候加载、卸载注册的应用的代码。**
 
 `qiankun`：一个基于Single-SPA封装的微前端框架，支持React、Vue、Angular等技术栈。
+> 它是`把 js 代码包裹了一层 function，然后再把内部的 window 用 Proxy 包一层，这样内部的代码就被完全隔离了`，这样就实现了一个 JS 沙箱。
+
+
+`Micro-app`： 京东出的微前端框架，借鉴了WebComponent的思想，通过CustomElement结合自定义的`ShadowDom`，将微前端封装成一个类WebComponent组件，从而实现微前端的组件化渲染。并且`由于自定义ShadowDom的隔离特性`，micro-app不需要像single-spa和qiankun一样要求子应用修改渲染逻辑并暴露出方法，也不需要修改webpack配置，是目前市面上接入微前端成本最低的方案。
 
 
 
-**Q: why not iframe ?**
+`wujie`： 腾讯出的微前端解决方案
+- css 沙箱隔离： 无界将子应用的 dom 放置在 webcomponent + shadowdom 的容器中，除了可继承的 css 属性外实现了应用之间 css 的原生隔离。
+- js 沙箱隔离：无界将子应用的 js 放置在 iframe（js-iframe）中运行，实现了应用之间 window、document、location、history 的完全解耦和隔离。
+
+
+
+### WebComponent
+
+> HTML5提供的一套自定义元素的接口，WebComponent是一套不同的技术，允许您创建可重用的定制元素（它们的功能封装在您的代码之外）并且在您的 web 应用中使用它们。以上是MDN社区对WebComponent的解释。
+
+1. Custom elements（自定义元素）： 一组 JavaScript API，允许您定义 custom elements 及其行为，然后可以在您的用户界面中按照需要使用它们。
+2. Shadow DOM（影子 DOM） ：一组 JavaScript API，用于将封装的“影子”DOM 树附加到元素（与主文档 DOM 分开呈现）并控制其关联的功能。通过这种方式，您`可以保持元素的功能私有，这样它们就可以被脚本化和样式化，而不用担心与文档的其他部分发生冲突`。
+3. HTML templates（HTML 模板）： `<template>` 和 `<slot>` 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用。
+
+
+### why not iframe ?
 
 iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论是样式隔离、js 隔离这类问题统统都能被完美解决。但他的最大问题也在于他的隔离性无法被突破，导致`应用间上下文无法被共享，随之带来的开发体验、产品体验的问题`：`UI 不同步，DOM 结构不共享, 全局上下文完全隔离，内存变量不共享, 加载慢...`
 
 
 `微前端解决的是隔离和通信，monorepo解决的是组件共享`
+
+
+
+### 微前端qiankun通信方案？
+
+- **Actions 通信**
+> qiankun 官方提供的通信方式，是通过`全局状态池`和`观察者函数`进行应用间通信
+
+1. qiankun 内部提供了 initGlobalState 方法用于注册 MicroAppStateActions 实例用于通信
+2. 子应用可以先注册 `观察者` 到观察者池中，然后通过修改 `globalState` 可以触发所有的 `观察者` 函数，从而达到组件间通信的效果。
+
+
+- **Shared 通信**
+
+原理就是，`主应用基于 redux 维护一个状态池，通过 shared 实例暴露一些方法给子应用使用`。同时，子应用需要单独维护一份 shared 实例，在独立运行时使用自身的 shared 实例，在嵌入主应用时使用主应用的 shared 实例，这样就可以保证在使用和表现上的一致性。
+
+Shared 通信方案需要自行维护状态池，这样会增加项目的复杂度。好处是可以使用市面上比较成熟的状态管理工具，如 redux、mobx，可以有更好的状态管理追踪和一些工具集。
+
+Shared 通信方案也可以帮助主应用更好的管控子应用。子应用只可以通过 shared 实例来操作状态池，可以避免子应用对状态池随意操作引发的一系列问题。主应用的 Shared 相对于子应用来说是一个黑箱，子应用只需要了解 Shared 所暴露的 API 而无需关心实现细节。
+
+
+### 微前端实现通信隔离的原理是什么呢？
+
+1. `沙箱隔离`：微前端架构中，每个子应用都运行在自己的沙箱环境中，这意味着每个子应用都有自己独立的全局变量、DOM结构以及事件循环等。通过沙箱隔离，不同子应用之间的代码互不干扰，避免了全局状态污染和潜在的冲突。
+2. `消息通信`：尽管子应用被隔离在各自的沙箱中，但它们之间以及主应用与子应用之间仍然需要通信。这通常通过定义明确的通信协议和接口来实现，例如`使用事件总线（Event Bus）或者基于消息队列的方式进行通信`。
+3. `路由管理`：在微前端架构中，路由管理也是实现通信隔离的重要一环。每个子应用都有自己的路由系统，主应用负责管理和协调这些路由。通过路由管理，可以确保在切换子应用时，旧子应用的资源得到正确释放，新子应用能够正确加载和渲染，从而实现不同子应用之间的隔离。
+4. `资源加载`：资源加载的隔离也是微前端通信隔离的重要方面。每个子应用的CSS、JavaScript等资源都是单独加载的，这可以避免样式冲突和脚本错误。
+
+
+
+### qiankun的js沙箱机制？
+
+qiankun框架为了实现`js隔离`，提供了三种不同场景使用的沙箱，分别是 `snapshotSandbox、proxySandbox、legacySandbox`。
+
+
+1. **快照沙箱(snapshotSandbox)**: 把主应用的 window 对象做浅拷贝，将 window 的键值对存成一个 `Hash Map`。之后无论微应用对 window 做任何改动，当要恢复环境时，把这个 Hash Map 又应用到 window 上就可以了。
+> snapshotSandbox会污染全局window，但是可以支持不兼容Proxy的浏览器; 每次微应用 unmount 时都要对每个属性值做一次 Diff
+
+qiankun基于es6的Proxy实现了两种应用场景不同的沙箱，一种是legacySandbox(单例)，一种是proxySandbox(多例)。都是基于Proxy实现的, 都称为代理沙箱。
+2. **legacySandbox(单例沙箱)**: 通过监听对 window 的修改来直接记录 Diff 内容
+> 同样会对window造成污染，但是性能比快照沙箱好，不用遍历window对象。
+
+
+3. **proxySandbox(多例沙箱)**：把当前 window 的一些原生属性（如document, location等）拷贝出来，单独放在一个对象上，这个对象也称为 fakeWindow
+之后对每个微应用分配一个 fakeWindow；当微应用修改全局变量时：如果是原生属性，则修改全局的 window；如果不是原生属性，则修改 fakeWindow 里的内容
+> 不会污染全局window，支持多个子应用同时加载。
+
+
+原理很容易理解, 就是 function 包裹了一层，所以代码放在了单独作用域跑，又用 with 修改了 window，所以 window 也被隔离了。这是 qiankun 的 JS 沙箱实现方案，其他的微前端方式实现沙箱可能用 iframe、web components 等方式。
+
+微前端方案的功能就那一句话：**当路由切换的时候，去下载对应应用的代码，然后跑在容器里。只不过这个容器的实现方案有差异。**
+
+
+qiankun、wujie、micro-app 的区别主要还是实现容器（或者叫沙箱）上有区别，比如 qiankun 是 `function + proxy + with`，micro-app 是 `web components`，而 wujie 是 `web components 和 iframe`。
+
+
+
+
+### 微前端样式隔离
+
+qiankun 做了样式隔离，有 shadow dom 和 scoped 两种方案：
+1. shadow dom 自带样式隔离，但是 shadow dom 内的样式和外界互不影响，导致挂在body上的弹窗的样式会加不上。父应用也没法设置子应用的样式。
+2. scoped 的方案是给选择器加了一个 data-qiankun='应用名' 的选择器，这样父应用能设置子应用样式，这样能隔离样式，但是同样有挂在 body 的弹窗样式设置不上的问题，因为 qiankun 的 scoped 不支持全局样式
+
+- react 和 vue 项目本身都会用 scoped css 或者 css modules 的组件级别样式隔离方案
+
+
+> 微前端非常适合后台管理系统开发，尤其是在项目中往往拥有多个业务系统，每个系统都有自己的开发团队和技术栈，而这些系统之间需要进行数据共享和交互，微前端技术可以让这些系统更加灵活地集成在一起。
+
+
+
+
 
 
 
@@ -1425,8 +2489,8 @@ iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论�
 3. 明确接受参数：必选，非必选，参数尽量设置以_开头，避免变量重复
 4. 可扩展：需求变动能够及时调整，不影响之前代码
 5. 代码逻辑清晰
-6. 封装的组件必须具有高性能，低耦合的特性
-7. 组件具有单一职责：封装业务组件或者基础组件，如果不能给这个组件起一个有意义的名字，证明这个组件承担的职责可能不够单一，需要继续抽组件，直到它可以是一个独立的组件即可
+6. 封装的组件必须具有`高性能，低耦合`的特性
+7. 组件具有`单一职责`：封装业务组件或者基础组件，如果不能给这个组件起一个有意义的名字，证明这个组件承担的职责可能不够单一，需要继续抽组件，直到它可以是一个独立的组件即可
 
 
 
@@ -1457,11 +2521,10 @@ vue: nuxt.js
 
 优点：
 1. `改善初始加载时间`： SSR 允许服务器向客户端发送完整呈现的 HTML 页面，从而减少客户端所需的处理量。这就改善了初始加载时间，因为用户可以更快地看到完整的页面。
-2. `有利于搜索引擎优化`：搜索引擎可以有效地抓取和索引 SSR 页面的内容，因为在初始响应中提供了完全呈现的 HTML。这就提高了搜索引擎的可见性，有助于获得更好的搜索排名。
+2. `有利于搜索引擎优化`：由于搜索引擎爬取工具通常不会等待Ajax异步完成后再爬取页面内容，SPA页面的内容往往无法被搜索引擎有效抓取。而SSR将数据和组件在服务端转化为HTML，返回的页面内容完整，有利于搜索引擎的爬取和索引。
 3. `可访问性`： SSR 可确保禁用 JavaScript 或使用辅助技术的用户可以访问内容。通过在服务器上生成 HTML，SSR 可为所有用户提供可靠、可访问的用户体验。
 4. `低带宽环境下的性能`： SSR 减少了客户端需要下载的数据量，因此有利于低带宽或高延迟环境中的用户。这对于移动用户或网络连接速度较慢的用户尤为重要。
 
-缺点：增加了服务器的负载和复杂性，生命周期不全，第三方库不全，学习成本大
 
 客户端渲染：请求一个url => 返回空的首屏html => 首屏请求数据 => 获取首屏数据 => 后端返回首屏数据 => 请求ajax数据，返回， 渲染
 
@@ -1474,17 +2537,53 @@ vue: nuxt.js
 
 
 
-### SSR项目的渲染原理
-
-1. `客户端请求`：当客户端发起请求时，服务器接收到请求并根据请求的 URL，决定加载相应的 SSR 页面。
-
-2. `服务器端渲染`：服务器端根据请求的 URL 确定应该渲染哪个组件或页面; 服务器端会以获取页面所需的数据，将数据注入到组件中，并调用组件的渲染函数，生成完整的 HTML 内容：`生成的 HTML 内容会包含应用程序的所有静态内容`，包括数据和组件的渲染结果。
-
-3. `返回 HTML 响应`：服务器将生成的 HTML 内容作为响应发送给客户端。客户端接收到 HTML 响应后，即可将其直接渲染到浏览器中
 
 
+### 客户端渲染 vs 服务端渲染
+
+- 没有ajax的web1.0时代：`浏览器向服务器请求页面 => 服务器向数据库查询数据 => 数据库返回数据 => 服务器向模板传递数据，渲染html片段 => 模板向服务器返回html片段 => 服务器组装html片段，向浏览器返回`
 
 
+- 客户端渲染(CSR)：`浏览器向前端服务器请求页面 => 前端服务器返回静态html页面 => 浏览器继续向前端服器请求js脚本 => 前端服务器返回js脚本 => 浏览器执行js脚本 => js脚本向后端服务器请求数据 => 后端服务器向数据库查询数据，数据库返回数据 => 后端继续向js脚本返回数据 => js脚本处理好数据后，渲染html页面`
+
+
+- 服务端渲染(SSR): 
+1. `浏览器向前端服务器请求页面 => 前端服务器向后端服务器请求数据 => 后端服务器向数据库查询数据，数据库返回数据 => 后端服务器向前端服务器返回数据 => 前端服务器组装HTML，并返回 => 浏览器渲染页面`
+2. `之后浏览器向前端服务器请求js脚本 => 前端服务器返回js脚本 => 浏览器执行js脚本，绑定js事件，向后端请求数据 => 后端服务器返回数据，js脚本动态渲染页面`
+
+
+相对于客户端渲染，服务端渲染在浏览器请求URL之后已经得到了一个带有数据的HTML文本，浏览器只需要解析HTML，直接构建DOM树就可以。
+
+而客户端渲染，需要先得到一个空的HTML页面，这个时候页面已经进入白屏，之后还需要经过加载并执行 JavaScript、请求后端服务器获取数据、JavaScript 渲染页面几个过程才可以看到最后的页面。特别是在复杂应用中，由于需要加载 JavaScript 脚本，越是复杂的应用，需要加载的 JavaScript 脚本就越多、越大，这会导致应用的首屏加载时间非常长，进而降低了体验感。
+
+
+**缺点**
+1. `需要更多的服务器负载均衡`: 由于服务器增加了渲染HTML的需求，使得原本只需要输出静态资源文件的nodejs服务，新增了数据获取的IO和渲染HTML的CPU占用，如果流量突然暴增，有可能导致服务器down机，因此需要使用响应的缓存策略和准备相应的服务器负载。
+2. `生命周期不全，第三方库不全，学习成本大`
+
+
+
+### SSR为什么会缩短首屏渲染时间？
+
+`缩短了首屏请求数据的路径`，CSR需要先返回首屏html模板后，再请求后端数据；而SSR是前端服务器直接请求数据，组装好html模板后直接返回。
+
+由于首屏页面已经在服务端完成了渲染，前端在接收到这个带有数据的HTML页面后，只需解析HTML并构建DOM树，而无需再次请求数据。这种方式避免了在客户端渲染中可能出现的等待数据加载的时间，从而大大缩短了首屏渲染时间。
+
+
+
+
+
+
+### React服务端渲染遇到过哪些问题，怎么做性能优化?
+
+1. SSR 需要服务器在每次请求时都渲染完整的页面，这可能会增加服务器的负担，尤其是在高并发的情况下。
+> 缓存已经渲染过的页面，对于相同或相似的请求，直接返回缓存结果，避免重复渲染。异步加载非关键组件，减少单次渲染的计算量。
+
+2. 在 SSR 中，数据需要在服务器端获取并注入到组件中，这可能会增加请求的延迟。
+> 在组件渲染之前先获取数据。使用缓存策略来存储常用数据，减少实时获取的开销。可以考虑使用 CDN 来加速数据的获取。
+
+3. 如果未正确实施代码分割和懒加载，可能导致渲染时间延长。
+> 利用 Webpack 或其他打包工具进行代码分割。使用 React 的 React.lazy() 和 Suspense 组件实现组件级别的懒加载。
 
 
 ## Node.js
@@ -1516,7 +2615,7 @@ Node.js底层的实现包括两个主要组件：
 
 适合应用：
 1. `善于I/O，不善于计算`: 因为Nodejs是一个单线程，如果计算（同步）太多，则会阻塞这个线程
-    > 用户表单收集系统、后台管理系统、实时交互系统、考试系统、联网软件、高并发量的web应用程序
+    > 用户`表单收集系统、后台管理系统、实时交互系统、考试系统、联网软件、高并发量的web应用程序`
 
 2. 与 websocket 配合，开发长连接的实时交互应用程序
     > 基于web的多人实时聊天客户端、聊天室、图文直播
@@ -1566,9 +2665,13 @@ Node.js有哪些全局对象：
 **Cluster**: 应用部署到多核服务器时，为了充分利用多核 CPU 资源一般启动多个 NodeJS 进程提供服务，这时就会使用到 NodeJS 内置的 Cluster 模块了
 > Cluster模块可以创建同时运行的子进程（Worker进程），同时共享同一个端口。每个子进程都有自己的事件循环、内存和V8实例。
 
+- 应用场景：`使用Cluster进行优雅的重启`
+> 当我们更新代码的时候，可能需要重新启动NodeJS。重新启动应用程序时，会出现一个小的空窗期：在我们重启单进程的NodeJS过程中，服务器会无法处理用户的请求。使用Cluster可以解决这个问题，具体做法如下：`一次重新启动一个Worker，剩下的Worker可以继续运行处理用户的请求`
+
+
 
 **worker_thread多线程**: 允许在一个 Node.js 实例中运行多个应用程序线程。相比创建多个进程更轻量，并且可以共享内存。进程间通过传输 ArrayBuffer 实例或共享 SharedArrayBuffer 实例来做到这一点。
-> worker_threads已被证明是充分利用CPU性能的最佳解决方案
+> `worker_threads已被证明是充分利用CPU性能的最佳解决方案`
 
 
 
@@ -1692,9 +2795,16 @@ nodejs性能衡量指标一般有如下：
 
 ### 洋葱模型？
 
-洋葱模型的核心思想是，Koa 中间件的执行顺序和处理流程类似于一个洋葱，请求在经过多个中间件处理时，会像剥洋葱一样，`从外向内逐步执行，然后再从内向外逐步返回结果`。每个中间件都有机会在请求进入和离开时进行处理，同时也可以对请求进行修改或添加新的功能。
+> 它借鉴了`函数式编程中的compose思想，将中间件（middleware）按照特定的顺序组织起来`，以处理HTTP请求和响应。
 
-中间件函数有两个参数第一个是`上下文`，第二个是 `next`，在中间件函数执行过程中，若遇到 next() ，那么就会进入到下一个中间件中执行，下一个中间执行完成后，在返回上一个中间件执行 next() 后面的方法，这便是中间件的执行逻辑。
+洋葱模型的核心思想是，Koa 中间件的执行顺序和处理流程类似于一个洋葱，请求在经过多个中间件处理时，会像剥洋葱一样，`从外向内逐步执行，然后再从内向外逐步返回结果`。
+
+中间件函数有两个参数第一个是`上下文`，第二个是 `next`，当请求到达某个中间件时，该中间件会执行一些操作，然后`通过调用next函数将控制权传递给下一个中间件`。这个过程会一直持续到最后一个中间件执行完毕。
+> Koa的洋葱模型是通过使用async/await和Promise来实现的。每个中间件都是一个async函数，当调用next函数时，会返回一个Promise对象。这样，Koa就可以通过Promise的链式调用来实现中间件的异步串行执行。
+
+与传统的中间件模型不同，Koa的洋葱模型在请求处理完毕后，还会按照相反的顺序再次经过这些中间件。这就像是剥洋葱一样，`先一层层剥开，然后再一层层合上`。这种设计使得`每个中间件都有两次处理时机：一次是在请求进入时，另一次是在请求处理完毕后返回时`。
+
+这种洋葱模型的设计带来了很多好处。首先，它使得中间件的编写更加灵活和强大。由于每个中间件都有两次处理时机，因此可以在进入时执行一些前置操作（如验证、记录日志等），在返回时执行一些后置操作（如清理资源、发送响应等）
 
 
 
@@ -1711,7 +2821,43 @@ pm2 是 process manager，进程管理，它是第二个大版本，和前一个
 
 
 
+### Node.js 怎么实现扫码登录？
 
+1. 前端进入首页会自动请求服务端的`qrcode/generate` 接口，会生成一个随机的二维码 id，生成二维码确认页面url, 同时调二维码生成库qrcode, 将该url生成一个二维码图片的base64地址，返给前端；
+> 二维码确认页面url，如: `http://localhost:3000/pages/confirm.html?id=${id}`
+
+2. 前端拿到二维码图片，展示；同时轮询调 `qrcode/check` 接口，查询该二维码id的二维码状态（未扫码、已扫码待确认、已确认登录、已取消）
+
+3. 当用户扫码访问二维码确认页面，首先从url中拿到了二维码id，然后调用 `qrcode/scan` 接口切换二维码状态为【`已扫描，等待用户确认`】，首页通过轮询也会及时更新状态；
+> 点击取消或确认，可调不同的接口，修改二维码为不同的状态；
+
+4. 如果用户之前没登录过，需要先登录账号，调`login`接口，传入用户名+密码；服务端通过`jwt`对用户信息加密，生成token，返回给前端；
+
+4. 前端拿到token, 用户点击确认，调`qrcode/confirm`接口，服务端拿到用户token信息，也是用`jwt`校验token是否有效；校验通过后首页轮询到二维码状态更新，就可以进行后续处理了
+
+
+
+
+### node 的内存管理跟垃圾回收机制有了解过吗？
+
+在Node.js中，内存被分为几个不同的区域，包括`代码区（`存放即将执行的代码片段）、`栈`（存放局部变量）、`堆`（存放对象、闭包上下文）以及`堆外内存`（不通过V8分配，也不受V8管理，例如Buffer对象的数据就存放于此）。这些区域中的大部分（除了堆外内存）都由`V8引擎`进行管理。
+
+关于`垃圾回收机制`，V8将内存分为`新生代和老年代`，`对新生代使用更高效的垃圾回收策略，而对老年代则使用更优化的策略`。当新生代中的对象存活时间超过一定阈值时，它们会被晋升到老年代。
+> 同时，V8还使用了一种增量式的垃圾回收策略，以减小垃圾回收对程序运行的影响。`标记清除算法：标记存活的对象，未被标记的则被释放`
+
+Node.js的内存管理和垃圾回收机制是一个复杂且重要的系统，它确保了Node.js在运行时能够有效地管理内存，防止内存泄漏，并优化程序的性能。
+
+
+
+### 什么是node是守护进程？
+
+Node.js的守护进程是一种在后台运行的特殊进程，它不受任何终端控制，主要用于监控Node.js应用程序的运行状态`·当应用程序出现错误或异常退出时，守护进程能够立即重启服务程序，防止服务器崩溃`。
+
+常见的Node.js守护进程工具包括PM2和forever。PM2是一个用于Node.js应用程序的生产环境进程管理器，内置`负载均衡器`。它不仅可以启动、停止和重启Node.js应用程序进程，确保应用程序一直处于运行状态，还提供了容错机制，可以在进程崩溃时自动重新启动应用程序。同时，`PM2的负载均衡功能可以将传入的请求分发到多个Node.js进程中，提高应用程序的性能和可扩展性`。
+
+而forever则是一个简单的命令式Node.js守护进程，通过命令行操作来监控Node.js子进程的运行情况。`一旦文件更新或者进程挂掉，forever会自动重启Node.js服务器，确保应用正常运行`。
+
+这些守护进程工具使得Node.js应用程序能够持续、稳定地运行，提高了应用程序的可用性和可靠性。
 
 
 
@@ -1756,6 +2902,8 @@ server {
 
 
 
+
+
 ## HTTP
 
 
@@ -1780,6 +2928,18 @@ server {
 
 那么就会直接使用浏览器的缓存数据，不会再向服务器发送任何请求。强制缓存生效时，http状态码为`200`。
 
+控制强制缓存的有以下两个头部字段:
+
+1. `Expire`: Expire是 HTTP 1.0 时期的字段，表示`资源过期时间`。当用户当前时间早于Expire设置的时间，则不再请求服务器，否则请求。
+> Expire有一个缺陷，就是用户设备时间不靠谱，可能被篡改。
+
+2. `Cache-Control`: Catche-Control 是HTTP 1.1新增的字段，可配置性更强。包括以下属性：
+    - `max-age`，表示有效期时长，单位为秒
+    - `public`
+    - `private`，控制转发服务器能否缓存
+    - `no-cache`，跳过强制缓存，走协商缓存
+    - `no-store`，跳过强制缓存和协商缓存
+
 - **协商缓存**
 
 `当第一次请求时服务器返回的响应头中没有Cache-Control和Expires`或者`Cache-Control和Expires过期`, 或者`它的属性设置为no-cache`
@@ -1800,7 +2960,7 @@ server {
 1. ``Last-Modified标注的最后修改只能精确到秒级``，如果某些文件在1秒钟以内，被修改多次的话，它将不能准确标注文件的修改时间
 2. 如果某些文件被修改了，但是内容并没有任何变化，而Last-Modified却改变了，导致文件没法使用缓存
 3. 有可能存在服务器没有准确获取文件修改时间，或者与代理服务器时间不一致等情形
-4. 当ETag和Last-Modified同时存在时，服务器先会检查ETag，然后再检查Last-Modified
+4. `当ETag和Last-Modified同时存在时，服务器先会检查ETag，然后再检查Last-Modified`
 
 
 ### Cache 和 Cookie 异同？
@@ -1817,7 +2977,7 @@ server {
 5. Cookie 的 max-age 是从浏览器拿到响应报文时开始计算的，而 Cache 的 max-age 是从响应报文的生成时间（Date 头字段）开始计算。
 
 
-### 强制刷新会什么会返回200？
+### 强制刷新为什么会返回200？
 
 > 即使有“Last-modified”和“ETag”，强制刷新（Ctrl+F5）也能够从服务器获取最新数据（返回 200 而不是 304），观察请求头和响应头，解释原因。
 
@@ -1849,7 +3009,7 @@ www.bidu.com
 
 浏览器输入一个域名，完整的解析流程：
 
-`浏览器缓存 -> 操作系统缓存 -> hosts文件 -> 非权威域名服务器 -> 根域名服务器 -> 顶级域名服务器 -> 二级域名服务器 -> 权威域名服务器。`
+`浏览器缓存 -> 操作系统缓存 -> hosts文件 -> 非权威域名服务器 -> 根域名服务器 -> 顶级域名服务器 -> 权威域名服务器。`
 
 
 
@@ -2048,6 +3208,18 @@ Accept-Language: zh-CN, zh, en
 
 
 
+
+### http 301 302 307 308之间的区别
+
+- “301 Moved Permanently”俗称“`永久重定向`”，含义是此次请求的资源已经不存在了，需要改用新的 URI 再次访问。
+- “302 Moved Temporarily”，俗称“`临时重定向`”，意思是请求的资源还在，但需要暂时用另一个 URI 来访问。
+
+- 301和308状态码表示永久重定向, 301状态码在重定向时可能`会改变请求方法`，例如将POST方法改变为GET方法。而308状态码则要求客户端在新地址上重复同样的请求方法，即`不允许重定向时改变请求方法`
+- 302和307状态码表示临时重定向。主要的区别在于，当发送重定向请求时，`307状态码确保请求方法和消息主体不会发生变化`，这对于保持POST请求的原始数据尤为重要
+
+- `304` Not Modified 用于 If-Modified-Since 等条件请求，表示资源未修改，用于缓存控制。它不具有通常的跳转含义，但可以理解成“重定向到已缓存的文件”（即“`缓存重定向`”）。
+
+
 ### HTTP传输大文件的方法
 
 1. **数据压缩**
@@ -2154,7 +3326,7 @@ TCP/IP 协议总共有四层: **链接层 》 网络层 》 传输层 》 应用
 1. `第一层叫链接层（link layer）`，负责在以太网、WiFi 这样的底层网络上发送原始数据包，工作在网卡这个层次，使用`MAC地址（局域网地址）来标记网络上的设备`，所以有时候也叫 MAC 层。
 2. `第二层叫网际层或者网络互连层（internet layer），IP 协议就处在这一层`。因为 IP 协议定义了“IP 地址”的概念，所以就可以在“链接层”的基础上，`用 IP 地址取代 MAC 地址，把许许多多的局域网、广域网连接成一个虚拟的巨大网络`，在这个网络里找设备时只要把 IP 地址再“翻译”成 MAC 地址就可以了。
 3. 第三层叫`传输层（transport layer）`，这个层次协议的职责是`保证数据在 IP 地址标记的两点之间“可靠”地传输，是 TCP 协议工作的层次`，另外还有它的一个“小伙伴”UDP。
-    - TCP 的数据是连续的字节流，有先后顺序，而 UDP 则是分散的小数据包，是顺序发，乱序收。
+    - TCP 的数据是`连续的字节流`，有先后顺序，而 UDP 则是`分散的小数据包`，是顺序发，乱序收。
     
 4. 协议栈的第四层叫`应用层（application layer）`，由于下面的三层把基础打得非常好，所以在这一层就“百花齐放”了，有各种面向具体应用的协议。例如 Telnet、SSH、FTP、SMTP 等等，当然还有我们的 `HTTP`。
 
@@ -2175,6 +3347,22 @@ TCP/IP 协议总共有四层: **链接层 》 网络层 》 传输层 》 应用
 HTTP 协议的`传输过程`通过协议栈`逐层向下`，每一层都添加本层的专有数据，层层打包，然后通过下层发送出去。
 
 `接收数据`则是相反的操作，`从下往上穿过协议栈`，逐层拆包，每层去掉本层的专有头，上层就会拿到自己的数据。
+
+
+
+
+
+### TCP与UDP的区别？
+
+TCP和UDP都是网络层之上的，传输层协议，都能保护网络层的传输，双方的通信都需要开放端口，TCP和UDP中都存在复用和分用技术。
+
+1. `连接性质`：TCP是面向连接的协议，这意味着在发送和接收数据之前，`需要建立连接`。而`UDP则是一种无连接的协议`，每个数据报都是独立发送的，无需建立和维护连接。
+2. `可靠性`：TCP提供可靠交付的服务，使用流量控制和拥塞控制等服务保证可靠通信。相比之下，UDP尽最大努力交付，但`不保证数据的可靠性`，因此`可能会有数据丢失`的风险。
+3. `效率`：由于UDP无需建立和维护连接，以及无需处理复杂的控制机制，因此`其工作效率通常比TCP高`。然而，这种效率的提升是以牺牲数据的可靠性为代价的。
+4. `数据传输方式`：`TCP是面向字节流的`，它将数据视为一个无结构的字节流。而`UDP则是面向报文的`，每个UDP报文都包含完整的数据报，应用程序必须能够处理定长或不定长的报文。
+5. `应用场景`：TCP因其可靠性而适用于需要确保数据完整性和顺序的应用，如`文件传输、网页浏览`等。而UDP则因其高效率适用于对实时性要求高且可以容忍部分数据丢失的应用，如`实时音视频流媒体、DNS域名解析和实时游戏`等。
+6. `传输方式`: `TCP点对点`（不支持广播和多播）; `UDP一对一，一对多，多对一，多对多`
+
 
 
 
@@ -2200,7 +3388,7 @@ HTTPS 名字里的“S”，它把 HTTP 下层的传输协议由 TCP/IP 换成�
 
 HTTP = `HTTP + TCP + IP + MAC`
 
-HTTPS = `HTTP + SSL/TLS + TCP + IP +MAC`
+HTTPS = `HTTP + SSL/TLS + TCP + IP + MAC`
 
 
 
@@ -2262,14 +3450,16 @@ HTTP/2协议栈：`HTTP > HPack/Stream > TLS > TCP > IP > MAC`
 
 ### 常见的攻击方式
 
-- `CSRF，跨站请求伪造`，是指攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。
+- `CSRF，跨站请求伪造`，是指`攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求`。
     1. 攻击者将支付的接口请求隐藏在 img 标签内，在加载这个标签时，浏览器会自动发起 img 的资源请求
     2. 访问页面后，表单会自动提交，相当于模拟用户完成了一次 POST 操作。
     3. 在论坛中发布的图片中嵌入恶意链接，或者以广告的形式诱导用户中招
 
 解决方案：设置 Cookie 中的 SameSite 属性解决: `Strict：浏览器完全禁止第三方拿到 Cookie`; 同源策略，token认证；其他属性：Lax / None
+> 衍生：[如何解决 Chrome Cookie Same-Site 跨域问题](https://juejin.cn/post/6980262495613091848)
 
-- `XSS 是跨站脚本攻击`（Cross Site Scripting），为了与 CSS 区别开来，故简称 XSS。往页面恶意的注入脚代码本。当用户浏览该页时，嵌入其中的 Script 代码会被执行，从而达到恶意攻击用户的目的。
+
+- `XSS 是跨站脚本攻击`（Cross Site Scripting），为了与 CSS 区别开来，故简称 XSS。`往页面恶意的注入脚代码本`。当用户浏览该页时，嵌入其中的 Script 代码会被执行，从而达到恶意攻击用户的目的。
 
 解决方案：过滤特殊字符，或对特定字符进行编译转码；对重要的 cookie 设置 `httpOnly`
 
@@ -2306,7 +3496,7 @@ CDN 的最核心原则是“就近访问”,
 
 ### http2的多路复用为什么会解决队头阻塞的问题？
 
-在传统的HTTP/1.1中，由于每个请求都需要在单独的TCP连接中按顺序发送和接收，因此如果一个请求因为某种原因被阻塞（例如，等待服务器响应或网络拥塞），那么后续的所有请求都会受到影响，无法并行处理。这种阻塞现象被称为`队头阻塞`。
+在传统的HTTP/1.1中，由于`每个请求都需要在单独的TCP连接中按顺序发送和接收`，因此如果一个请求因为某种原因被阻塞（例如，等待服务器响应或网络拥塞），那么后续的所有请求都会受到影响，无法并行处理。这种阻塞现象被称为`队头阻塞`。
 
 在HTTP/2中，引入了`多路复用`的概念，`它允许在同一个TCP连接中并行发送和接收多个请求和响应`。这是通过使用`帧（Frame）`作为通信的基本单位来实现的。`每个请求或响应都被拆分成多个帧，并在单个TCP连接中乱序发送。每个帧都有一个唯一的标识符，这样接收端就可以根据标识符重新组装消息，确保消息的顺序正确`。
 
@@ -2328,6 +3518,21 @@ CDN 的最核心原则是“就近访问”,
 3. 连接机制:
 - HTTP/2 服务器推送: 服务器推送是基于 HTTP/2 的单向通信机制。`客户端发起一个请求，服务器可以通过推送响应来发送额外的资源，但客户端不能直接在同一个连接上向服务器发送数据（静态资源）。`
 - WebSocket: `WebSocket 提供了一个双向通信的持久连接`。客户端和服务器之间可以自由地发送和接收数据，而不需要依赖于 HTTP 请求-响应周期。
+
+
+
+
+### post为什么会发送两次请求？
+
+预检请求是在进行`跨域资源共享` CORS 时，由浏览器自动发起的一种 `OPTIONS` 请求。它的存在是为了保障安全，并允许服务器决定是否允许跨域请求。
+
+跨域请求是指在浏览器中向不同域名、不同端口或不同协议的资源发送请求。出于安全原因，浏览器默认禁止跨域请求，只允许同源策略。而当网页需要进行跨域请求时，浏览器会自动发送一个预检请求，以确定是否服务器允许实际的跨域请求。
+
+预检请求中包含了一些额外的头部信息，如 Origin 和 Access-Control-Request-Method 等，`用于告知服务器实际请求的方法和来源`。服务器收到预检请求后，可以根据这些头部信息，进行验证和授权判断。如果服务器认可该跨域请求，将返回一个包含 Access-Control-Allow-Origin 等头部信息的响应，浏览器才会继续发送实际的跨域请求。
+
+> 使用预检请求机制可以有效地防范跨域请求带来的安全风险，保护用户数据和隐私。
+
+
 
 
 
@@ -2354,9 +3559,20 @@ CDN 的最核心原则是“就近访问”,
 
 
 
+## 小程序
 
 
-## 其他
+### mpvue 原理是什么？
+
+mpvue 是一个使用 Vue.js 开发小程序的前端框架。
+
+- mpvue 的底层是基于 Vue.js 构建的，因此它继承了 Vue.js 的语法和特性，开发者可以使用 Vue.js 的语法来开发小程序; 支持使用 Vue 的组件化开发；
+
+- mpvue保留了Vue的核心方法，继承了Vue.js的基础能力；`mpvue-template-compiler`提供了将Vue的模板语法转换到小程序的wxml语法的能力；
+
+- mpvue还修改了Vue的建构配置，使之构建出符合小程序项目结构的代码格式，包括json、wxml、wxss和js文件;
+
+- mpvue的实现原理是`将小程序的功能托管给Vue.js，在正确的时机将数据变更同步到小程序`，从而达到开发小程序的目的; 开发者可以参照Vue.js编写与之对应的小程序代码，`小程序负责视图层展示，所有业务逻辑收敛到Vue.js中，Vue.js数据变更后同步到小程序`。
 
 
 
@@ -2368,6 +3584,44 @@ CDN 的最核心原则是“就近访问”,
 > 渲染线程使用 WebView 进行 UI 的渲染呈现，逻辑层是用 JavaScript 引擎运行逻辑代码; 小程序的渲染层和逻辑层之间的通信并不是直接传递数据或事件，而是由 Native(微信客户端) 作为中间媒介进行转发。逻辑层发送网络请求也是经由 Native 转发。逻辑层运行在 JSCore 中，并没有一个完整浏览器对象，因而缺少相关的DOM API和BOM API。
 
 ​网页开发者需要面对的环境是各式各样的浏览器，PC 端需要面对 IE、Chrome、QQ浏览器等，在移动端需要面对Safari、Chrome以及 iOS、Android 系统中的各式 WebView 。而小程序开发过程中需要面对的是两大操作系统 iOS 和 Android 的微信客户端，以及用于辅助开发的小程序开发者工具
+
+
+### 小程序解决了什么问题？
+
+1. 小程序的展示是`原生与webview的混合`，原生的组件，毫无疑问比webview的有优势；在web开发中, 渲染线程和脚本线程是互斥的；而小程序将他们`分别运行在不同的线程中`，这样就不会互相影响。特别是针对首屏，优势会更加明显。
+
+2. web资源离线存储：通过使用微信离线存储，Web 开发者可借助微信提供的资源存储能力，直接从微信本地加载 Web 资源而不需要再从服务端拉取，从而减少网页加载时间，为微信用户提供更优质的网页浏览体验。
+
+3. 强大的原生能力，拍照，蓝牙，客服等：小程序直接将`JS-JDK`内置在api中，而且扩展了一些，使得小程序的原生能力更加强大
+
+
+### 小程序缺点
+
+1. 过度依赖微信的底层，遇到问题只能等待官方修复；
+2. es6, npm，typescript等，在web端"火爆"一两年后，小程序才逐步引入；
+3. 包大小，审核机制，各种资质，页面栈不能超过10个等，这些经常成为开发，或者是业务上的障碍
+
+
+
+### 小程序与 H5 的不同
+
+1. 运行环境的不同
+- 传统的 H5 的运行环境是浏览器，其中浏览器提供 window、document 等 BOM 对象；
+- 小程序的逻辑层和渲染层是分开的，逻辑层运行在 `JSCore` 中，并没有一个完整的浏览器对象，所以缺少相关的 `DOM API 和 BOM API`。
+
+2. 开发成本的不同
+- H5 的开发，涉及到开发工具、前端框架、模块管理工具、任务管理工具、UI 库的选择、接口调用工具及浏览器兼容性等；
+- 小程序的开发，指定环境的小程序会提供开发者工具、API 及规范的开发标准。由于小程序是跑在指定的环境下的，同时 API 是指定环境下提供的，所以不用考虑浏览器的兼容性。
+
+3. 使用体验的不同
+- H5 页面需要在浏览器中渲染，在复杂的业务逻辑或者丰富的页面交互时会有卡顿情况；
+- 小程序除首次使用略慢，页面切换及跳转等非常顺滑，接近 Native。
+
+
+
+
+
+## 其他
 
 
 
@@ -2385,7 +3639,7 @@ npm、yarn和pnpm都是用于Node.js项目的包管理工具，它们都有一�
 yarn 虽然在 npm 之上做出了一定的创新和相应的改进，但是在依赖包管理方式上还是借鉴的 npm 的扁平化 node_modules 方式，并没有解决 npm 相应的痛点。
 
 
-- pnpm 在依赖包管理方式上完全舍弃了 npm 的那一套，利用符号链接的方式重新设计了 node_modules 的结构来处理扁平化带来的问题。
+- pnpm 在依赖包管理方式上完全舍弃了 npm 的那一套，利用`符号链接的方式`重新设计了 node_modules 的结构来处理扁平化带来的问题。
 
 
 1. `安装速度和性能`：pnpm通常被认为是最快的，因为它采用了`只下载必需的模块`的方法，而不是下载整个依赖树。此外，`pnpm还可以并行下载模块`，从而进一步提高下载速度。yarn也使用并行安装和缓存机制来提高安装速度，尤其是当之前已经安装过某个软件包时，yarn会从缓存中获取，而不是重新下载。相比之下，npm按照队列依次安装每个包，安装速度可能较慢。
@@ -2478,6 +3732,7 @@ Web Workers允许在后台线程中运行JavaScript，从而不会阻塞主线�
 使用CSS的display: none或visibility: hidden来隐藏不需要显示的元素，而不是频繁地添加和删除DOM元素。
 
 
+
 ### 虚拟滚动的原理是什么？
 
 在虚拟滚动中，`根据当前可视区域的高度，计算并渲染显示的数据量，而对超出视口之外的数据则不进行渲染`。
@@ -2568,3 +3823,446 @@ rebase 通常用于重写提交历史, 使用 rebase 可以使我们保持一个
 ### 页面怎么做强制刷新？
 
 `location.reload(true)`, `<meta http-equiv="refresh" content="0">`, `Ctrl + F5`
+
+
+
+
+### 前端性能优化
+
+1. `图片资源优化：`
+    - 图片压缩：png, webp
+    - 响应式图片: 媒体查询，不同的窗口大小、不同设备像素下来展示不同图片
+    - 图片延迟加载：在真实的图片加载出来之前，先展示默认图片
+    - 小图标：webfont，base64，雪碧图
+    - 懒加载：滚到到视图再加载
+    - 预加载：将所需要的资源提前加载到浏览器本地，后面在需要的时候可以直接从浏览器的缓存中获取，而不用再重新开始加载：`preload，prefetch， preconnect，prerender`
+
+2. `HTML的优化方法：`
+    - 减少html的嵌套层级关系
+    - 减少一些无语义的代码，删除多余的空格，换行符，缩进和不必要的注释（打包工具会处理）
+    - css文件链接尽量放在页面头部：css加载不会阻塞DOM Tree解析，但是会阻塞DOM Tree渲染，也会阻塞后面js执行。`css放在页面底部会导致页面白屏时间变长`。
+    - js文件一般放在页面底部: 这是`防止js的加载和解析阻塞页面元素的正常渲染`
+    - 动画优化：延迟加载，css动画>js动画
+    - 减少页面回流和重绘
+    - 简化DOM操作
+    - 静态文件压缩工具
+
+3. `接口服务调用优化：`
+    - 接口合并
+    - 接口监控：弱网，超时，网络异常，网络切换等情况
+    - 接口缓存优化
+
+
+
+
+### 说一下在平时的前端业务中，在技术层面上做过哪些优化？
+
+> 以提高用户体验、加快页面加载速度和提升系统性能~
+
+- `性能优化：`
+1. `代码压缩与合并`：利用如UglifyJS、Terser等工具对JavaScript代码进行压缩，减少文件大小，提高加载速度。同时，通过Webpack等模块打包工具合并多个文件，减少HTTP请求次数。
+2. `图片优化`：使用适当的图片格式（如WebP、JPEG、PNG等），根据图片内容选择合适的压缩级别。利用CDN加速图片加载，对图片进行懒加载，以减少不必要的带宽消耗和提高页面加载速度。
+3. `缓存策略`：利用HTTP缓存机制，设置合适的缓存头（如Cache-Control、ETag等），减少服务器请求次数，提高页面加载速度。同时，使用浏览器缓存（如localStorage、sessionStorage）存储常用数据，减少网络请求。
+4. `异步加载`：将非关键代码和资源进行异步加载，如使用async和defer属性加载JavaScript脚本，使页面能够更快地呈现给用户。
+
+- `用户体验优化：`
+1. `响应式设计`：使用媒体查询和流式布局等技术，确保应用在不同设备和屏幕尺寸上都能良好地显示和交互。
+2. `动画与过渡`：利用CSS3动画和过渡效果，提高应用的交互性和用户体验。同时，注意控制动画的复杂度和性能开销，避免影响页面性能。
+3. `错误处理与反馈`：合理处理页面错误和异常，给予用户友好的提示和反馈，提升用户体验。
+
+- `代码质量优化：`
+1. `模块化与组件化`：将代码拆分为可复用的模块和组件，提高代码的可维护性和可重用性。
+2. `代码规范与文档`：遵循统一的代码规范，使用ESLint等工具进行代码检查，确保代码质量。同时，编写详细的文档和注释，方便其他开发人员理解和维护代码。
+3. `测试与调试`：编写单元测试和集成测试，确保代码的正确性和稳定性。使用浏览器的开发者工具进行调试和性能分析，定位和解决潜在问题。
+
+- `技术选型与创新`：
+1. `选择合适的技术栈`：根据项目需求和团队能力，选择合适的前端技术栈，如React、Vue、Angular等，确保项目的顺利进行。
+2. `引入新技术`：关注前端技术的发展趋势，积极引入新技术和工具，如WebAssembly、WebGPU等，提升应用的性能和功能。
+
+
+### 前端开发中怎么改进开发流程？怎么提高开发效率？
+
+**改进开发流程**
+
+- `代码规范与约定：`
+    1. 制定并遵循一致的代码规范，包括命名规范、缩进风格、注释风格等。
+    2. 使用代码审查（Code Review）工具，确保代码质量，同时分享和学习更好的编码实践。
+- `模块化与组件化：`
+    1. 将代码拆分为独立的模块或组件，每个模块或组件负责单一的功能或视图。
+    2. 使用前端框架（如React、Vue、Angular等）提供的组件化开发方式，提高代码复用性和可维护性。
+- `版本控制：`
+    1. 使用Git等版本控制系统，管理代码的变更历史，方便协作和追踪问题。
+    2. 定期进行代码合并（Merge）和冲突解决，保持代码库的整洁和一致性。
+- `自动化构建与部署：`
+    1. 设置自动化构建流程，使用如Webpack、Rollup等构建工具，自动打包和压缩代码。
+    2. 实现持续集成（CI）和持续部署（CD），自动运行测试、构建和部署流程，减少手动操作。
+- `测试：`
+    1. 编写单元测试和集成测试，确保代码的正确性和稳定性。
+    2. 使用测试覆盖率工具，确保关键代码都有对应的测试。
+
+
+**提高开发效率**
+
+- `使用合适的工具：`
+    1. 选择高效的编辑器（如VS Code、WebStorm等）和调试工具。
+    2. 利用代码片段（Snippets）和快捷键，加速编码过程。
+
+- `代码重用与库的使用：`
+    1. 避免重复造轮子，尽量使用现有的库和框架，减少重复劳动。
+    2. 对于常用功能，可以封装成自定义的库或工具函数，方便在其他项目中复用。
+
+- `状态管理：`
+    1. 使用状态管理库（如Redux、Vuex等），管理应用的状态，避免复杂的组件间通信。
+    2. 结合Context API或React Hooks等特性，简化状态管理逻辑。
+
+- `性能优化：`
+    1. 对代码进行性能分析和优化，减少不必要的计算和渲染。
+    2. 使用懒加载、代码分割等技术，提高页面加载速度。
+
+- `团队协作：`
+    1. 划分清晰的职责和任务，确保团队成员能够高效协作。
+    2. 定期进行技术分享和讨论，共同学习和成长。
+
+- `知识积累与分享`
+    1. 建立技术文档和知识库，方便团队成员快速查找和解决问题。
+    2. 鼓励团队成员分享自己的技术经验和解决方案，提高团队整体技术水平。
+
+
+### 如何减少卡顿?
+
+- 不要阻塞主线程：使用异步任务，promise/async/settimeout/requestIdleCallback
+- 减少长耗时：任务拆分
+
+
+
+
+### 前端首屏性能优化
+
+- `资源加载优化`
+1. 减少资源大小：代码压缩，Gzip, 图片压缩，代码拆分
+2. 减少http请求次数：http强缓存，service worker, 本地存储，合并请求
+3. 提高http请求响应速度：cdn, http协商缓存，DNS预解析(dns-prefetch)，http2
+4. 优化资源加载时机：按需加载，懒加载，预加载（preload）
+5. 优化资源内容加载方式：客户端h5离线包，内容直出
+
+- `页面渲染优化`
+1. 优化html代码：js外链放底部，css外链放顶部，减少dom数量
+2. 优化js,css代码：使用webworker, 长任务拆分子线程，减少重排重绘，降低css选择器复杂度
+3. 优化动画效果：使用requestAnimationIframe, 使用transtion和opacity, 使用will-change或translateZ来调用合成图层
+
+
+
+
+### WebView性能优化
+
+- 减少首次打开WebView的时间：`在客户端启动的时候，就初始化一个全局的WebView待用`，当用户访问Webview的时候直接使用这个WebView加载对应网页；
+- 导航栏预加载：和webview并行一起加载；
+- 统一在Webview中设置cookie：初始化Webview的时候判断是否登录，如果登录了就打开H5页面，如果没登录就自动跳转登录页面；
+- 减少页面的白屏时间：webview加载页面的url尽量前置，不要放在最后，可以和业务逻辑并行处理
+- js-sdk优化：oc和js通信方式：scheme, iframe, webkit
+- 浏览器缓存策略
+
+
+
+### H5离线化的实现方式
+
+1. 首先会加载一个全局的包就是一些基础的文件，加载之后会把包释放放在内存里；
+2. 接着会做一个检测，查看本地是否安装，如果已经安装就释放到内存，如果没有安装就触发离线包的下载；
+3. 就是我们做好的包放在服务器中，然后从服务器获取过来，在下载之前会进行一个本地和线上版本的对比，版本不一致的话就会下载最新的包，如果一致就取本地的就可以了。
+4. 最终这个包会解压释放在内存里面，当webview在加载url的时候会直接从内存里面读取，如果能读取到就加载内存中的页面数据进行展示，假设读取不到也就是说本地没有这个业务就会使用线上的url地址让页面加载就可以了。
+
+从服务器请求的离线包信息存储到本地数据库的过程中，离线包信息包括离线包的下载地址，离线包版本号，加密签名信息等，`安装离线包其实就是将离线包从下载目录拷贝到手机安装目录`。
+
+
+### 移动端优化方式? 离线包是如何实现的?
+
+移动端优化方式：`代码优化，图片优化，网络请求优化，利用缓存，使用CDN，响应式设计，减少DOM操作`
+
+`离线包（Offline Package）`的实现，它主要是一种用于移动端应用的优化技术，旨在提高应用的启动速度和用户体验。离线包包含了应用所需的一些`静态资源`，如HTML、CSS、JavaScript、图片等，这些资源在应用安装或首次启动时下载到本地，之后用户就可以在没有网络连接的情况下访问这些资源。
+
+离线包的实现通常包括以下几个步骤：
+1. `资源打包`：将应用所需的静态资源打包成一个或多个离线包文件。这些文件可以是压缩的，以减小文件大小。
+2. `下载与存储`：在应用安装或首次启动时，从服务器下载离线包文件，并存储在设备的本地存储中。
+3. `版本控制`：为离线包添加版本号，以便在应用更新时能够判断是否需要重新下载离线包。
+4. `资源加载`：当应用需要加载某个资源时，首先检查本地存储中是否有对应的离线包文件。如果有，则直接从离线包中加载资源；否则，从网络加载资源。
+5. `更新机制`：当服务器上的离线包文件更新时，应用可以通过某种机制（如`轮询、推送通知等）检测到更新`，并提示用户下载新的离线包。
+
+
+
+
+
+### h5页面怎么嵌在native里面，怎么设置沉浸式等样式？
+
+1. 使用`WebView`: 在原生应用中，你可以使用WebView组件来加载和显示H5页面
+2. 加载H5页面: 你可以通过WebView加载本地的H5页面（存储在应用的资源文件夹中）或远程的H5页面（通过URL加载）。
+
+**设置沉浸式样式**: 通过原生app提供的js sdk设置
+
+
+
+### node.js写接口怎么统计收集报错情况？
+
+- `使用日志库`：使用像`pino`或`bunyan`这样的日志库，它们提供了丰富的日志级别（如`debug、info、warn、error`等）和格式化选项。
+> 在代码中捕获错误并使用这些库记录错误信息。可以将日志输出到控制台、文件或远程日志系统。
+
+- `自定义错误处理中间件`：如果你的应用是基于Express或其他框架构建的，可以创建一个自定义的错误处理中间件来捕获和处理未捕获的异常。
+> 在这个中间件中，你可以记录错误信息，并返回适当的错误响应给客户端。
+
+- `使用错误追踪服务：` 服务如`Sentry`、New Relic或Datadog等提供了强大的错误追踪功能。这些服务可以集成到你的Node.js应用中，自动捕获和报告错误。它们通常提供了详细的`错误堆栈、用户信息、环境数据`等，有助于快速定位问题。
+
+- `集成监控工具：` 使用像Prometheus、Grafana或Zabbix这样的监控工具来监控你的Node.js应用的性能和健康状况。这些工具可以收集各种指标，包括错误率、响应时间、内存使用情况等。通过`设置警报`，你可以在错误率上升或性能下降时及时得到通知。
+
+- `主动测试和模拟错误`：通过编写单元测试和集成测试来验证你的代码是否能够正确处理各种错误情况。
+
+
+**报错通知客户端：**
+
+HTTP状态码、错误响应体、自定义错误处理中间件
+
+
+
+### 单点登录怎么做？
+
+
+**普通登录**
+
+通过登录页面根据用户名查询用户信息，判断密码是否正确，正确则将用户信息写到session，访问的时候通过从session中获取用户信息，判断是否已登录，登录则允许访问。
+
+`缺点`：由于session不能共享，服务越来越多，并且还服务还搭建集群，导致每访问另外一个服务都需要重新登录。
+
+
+**SSO (single sign on) 单点登录**
+
+通过单点登录可以让用户只需要登录一次软件或者系统，那么`同系统下的平台都可以免去再次注册、验证、访问权限的麻烦程序`，通俗易懂的理解为一次性登录也可以一次性下线。
+
+
+
+**域名结构**
+
+`email.google.com`：`子域名(主机名).二级域名.顶级域名`
+
+如主域名`example.com`，`www.example.com、blog.example.com和shop.example.com`都是其子域名。
+> 在技术上，这些子域名通常指向不同的服务器或网站内容，但它们都属于同一个主域名；但会有同源策略限制
+
+`同源策略`: 协议（如http或https）、域名（即网站地址）和端口号（如80或443）都相同
+
+
+**不同域名下的单点登录**
+
+1. 用户登录子系统 a.com 时未登录，跳转到 sso.com 登录界面，成功登录后，SSO 生成一个 `ST （service ticket ）`;
+2. 然后重定向 `a.com?ticket=123` 带上授权码 ticket，并将认证中心 sso.com 的登录态写入 Cookie; 在 a.com 服务器中，拿着 ticket 向认证中心确认，授权码 ticket 真实有效; 
+3. 验证成功后，服务器将登录信息写入 Cookie（此时客户端有 2 个 Cookie 分别存有 a.com 和 sso.com 的登录台）。
+
+4. 认证中心登录完成之后，继续访问 a.com 下的其他页面：这个时候，由于 a.com 存在已登录的 Cookie 信息，所以服务器端直接认证成功。
+
+5. 如果认证中心登录完成之后，访问 b.com 下的页面：由于认证中心存在之前登录过的 Cookie，所以也不用再次输入账号密码，直接下发 ticket 给 b.com 即可。
+
+用户登录不同的域名时，都会跳转到 SSO，然后 SSO 带着 ST 返回到不同的子域名，子域名中发出请求验证 ST 的正确性（防止篡改请求）。验证通过后即可完成不同的业务。
+
+
+
+**SSO 机制实现方式**
+
+实现单点登录的关键在于，如何让 Token 在多个域中共享。
+
+
+- 父域cookie
+
+Cookie 的作用域由 `domain` 属性和 `path` 属性共同决定。domain 属性的有效值为`当前域或其父域的域名/IP地址`; path 属性的有效值是以“/”开头的路径。
+
+将 Cookie 的 `domain 属性设置为父域的域名（主域名），同时将 Cookie 的 path 属性设置为根路径`，这样所有的子域应用就都可以访问到这个 Cookie 了.
+> 要求应用系统的域名需建立在一个共同的主域名之下，如 tieba.baidu.com 和 map.baidu.com，它们都建立在 baidu.com 这个主域名之下，那么它们就可以通过这种方式来实现单点登录。
+
+
+- 认证中心
+
+认证中心就是一个专门负责处理登录请求的独立的 Web 服务。
+
+用户统一在认证中心进行登录，登录成功后，认证中心记录用户的登录状态，并将 Token 写入 Cookie。（注意这个 Cookie 是认证中心的，应用系统是访问不到的）
+
+> 此种实现方式相对复杂，支持跨域，扩展性好，是单点登录的标准做法。
+
+
+**SSO 单点登录退出**
+
+在每一个产品在向认证中心验证 ticket(token) 时，其实可以顺带将自己的退出登录 api 发送到认证中心。
+
+当某个产品 c.com 退出登录时：清空 c.com 中的登录态 Cookie。请求认证中心 sso.com 中的退出 api。认证中心遍历下发过 ticket(token) 的所有产品，并调用对应的退出 api，完成退出。
+
+
+
+
+### 前端中使用虚拟列表滚动过快时会出现页面抖动的情况吗
+
+> 在前端中使用虚拟列表时，滚动过快确实可能会出现页面抖动的情况。这主要是因为虚拟列表通过只渲染可视区域内的列表项来优化性能，当滚动速度过快时，列表的渲染和更新可能跟不上滚动的速度，导致页面出现抖动或跳动的现象。
+
+1. 优化渲染性能：尽量减少每次渲染的计算量，使用高效的渲染技术，如使用`requestAnimationFrame`代替setTimeout或setInterval进行动画渲染，避免不必要的重绘和回流。
+2. 预加载和缓存：在滚动过程中，可以`预加载`一些即将进入可视区域的列表项，或者在内存中缓存已经渲染过的列表项，以减少渲染时的计算量。
+3. 使用`防抖和节流`：对于滚动事件的处理，可以使用防抖（debounce）或节流（throttle）技术来限制事件处理的频率，避免过于频繁的事件处理导致性能问题。
+4. 滚动优化：考虑使用原生滚动或者自定义滚动实现，并优化滚动性能，如使用will-change属性或者`transform属性进行滚动动画，减少重排和重绘`。
+5. 调整滚动容器的大小：如果可能的话，适当调整滚动容器的大小，使其与可视区域匹配或接近，这样可以减少滚动时计算量，降低抖动的可能性。
+
+
+
+
+### 封装一个虚拟滚动列表组件需要做哪些事情？
+
+1. `理解虚拟滚动原理`：虚拟滚动是一种优化技术，它`只渲染可视区域内的列表项，对于非可视区域的列表项则不进行渲染`，从而极大地提高了大量数据列表的性能和响应速度。
+2. `定义组件接口`：确定组件的输入和输出。输入可能包括列表数据、每行的高度、可视区域的高度等；输出可能包括滚动事件、点击事件等。
+3. `实现滚动容器`：创建一个可以滚动的容器，并设置其高度和样式。这个容器将用于容纳可视区域内的列表项。
+4. `计算可视区域和列表项`：根据滚动容器的高度和每行的高度，计算出可视区域内可以显示的列表项数量。同时，也需要计算出总的列表项数量，以便在滚动时能够正确地更新可视区域内的列表项。
+5. `实现滚动监听`：监听滚动容器的滚动事件，当滚动发生时，`根据滚动的距离计算出当前应该显示的列表项`，并更新可视区域内的列表项。
+6. `渲染列表项`：使用Vue的模板或render函数来渲染列表项。注意，只需要渲染可视区域内的列表项，对于非可视区域的列表项，不需要进行渲染。
+7. `优化性能`：注意在组件的生命周期钩子中进行必要的优化，如使用Vue的v-show或v-if来避免不必要的渲染，使用computed属性来进行高效的计算等。
+8. `处理边界情况`：考虑处理一些边界情况，如列表数据为空、滚动到顶部或底部时的特殊处理等。
+9. `编写文档和示例`：为你的组件编写清晰的文档，说明如何使用它以及它的各种属性和事件。同时，提供一个或多个示例，以便其他开发者能够更容易地理解和使用你的组件。
+10. `测试`：对你的组件进行充分的测试，确保它在各种情况下都能正常工作。这包括单元测试、集成测试以及实际项目中的使用测试。
+
+
+
+### 哪些场景不需要使用防抖节流?
+
+1. `一次性的或低频触发的事件`：如果某个事件只会在特定条件下触发一次，或者触发频率非常低，那么通常不需要使用防抖或节流。
+2. `实时性要求非常高的场景`：在某些需要实时响应用户操作的场景中，如实时搜索、实时渲染等，使用防抖或节流可能会导致响应延迟，影响用户体验。
+3. `性能影响不大的场景`：如果事件处理函数的执行对性能的影响非常小，或者可以通过其他方式优化性能（如使用Web Workers进行后台处理），那么可能不需要使用防抖或节流。
+
+
+
+
+### url为www.baidu.com的A页面里面嵌套了一个url为www.zhihu.com的iframe页面B，那么B页面发送请求的时候能拿到A页面的cookie信息吗？
+
+
+
+
+### 移动端跨平台开发
+
+
+#### React Native
+
+> Facebook 出品，JavaScript语言，JSCore引擎，React设计模式，原生渲染。
+
+使用 React 来创建 Android 和 iOS 的原生应用。
+
+react native 用了 react 的设计模式，但UI渲染、动画效果、网络请求等均由原生端实现。开发者编写的js代码，通过 react native 的中间层转化为原生控件和操作。
+
+`总结起来其实就是利用 JS 来调用 Native 端的组件，从而实现相应的功能。`
+
+react native 的跨平台是实现主要由三层构成，其中 C++ 实现的动态连结库(`.so`)，作为`中间适配层`桥接，实现了`js端`与`原生端`的双向通信交互。
+
+- 和前端开发不同，react native 所有的标签都不是真实控件，JS代码中所写控件的作用，类似 Map 中的 key 值。JS端通过这个 key 组合的 Dom ，最后Native端会解析这个 Dom ，得到对应的Native控件渲染，如 Android 中`<view>` 标签对应 `ViewGroup` 控件。
+
+- 在 react native  中，JS端是运行在独立的线程中（称为JS Thread ）。JS Thread 作为单线程逻辑，不可能处理耗时的操作。那么如 `fetch 、图片加载 、 数据持久化` 等操作，在 Android 中实际对应的是 okhttp 、Fresco 、SharedPreferences等。而跨线程通信，也意味着 Js Thread 和原生之间交互与通讯是异步的。
+
+
+**通信**：跨平台的关键在于C++层，开发人员大部分时候，只专注于JS 端的代码实现。 在原生端提供的各种 Native Module 模块（如网络请求，ViewGroup控件），和 JS 端提供的各种 JS Module（如JS EventEmiter模块），都会在C++实现的so中保存起来，双方的通讯通过C++中的保存的映射，最终实现两端的交互。
+
+
+
+#### WEEX
+
+> Alibaba 出品，JavaScript语言，JS V8引擎，Vue设计模式，原生渲染
+
+支持Vue和Rax两个框架，支持 `web、android、ios` 三端，原生端同样通过中间层转化，将控件和操作转化为原生逻辑来提高用户体验。
+
+在 weex 中，主要包括三大部分：`JS Bridge、Render、Dom`，分别对应`WXBridgeManager、WXRenderManager、WXDomManager`，三部分通过`WXSDKManager`统一管理。其中 JS Bridge 和 Dom 都运行在独立的 HandlerThread 中，而 Render 运行在 UI 线程。
+
+`JS Bridge` 主要用来和 JS 端实现进行双向通信，比如把 JS 端的 dom 结构传递给 Dom 线程。`Dom` 主要是用于负责 dom 的解析、映射、添加等等的操作，最后通知UI线程更新。而 `Render` 负责在UI线程中对 dom 实现渲染。
+
+- 和 react native一样，weex 所有的标签也不是真实控件，JS 代码中所生成存的 dom，最后都是由 Native 端解析，再得到对应的Native控件渲染，如 Android 中 `<text>` 标签对应 `WXTextView` 控件。
+
+- **Weex可以做到跨三端的原理在于**：在开发过程中，`代码模式、编译过程、模板组件、数据绑定、生命周期等上层语法`是一致的。不同的是在 JS Framework 层的最后，web 平台和 Native 平台，对 Virtual DOM 执行的解析方法是有区别的。
+
+weex 比起react native，主要是在JS V8的引擎上，多了 `JS Framework` 承当了重要的职责，使得上层具备统一性，可以支持跨三个平台。总的来说它主要负责是：**管理Weex的生命周期；解析JS Bundle，转为Virtual DOM，再通过所在平台不同的API方法，构建页面；进行双向的数据交互和响应。**
+
+
+
+### Flutter
+
+> Google 出品，Dart语言，Flutter Engine引擎，响应式设计模式，原生渲染
+
+与 react native 和 weex 的通过 Javascript 开发不同，Flutter 的编程语言是`Dart`，所以执行时并不需要 Javascript 引擎，但实际效果最终也通过原生渲染。
+
+Flutter 主要分为 `Framework` 和 `Engine`，我们基于Framework 开发App，运行在 Engine 上。Engine 是 Flutter 的独立虚拟机，由它适配和提供跨平台支持。
+
+得益于 Engine 层，Flutter 甚至不使用移动平台的原生控件，而是使用自己  Engine 来绘制 Widget （Flutter的显示单元），而 Dart 代码都是通过 AOT 编译为平台的原生代码，所以 `Flutter 可以 直接与平台通信，不需要JS引擎的桥接`。
+
+
+在理论上 Flutter 的设计性能是强于 React Native ，这是框架设计的理念导致的，Flutter 在少了 OEM Widget ，直接与 CPU / GPU 交互的特性，决定了它先天性能的优势。
+
+
+- [全网最全 Flutter 与 React Native 深入对比分析](https://zhuanlan.zhihu.com/p/70070316)
+- [移动端跨平台开发的深度解析](https://juejin.cn/post/6844903630584152072)
+
+
+
+
+### Uni-app
+
+[uni-app](https://zh.uniapp.dcloud.io/)
+
+
+uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、Web（响应式）、以及各种小程序（微信/支付宝/百度/头条/飞书/QQ/快手/钉钉/淘宝）、快应用等多个平台。
+
+
+实现方案：基本都是 `编译器+运行时` 配合实现
+1. 编译器负责转化: `.vue => .wxml/.js/.wxss`；
+2. 运行时处理：`vue: 生命周期、事件函数、data` ===> `uni-app runtime: 事件代理机制、数据同步机制` <=== `小程序：生命周期、事件函数、AppData`；数据vue管理，视图小程序负责
+
+
+- 小程序负责视图渲染，页面dom有小程序负责生成；小程序只接受data数据传递
+- vue的vnode很难和小程序的真实dom对应，vnode遍历对比维度复杂；
+
+
+渲染性能优化：
+1. 减少setData调用频次：vue的nextTick机制自动优化
+2. 减少setData传输数据量：框架做了自动差量计算，改变最小化
+3. 改写vue的patch实现，删掉vnode，仅做了diff data数据
+4. 借鉴westore JSON Diff 库，实现高效、精确的差量数据
+5. 自定义组件实现局部数据刷新；
+6. 注意onPageScroll使用：避免频繁通讯，部分场景考虑intersectionObserver替代
+> pageScroll通讯：视图层（webview） => Native <= 逻辑层（JS引擎）
+7. 避免后台页面执行js逻辑，比如定时器
+
+
+加载性能优化：
+1. 分包加载
+2. 开启上传时代码压缩
+3. 资源文件上传CDN
+
+
+
+### Taro
+
+Taro 是由京东 - 凹凸实验室打造的一套遵循 React 语法规范的多端统一开发框架。一套代码，通过 Taro 的编译工具，将源代码分别编译出可以在不同端（微信小程序、H5. App 端等）运行的代码。
+
+Taro 3 则可以大致理解为解释型架构（相对于 Taro 1/2 而言），主要通过`在小程序端模拟实现 DOM、BOM API 来让前端框架直接运行在小程序环境中，从而达到小程序和 H5 统一的目的`;
+
+
+
+
+
+
+### Electron
+
+Electron 是一个前端框架，可用于构建跨平台的桌面应用程序，桌面应用程序指的是可以在电脑上安装的软件（如QQ、浏览器、酷狗音乐等）。与 Java、C++ 等语言相同，前端技术也可用于桌面应用程序的开发。开发者可使用 JavaScript、HTML 和 CSS 等前端基础技术，结合 Node.js 进行开发。最重要的是，使用 Electron 开发的桌面应用程序，可以在 Windows、macOS 和 Linux 系统上无缝运行，实现跨平台开发。
+
+我们可以使用 HTML 和 CSS 创建一个漂亮的用户界面，使用 JavaScript 处理用户输入和数据，使用 Node.js 处理系统调用和后台任务等等，使用 Electron 构建桌面应用程序就像在编写网页一样，相当容易上手。
+
+
+
+### Saas
+
+SaaS，Software as a service，软件即服务。
+
+电商saas系统是指SaaS模式的电商系统，卖家想弄个自己的商城，不需要卖家再去搭建服务器、开发程序，直接租用软件服务商saas系统使用即可。
+
+SaaS是一种通过Internet提供软件的模式，用户不用再购买软件，而改用向提供商租用基于Web的软件，来管理企业经营活动，且无需对软件进行维护，服务提供商会全权管理和维护软件，对于许多小型企业来说，SaaS是采用先进技术的最好途径，它消除了企业购买、构建和维护基础设施和应用程序的需要，近年来，SaaS的兴起已经给传统套装软件厂商带来真实的压力。
+
+> 比如有赞、微盟、小鹅通这种平台提供的就是电商saas系统。
+
+
+
+
+
+
+

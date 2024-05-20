@@ -120,6 +120,9 @@ permalink: false # 292799/
 
 - [3.40秒到231.84毫秒，我用Performance面板分析性能瓶颈全流程](https://juejin.cn/post/7272632260179542050)
 
+- [「历时8个月」10万字前端知识体系总结（工程化篇）](https://juejin.cn/post/7146976516692410376)
+
+- [从0到1搭建前端监控平台，面试必备的亮点项目](https://github.com/xy-sea/blog/blob/main/markdown/%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E5%89%8D%E7%AB%AF%E7%9B%91%E6%8E%A7%E5%B9%B3%E5%8F%B0%EF%BC%8C%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%E7%9A%84%E4%BA%AE%E7%82%B9%E9%A1%B9%E7%9B%AE.md)
 
 
 ## React
@@ -130,6 +133,7 @@ permalink: false # 292799/
 - [一篇文章带你理解 React 中最“臭名昭著”的 useMemo 和 useCallback](https://juejin.cn/post/7165338403465068552)
 - [用TypeScript编写React的最佳实践](https://mp.weixin.qq.com/s/XhwVwTw8ZXZdqY9cCJWsQg)
 - [2024 年 React 生态系统一览](https://mp.weixin.qq.com/s/-Qz5v4X3Nm8j3tjUILgwaQ)
+- [React 性能优化 | 包括原理、技巧、Demo、工具使用](https://juejin.cn/post/6935584878071119885)
 
 
 ## Node
@@ -214,7 +218,7 @@ permalink: false # 292799/
 
 - 在线代码编辑器：[我开源了一个能在浏览器上执行 npm 命令的在线代码编辑器](https://juejin.cn/post/7272869799960281151)、[Web Worker没有使用场景？那只是你没有用到而已](https://juejin.cn/post/7266737898669260835)
 
-- [前端组长应该如何管理前端团队](https://juejin.cn/post/7230026709482766373)
+
 
 - 构建 Node.js 云函数的 Serverless 框架: [Midway.js探索与实践](https://mp.weixin.qq.com/s/uyFMAG-avPoHdmSotn4J9A)
 

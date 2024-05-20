@@ -16,6 +16,7 @@ permalink: false
 
 - [面试题2024](./interview2024.html)
 - [面试题2024-react篇](./interview-react.html)
+- [面试题2024-算法篇](./interview-sf.html)
 - [2024面试记录](./interview-log2024.html)
 
 

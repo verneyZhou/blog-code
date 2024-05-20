@@ -11,11 +11,16 @@ permalink: false # 7c9ee2/
 # 名词目录
 
 ## Electron
-`Electron` 是由 `Github` 开发，用 `HTML，CSS和JavaScript`来构建跨平台桌面应用程序的一个开源库。 `Electron` 通过将`Chromium和Node.js`合并到同一个运行时环境中，并将其打包为Mac，Windows和Linux系统下的应用来实现这一目的。
+
+`Electron` 是一个前端框架，可用于构建跨平台的桌面应用程序，桌面应用程序指的是可以在电脑上安装的软件（如QQ、浏览器、酷狗音乐等）。与 Java、C++ 等语言相同，前端技术也可用于桌面应用程序的开发。开发者可使用 JavaScript、HTML 和 CSS 等前端基础技术，结合 Node.js 进行开发。最重要的是，使用 Electron 开发的桌面应用程序，可以在 Windows、macOS 和 Linux 系统上无缝运行，实现跨平台开发。
+
+我们可以使用 HTML 和 CSS 创建一个漂亮的用户界面，使用 JavaScript 处理用户输入和数据，使用 Node.js 处理系统调用和后台任务等等，使用 Electron 构建桌面应用程序就像在编写网页一样，相当容易上手。
 
 [什么是electron](https://baijiahao.baidu.com/s?id=1622258269985547290&wfr=spider&for=pc)
 
 [文档](https://electronjs.org/)
+
+
 
 ## Taro
 `Taro` 是一套遵循 `React` 语法规范的 多端开发 解决方案；使用 Taro，我们可以只书写一套代码，再通过 Taro 的编译工具，将源代码分别编译出可以在不同端（微信/百度/支付宝/字节跳动/QQ小程序、快应用、H5、React-Native 等）运行的代码。

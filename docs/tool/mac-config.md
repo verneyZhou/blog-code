@@ -41,7 +41,7 @@ permalink: false # 67ff26/
 - host代理：switchHost!
 - vpn：easy connect
 - 代码编辑工具：[WebStorm](https://www.jetbrains.com/zh-cn/webstorm/)、[VSCode](https://code.visualstudio.com/)
-- 搭梯子：v2Ray，快连VPN
+- 搭梯子：v2Ray，[快连VPN](https://letsvpn.world/?hl=zh)
 - 娱乐工具：网易云、qq音乐、B站、youtube...
 
 
@@ -88,7 +88,7 @@ InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 - **安装Homebrew**
 > `Homebrew`是一款Mac OS平台下的软件包管理工具；安装 Apple（或您的 Linux 系统）没有预装但你需要的东西。
 ::: tip 流程：
-1. 参照[官网](https://brew.sh/index_zh-cn)进行安装；然后enter，输入密码，等待...
+1. 参照[官网](https://brew.sh/zh-cn)进行安装；然后enter，输入密码，等待...
 2. 安装完成后输入：`brew --version`，出现版本号即表示安装成功；
 3. 接着安装`wget、curl、git`；一般mac终端默认已安装`curl、git`；输入：`git --verison/curl --version`出现版本号即可验证；若无则安装；以wget为例：`brew install wget`；安装成功，输入：`wget --version`即可验证是否安装成功
 :::
@@ -287,6 +287,9 @@ source ~/.profile
 
 - **配置`·vue`模板**
 > [参考](https://www.jianshu.com/p/8610215a8a84)
+
+
+- [配置Github Copilot](https://juejin.cn/post/7347947619746119707)
 
 
 
