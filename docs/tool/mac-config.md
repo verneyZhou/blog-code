@@ -166,6 +166,14 @@ source ~/.profile
 [安装说明](https://segmentfault.com/a/1190000007998600)
 
 
+
+- **安装pnpm**
+
+[PNpm](https://www.pnpm.cn/)
+
+`npm install -g pnpm`
+
+
 - **配置git环境**  
     - `git -version`  查看git是否安装，否则`brew install git`或者通过官网安装；
     - 配置用户名和用户邮箱，以后每次与Git的交互都会使用该信息。
@@ -283,6 +291,9 @@ source ~/.profile
 
 - **配置`Code`命令**
 > [参考](https://www.cnblogs.com/ryanzheng/p/10705892.html)
+
+报错：`EACCES: permission denied, unlink '/usr/local/bin/code'`
+> [参考](https://blog.csdn.net/weixin_45890764/article/details/119205168)
 
 
 - **配置`·vue`模板**

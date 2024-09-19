@@ -4147,7 +4147,7 @@ react native 用了 react 的设计模式，但UI渲染、动画效果、网络�
 
 `总结起来其实就是利用 JS 来调用 Native 端的组件，从而实现相应的功能。`
 
-react native 的跨平台是实现主要由三层构成，其中 C++ 实现的动态连结库(`.so`)，作为`中间适配层`桥接，实现了`js端`与`原生端`的双向通信交互。
+react native 的跨平台实现主要由三层构成，其中 C++ 实现的动态连结库(`.so`)，作为`中间适配层`桥接，实现了`js端`与`原生端`的双向通信交互。
 
 - 和前端开发不同，react native 所有的标签都不是真实控件，JS代码中所写控件的作用，类似 Map 中的 key 值。JS端通过这个 key 组合的 Dom ，最后Native端会解析这个 Dom ，得到对应的Native控件渲染，如 Android 中`<view>` 标签对应 `ViewGroup` 控件。
 
@@ -4188,10 +4188,6 @@ Flutter 主要分为 `Framework` 和 `Engine`，我们基于Framework 开发App�
 
 
 在理论上 Flutter 的设计性能是强于 React Native ，这是框架设计的理念导致的，Flutter 在少了 OEM Widget ，直接与 CPU / GPU 交互的特性，决定了它先天性能的优势。
-
-
-- [全网最全 Flutter 与 React Native 深入对比分析](https://zhuanlan.zhihu.com/p/70070316)
-- [移动端跨平台开发的深度解析](https://juejin.cn/post/6844903630584152072)
 
 
 

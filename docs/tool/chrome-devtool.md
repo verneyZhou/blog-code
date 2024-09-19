@@ -583,7 +583,23 @@ Event Loop 就是循环执行宏任务。每个 Task 都有自己的调用栈，
 
 ## Lighthouse
 
-> 待补充...
+> Lighthouse 是由Google 开发并开源的Web 性能测试工具，通过监控和检测网站应用的各方面性能表现，为开发这提供优化用户体验和网站性能提供指导建议。
+
+
+### 使用
+
+- 方法1：Chrome插件安装
+
+1. Chrome插件市场[extensions](https://chromewebstore.google.com/category/extensions)搜索`lighthouse`，添加扩展程序，
+2. 之后在控制台`Lighthouse`tab或扩展程序里都可以直接进行页面分析
+> 报告生成后会有页面`FCP, LCP, CLS`等性能数据，以后优化建议~
+
+
+- 方法2：也可以通过npm包在项目中使用：[lighthouse](https://www.npmjs.com/package/lighthouse)
+
+
+
+
 
 
 ## 截图
@@ -1026,6 +1042,8 @@ addEventListener('message', function(evt) {
 
 - [Chrome DevTools中文手册](https://leeon.gitbooks.io/devtools/content/)
 - [如何在 Chrome 中调试 TypeScript](https://mp.weixin.qq.com/s/GFHeCwMEdGROCCtTv1pHhw)
+
+- [2024 JavaScript 调试参考文档](https://mp.weixin.qq.com/s/BxPZLgLzLTcWzGspPbjGHA)
 
 
 

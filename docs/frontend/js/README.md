@@ -74,6 +74,13 @@ permalink: false # 40e551/
 
 - [前端调取摄像头并实现拍照功能](https://juejin.cn/post/7289662055183597603)
 
+- [JavaScript高级系列（二） - V8引擎的运行原理](https://mp.weixin.qq.com/s/PauB4N6qgd02vVYkGQa3Ag)
+- [赶快收藏！全网最佳websocket封装：完美支持断网重连、自动心跳！](https://juejin.cn/post/7371365854012276747)
+
+- [用JS实现一个JS引擎竟如此简单](https://juejin.cn/post/7205517870976270394)
+
+- [ServiceWorker 让前端赋能，一起拥抱服务端的能力](https://mp.weixin.qq.com/s/o-zVl2dNl59GVt0Ex3aopg)
+
 - TS
   - [TypeScript 深水区：3 种类型来源和 3 种模块语法](https://juejin.cn/post/7111112135903543332)
   - [类型编程原理和编写类型安全代码](https://mp.weixin.qq.com/s/-Use3prQiTvB2U0itEXNuQ)

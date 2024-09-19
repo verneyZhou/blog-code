@@ -173,6 +173,14 @@ ECS控制台 》 网络与安全 》 安全组 》 手动添加
 
 
 
+10. 换新电脑后，`ssh root@123.57.172.182`报错：`root@123.57.172.182: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).`
+> 先看下本机ip是否添加到安全规则，如已添加则可能是服务器实例root密码被重置了~ 在[阿里云控制台实例详情](https://ecs.console.aliyun.com/server/i-2zef9ue9eyhqrvjxs3aq/detail?regionId=cn-beijing)重置root密码即可~
+
+如果还不行，可参考这个[ssh报错 Failed Permission Denied (publickey,gssapi-keyex,gssapi-with-mic) 解决方法](https://blog.csdn.net/whatday/article/details/129374170) ，应该是服务器上的操作~
+
+
+
+
 <fix-link label="Back" href="/project/vue-node-admin/"></fix-link>
 
 <!-- 2021-04-26 -->

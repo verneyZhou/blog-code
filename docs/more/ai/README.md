@@ -57,6 +57,8 @@ tags:
 
 - [remove.bg](https://www.remove.bg/zh): 图片背景消除，免费
 
+- [inpaint-web](https://github.com/lxfater/inpaint-web): Inpaint-web 是一款基于 WebGPU 技术和 wasm 技术的免费开源图像修复和图像缩放工具，纯浏览器端实现。技术栈包括：React、Vite、TypeScript、Tailwind CSS 等。
+
 
 
 

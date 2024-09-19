@@ -44,15 +44,6 @@ permalink: false # 7c9ee2/
 
 
 
-## Flutter
-`Flutter`是谷歌的移动UI框架，可以快速在`iOS`和`Android`上构建高质量的原生用户界面。
-
-[什么是flutter](https://blog.csdn.net/duwen90/article/details/79986278)
-
-[文档](https://flutterchina.club/)
-
-
-
 ## Docker 
 一个用于开发，交付和运行应用程序的开放平台 
 [什么是docker](https://blog.csdn.net/deng624796905/article/details/86493330)

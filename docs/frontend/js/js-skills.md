@@ -490,6 +490,30 @@ console.log(obj.b.bb) // 直接报错
 
 
 
+### 检测DOM是否已加载完成
+
+``` js
+window.addEventListener("DOMContentLoaded", () => {
+  if (document.readyState === "complete") {
+    console.log('DOM已完全加载');
+  } else if (document.readyState === "interactive") {
+    console.log('DOM已准备好，但资源仍在加载');
+  }
+});
+
+window.addEventListener("load", () => {
+  if (document.readyState === "complete") {
+    console.log('所有资源已加载完成');
+  } else if (document.readyState === "interactive") {
+    console.log('DOM已准备好，但资源仍在加载');
+  }
+});
+```
+
+
+
+
+
 ## 收藏
 
 

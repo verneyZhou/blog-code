@@ -39,3 +39,5 @@ permalink: false # 23f87d/
 - [2023年原创文章汇总（css相关）](https://mp.weixin.qq.com/s/sboule7fxBQ2qC7bwuJDvw)
 - [dom 获取不到？试试 CSS 动画监听元素渲染吧](https://mp.weixin.qq.com/s/KNIMdROilYYR6S1o7xze1g)
 
+- [盘点CSS文本两端对齐的N种方式](https://juejin.cn/post/7399288740908417024)
+- [CSS 实现带tooltip的slider](https://mp.weixin.qq.com/s/hJLRygIPDJU0Yxd9upHW9w)

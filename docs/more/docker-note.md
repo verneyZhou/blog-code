@@ -941,7 +941,9 @@ docker exec -it my-node-container ash # 进入容器；因为使用 apline 版�
 ## TODO
 
 
-- 创建Docker私服
+### 创建Docker私服
+
+[五分钟学会 Docker Registry 搭建私有镜像仓库](https://juejin.cn/post/7379803343450062888)
 
 
 

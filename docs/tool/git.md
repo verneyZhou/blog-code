@@ -224,11 +224,8 @@ git reset HEAD a.txt # 撤回某个文件
 3. git commit到本地分支、但没有git push到远程。
 ``` shell
 git log # 得到你需要回退一次提交的commit id
-git reset --hard <commit_id>  # 回到其中你想要的某个版本
-# 或
-git reset --hard HEAD^  # 回到最新的一次提交
-# 或者
-git reset HEAD^  # 此时本地代码保留，回到 git add 之前
+git reset --soft <commit_id>  # 回到其中你想要的某个版本
+# 此时本地代码保留，回到 git commit 之前
 ```
 
 4. git push已经把修改提交到远程仓库。
@@ -583,6 +580,14 @@ fatal: the remote end hung up unexpectedly
 > 这是子文件夹下面有`.git`文件，删除即可：`rm -rf [filename]/.git`
 
 
+18. 如果不小心`git reset --hard`了怎么恢复代码？
+
+    - `git reflog` 查看历史提交记录，找到需要回退的版本号
+    - `git reset --hard [版本号]` 回退到指定版本
+
+> 或者[参考](https://blog.csdn.net/summertime1234/article/details/130590062)
+
+
 
 
 ## 备注
@@ -606,6 +611,8 @@ fatal: the remote end hung up unexpectedly
 - [Git各指令的本质，真是通俗易懂啊](https://juejin.cn/post/6895246702614806542)
 - [一些常用的 Git 进阶知识与技巧](https://juejin.cn/post/7022746201598459940)
 - [chrome Github加速插件](http://www.itmind.net/11438.html)
+
+- [直接使用git pull拉取代码，被同事狠狠地diss了！](https://juejin.cn/post/7389650358539255845)
 
 
 ## 收藏

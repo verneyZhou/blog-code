@@ -75,3 +75,11 @@ permalink: false # 067e28/
 - [使用Vue.js编写命令行界面,前端开发CLI的利器](https://juejin.cn/post/7129665321127903246)、[Temir中文文档](https://github.com/webfansplz/temir/blob/main/README.zh-CN.md)
 
 - [ChatGPT教我用200行代码写一个简版Vue框架——OpenTiny](https://mp.weixin.qq.com/s/M5p7TxRsnonvkYCZVYDrCA)
+
+- [用 vue3 + phaser 实现经典小游戏：飞机大战](https://mp.weixin.qq.com/s/EK9ciRjLQpLOUXzhJ7Q6gQ)
+
+- [Douyin-Vue](https://github.com/zyronon/douyin): douyin-vue 是一个模仿 抖音|TikTok 的移动端短视频项目。Vue 在移动端的"最佳实践"，媲美原生 App 丝滑流畅的使用体验。基于 Vue3、Vite5 、Pinia实现
+
+- [SPlayer](https://github.com/imsyy/SPlayer): 一个简约的音乐播放器, 采用 Vue 3 全家桶和 Naïve UI 组件库及 Electron 开发
+
+- vue+vite+node: [惊艳登场！Cool Admin：重塑管理体验，让每一分管理都炫酷高效](https://mp.weixin.qq.com/s/fFbJg8XhvJ_v27bFiK2Kow)

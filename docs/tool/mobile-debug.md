@@ -252,6 +252,54 @@ i.ob.e.weibo.com weinre://huaiding_local
 [whistle修改接口返回步骤](https://www.cnblogs.com/lv-lxz/p/16030338.html)
 
 
+
+
+## IOS 模拟器 Xcode Simulator 调试
+
+- 安装 Xcode: AppStore搜索`Xcode`, 输入`appId`和密码，安装
+
+- 启动 Xcode, 安装platforms：`ios`（很大，7G左右）, install; 等待安装完成...
+
+- 打开Simulator: => 点击左上角 Xcode => `Open developer tool` => Simulator，就可以打开一个模拟器；
+
+> 打开后电脑的顶部导航栏会有的桌面图标，将它`在程序坞中保留`就可以创建快捷入口，不用再打开Xcode了；顶部`File => Open Simulator`可以切换设备；
+
+
+- whislte添加全局代理：系统设置 =》 网络 =》 高级 =》 代理 =》http or https, 添加`127.0.0.1:8899`
+> 这样就可以给桌面应用程序添加代理，我们就可以用 Simulator 调试页面，在 whisltle中抓到请求了~
+
+- Sarari打开开发者模式：Safari浏览器 =》 设置 =》 高级 =》勾选`显示开发者功能`
+
+- Simulator添加证书：跟在真机上一样的：首先需要在模拟器上安装证书，打开模拟器的 Safari 浏览器，输入 `rootca.pro` 然后回车，就会提示是否下载证书，点允许就下载完成了，之后去`设置 -> 通用 -> VPN 与设备管理 -> 安装 whistle 证书 -> 返回 -> 关于本机 -> 证书信任设置 -> whistle 证书开关打开`即可；
+> 如果直接访问 `https://rootca.pro` 提示无法加载，先复制链接，再点击 `粘贴并前往` 就能下载了？！神奇....
+
+
+**Simulator调试网页**：
+1. 本地启动项目，在whistle添加代理；打开Simulator，打开Safari浏览器，输入调试网页url; 这时理论上应该就可以访问本地代码了，也能在whsitle中抓到请求；
+2. Mac打开Safari => 开发 => 用户代理 => 模拟器，这里就会出现刚输入的调试网页url，点击即可开始调试；
+
+**Simulator调试App Webview 中的 Web 页面**：模拟器上是没有 App Store 的，也不能下载 ipa 文件安装。只能安装基于源代码打包出来的 App Bundle，这里需要找测试同事要一个测试包，直接拖拽进去就可以了~
+
+
+
+**Proxifier**
+
+> 网页的whistle可以给浏览器的页面添加代理，proxifier可以给桌面应用程序添加代理；proxifier破解版下载[参考](https://www.zhiniw.com/proxifier-mac.html)，激活后，需要添加host, 修复已损坏, 按提示操作即可~
+
+- 打开proxifier, 左上角Profile => Proxification rules => Proxies => `Add`, 添加一条 Action 规则代理到本地8899端口: `127.0.0.1:8899`, type为`https`; 同时`w2 start`启动whistle
+
+> 但不太好用是真的...我配半天没代理出来...
+
+
+[参考](https://juejin.cn/post/6844903702445162509)
+
+
+
+
+
+
+
+
 ## 其他
 
 - [前端人必须掌握的抓包技能](https://juejin.cn/post/7140040425129115684)

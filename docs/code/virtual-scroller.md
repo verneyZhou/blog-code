@@ -29,3 +29,5 @@ permalink: false # 540010/
 - [三种虚拟列表原理与实现](https://juejin.cn/post/7232856799170805820)
 
 - [不定高虚拟列表的一种实现](https://juejin.cn/post/7293805895917748274)
+
+- [性能飙升50%，react-virtualized-list如何优化大数据集滚动渲染](https://juejin.cn/post/7375504338757845030)

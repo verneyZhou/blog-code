@@ -20,3 +20,5 @@ permalink: false # 5628d9/
 - [自定义 ESLint 规则，让代码持续美丽](https://mp.weixin.qq.com/s/uHLWydpaYiMynsh10Ctchg)
 - [零基础理解 ESLint 核心原理](https://mp.weixin.qq.com/s/7WkTlKEqefUsvyG1LxvIUQ)
 - [浅析eslint原理](https://mp.weixin.qq.com/s/9z5MVSqzbrUhKOGuts0Ahw)
+
+- [我写了一个ESLint插件，解决了团队棘手问题](https://juejin.cn/post/7393503669474705418)

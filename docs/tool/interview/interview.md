@@ -116,10 +116,8 @@ HTTP协议连接很简单，是无状态的；HTTPS协议是有SSL和HTTP协议�
 
 - 目前有100个异步任务要执行，那么如何让这100个任务无间隔的快速执行完毕呢？[Vue 源码思想在工作中的应用](https://mp.weixin.qq.com/s/xKmVplcl-qB9idCsWYiNXg)
 
-- [浏览器和图形引擎渲染对比](https://mp.weixin.qq.com/s/Ptxs-3d_cSb4SrC4bhO2Ig)
-- [浏览器渲染原理](https://mp.weixin.qq.com/s/ZV7objSNK4r0wswMs1hR8w)
 
-- [重排、重绘、合成，你真的懂吗？](https://blog.51cto.com/u_15495832/5066569)
+- [面试题：如何让 var [a, b] = {a: 1, b: 2} 解构赋值成功？](https://juejin.cn/post/7346512120639340607)
 
 
 
