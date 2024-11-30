@@ -48,6 +48,13 @@ tags:
 
 
 
+
+
+
+
+
+
+
 ### 原生混合
 
 - [原生项目使用 Taro](https://docs.taro.zone/docs/taro-in-miniapp)
@@ -186,6 +193,7 @@ Couldn't install Pods. Updating the Pods project and trying again...
 
 
 
+
 ### 鸿蒙开发
 - [鸿蒙 & OpenHarmony](https://docs.taro.zone/docs/harmony/)
 - [Harmony Hybrid](https://docs.taro.zone/docs/harmony-hybrid/)
@@ -227,6 +235,8 @@ Couldn't install Pods. Updating the Pods project and trying again...
 - [taro-react-router](https://github.com/AdvancedCat/taro-react-router):  Taro 项目使用 react-router 开发多路由页面
 - [taro-music](https://github.com/lsqy/taro-music): `typescript+taro+taro-ui+redux+react-hooks`，基于`Taro`与网易云音乐 api 开发的微信小程序
 - [taro-playground](https://github.com/wuba/taro-playground): 官方提供了高度集成的开发环境 Taro Playground。开发者仅需要正常运行 JS 工程，即可进行 APP 调试。
+
+- [duxapp：基于Taro使用模块化开发，提升开发效率](https://duxapp.cn/blog/intro/)
 
 
 
@@ -276,6 +286,8 @@ Couldn't install Pods. Updating the Pods project and trying again...
 - [HarmonyOS开发-创建模拟器](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-emulator-create-0000001885957357-V5)
 
 - [鸿蒙开发实践-基础入门](https://juejin.cn/column/7392535991972266035)
+
+- [前端视角下的鸿蒙开发](https://juejin.cn/post/7366948087129309220)
 
 
 

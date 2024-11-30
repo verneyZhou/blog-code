@@ -12,6 +12,15 @@ tags:
 
 # AI资源收集
 
+
+
+
+## 笔记
+
+- [AI笔记](./note.html)
+
+
+
 > 这里收集整理了一些AI相关的工具和博客，方便以后用的时候能够快速找到~
 
 
@@ -173,6 +182,8 @@ tags:
 - [用 ChatGPT 快速实现自然语言命令行](https://github.com/MagicCube/cli-gpt/blob/main/docs/index.md)
 
 - [《真人AI绘画美女项目，3种变现方式，案例拆解！》](https://ry5hwpuf7b.feishu.cn/docx/MaIUdxVn8oASPuxHXVbcbC0SnEc)
+
+- [GPT自动投简历，一周斩获三offer，开源分享！](https://juejin.cn/post/7320949203542409231)
 
 
 - Stable Diffusion 与 Midjourney: 

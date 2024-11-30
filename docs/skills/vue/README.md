@@ -31,6 +31,9 @@ permalink: false # 067e28/
 - [Vue深入：vue中v-model的实现原理](./v-model.html)
 - [Vue深入：vue中keep-alive的实现原理](./keep-alive.html)
 
+- [从0到1搭建Monorepo组件库](./vue-design.html)
+- [开发一个快速搭建vue3项目的脚手架](./vue3-cli-repo.html)
+
 
 
 ## 进行中
@@ -42,8 +45,6 @@ permalink: false # 067e28/
 - [Vue原理分析](./code.html)
 - [vue第三方组件插件库收集](./plugins.html)
 
-- [从0到1搭建vue组件库](./vue-design.html)
-- [开发一个快速搭建vue3项目的脚手架](./vue3-cli-repo.html)
 
 
 
@@ -82,4 +83,6 @@ permalink: false # 067e28/
 
 - [SPlayer](https://github.com/imsyy/SPlayer): 一个简约的音乐播放器, 采用 Vue 3 全家桶和 Naïve UI 组件库及 Electron 开发
 
-- vue+vite+node: [惊艳登场！Cool Admin：重塑管理体验，让每一分管理都炫酷高效](https://mp.weixin.qq.com/s/fFbJg8XhvJ_v27bFiK2Kow)
+- vue+vite+node+ai: [惊艳登场！Cool Admin：重塑管理体验，让每一分管理都炫酷高效](https://mp.weixin.qq.com/s/fFbJg8XhvJ_v27bFiK2Kow)、[cool-team-official](https://github.com/cool-team-official)、[cool-js官网](https://cool-js.com/)
+
+- [vue实现电子签名、图片合成、及预览功能](https://juejin.cn/post/7394790874196262953)

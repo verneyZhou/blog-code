@@ -994,6 +994,16 @@ Linux 3.10.0-1160.95.1.el7.x86_64
 # 查看centos的版本信息
 [root@iz2zef9ue9eyhqrvjxs3aqz ~]# cat /etc/redhat-release
 CentOS Linux release 7.9.2009 (Core)
+
+# 查看Docker配置文件目录
+[root@iz2zef9ue9eyhqrvjxs3aqz ~]# ls /etc/docker/
+certs.d  daemon.json  key.json  seccomp.json
+
+# 查看Docker镜像和容器数据目录
+[root@iz2zef9ue9eyhqrvjxs3aqz ~]# ls /var/lib/docker/
+containers  image  network  overlay2  plugins  swarm  tmp  trust  volumes
+[root@iz2zef9ue9eyhqrvjxs3aqz ~]#
+
 ```
 
 

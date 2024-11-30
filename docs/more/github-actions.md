@@ -1245,12 +1245,65 @@ echo -e "---------deploy Success---!!!!-----"
 ```
 
 
-6. 配置完成后，在`feature/docker`分支修改代码，进行 push 提交后，Github Actions 就会自动执行`docker.yml`工作流，然后在github上就会看到该工作流自动执行：
+6. 之后还需要登录到阿里云控制台，找到你的ECS实例，进入安全组配置页面，添加一条入站规则，允许访问你映射的宿主机端口（如上面的`8397`端口）。确保这条规则的来源IP是你希望允许访问的IP地址范围，或者设置为`0.0.0.0/0`以允许所有IP地址访问（出于安全考虑，通常不推荐这样做）。
+
+7. 配置完成后，在`feature/docker`分支修改代码，进行 push 提交后，Github Actions 就会自动执行`docker.yml`工作流，然后在github上就会看到该工作流自动执行：
 
 <img :src="$withBase('/images/more/git24.png')" width="auto"/>
 
 
 等到执行成功，浏览器访问`http://[服务器ip]:[8397]`，理论上就可以访问到我们打包后的页面了~~~！！！（待验证...）
+> 2024/09/20 更新：已验证成功，可以访问到我们打包后的页面了~！！！
+
+
+::: tip 总结
+1. `feature/docker`分支代码 push 提交后，Github Actions 会自动执行 `docker.yml` 工作流；
+2. 在`docker.yml`的` 【打包镜像, 上传 Docker Hub】`任务中，会登录docker，执行 `Dockerfile` 生成镜像，将生成的镜像推送到镜像仓库 Docker hub；
+> `Dockerfile`主要是构建自定义镜像：配置基础镜像node、复制项目文件到镜像中、安装依赖、打包、把打包出来的静态资源dist复制到镜像中，最后将本地的`nginx.conf`配置复制到镜像中，暴露容器端口；
+
+3. 之后，在`docker.yml`的`SSH Command`任务中，会登录服务器，执行 `docker-deploy.sh` 文件；`docker-deploy.sh`文件会登录docker，拉取镜像，然后删除同名容器，最后运行容器；
+:::
+
+
+### 问题记录
+
+- docker怎么配置才能像`http://[域名]/aaa/bbb`这样访问到docker镜像中打包后的页面？
+
+1. 配置Nginx
+``` sh
+# nginx.conf
+server {
+    listen 80;
+    server_name yourdomain.com;
+
+    location /aaa/bbb {
+        # 这里配置如何处理对/aaa/bbb的请求
+        # 例如，你可以将其代理到另一个服务，或直接从本地文件系统提供文件
+        alias /path/to/your/files;
+        try_files $uri $uri/ =404;
+    }
+}```
+
+# 注意：这里的`/path/to/your/files`应该替换为你的Web页面文件实际存储的路径。
+
+
+#### 暴露端口, 确保你的Dockerfile中暴露了Nginx监听的端口（通常是80或443）。例如：
+
+# Dockerfile
+EXPOSE 80
+```
+2. 域名解析：将你的域名（如yourdomain.com）解析到你的Docker宿主机的IP地址或负载均衡器的IP地址
+3. 反向代理（可选）：如果你的Docker宿主机或容器不能直接暴露给外部网络，或者你需要进行更复杂的路由和负载均衡，你可以考虑在宿主机上设置一个反向代理（如Nginx、HAProxy等），将外部请求转发到Docker容器中的Web服务器。
+4. 启动docker容器：`docker run -d -p 80:80 --name my-web-app my-web-app-image`，这里的`-p 80:80`表示将宿主机的80端口映射到容器的80端口（Nginx监听的端口）
+> （上述方案待验证....）
+
+
+- Dockfile中拷贝到镜像中的nginx.conf和dist静态资源在服务器的哪个目录下呢，怎么才能访问到呢？
+``` sh
+docker run -it --name my-container my-image /bin/bash
+# -it参数表示以交互模式运行容器，并分配一个伪终端。/bin/bash（或容器中的其他shell）用于在容器内启动一个shell会话。
+# 一旦进入容器的shell会话，你就可以使用ls、cd等命令来浏览和查看容器的根目录及其子目录中的文件了。这些文件实际上是镜像内容的可读写副本。
+```
 
 
 ### 项目地址
@@ -1303,6 +1356,41 @@ Jenkins CI：除了存在与Drone CI一样的缺点外，自身比较重量，�
 
 
 ## TODO
+
+
+### 使用阿里云Docker Registry
+
+> 代码修改，push提交，docker自动部署后页面没有更新；查看云服务器上docker容器是重新运行了的，但对应的页面还是旧的，且静态资源还是旧的，不是最新打包的hash值，不知道为什么，怀疑是docker官方仓库的原因，所以用阿里云Docker Registry试试~
+
+- 重新修改 `docker.yml`，将生成的镜像推送到阿里云 Docker Registry：
+
+``` yml
+echo "开始登录 Docker Hub"
+git checkout feature/docker
+docker login -u ${{ secrets.DOCKER_REGISTRY_USERNAME }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+docker build --no-cache -t="verneyzhou/githook-vite-test:latest" . 
+echo "开始登录 阿里云 Docker Registry"
+docker login --username=${{ secrets.DOCKER_ALI_REGISTRY_USERNAME }} registry.cn-beijing.aliyuncs.com -p ${{ secrets.DOCKER_ALI_REGISTRY_PASSWORD }}
+docker tag verneyzhou/githook-vite-test:latest registry.cn-beijing.aliyuncs.com/zhou_aliyun_image/githook-vite-test:v1.0
+docker push registry.cn-beijing.aliyuncs.com/zhou_aliyun_image/githook-vite-test:v1.0
+```
+
+
+- 然后在云服务器的`docker-deploy.sh`中拉取这个镜像，运行容器，之后就可以及时更新了~ 记得在安全规则中添加 8396 端口~
+
+``` sh
+docker login --username=$1 registry.cn-beijing.aliyuncs.com -p $2 # 登录阿里云 Docker Registry
+docker pull registry.cn-beijing.aliyuncs.com/zhou_aliyun_image/githook-vite-test:v1.0 # 拉取镜像
+docker run -d -p 8396:80 --name githook-aliyun-container-v2 registry.cn-beijing.aliyuncs.com/zhou_aliyun_image/githook-vite-test:v1.0  # 运行容器
+```
+
+> [访问](http://123.57.172.182:8396/)
+
+
+
+参考：[阿里云镜像仓库](https://cr.console.aliyun.com/repository/cn-beijing/zhou_aliyun_image/githook-vite-test/details)
+
+
 
 
 - 阿里云效
@@ -1370,6 +1458,18 @@ Error: R] rsync exited with code 255
 
 - ECS服务器上`docker run`运行容器成功后，通过`http://123.57.172.182:8397/`访问不到页面，但在服务器内通过`curl http://localhost:8397`是能读取页面内容的~
 > 暂时无解...
+
+
+
+
+- `docker.yml`执行`SSH Command`步骤时，登录阿里云服务器时报错：`ssh: connect to host *** port 22: Operation timed out`
+> 跟上面自动部署到阿里云服务器时报错类似，需要配置ssh22端口访问权限~
+
+
+
+
+
+
 
 
 

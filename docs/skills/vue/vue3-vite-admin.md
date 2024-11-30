@@ -1130,6 +1130,6 @@ SyntaxError: Unexpected token (15:20)
 
 
 
-<fix-link label="Back" href="/skills/"></fix-link>
+<fix-link label="Back" href="/skills/vue/"></fix-link>
 
 <!-- 2021-11-13 -->

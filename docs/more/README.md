@@ -66,6 +66,10 @@ permalink: false # 292799/
   - [前端上手全栈自动化部署，让你看起来像个“高手”](https://juejin.cn/post/7373488886461431860)
   - [花半天时间，轻松打造前端CI/CD工作流](https://juejin.cn/post/6944878021560139783)
 
+- [我把大型团队项目从 vite 前端迁移到了 rsbuild，收益如何？](https://juejin.cn/post/7425804396292325414)
+
+- [前端部署后自动提醒用户更新](https://juejin.cn/post/7428793777984208896)
+
 
 - Monorepo
   - [现代前端工程化-彻底搞懂基于 Monorepo 的 lerna 模块(从原理到实战)](https://mp.weixin.qq.com/s/uBxa24nbg9PXyTfO0TmzVg)
@@ -114,7 +118,6 @@ permalink: false # 292799/
 - [使用 Performance 看看浏览器在做什么](https://juejin.cn/post/6904582930174705677)
 
 
-
 - Web Worker
   - [如何让前端拥有后端的计算能力？一文彻底了解Web Worker](https://juejin.cn/post/7137728629986820126)
   - [梳理 Web Worker 及实战场景](https://juejin.cn/post/7176788060619669565)
@@ -134,6 +137,8 @@ permalink: false # 292799/
 - [3.40秒到231.84毫秒，我用Performance面板分析性能瓶颈全流程](https://juejin.cn/post/7272632260179542050)
 
 - [【译】构建更快的 Web 体验 - 使用 postTask 调度器](https://juejin.cn/post/7208732065696497723)
+
+- [首页加载速度优化](https://juejin.cn/post/7428130267556511744)
 
 
 
@@ -165,6 +170,8 @@ permalink: false # 292799/
 - [什么？原来前端错误上报这么简单！！](https://juejin.cn/post/7383955685368086562)
 
 - [如何实现埋点日志精准监控](https://mp.weixin.qq.com/s/rPXTjd5bSVNusebJq7wBPg)
+- [前端小玩具~错误捕获定位工具](https://juejin.cn/post/7422145784799330358)
+- [前端性能优化 - 提升 LCP（Largest Contentful Paint）](https://juejin.cn/post/7406143794000019506)
 
 
 
@@ -177,22 +184,6 @@ permalink: false # 292799/
 - [图解浏览器的多进程渲染机制](https://mp.weixin.qq.com/s/1c159YucpXu5aUPWmjeCmw)
 - [浏览器节能机制导致Websocket断连的坑](https://juejin.cn/post/7362576319928008755)
 
-
-
-
-## React
-
-- [50天用react.js重写50个web项目，我学到了什么？](https://segmentfault.com/a/1190000040813435)
-- [React 性能优化 | 包括原理、技巧、Demo、工具使用](https://juejin.cn/post/6935584878071119885)
-- [「记录篇」我是如何一步步为公司搭建react项目脚手架的](https://juejin.cn/post/7235547967112806437)
-- [一篇文章带你理解 React 中最“臭名昭著”的 useMemo 和 useCallback](https://juejin.cn/post/7165338403465068552)
-- [用TypeScript编写React的最佳实践](https://mp.weixin.qq.com/s/XhwVwTw8ZXZdqY9cCJWsQg)
-- [2024 年 React 生态系统一览](https://mp.weixin.qq.com/s/-Qz5v4X3Nm8j3tjUILgwaQ)
-- [React 性能优化 | 包括原理、技巧、Demo、工具使用](https://juejin.cn/post/6935584878071119885)
-
-- [useEffect 一定在页面渲染后才会执行吗？](https://juejin.cn/post/7370138993062887476)
-
-- [50个开发人员都应该知道的 React.js 超级技巧（上）](https://mp.weixin.qq.com/s/63kXKIGx0PgQlTK-YDj5Fg)、[50个开发人员都应该知道的 React.js 超级技巧（下）](https://mp.weixin.qq.com/s/iqmz96LIH9_V7RvadEW-wA)
 
 
 
@@ -209,6 +200,8 @@ permalink: false # 292799/
 
 - [Node.js + typescript 写一个命令批处理辅助工具](https://juejin.cn/post/6930565860348461063)
 
+- [如何检查前端项目和node项目中未被使用的依赖包](https://juejin.cn/post/7355779183148318747)
+
 
 ## Nginx
 
@@ -220,6 +213,10 @@ permalink: false # 292799/
 - [Nginx一网打尽：动静分离、压缩、缓存、黑白名单、跨域、高可用、性能优化...](https://juejin.cn/post/7112826654291918855)
 
 - [作为前端开发，感受下 nginx 带来的魅力！🔥🔥](https://juejin.cn/post/7368433531926052874)
+
+- [前端应该掌握的Nginx相关的内容](https://juejin.cn/post/7295926959842033699)
+
+- [前端性能优化-开启 HTTP 缓存](https://juejin.cn/post/7395867506026905641)
 
 
 
@@ -239,16 +236,28 @@ permalink: false # 292799/
 
 - [老板：给你20天，写一个可拖拽动态表单生成器](https://juejin.cn/post/7383968655077539851)
 
+- [marsview](http://www.marsview.cc/) 
+  - [使用Nest+LangChain给低代码平台赋上AI代码生成能力，让低代码变成低低代码！](https://mp.weixin.qq.com/s/1KAgBFMAUw-QIzEaEkTcLQ)
+  - [github-marsview](https://github.com/JackySoft/marsview)、[langchainjs](https://github.com/langchain-ai/langchainjs)
+  - [marsview梳理](./marsview.html)
+
+
+
+
 
 ## 微前端
 
 - [微前端服务](./wei-fe.html)
+
 - [完美搭配，微前端与Monorepo的架构设计](https://juejin.cn/post/7225800207329230905)
+
+- [Rspack、Vite争先支持的模块联盟(MF)究竟是啥？](https://juejin.cn/post/7427173759713296393)
 
 
 ## 组件库
 
 - [使用vite开发一个自己的Vue3组件库](./npm-package.html)
+- [从0到1搭建Monorepo组件库](/skills/vue/vue-design.html)
 - [组件化](./comp-design.html)
 - [想要开发组件库？那你一定要提前了解一下这个神器](https://mp.weixin.qq.com/s/XuEc1TnLuzMokylde4DkhQ)
 
@@ -267,6 +276,8 @@ permalink: false # 292799/
 
 
 - [前端跨端技术调研报告](./kuaduan.html)
+
+- [taro开发实操笔记](./taro-surround.html)
 
 - [Flutter学习笔记](./flutter.html)
 
@@ -303,10 +314,18 @@ permalink: false # 292799/
 
 - [写给5年前端妹子的三万字脚手架教程](https://juejin.cn/post/7260144602471776311)
 
-- react + vite: [fluxy-admin后台管理系统开发记录](https://juejin.cn/column/7233324859932393528)
+- react + vite + node: [fluxy-admin后台管理系统开发记录](https://juejin.cn/column/7233324859932393528)
 
-- 在线代码编辑器：[我开源了一个能在浏览器上执行 npm 命令的在线代码编辑器](https://juejin.cn/post/7272869799960281151)、[Web Worker没有使用场景？那只是你没有用到而已](https://juejin.cn/post/7266737898669260835)
+- 在线代码编辑器：
+  - [历经四个月，我们开源了一个协同的在线代码编辑器，还支持执行 Node 项目哦！](https://juejin.cn/post/7431455688390590514)、[Web Worker没有使用场景？那只是你没有用到而已](https://juejin.cn/post/7266737898669260835)、[online-edit-web](https://github.com/xun082/online-edit-web)
 
+  - [开发一个纯前端在线代码编辑器、制作一个炫酷动画收藏网站](https://juejin.cn/post/7405769445027594266)、[online-snippet-editor](https://github.com/CooperJiang/online-snippet-editor)
+
+
+- npm相关：
+  - [图文结合简单易学的npm包的发布流程](https://juejin.cn/post/7125709933709885448)
+  - [包管理工具的演进（npm,yarn,pnpm）](https://mp.weixin.qq.com/s/beP1bxgbTT1Z91KS3svDvw)
+  - [面试官：如果一个NPM包部分功能不满足需求，如何修改其部分功能](https://juejin.cn/post/7355383157556019239)
 
 
 - 构建 Node.js 云函数的 Serverless 框架: [Midway.js探索与实践](https://mp.weixin.qq.com/s/uyFMAG-avPoHdmSotn4J9A)
@@ -317,10 +336,10 @@ permalink: false # 292799/
 
 - [系统设计：设计URL短链接工具](https://mp.weixin.qq.com/s/ruBT0MxASW4nCFvfa0MB5Q)
 
+- [用闲置的阿里云服务器使用 NPS 实现内网穿透](https://juejin.cn/post/7398352986324189210)
+- [【爬虫逆向】逆向破解某租车微信小程序，sign的解析](https://juejin.cn/post/7410289323737612315)
+- [Tesseractjs：OCR 前端识别提取图像文本字符 支持 100+ 种语言](https://mp.weixin.qq.com/s/hp9z9bxadCo_FtQY66h2zA)
 
 
 
-npm相关：
-- [图文结合简单易学的npm包的发布流程](https://juejin.cn/post/7125709933709885448)
-- [包管理工具的演进（npm,yarn,pnpm）](https://mp.weixin.qq.com/s/beP1bxgbTT1Z91KS3svDvw)
-- [面试官：如果一个NPM包部分功能不满足需求，如何修改其部分功能](https://juejin.cn/post/7355383157556019239)
+

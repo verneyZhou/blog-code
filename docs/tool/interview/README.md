@@ -19,4 +19,6 @@ permalink: false
 - [面试题2024-算法篇](./interview-sf.html)
 - [2024面试记录](./interview-log2024.html)
 
+- [公司记录](./company-log.html)
+
 

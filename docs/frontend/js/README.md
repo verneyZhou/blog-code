@@ -64,24 +64,39 @@ permalink: false # 40e551/
 - [关于编码的那些事 - URL 编码](https://mp.weixin.qq.com/s/QQEq-_84SxcLzAbRHSuYVw)
 - [你能手写一个模板引擎吗？](https://juejin.cn/post/7207697872706486328)
 
-- [什么？后端要一次性返回我10万条数据！且看我这8种方案机智应对！](https://juejin.cn/post/7205101745936416829)
-- [批量任务导致页面卡死？试试requestIdleCallback对任务进行拆分](https://juejin.cn/post/7221793823705268284)
-
 - [因为写不出拖拽移动效果，我恶补了一下Dom中的各种距离](https://juejin.cn/post/7225206098692407355)
 
 - [浏览器跨 Tab 窗口通信原理及应用实践](https://juejin.cn/post/7306040473542213644)
 - [原生“跨组件”通信方式](https://mp.weixin.qq.com/s/xNgTM1OCh4djQjfC0dYGjA)
 
-- [前端调取摄像头并实现拍照功能](https://juejin.cn/post/7289662055183597603)
+- [前端调取摄像头并实现拍照功能](https://juejin.cn/post/7289662055183597603)、[前端实现微信扫一扫的思路](https://juejin.cn/post/7290813210276724771)
 
 - [JavaScript高级系列（二） - V8引擎的运行原理](https://mp.weixin.qq.com/s/PauB4N6qgd02vVYkGQa3Ag)
-- [赶快收藏！全网最佳websocket封装：完美支持断网重连、自动心跳！](https://juejin.cn/post/7371365854012276747)
 
 - [用JS实现一个JS引擎竟如此简单](https://juejin.cn/post/7205517870976270394)
 
-- [ServiceWorker 让前端赋能，一起拥抱服务端的能力](https://mp.weixin.qq.com/s/o-zVl2dNl59GVt0Ex3aopg)
+- [从 微信 JS-SDK 认识 JSBridge](https://juejin.cn/post/7199297355748458551)
+
+
+- websocket:
+  - [赶快收藏！全网最佳websocket封装：完美支持断网重连、自动心跳！](https://juejin.cn/post/7371365854012276747)
+  - [webSocket封装，心跳检测+断线重连基于ES6 class,已在生产环境上使用，已发布包](https://juejin.cn/post/7434406493698785295)
+
+- ServiceWorker: 
+  - [ServiceWorker 让你的网页拥抱服务端的能力](https://juejin.cn/post/7165893682132959245)
+
+
+- AbortController:[这个 JavaScript API 比你想象中更强大！](https://mp.weixin.qq.com/s/m9jV0gENV1GDiv1MHC5sWQ)
+- BOM API：Notification: [你能让网页也像QQ那种一样发出右下角消息吗](https://juejin.cn/post/7402781955077095474)
 
 - TS
   - [TypeScript 深水区：3 种类型来源和 3 种模块语法](https://juejin.cn/post/7111112135903543332)
   - [类型编程原理和编写类型安全代码](https://mp.weixin.qq.com/s/-Use3prQiTvB2U0itEXNuQ)
   - [TypeScript 前端工程最佳实践](https://mp.weixin.qq.com/s/885xoPsAMivkkHRpO3FWzw)
+
+
+- 渲染优化相关：
+  - [什么？后端要一次性返回我10万条数据！且看我这8种方案机智应对！](https://juejin.cn/post/7205101745936416829)
+  - [批量任务导致页面卡死？试试requestIdleCallback对任务进行拆分](https://juejin.cn/post/7221793823705268284)
+  - [前端性能优化——如何对超大量数据进行渲染？](https://juejin.cn/post/7424430441375055881)
+

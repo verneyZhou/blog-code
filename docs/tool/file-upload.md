@@ -38,3 +38,5 @@ permalink: false # b9398f/
 
 - [前端加载超大图片(100M以上)实现秒开解决方案](https://juejin.cn/post/7212270321622106170)
 - [前端如何进行单文件上传云服务存储](http://zoo.zhengcaiyun.cn/blog/article/cloudservicestorage)
+
+- [前端中的 File 和 Blob两个对象到底有什么不同](https://juejin.cn/post/7413921824066551842)

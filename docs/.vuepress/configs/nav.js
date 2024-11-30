@@ -11,6 +11,7 @@ module.exports = [
         text: '进阶',
         items: [
             { text: 'Vue', link: '/skills/vue/'},
+            { text: 'React', link: '/skills/react/'},
             { text: 'Webpack', link: '/skills/webpack/'},
             { text: '源码', link: '/code/' },
             { text: 'Web3', link: '/more/web3/' },

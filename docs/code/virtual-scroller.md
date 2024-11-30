@@ -31,3 +31,5 @@ permalink: false # 540010/
 - [不定高虚拟列表的一种实现](https://juejin.cn/post/7293805895917748274)
 
 - [性能飙升50%，react-virtualized-list如何优化大数据集滚动渲染](https://juejin.cn/post/7375504338757845030)
+
+- [Vue3 封装不定高虚拟列表 hooks，复用性更好！](https://juejin.cn/post/7415663559310540827)

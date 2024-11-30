@@ -52,7 +52,9 @@ permalink: false # 67ff26/
 - 技术社区：[掘金](https://juejin.im/timeline)、极客时间
 
 - mysql客户端：Navicat Premium
-- 静态资源上传远程服务器：FileZilla
+- 静态资源上传远程服务器：
+  - FileZilla
+  - [Cyberduck](https://cyberduck.io/download/)
 
 
 ## 配置开发环境
