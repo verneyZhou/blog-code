@@ -406,7 +406,7 @@ koa搭建的node项目~
 - 状态管理：`zustand`、`immer`, `use-immer`
 - ts: `Pick, Omit`
 - antd 表单使用: `const [form] = Form.useForm(); form.getFieldValue("name");`
-- `react.forwardRef`
+- `react.forwardRef`：forwardRef 允许组件使用 ref 将 DOM 节点暴露给父组件。`createRef useRef`区别？
 - `react-router-dom.useHistory`
 - react编辑器画布组件： `react-dnd-html5-backend`，拖拽：`react-dnd`,
 

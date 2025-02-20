@@ -27,6 +27,10 @@ tags:
 - [百度小程序开发指南](https://smartprogram.baidu.com/docs/develop/tutorial/intro/)
   - [百度小程序-taro框架开发](https://smartprogram.baidu.com/docs/develop/tutorial/frameworkdevelop/)
 
+- [使用 Vant Weapp](https://docs.taro.zone/docs/vant)
+  - [Vant Weapp 社区衍生库 @antmjs/vantui](https://github.com/AntmJS/vantui)、[快速上手](https://antmjs.github.io/vantui/main/#/quickstart)
+- [路由库 react-router](https://docs.taro.zone/docs/router-extend)
+
 
 
 博客文档参考：
@@ -36,6 +40,7 @@ tags:
 - [使用Taro搭建微信小程序（第一章-创建项目与页面）](https://juejin.cn/post/7397292869604622351)
 - [Taro小程序跨端开发入门实战](https://juejin.cn/post/7201665010200248381)
 - [Taro 3.x 跨版本升级踩坑指南](https://juejin.cn/post/7148430666906992647)
+- [Taro 源码揭秘：1. 揭开整个架构的入口 CLI => taro init 初始化项目的秘密](https://juejin.cn/post/7378363694939783178)
 
 
 

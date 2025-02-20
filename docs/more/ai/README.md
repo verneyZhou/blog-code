@@ -18,6 +18,7 @@ tags:
 ## 笔记
 
 - [AI笔记](./note.html)
+- [DeepSeek相关资料整理收集](./deepseek.html)
 
 
 
@@ -25,6 +26,22 @@ tags:
 
 
 ## 资源工具类
+
+
+### AI编程
+
+- [cursor](https://www.cursor.com/)，近两年最火的AI编程工具，AI版的VSCode，基于 Visual Studio Code 的一个分支开发而来，它集成了先进的 AI 功能。根据我的经验，它提供了目前最好的 AI 辅助编码体验，在速度、准确性和用户体验方面超越了 GitHub Copilot 等竞争对手
+
+- [bolt.new](https://bolt.new/)：Bolt․new 是 StackBlitz（做在线编辑器的） 开发的一个AI全栈Web 编程工具，自动编写代码、运行、编辑和部署应用程序。 Bolt․new依托于 `WebContainers` 技术，支持在浏览器中直接运行完整的Node.js 环境，无需任何本地安装或配置。 用户只需通过简单的提示命令，快速生成代码，并且立即在浏览器中运行和测试代码。
+
+- [v0.dev](https://v0.dev/)，vercel出的一个AI编程工具~
+
+- [trae](https://www.trae.ai/), 字节出的AI编程工具，对标Cursor
+
+- [通义灵码](https://lingma.aliyun.com/lingma): 阿里出的AI编码助手, 类似于 github 的Copilot，可通过VSCode插件使用。
+
+- [文心快码 - Baidu Comate](https://comate.baidu.com/zh), 百度出的AI编程助手，可通过VSCode插件使用。
+
 
 
 ### AI聊天
@@ -89,15 +106,13 @@ tags:
 
 ### AI工具
 
-- [cursor](https://github.com/getcursor/cursor): 官网标题是：The AI-first Code Editor, 感兴趣的可以试一下
+
 
 - [博特妙笔](https://gw.botsmart.net/): 公文写作AI工具
 
 - [Dify](https://dify.ai/zh): Dify 是一款开源的大语言模型(LLM) 应用开发平台。它融合了后端即服务（Backend as Service）和 LLMOps 的理念，使开发者可以快速搭建生产级的生成式 AI 应用。
 
 - [Sincode.AI](https://www.sincode.ai/app/welcome): AI工具，可聊天、生成图片、创建小工具等
-
-- [通义灵码](https://tongyi.aliyun.com/lingma/download): 阿里出的AI编码助手, 类似于 github 的Copilot
 
 
 - [Gliglish](https://gliglish.com/free): 免费的AI外语语音聊天工具，可支持不同国家语言
@@ -194,7 +209,7 @@ tags:
 - [AI图片说话项目保姆级教程-个人实操分享](https://c33xg0q9fd.feishu.cn/docx/BSW7db9F8oZoWZxTTmwcwKx9nHd)
 - [思维语录制作保姆级教程（图片会说话）](https://ixy2s5ruvqf.feishu.cn/docx/Z073dMlcmomg5CxeZKQcd5Y6nVg)
 
-
+- [node+websoket极速构建一个私有ChatGPT！AI套壳居然如此简单！](https://juejin.cn/post/7441774623833260070)
 
 
 

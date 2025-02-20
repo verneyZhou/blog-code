@@ -19,6 +19,19 @@ permalink: false # 233a67/
 
 ## 笔记
 
+- [turborepo + pnpm搭建react组件库](./component-library.html)
+
+
+## 问题记录
+
+- 有时useState更新数组会有延迟的问题？
+``` js
+// 使用prevState可解决
+setState((prevState: any[]) => {
+    prevState[index] = res;
+    return [...prevState];
+});
+```
 
 
 ## 收藏
@@ -33,6 +46,13 @@ permalink: false # 233a67/
 - [React 性能优化 | 包括原理、技巧、Demo、工具使用](https://juejin.cn/post/6935584878071119885)
 
 - [useEffect 一定在页面渲染后才会执行吗？](https://juejin.cn/post/7370138993062887476)
+- [React18-Hooks初识（一）：useEffect执行机制+清理副作用](https://juejin.cn/post/7454024890220724260)
 
 - [50个开发人员都应该知道的 React.js 超级技巧（上）](https://mp.weixin.qq.com/s/63kXKIGx0PgQlTK-YDj5Fg)、[50个开发人员都应该知道的 React.js 超级技巧（下）](https://mp.weixin.qq.com/s/iqmz96LIH9_V7RvadEW-wA)
 
+- [搞懂这12个Hooks，保证让你玩转React](https://juejin.cn/post/7101486767336849421)
+- [作为一名React，我是这样理解HOC的](https://juejin.cn/post/7103345085089054727)
+- [深入React，彻底搞懂React](https://juejin.cn/column/7088194204316205092)
+
+- [2024/2025 年 React 组件库 与 相关库 推荐](https://zhuanlan.zhihu.com/p/546697951)
+- [flow流程图工具库](https://github.com/xyflow/xyflow)

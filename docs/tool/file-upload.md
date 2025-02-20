@@ -40,3 +40,8 @@ permalink: false # b9398f/
 - [前端如何进行单文件上传云服务存储](http://zoo.zhengcaiyun.cn/blog/article/cloudservicestorage)
 
 - [前端中的 File 和 Blob两个对象到底有什么不同](https://juejin.cn/post/7413921824066551842)
+
+- [web-worker的基本用法并进行大文件切片上传（附带简易node后端）](https://juejin.cn/post/7351300892572745764)
+
+- [pdf转图片转文字](https://juejin.cn/post/7397588804825022518)
+- [前端速通Blob、File、FileReader、ArrayBuffer、Base64、URL.createObjectURL()](https://juejin.cn/post/7424414729857400870)

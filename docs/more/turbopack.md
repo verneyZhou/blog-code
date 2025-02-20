@@ -358,6 +358,18 @@ Monorepo 的概念最早是由 Google 提出并实践的，随着各种技术的
 - [Monorepo，大型前端项目管理模式实践](https://mp.weixin.qq.com/s/6_yGXHS_R6abx-G3yOCT8w)
 
 
+### Turbopack vs Turborepo
+
+> Turbopack 和 Turborepo 都是由 Vercel 推出的工具，但它们的定位和功能完全不同。
+
+
+- **Turbopack**：是一个基于 Rust 的`增量打包工具`，旨在取代 Webpack，专注于提高 JavaScript 和 TypeScript 项目的构建速度。它特别适用于开发服务器和生产环境的打包，支持快速的热更新（HMR）和按需编译。
+> 目标是提供最快的开发体验，特别是在大型项目中。它通过增量计算和函数级缓存，显著减少了构建和更新的时间。对标的是`webpack`和`vite`等打包工具。
+
+
+- **Turborepo**：是一个针对 JavaScript 和 TypeScript 的 `Monorepo 构建工具`，专注于优化多包项目的任务执行效率。它通过缓存、并行执行和任务管道来加速构建、测试和发布流程
+> 目标是优化 Monorepo 中的任务执行效率。它通过缓存和并行执行任务，减少重复工作，特别适合多包项目的构建和测试。对标的`Lerna`等Monorepo工具。
+
 
 
 

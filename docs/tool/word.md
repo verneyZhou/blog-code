@@ -240,3 +240,24 @@ Astro 的孤岛架构还允许每个页面都使用不同的开发工具和技�
 > Storybook 是一个 ui 组件开发管理的工具，我们可以通过 story 独立创建组件，并且每个组件都有一个独立开发调试环境。
 
 [storybook](https://storybook.js.org/)、[Storybook Vue 教程](https://storybook.js.org/tutorials/intro-to-storybook/vue/zh-CN/get-started/)、[Storybook React 教程](https://storybook.js.org/tutorials/intro-to-storybook/react/zh-CN/simple-component/)
+
+
+
+## Tauri
+> Tauri 是一个构建适用于所有主流桌面和移动平台的轻快二进制文件的框架。开发者们可以集成任何用于创建用户界面的可以被编译成 HTML、JavaScript 和 CSS 的前端框架，同时可以在必要时使用 Rust、Swift 和 Kotlin 等语言编写后端逻辑。
+
+[Tauri 是什么？](https://tauri.app/zh-cn/start/)
+
+
+## WebContainer
+> WebContainers 是一个基于浏览器的运行时，用于执行 Node.js 应用程序和操作系统命令，它完全运行在您的浏览器页面中。webContainer 就是一个可以运行在浏览器页面中的微型操作系统，提供了文件系统、运行进程的能力，同时内置了 nodejs、npm/yarn/pnpm 等包管理器。
+
+[可以在浏览器页面运行 node 代码了！webContainer 发布 1.0](https://juejin.cn/post/7201464975722332216)、[WebContainers](https://webcontainers.io/)
+
+
+
+## tsup
+> [Tsup](https://github.com/egoist/tsup)是一个基于ESBuild的打包工具，能够快速打包Typescript库，无需任何配置。它支持.ts、.tsx的转换，并支持Cli脚手架运行，方便又高效。
+
+
+

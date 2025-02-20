@@ -55,6 +55,7 @@ permalink: false # 67ff26/
 - 静态资源上传远程服务器：
   - FileZilla
   - [Cyberduck](https://cyberduck.io/download/)
+    - 连接阿里云服务器：`sftp连接 =》输入ip:22 => 输入账号/密码 =》连接`
 
 
 ## 配置开发环境

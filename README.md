@@ -3,7 +3,7 @@
 
 ## 主题
 
-[ vuepress-theme-vdoing](https://doc.xugaoyi.com/)
+[vuepress-theme-vdoing](https://doc.xugaoyi.com/)
 
 
 
@@ -219,12 +219,17 @@ ReferenceError: canonicalLink is not defined
 - 小程序：
     - boss包围（社交小游戏）
     - 小工具（投票）
+        - 文件上传/下载/转换 
 - 监控分析平台
 - 微前端
 - 工具库：
     - 虚拟列表
 - vue3搭建项目
+- ssr渲染
 - 在线编辑器
+- 其他
+    - websocket通信
+    - three.js 动画
 
 
 

@@ -77,6 +77,8 @@ permalink: false # 40e551/
 
 - [从 微信 JS-SDK 认识 JSBridge](https://juejin.cn/post/7199297355748458551)
 
+- [【前端通信新技能】使用 CustomEvent 是一个不错的选择！](https://juejin.cn/post/7419127047538655259)
+
 
 - websocket:
   - [赶快收藏！全网最佳websocket封装：完美支持断网重连、自动心跳！](https://juejin.cn/post/7371365854012276747)
@@ -84,6 +86,7 @@ permalink: false # 40e551/
 
 - ServiceWorker: 
   - [ServiceWorker 让你的网页拥抱服务端的能力](https://juejin.cn/post/7165893682132959245)
+  - [使用 Service Worker 让首页秒开](https://juejin.cn/post/7443159206318686246)
 
 
 - AbortController:[这个 JavaScript API 比你想象中更强大！](https://mp.weixin.qq.com/s/m9jV0gENV1GDiv1MHC5sWQ)

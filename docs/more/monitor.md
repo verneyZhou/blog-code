@@ -1212,6 +1212,7 @@ self.addEventListener('fetch', e => {
   - [前端录屏+定位源码，帮你快速定位线上bug](https://juejin.cn/post/7173596154297810957)
   - [前端白屏的检测方案，让你知道自己的页面白了](https://juejin.cn/post/7176206226903007292)
   - [web-see-demo](https://github.com/xy-sea/web-see-demo)
+  - [基于web-see的前端监控方案实现](https://juejin.cn/post/7452406456366039050)
 
 
 - [sunshine-track](https://github.com/sanxin-lin/sunshine-track/tree/main)

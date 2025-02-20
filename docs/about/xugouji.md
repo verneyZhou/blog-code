@@ -15,3 +15,9 @@ tags:
 - [笑春风](./xiaochunfeng/)
 
 - [夜游](./yeyou/)
+
+
+- [科幻小说](./science-fiction.html)
+- [阿三的故事](./asan.html)
+- [第四次苏醒](./fourth.html)
+- [第四次](./fourth02.md)

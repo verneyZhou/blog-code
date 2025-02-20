@@ -488,6 +488,8 @@ console.log(obj.b.bb) // 直接报错
 
 [考古挖掘：高刷显示器下的 requestAnimationFrame](https://mp.weixin.qq.com/s/lwQ2lTPMceGBrjaByc87DA)
 
+[作为一个前端你连requestAnimationFrame的用法、优势和应用场景都搞不清楚？](https://juejin.cn/post/7431004279819288613)
+
 
 
 ### 检测DOM是否已加载完成

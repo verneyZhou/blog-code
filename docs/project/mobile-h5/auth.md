@@ -236,10 +236,10 @@ wx.ready(function(){
 
 [参考](https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId)
 
-### 微信开发平台
+### 微信开放平台
 > 微信公众平台是给编辑的，微信开放平台是给技术的。包含移动应用开发、网站应用开发、公众账号开发，第三方平台开发。
 
-> 微信公众平台主要是给微信开发平台下的公众账号开发用的。
+> 微信公众平台主要是给微信开放平台下的公众账号开发用的。
 
 [官网](https://open.weixin.qq.com/cgi-bin/index?t=home/index&lang=zh_CN)
 

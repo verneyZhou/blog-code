@@ -70,6 +70,8 @@ permalink: false # 292799/
 
 - [前端部署后自动提醒用户更新](https://juejin.cn/post/7428793777984208896)
 
+- [2024年细讲前端工程化（万字年终总结）冲冲冲](https://juejin.cn/post/7448191774537842714)
+
 
 - Monorepo
   - [现代前端工程化-彻底搞懂基于 Monorepo 的 lerna 模块(从原理到实战)](https://mp.weixin.qq.com/s/uBxa24nbg9PXyTfO0TmzVg)
@@ -91,6 +93,8 @@ permalink: false # 292799/
   - [基于jenkins+docker实现CI/CD](https://www.cuiliangblog.cn/detail/article/83)
 
   - [队友升职，被迫解锁 Jenkins（所以，前端需要学习Jenkins吗？🤔）](https://juejin.cn/post/7349561234931515433)
+
+  - [轻松部署与管理应用：从 Docker 到 Kubernetes 的最佳实践](https://juejin.cn/post/7440687454595006514)
 
 
 
@@ -140,6 +144,17 @@ permalink: false # 292799/
 
 - [首页加载速度优化](https://juejin.cn/post/7428130267556511744)
 
+- [网页疯狂自动刷新，发生了什么？业务：我传了一张两亿像素的图片而已](https://mp.weixin.qq.com/s/010tCqOfY6hJOLp8U-iYrA)
+
+
+> 浏览器原理相关：
+- [浏览器和图形引擎渲染对比](https://mp.weixin.qq.com/s/Ptxs-3d_cSb4SrC4bhO2Ig)
+- [浏览器渲染原理](https://mp.weixin.qq.com/s/ZV7objSNK4r0wswMs1hR8w)
+- [重排、重绘、合成，你真的懂吗？](https://blog.51cto.com/u_15495832/5066569)
+- [渲染树的形成原理你真的很懂吗？](https://mp.weixin.qq.com/s/PUYmq_Oqv8H28PUvmiZAfg)
+- [图解浏览器的多进程渲染机制](https://mp.weixin.qq.com/s/1c159YucpXu5aUPWmjeCmw)
+- [浏览器节能机制导致Websocket断连的坑](https://juejin.cn/post/7362576319928008755)
+
 
 
 ### 监控相关
@@ -176,15 +191,6 @@ permalink: false # 292799/
 
 
 
-> 浏览器原理相关：
-- [浏览器和图形引擎渲染对比](https://mp.weixin.qq.com/s/Ptxs-3d_cSb4SrC4bhO2Ig)
-- [浏览器渲染原理](https://mp.weixin.qq.com/s/ZV7objSNK4r0wswMs1hR8w)
-- [重排、重绘、合成，你真的懂吗？](https://blog.51cto.com/u_15495832/5066569)
-- [渲染树的形成原理你真的很懂吗？](https://mp.weixin.qq.com/s/PUYmq_Oqv8H28PUvmiZAfg)
-- [图解浏览器的多进程渲染机制](https://mp.weixin.qq.com/s/1c159YucpXu5aUPWmjeCmw)
-- [浏览器节能机制导致Websocket断连的坑](https://juejin.cn/post/7362576319928008755)
-
-
 
 
 
@@ -201,6 +207,8 @@ permalink: false # 292799/
 - [Node.js + typescript 写一个命令批处理辅助工具](https://juejin.cn/post/6930565860348461063)
 
 - [如何检查前端项目和node项目中未被使用的依赖包](https://juejin.cn/post/7355779183148318747)
+
+- [前端要想学好 NodeJs，这些性能监控指标可不能不会！！！](https://juejin.cn/post/7436218509947469876)
 
 
 ## Nginx
@@ -253,12 +261,22 @@ permalink: false # 292799/
 
 - [Rspack、Vite争先支持的模块联盟(MF)究竟是啥？](https://juejin.cn/post/7427173759713296393)
 
+- [微前端集成优化：让所有子应用体积更小，加载更快！](https://juejin.cn/post/7373502637730545698)
+
+- [qiankun？这次我选了wujie！](https://juejin.cn/post/7297592806569164810)
+
+- [Qiankun微前端 + Turborepo + pnpm 实践](https://juejin.cn/post/7426195486161616946)
+
+
+
 
 ## 组件库
 
 - [使用vite开发一个自己的Vue3组件库](./npm-package.html)
 - [从0到1搭建Monorepo组件库](/skills/vue/vue-design.html)
 - [组件化](./comp-design.html)
+- [关于虚拟列表的组件封装](./virtual-list.html)
+
 - [想要开发组件库？那你一定要提前了解一下这个神器](https://mp.weixin.qq.com/s/XuEc1TnLuzMokylde4DkhQ)
 
 
@@ -270,6 +288,9 @@ permalink: false # 292799/
 - [教你使用 koa2 + vite + ts + vue3 + pinia 构建前端 SSR 企业级项目](https://juejin.cn/post/7086467466703929358)
 - [走近 Next.js：全栈框架的简介与应用](https://blog.csdn.net/lecepin/article/details/136137355)
 - [前端页面秒开的关键 - 小白也能看懂的同构渲染原理和实现（含nodejs服务端测试与优化，附PPT）](https://juejin.cn/post/7289661061984501819)
+
+- [一文彻底说清楚SSR渲染](https://mp.weixin.qq.com/s/IKxwiWxnxnWxsejqCrW-NA)
+
 
 
 ## 跨端
@@ -305,8 +326,6 @@ permalink: false # 292799/
 
 - [前端 mock 数据的几种方式](https://mp.weixin.qq.com/s/kTG2a8T6T2hEJEwDrjfwSw)
 
-- [内网穿透你真的了解吗？](https://mp.weixin.qq.com/s/SNS9SpqgEBIv7IPXYB4rFw)
-
 - [走进 WebAssembly 的世界](https://juejin.cn/column/7212491760734535740)
 
 - [物理世界的互动之旅：Matter.js入门指南](https://juejin.cn/post/7221550123193811002)
@@ -326,20 +345,33 @@ permalink: false # 292799/
   - [图文结合简单易学的npm包的发布流程](https://juejin.cn/post/7125709933709885448)
   - [包管理工具的演进（npm,yarn,pnpm）](https://mp.weixin.qq.com/s/beP1bxgbTT1Z91KS3svDvw)
   - [面试官：如果一个NPM包部分功能不满足需求，如何修改其部分功能](https://juejin.cn/post/7355383157556019239)
+  - [What？你还不明白npm, yarn, pnpm之间的区别？！](https://juejin.cn/post/7433427781928386571)
 
 
 - 构建 Node.js 云函数的 Serverless 框架: [Midway.js探索与实践](https://mp.weixin.qq.com/s/uyFMAG-avPoHdmSotn4J9A)
 
-- [纯前端怎么实现检测版本更新，看这一篇就够了！](https://juejin.cn/post/7379157261426671657)
+
+- 版本更新：
+  - [纯前端怎么实现检测版本更新，看这一篇就够了！](https://juejin.cn/post/7379157261426671657)
+  - [SharedWorker项目实践——纯前端检测版本更新](https://juejin.cn/post/7433604095904727051)、[2种纯前端检测版本更新提示](https://juejin.cn/post/7328670028605784076)
+  - [纯前端实现检测版本发布更新提示](https://juejin.cn/post/7159484928136642567)
+
+
+- 内网穿透：
+  - [内网穿透你真的了解吗？](https://mp.weixin.qq.com/s/SNS9SpqgEBIv7IPXYB4rFw)
+  - [用闲置的阿里云服务器使用 NPS 实现内网穿透](https://juejin.cn/post/7398352986324189210)
+  - [弃用花生壳，改用frp实现内网穿透，好自由！](https://juejin.cn/post/7456851920617603107)
+
+
 
 - [如何使用esMap快速搭建室内场景](https://juejin.cn/post/7385832570183663654)
 
 - [系统设计：设计URL短链接工具](https://mp.weixin.qq.com/s/ruBT0MxASW4nCFvfa0MB5Q)
 
-- [用闲置的阿里云服务器使用 NPS 实现内网穿透](https://juejin.cn/post/7398352986324189210)
+
 - [【爬虫逆向】逆向破解某租车微信小程序，sign的解析](https://juejin.cn/post/7410289323737612315)
 - [Tesseractjs：OCR 前端识别提取图像文本字符 支持 100+ 种语言](https://mp.weixin.qq.com/s/hp9z9bxadCo_FtQY66h2zA)
 
-
+- [前端 SEO 优化：全面提升网站可见度的策略指南](https://juejin.cn/post/7430046989955907624)
 
 

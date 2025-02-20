@@ -30,7 +30,7 @@ git commit -m 'blog submit'
 # git push -f https://github.com/<USERNAME>/<USERNAME>.github.io.git  master
 
 
-git push -f git@github.com:verneyZhou/verneyZhou.github.io.git  master
+git push -f git@github.com:verneyZhou/verneyZhou.github.io.git main
 
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>

@@ -408,7 +408,7 @@ module.exports = {
       es6: true, //  启用除了 modules 以外的所有 ECMAScript 6 特性（这个功能在设置ecmaVersion版本为6的时候自动设置）。
       commonjs: true, // CommonJS 全局变量和 CommonJS 作用域 (用于 Browserify/WebPack 打包的只在浏览器中运行的代码)。
     },
-    parserOptions: { // 解析
+    parserOptions: { // 设置解析器选项
       parser: '@typescript-eslint/parser', // 解析器, ESLint 默认使用 Espree 进行语法解析
       // parser: 'babel-eslint',
       ecmaVersion: 2018, //  默认值是5，可以设置为3、5、6、7、8、9、10，用来指定使用哪一个ECMAScript版本的语法。也可以设置基于年份的JS标准，比如2015(ECMA 6)
@@ -425,8 +425,8 @@ module.exports = {
         // 'plugin:prettier/recommended'
     ],
     plugins: [ // 插件,插件名称可以省略 eslint-plugin- 前缀
-      'vue', 
-      '@typescript-eslint',
+      'vue', //  非范围包：eslint-plugin-vue
+      '@typescript-eslint', // 范围包：@typescript-eslint/eslint-plugin
       // 'prettier'
     ],
     globals: { // 要在配置文件中配置全局变量，请将 globals 配置属性设置为一个对象，该对象包含以你希望使用的每个全局变量
@@ -440,15 +440,17 @@ module.exports = {
       "quotes": ["error", "single", { "allowTemplateLiterals": true }], // js都用单引号，template里面的html用双引号
       "semi": ["warn", "always"], // 代码段后面都加上分号
       "comma-dangle": ["warn", "never"], //对象里的最后属性不加逗号
-      "no-undef": 0, // 0是忽略，1是警告，2是报错, 默认是 1
+      "no-undef": 0, // 0是忽略，1是警告，2是报错, 默认是 1   
+      "no-debugger": process.env.NODE_ENV === 'production' ? 'error' : 'off', // 禁用debugger：生产环境error警告，开发环境保留
+
+      // 使用由插件定义的规则、环境或配置时: [pluginName]/[roleName]
       "vue/html-self-closing": ["warn", { // vue中自闭合标签：warn警告
           "html": {
               "void": "any",
               "normal": "any",
               "component": "any"
           }
-      }],       
-      "no-debugger": process.env.NODE_ENV === 'production' ? 'error' : 'off', // 禁用debugger：生产环境error警告，开发环境保留
+      }],
       "vue/script-indent": ["error", 4, { "baseIndent": 0, "switchCase": 1}], //  vue中script缩进：error警告；4个空格缩进；强制 switch 语句中的 case 子句1个缩进
 
       ///// prettier
@@ -456,7 +458,14 @@ module.exports = {
     },
 
     // 该字段定义的数据可以在所有的插件中共享。这样每条规则执行的时候都可以访问这里面定义的数据
-    settings: {}
+    settings: {},
+    overrides: [ // 为特定类型文件指定处理器
+        {
+            "files": ["*.md"], // 匹配所有.md文件
+            "processor": "a-plugin/markdown" // 指定处理器
+        }
+    ],
+    ignorePatterns: ["temp.js", "**/vendor/*.js"], // 忽略文件，或者单独在 .eslintignore 配置
   }
 ```
 
@@ -623,7 +632,8 @@ rules: {
 `Prettier` 格式化我们的代码，它调整长句，整理空格，括号等；所以它将代码作为输入，修改后的代码作为输出。
 > 原理是将代码生成`AST`语法树，之后是处理`AST`，最后生成代码。
 
-[Prettier线上试一试](https://www.prettier.cn/playground/)
+- [Prettier线上试一试](https://www.prettier.cn/playground/)
+- [Prettier看这一篇就行了](https://zhuanlan.zhihu.com/p/81764012)
 
 
 ### VSCode中配置
