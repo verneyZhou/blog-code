@@ -45,3 +45,5 @@ permalink: false # b9398f/
 
 - [pdf转图片转文字](https://juejin.cn/post/7397588804825022518)
 - [前端速通Blob、File、FileReader、ArrayBuffer、Base64、URL.createObjectURL()](https://juejin.cn/post/7424414729857400870)
+
+- [大文件上传👈 | React + NestJs |分片、断点续传、秒传🚀 , 你是否知道 ???](https://juejin.cn/post/7467232164900438070)

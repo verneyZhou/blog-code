@@ -146,6 +146,9 @@ permalink: false # 292799/
 
 - [网页疯狂自动刷新，发生了什么？业务：我传了一张两亿像素的图片而已](https://mp.weixin.qq.com/s/010tCqOfY6hJOLp8U-iYrA)
 
+- [【前端架构】大厂都在做的前端稳定性到底是啥呢？](https://juejin.cn/post/7100541736379744293)
+- [从0到1：美团端侧CDN容灾解决方案](https://juejin.cn/post/7052835334941311007)
+
 
 > 浏览器原理相关：
 - [浏览器和图形引擎渲染对比](https://mp.weixin.qq.com/s/Ptxs-3d_cSb4SrC4bhO2Ig)
@@ -188,6 +191,8 @@ permalink: false # 292799/
 - [前端小玩具~错误捕获定位工具](https://juejin.cn/post/7422145784799330358)
 - [前端性能优化 - 提升 LCP（Largest Contentful Paint）](https://juejin.cn/post/7406143794000019506)
 
+- [前端监控SDK：从基础到实践 （1. 性能监控）](https://juejin.cn/post/7458945109960638498)
+
 
 
 
@@ -209,6 +214,10 @@ permalink: false # 292799/
 - [如何检查前端项目和node项目中未被使用的依赖包](https://juejin.cn/post/7355779183148318747)
 
 - [前端要想学好 NodeJs，这些性能监控指标可不能不会！！！](https://juejin.cn/post/7436218509947469876)
+
+- [面试官：为什么选择Nestjs作为服务端框架，而不是Express？](https://mp.weixin.qq.com/s/IJX12Pmymg2xjSKwXVrDUA)
+
+
 
 
 ## Nginx

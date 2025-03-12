@@ -43,7 +43,7 @@ permalink: false # fc73f4/
 
 
 
-## 未开始
+## 其他
 - [vscode使用笔记](./vscode.html)
 - [关于chrome浏览器](./chrome.html)
 

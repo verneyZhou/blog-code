@@ -589,6 +589,24 @@ fatal: the remote end hung up unexpectedly
 
 
 
+19. git add 警告：
+``` sh
+hint: You've added another git repository inside your current repository.
+hint: Clones of the outer repository will not contain the contents of
+hint: the embedded repository and will not know how to obtain it.
+```
+> 这个警告是因为在你的主项目仓库中包含了另一个 git 仓库。这种情况通常发生在：直接复制/克隆了一个 git 项目到当前项目中；或者在主项目中直接 git clone 了另一个仓库
+
+> 解决方法：
+``` sh
+# 从 git 缓存中移除 子项目
+git rm --cached [son-file-name]
+
+# 删除 子项目 中的 .git 目录
+rm -rf [son-file-name]/.git
+```
+
+
 
 ## 备注
 

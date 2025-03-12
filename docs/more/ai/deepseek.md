@@ -185,15 +185,17 @@ Emberdder首选项 # 选择 Ollama => nomic-embed-text，保存即可
 - [DeepSeek官方：Awesome DeepSeek Integratio](https://github.com/deepseek-ai/awesome-deepseek-integration)
 
 
-《DeepSeek从入门到精通》:
-- [WPS](https://kdocs.cn/l/caFUbVZSt40Q)
-- [夸克网盘](https://pan.quark.cn/s/71f1ceba5a53)
-- [视频](https://www.bilibili.com/video/BV1cRN4eSEoy/)
+- 《DeepSeek从入门到精通》: [WPS](https://kdocs.cn/l/caFUbVZSt40Q)、[夸克网盘](https://pan.quark.cn/s/71f1ceba5a53)、[视频](https://www.bilibili.com/video/BV1cRN4eSEoy/)
 
 
-
+- [deepseek本地部署（在线、离线）、知识库搭建（个人、组织）与代码接入](https://juejin.cn/post/7469819423534776346)
 
 - [DeepSeek+即梦，让历史“活”起来](https://mp.weixin.qq.com/s/BYwRY-ZxwkCf8P9D2xtL-A)
 - [建议收藏！DeepSeek-R1+剪映AI联动作弊器，3分钟高产爆款图文视频（含实操）](https://mp.weixin.qq.com/s/SE8kybPjvlmRbPGQZxQ74A)
 - [满血DeepSeek-R1+Cursor打通！无问芯穹上线API服务，能力拉满，7大国产算力保驾护航](https://mp.weixin.qq.com/s/cEmB9NdC3u5iEHC60PBJrw)
 - [小红书20篇作品变现3.5w+，揭秘如何用DeepSeek制作儿童绘本快速赚米！（附实操+变现法则）](https://mp.weixin.qq.com/s/TjceRYJ1BSzS7fnt1C9Z_w)
+
+- [deepseek+数字人王炸组合使用方法](https://mp.weixin.qq.com/s/KNxCK6dn3YBA7hbIqhFQXA)
+- [王炸 Deepseek+星流AI+可灵 做猫咪创意视频 35个作品涨粉21.5w](https://mp.weixin.qq.com/s/eC_H8tgsBmKLBK_FjN1KzQ)
+- [用DeepSeek做简易版中式养生视频，22篇笔记涨粉3.4万+（附详细操作步骤）](https://mp.weixin.qq.com/s/gX81-s4ed2gGVeeaxG1j_Q)
+- [爆火出圈！3分钟速成，用DeepSeek制作哪吒2走秀视频，保姆级教程](https://mp.weixin.qq.com/s/DNzJGhoL1eV5Fv_3wyjSaQ)
