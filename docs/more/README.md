@@ -72,6 +72,8 @@ permalink: false # 292799/
 
 - [2024年细讲前端工程化（万字年终总结）冲冲冲](https://juejin.cn/post/7448191774537842714)
 
+- [如何在前端开发中实现零停机部署](https://mp.weixin.qq.com/s/OUk_dm9g0uN7Vk95C93KYQ)
+
 
 - Monorepo
   - [现代前端工程化-彻底搞懂基于 Monorepo 的 lerna 模块(从原理到实战)](https://mp.weixin.qq.com/s/uBxa24nbg9PXyTfO0TmzVg)
@@ -149,6 +151,13 @@ permalink: false # 292799/
 - [【前端架构】大厂都在做的前端稳定性到底是啥呢？](https://juejin.cn/post/7100541736379744293)
 - [从0到1：美团端侧CDN容灾解决方案](https://juejin.cn/post/7052835334941311007)
 
+- [性能优化——你的瀑布流还不够懒](https://juejin.cn/post/7409191765708226569)
+- [前端性能优化的几个大招（理论+实践，看完就是Leader水平）](https://mp.weixin.qq.com/s/SM1po543uVENh9k7Rh8ZPw)
+
+- [一份完整的「前端性能优化」手册](https://juejin.cn/post/7429128606749949978)
+
+- [面试复盘：如何回答「千万级Tree组件」封装问题？](https://juejin.cn/post/7533048503934976009)
+
 
 > 浏览器原理相关：
 - [浏览器和图形引擎渲染对比](https://mp.weixin.qq.com/s/Ptxs-3d_cSb4SrC4bhO2Ig)
@@ -193,6 +202,10 @@ permalink: false # 292799/
 
 - [前端监控SDK：从基础到实践 （1. 性能监控）](https://juejin.cn/post/7458945109960638498)
 
+- [迈向前端 Leader - 落地前端监控](https://juejin.cn/post/7482957797770756131)
+
+- [前端架构-前端监控sdk设计与实现（完整版）](https://mp.weixin.qq.com/s/xKlX5RMyeH1X_ZqXD-DEfA)
+
 
 
 
@@ -235,6 +248,8 @@ permalink: false # 292799/
 
 - [前端性能优化-开启 HTTP 缓存](https://juejin.cn/post/7395867506026905641)
 
+- [每个前端开发者都应该掌握的 nginx 技巧](https://mp.weixin.qq.com/s/989UBq2uAzfqryfcN4yI9w)
+
 
 
 ## 低代码
@@ -269,6 +284,7 @@ permalink: false # 292799/
 - [完美搭配，微前端与Monorepo的架构设计](https://juejin.cn/post/7225800207329230905)
 
 - [Rspack、Vite争先支持的模块联盟(MF)究竟是啥？](https://juejin.cn/post/7427173759713296393)
+- [模块联邦（Module Federation）新的微前端方案？](https://juejin.cn/post/7386243179279663144)
 
 - [微前端集成优化：让所有子应用体积更小，加载更快！](https://juejin.cn/post/7373502637730545698)
 
@@ -313,6 +329,15 @@ permalink: false # 292799/
 
 - [跨端技术的本质是什么？现状如何？](https://mp.weixin.qq.com/s/VGZVnoTGT6BTS101jOPiQw)
 
+- [Taro 源码揭秘：11. Taro 项目开发编译速度太慢，怎么办？写个简单插件按需编译](https://juejin.cn/post/7493379997325377570)
+
+
+## 工具库
+
+- 动画库：[animejs](https://animejs.com/)
+
+- 行业领先的 Web 3D 引擎：[Galacean Engine](https://galacean.antgroup.com/engine/docs/)
+
 
 ## 其他
 
@@ -349,6 +374,7 @@ permalink: false # 292799/
 
   - [开发一个纯前端在线代码编辑器、制作一个炫酷动画收藏网站](https://juejin.cn/post/7405769445027594266)、[online-snippet-editor](https://github.com/CooperJiang/online-snippet-editor)
 
+  - [多人在线协作的神秘代码：Yjs 底层解密](https://juejin.cn/post/7470348137419587593)
 
 - npm相关：
   - [图文结合简单易学的npm包的发布流程](https://juejin.cn/post/7125709933709885448)
@@ -384,3 +410,15 @@ permalink: false # 292799/
 - [前端 SEO 优化：全面提升网站可见度的策略指南](https://juejin.cn/post/7430046989955907624)
 
 
+- 权限：
+  - [写个vite插件自动处理系统权限，降低99%重复工作](https://juejin.cn/post/7523712612535517210)
+  - [用二进制思维重构前端权限系统](https://juejin.cn/post/7474862152928493631)
+
+- [为了让 iframe 支持 keepAlive，我连夜写了个 kframe](https://juejin.cn/post/7504146372771004425)
+
+- 国际化：
+  - [前端国际化全场景支持方案，不入侵代码，一键完成 (vue2/3、react)](https://juejin.cn/post/7475199302533398569)
+  - [三行代码完成国际化适配，别等错过了才后悔没收藏！](https://juejin.cn/post/7480076971226284058)
+
+
+- [大模型应用中，前端绕不开的 SSE](https://juejin.cn/post/7459973855101943808)

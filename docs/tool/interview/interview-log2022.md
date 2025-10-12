@@ -89,6 +89,122 @@ permalink: false
   */
 ```
 
+``` tsx
+// LoginFormClass.jsx 类组件
+import React, { Component } from 'react';
+
+class LoginFormClass extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: ''
+    };
+  }
+
+  handleUsernameChange = (e) => {
+    this.setState({ username: e.target.value });
+  }
+
+  handlePasswordChange = (e) => {
+    this.setState({ password: e.target.value });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('用户名:', this.state.username);
+    console.log('密码:', this.state.password);
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          <label htmlFor="username">用户名:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={this.state.username}
+            onChange={this.handleUsernameChange}
+            placeholder="请输入用户名"
+          />
+        </div>
+        <div>
+          <label htmlFor="password">密码:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handlePasswordChange}
+            placeholder="请输入密码"
+          />
+        </div>
+        <button type="submit">提交</button>
+      </form>
+    );
+  }
+}
+
+export default LoginFormClass;
+```
+
+``` tsx
+// 函数组件
+import React, { useState } from 'react';
+
+function OptimizedLoginForm() {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('表单数据:', formData);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="username">用户名:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value={formData.username}
+          onChange={handleInputChange}
+          placeholder="请输入用户名"
+        />
+      </div>
+      <div>
+        <label htmlFor="password">密码:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleInputChange}
+          placeholder="请输入密码"
+        />
+      </div>
+      <button type="submit">提交</button>
+    </form>
+  );
+}
+
+export default OptimizedLoginForm;
+```
+
 
 
 ### 度小满二面 2022.02.23

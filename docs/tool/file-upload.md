@@ -47,3 +47,7 @@ permalink: false # b9398f/
 - [前端速通Blob、File、FileReader、ArrayBuffer、Base64、URL.createObjectURL()](https://juejin.cn/post/7424414729857400870)
 
 - [大文件上传👈 | React + NestJs |分片、断点续传、秒传🚀 , 你是否知道 ???](https://juejin.cn/post/7467232164900438070)
+
+- [使用html2canvas+jspdf生成可编辑的矢量pdf](https://juejin.cn/post/7530080951524065290)
+
+- [Vue3+Node.js 实现大文件上传：断点续传、秒传、分片上传完整教程](https://juejin.cn/post/7547965581753237519)

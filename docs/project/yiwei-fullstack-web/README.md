@@ -493,15 +493,6 @@ export const routerConfig = {
 
 
 
-### 开发流程
-
-- 系统偏好配置 => 打开MySQL， 启动服务；
-> 需提前安装好MySql，安装流程参考上方连接~
-
-- 打开`MySQL Workbench`,连接本地数据库；看下对应数据table是否正常；
-
-- 打开`node-backend`项目，`npm install && npm run dev`启动项目即可~
-
 
 ### 报错记录
 
@@ -609,6 +600,25 @@ yum install -y bison
 > 修改`openid`类型为`VARCHAR(45)即可`
 
 
+
+## 开发流程
+
+- 首先，`git clone`下来代码库`yiwei-fullstack-web`；然后切换node到`v20+`，然后分别进入`taro-mini-app`、`node-backend`和`vue-admin-web`目录下，分别执行`npm install`安装依赖，等待node包安装完毕；
+
+- h5开发的话，执行`npm run dev:h5`即可，本地启动成功会在浏览器中自动打开一个地址；
+
+- 微信小程序开发的话，执行`npm run dev:weapp`即可，之后使用微信开发者工具打开`taro-mini-app`项目所在目录即可；开发使用的微信号需要在小程序添加为开发者成员；
+
+- 后台管理系统开发的话，执行`npm run dev`即可，本地启动成功会在浏览器中自动打开一个地址；
+
+
+- 后端服务开发的话稍微要复杂些：
+1. `系统偏好配置` => 打开MySQL， 启动服务；需提前安装好MySql，安装流程参考上方连接~
+2. 打开`MySQL Workbench`,连接本地数据库；看下对应数据table是否正常；
+3. 打开`node-backend`项目，`npm run dev`启动项目即可~
+> 如果涉及到新的数据表添加，就需要再在`MySQL Workbench`中创建新的数据表，并设置好字段类型；
+
+
 ## 部署
 
 
@@ -706,6 +716,9 @@ server {
 > 部署过程中会提示让手动输入服务器密码，输入即可~
 
 
+
+- 以上如果第一次部署的时候配置好，之后上线直接本地执行`npm run build`，再执行`npm run deploy`就可以部署了~
+> `deploy.sh`中添加了`npm run build`命令，但如果直接执行`npm run deploy`打出来的报包不是最新的，很奇怪...
 
 
 
@@ -839,10 +852,10 @@ module.exports = {
 
 
 
-## 其他
+## 备注
 
 
-- **mysql中如何保存数组？**
+### mysql中如何保存数组？
 
 1. 使用 JSON 类型: 
     - sql： `ALTER TABLE admin.chat_table MODIFY COLUMN messages JSON`
@@ -891,7 +904,7 @@ CREATE TABLE chat_messages (
 
 
 
-- **高并发情况下怎么保证生成id的唯一性？**
+### 高并发情况下怎么保证生成id的唯一性？
 
 1. Redis 自增 + 前缀
 2. 数据库自增 + 分段锁
@@ -914,7 +927,7 @@ CREATE TABLE chat_messages (
 
 
 
-- **查看ECS服务器上数据库所占内存大小**
+### 查看ECS服务器上数据库所占内存大小
 ``` sh
 top -p `pidof mysqld` # 使用top命令
 ps aux | grep mysql # 使用ps命令
@@ -922,19 +935,208 @@ du -sh /var/lib/mysql/  # 查看数据库文件大小
 ```
 
 
+
+### koajwt怎么解析用户token
+
+1. 工作原理：
+- `koa-jwt` 中间件会自动检查请求头中的 `Authorization` 字段或 `cookie` 中的 `token`
+- 验证 `token` 是否有效（使用配置的 `secret` 密钥）
+- 如果验证通过，会将解码后的 `payload` 信息挂载到 `ctx.state.user` 上
+
+
+2. 基本使用方式：
+``` js
+// 配置 jwt 中间件
+app.use(
+    koajwt({
+        secret: config.JWT_PRIVATE_KEY,  // 用于验证token的密钥
+        cookie: 'token',  // 从cookie中获取token
+        // cookie: 'yiwei-admin-web-token-key',  // 自定义的cookie名称
+        key: 'user',     // 解析后的用户信息存储在ctx.state.user中
+        tokenKey: 'token'  // header中的token键名
+    }).unless({
+        // 不需要验证token的路由
+        path: ['/api/auth/login', '/api/public']
+    })
+);
+```
+
+3. 前端传递token方式：
+``` js
+// 方式1：通过 Authorization 请求头（推荐）
+fetch('/api/data', {
+    headers: {
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIs...'  // Bearer + 空格 + token
+    }
+});
+
+// 方式2：通过 cookie（需要配置 cookie: 'token'）
+import Cookies from "js-cookie"
+Cookies.set('token', token)
+// token会自动从cookie中读取，无需特殊处理
+```
+
+
+4. 在路由中使用解析后的用户信息：
+``` js
+router.get('/profile', async (ctx) => {
+    // token验证通过后，可以从ctx.state.user中获取用户信息
+    const userInfo = ctx.state.user;
+    
+    // userInfo中包含了token的payload部分，例如：
+    // {
+    //   id: 123,
+    //   username: 'test',
+    //   iat: 1516239022,
+    //   exp: 1516242622
+    // }
+    
+    ctx.body = {
+        code: 0,
+        data: userInfo,
+        message: 'success'
+    };
+});
+```
+
+5. token 生成示例：
+``` js
+const jwt = require('jsonwebtoken');
+
+// 登录接口生成token
+async function login(ctx) {
+    // 验证用户名密码...
+    
+    const token = jwt.sign(
+        {
+            id: user.id,
+            username: user.username
+        },
+        config.JWT_PRIVATE_KEY,  // 加密密钥
+        { expiresIn: '24h' }     // token有效期
+    );
+    
+    // 后端设置 Cookie（推荐） ：在登录接口中通过设置响应头来添加 cookie：
+    ctx.cookies.set('token', token, {
+        maxAge: 24 * 60 * 60 * 1000,  // // cookie过期时间，这里设置24小时
+        httpOnly: true                 // 防止XSS攻击, 前端 JavaScript 无法读取或修改该 cookie，这是一个安全特性
+        path: '/',      // cookie生效的路径，'/' 表示这个 cookie 在整个域名下都可以被访问
+        secure: process.env.NODE_ENV === 'production',  // 生产环境下只在https中传输
+        sameSite: 'strict'  // 防止CSRF攻击, cookie 只会在用户直接访问原站点时发送; 
+        // - 从其他站点链接过来时不会发送 cookie
+        // - 例如：从邮件链接或其他网站跳转过来时，不会带上这个 cookie
+    });
+    
+    ctx.body = {
+        code: 0,
+        data: { token },
+        message: '登录成功'
+    };
+}
+// 当后端通过 ctx.cookies.set() 设置 cookie 后，浏览器会自动将这个 cookie 保存在当前域名下，前端不需要做任何额外操作,这是因为：
+// - 当服务器返回响应时，会在响应头中包含 Set-Cookie 字段
+// - 浏览器识别到这个响应头后，会自动将 cookie 存储在当前域名下
+// - 之后该域名下的所有请求都会自动带上这个 cookie
+
+
+// 也可以前端拿到token后，手动设置cookie：
+// 使用js-cookie库
+import Cookies from 'js-cookie';
+function login() {
+    fetch('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify(loginData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        // document.cookie = `token=${data.token}; path=/; max-age=86400`;
+        Cookies.set('token', data.token, {
+            expires: 1,  // 1天后过期
+            path: '/'
+        });
+    });
+}
+```
+
+### 前后端的credentials跨域设置
+``` js
+// 后端
+app.use(cors({
+    credentials: true,  // 允许跨域请求携带凭证（cookie）
+    // - 表示允许跨域请求携带凭证信息（如 cookies、HTTP 认证及客户端 SSL 证明等）
+    // - 如果设置为 false ，即使前端设置了 credentials: 'include' ，浏览器也不会发送 cookie
+    origin: 'http://www.example.com'  // 如果是跨域请求，必须指定具体域名，不能用 *
+    // ... 其他配置
+}));
+// 这个设置只影响跨域请求，对同源请求没有任何影响。同源请求会始终携带 cookie，这是浏览器的默认行为。
+
+
+// 前端
+fetch('http://api.example.com/login', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(loginData)
+    credentials: 'include',  // 告诉浏览器发送凭证
+    // - include' : 总是发送凭证（即使是跨域请求）
+    // - 'same-origin' : 只有当请求同源时才发送凭证（默认值）
+    // - 'omit' : 从不发送凭证
+
+    // ... 其他配置
+});
+// 在使用 axios 时：
+// - axios.withCredentials = true 等价于 fetch credentials: 'include'
+// - axios.withCredentials = false 等价于 fetch credentials: 'same-origin'
+```
+
+
+### 对象存储
+
+> 对象存储，Object-Based Storage System，云存储服务，国内有阿里云的OSS，腾讯云的对象存储COS，百度的BOS等。
+
+文件上传，在实际生产环境下，需要将文件上传到云存储（如阿里云OSS、腾讯云COS等），而不是直接存储在服务器本地。
+
+[阿里云对象存储OSS](https://help.aliyun.com/zh/oss/)
+
+1. [创建AccessKey](https://help.aliyun.com/zh/ram/user-guide/create-an-accesskey-pair-1)
+
+2. 根据oss [bucket](https://oss.console.aliyun.com/bucket) 的地域选择对应的`region`, [OSS地域和访问域名
+](https://help.aliyun.com/zh/oss/user-guide/regions-and-endpoints)
+
+3. [权限管理](https://ram.console.aliyun.com/users/detail?userId=206563747319117510&activeTab=PermissionList)中添加OSS权限;
+
+4. 代码中安装阿里云OSS的SDK，并编写接口，[Node.js快速入门](https://help.aliyun.com/zh/oss/developer-reference/getting-started-with-oss-sdk-for-node-js)
+> 接口编写完后，可在前端调接口上传文件验证
+
+上传之后的文件可以在这里查看: [Bucket列表](https://oss.console.aliyun.com/bucket/oss-cn-beijing/verneyzhou/object), 
+- `Bucket配置 => 域名管理`下可以配置自定义域名，可以通过`CNAME`关联域名；如果配置了` secure: true`, 启动https, 需添加证书
+- 跨域配置：`数据安全 > 跨域设置`：
+``` js
+添加以下CORS规则：
+允许的来源：* 或指定的域名（例如：https://static.example.com）
+允许的方法：GET
+允许的头部：Content-Type
+暴露的头部：ETag
+```
+- [如何预览阿里云OSS中存储的图片？](https://developer.aliyun.com/ask/674615)
+
+
+
+
+
+
+
+
+
+## 其他
+
 - `nvm alias default 16`：切换默认node版本
 
-
-
-
-## 备注
 
 - 在前端和后端中的数据存储？
   - 比如前端页面中声明一个变量，用户访问，这个变量只在当前页面中存在；
   - node后端中声明一个变量，用户访问，这个变量在当前服务器中存在，其他用户访问，这个变量也存在；需要考虑高并发问题？
-
-
-
 
 
 

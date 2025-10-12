@@ -21,6 +21,9 @@ permalink: false # 7790d9/
 
 - [图文并茂，为你揭开“单点登录“的神秘面纱](https://juejin.cn/post/6844904038555729927)
 - [封装 axios 拦截器实现用户无感刷新 access_token](https://juejin.cn/post/6854573219119104014)
+- [单点登录（SSO）全流程详解](https://juejin.cn/post/7483708438683287587)
+
+
 
 ## 二维码扫描登录
 
@@ -31,3 +34,8 @@ permalink: false # 7790d9/
 - [关于鉴权，看懂这篇就够了](https://mp.weixin.qq.com/s/qBizMF4MwcX4ORU_nrVUmg)
 - [关于无感刷新Token，我是这样子做的](https://juejin.cn/post/7170278285274775560)
 - [前端实现登录拼图验证](https://juejin.cn/post/7175818459379417146)
+
+
+## 收藏
+
+- [双 Token 认证机制：从原理到实践的完整实现](https://juejin.cn/post/7548268336417751055)

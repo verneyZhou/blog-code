@@ -244,6 +244,12 @@ git reset --soft <commit_id>  # 回到其中你想要的某个版本
     git push
     ```
 
+
+5. 如果不小心把本地还没有 `git add`添加到本地缓存区的代码给撤销或覆盖了怎么办？
+> 打开vscode左侧的的`时间线`，里面会保存文件的本地修改记录，找到要恢复的文件，查看对应记录，进行恢复~
+
+
+
 [参考](https://blog.csdn.net/asoar/article/details/84111841)
 
 
@@ -608,6 +614,7 @@ rm -rf [son-file-name]/.git
 
 
 
+
 ## 备注
 
 - 如何下载公司`gitlab`上的项目？
@@ -622,6 +629,9 @@ rm -rf [son-file-name]/.git
     - 配置git520，具体参考[GitHub 访问不了？教你几招轻松解决](https://zhuanlan.zhihu.com/p/358183268)
     > [github520](https://github.com/521xueweihan/GitHub520)
 
+
+- [gitlab](https://gitlab.com/)登录`GitHub 2FA`提示需要输入验证码？
+>  pc和手机同一wifi下，打开iphone上的 `Authenticator`，会出现一个临时验证码，输入即可~
 
 
 ## 参考

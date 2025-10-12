@@ -216,6 +216,10 @@ unmonitorEvents(document.body) // 停止监听事件
     2. 之后重启DevTool, 在`Elements`面板中点击右上角的`无障碍按钮`，即可将元素视图模式切换为无障碍树视图
 
 
+Q：如何调试出现后点击页面其他地方就消失的元素，比如Select组件的下拉框？
+
+
+
 
 
 ## Network

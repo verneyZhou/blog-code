@@ -87,6 +87,7 @@ permalink: false # 40e551/
 - ServiceWorker: 
   - [ServiceWorker 让你的网页拥抱服务端的能力](https://juejin.cn/post/7165893682132959245)
   - [使用 Service Worker 让首页秒开](https://juejin.cn/post/7443159206318686246)
+  - [前端如何设计ServiceWorker缓存架构，优化前端性能，面试怎么说？](https://mp.weixin.qq.com/s/MuHYNfmjh4DvxSWb25a_2g)
 
 
 - AbortController:[这个 JavaScript API 比你想象中更强大！](https://mp.weixin.qq.com/s/m9jV0gENV1GDiv1MHC5sWQ)
@@ -103,3 +104,5 @@ permalink: false # 40e551/
   - [批量任务导致页面卡死？试试requestIdleCallback对任务进行拆分](https://juejin.cn/post/7221793823705268284)
   - [前端性能优化——如何对超大量数据进行渲染？](https://juejin.cn/post/7424430441375055881)
 
+
+- [我开源了一款 Canvas “瑞士军刀”，十几种“特效与工具”开箱即用](https://juejin.cn/post/7534114816282689574)
