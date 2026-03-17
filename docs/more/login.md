@@ -39,3 +39,5 @@ permalink: false # 7790d9/
 ## 收藏
 
 - [双 Token 认证机制：从原理到实践的完整实现](https://juejin.cn/post/7548268336417751055)
+
+- [面试官最爱挖的坑：用户 Token 到底该存哪？](https://juejin.cn/post/7583898823920451626)

@@ -14,7 +14,7 @@ permalink: false # 067e28/
 > 这里是我的 Vue 相关学习笔记~
 
 
-## 已完成
+## 笔记
 
 - [Vue2使用技巧记录](./log.html)
 - [Vue项目性能优化技巧](./performance.html)
@@ -30,27 +30,18 @@ permalink: false # 067e28/
 - [Vue深入：vue中slot插槽的实现原理](./slot.html)
 - [Vue深入：vue中v-model的实现原理](./v-model.html)
 - [Vue深入：vue中keep-alive的实现原理](./keep-alive.html)
+- [Vue深入：nextTick实现原理](./next-tick.html)
 
 - [从0到1搭建Monorepo组件库](./vue-design.html)
 - [开发一个快速搭建vue3项目的脚手架](./vue3-cli-repo.html)
 
 
 
-## 进行中
 
 
-
-- [深入vue.$nextTick实现原理](./next-tick.html)
 - [《玩转 Vue 3 全家桶》学习笔记](./jike/)
 - [Vue原理分析](./code.html)
 - [vue第三方组件插件库收集](./plugins.html)
-
-
-
-
-
-
-## 未开始
 
 - [vue3学习](./vue-next.html)
 - [vue3+vite](./vite.html)
@@ -58,9 +49,8 @@ permalink: false # 067e28/
 - [Vue深入：生命周期](./life-cycle.html)
 - [vue组件库开发](./comps.html)
 - [vue的transition动画学习](./transition.html)
-- [vue面试题收集](./interview.html)
-- [深入vue.prototype.$xxx实现原理]
-- [Vue ssr项目开发]
+<!-- - [深入vue.prototype.$xxx实现原理] -->
+<!-- - [Vue ssr项目开发] -->
 
 
 

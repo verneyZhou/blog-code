@@ -1,9 +1,9 @@
 ---
 home: true
-bannerBg: /images/poster05.jpeg
+bannerBg: /images/poster202502.png
 # heroImage: /images/poster03.jpeg
-heroText: 一葦
-tagline: 誰謂河廣，一葦以航。
+# heroText: 四零肆
+tagline: 不欺暗室。
 # tagline: 谁说河儿宽又广？一条船儿把它航。
 # actionText: 开始阅读 →
 # actionLink: /newest/

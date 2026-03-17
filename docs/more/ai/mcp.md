@@ -3,10 +3,10 @@ title: MCP开发笔记
 date: 2025-07-23 14:13:44
 permalink: false
 categories:
-  - more
-  - ai
+  - AI
 tags:
-  - 
+  - MCP
+  - AI
 ---
 
 # MCP开发笔记

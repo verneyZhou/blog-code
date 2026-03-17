@@ -358,7 +358,7 @@ function Welcome(props) {
 
 - `useEffect(setup, dependencies?)`
 
-1. `setup`：处理 Effect 的函数。setup 函数选择性返回一个 清理（cleanup） 函数。当组件被添加到 DOM 的时候，React 将运行 setup 函数。在每次依赖项变更重新渲染后，React 将首先使用旧值运行 cleanup 函数（如果你提供了该函数），然后使用新值运行 setup 函数。在组件从 DOM 中移除后，React 将最后一次运行 cleanup 函数。
+1. `setup`：处理 Effect 的函数。setup 函数选择性返回一个 清理（cleanup） 函数。当 `组件被添加到 DOM` 的时候，React 将运行 setup 函数。在每次依赖项变更重新渲染后，React 将首先使用旧值运行 cleanup 函数（如果你提供了该函数），然后使用新值运行 setup 函数。在组件从 DOM 中移除后，React 将最后一次运行 cleanup 函数。
 
 2. 可选 `dependencies`：setup 代码中引用的所有响应式值的列表。响应式值包括 `props、state` 以及所有直接在组件内部声明的变量和函数。依赖项列表的元素数量必须是固定的，并且必须像 `[dep1, dep2, dep3]` 这样内联编写。
     - `[a, b]`: 如果指定了依赖项，则 Effect 在 `初始渲染后以及依赖项变更的重新渲染后` 运行; 如果 a 或 b 不同则会再次运行
@@ -997,6 +997,7 @@ store.dispatch({ type: 'counter/decremented' })
 
 - 会对新旧 VNode 进行对比，也就是我们所说的`Diff算法`。
 - `对新旧两棵树进行一个深度优先遍历`; 遍历差异对象，根据差异的类型，根据对应对规则更新VNode
+> 如果更改的 state 字段在 render 里完全没用；diff 后发现输出没变，最终 DOM 可能不需要改动
 
 
 Reactv16以前的版本：
@@ -1257,10 +1258,10 @@ setState和 useState 只在`合成事件`如onClick等和钩子函数包括`comp
 这个问题涉及React的批处理机制。
 > `批处理就是将多个状态更新合并成一次重新渲染，避免不必要的中间渲染，提升性能`。
 
-React 18之前 ：
+React 18之前：
 React使用一个全局标志 `isBatchingUpdates` 来控制是否批处理。React在合成事件处理器外层包装了 batchedUpdates，当`React能够控制执行上下文`时，比如`合成事件onClick、生命周期`方法，React会将这个标志设为true，多个setState会被收集到队列中批量处理，看起来就是'异步'的。
 
-但在`原生事件、setTimeout、Promise`这些React无法控制的上下文中，这个标志是false，setState会立即执行，所以是'同步'的。
+但在`原生事件、setTimeout、Promise`这些React无法控制的执行上下文中，这个标志是false，setState会立即执行，所以是'同步'的。
 
 React 18的改变 ：
 React 18引入了`自动批处理，不再依赖执行上下文，而是基于调度器`。现在所有的setState都会通过调度器进行批处理，无论在什么场景下都是'异步'的，行为更加一致。如果需要强制同步更新，可以使用 flushSync

@@ -13,15 +13,12 @@ permalink: false #2b25f9/
 # 源码学习
 
 
-## 已完成
+## 笔记
 
 - [vuex源码分析](./vuex/)
 
 - [vue2.x源码学习记录](./vue/)
 
-
-
-## 进行中
 
 
 
@@ -33,14 +30,13 @@ permalink: false #2b25f9/
 
 - [富文本编辑器Quill](./quill.html)
 
+- [axios](./axios.html)
 
 
-## 未开始
-
-- [lodash](./lodash)
+<!-- - [lodash](./lodash)
 - [undersore](./undersore)
-- [vue-router]
-- [axios](./axios)
+- [vue-router] -->
+
 
 
 

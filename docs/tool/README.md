@@ -12,7 +12,8 @@ permalink: false # fc73f4/
 # 前端其他知识点整理
 
 
-## 已完成
+## 笔记
+
 - [《透视HTTP协议》学习笔记](./http/)
 - [git使用笔记](./git.html)
 - [终端学习笔记](./terminal.html)
@@ -26,16 +27,12 @@ permalink: false # fc73f4/
 - [VSCode插件开发笔记](./vscode-plugins.html)
 
 
-
-
-## 进行中
-
 - [收藏集](./some-website.html)
 - [名词目录](./word.html)
 
 
-- [zhuawa](./zhuawa/)
-- [interview](./interview/)
+<!-- - [zhuawa](./zhuawa/)
+- [interview](./interview/) -->
 
 
 

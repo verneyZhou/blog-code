@@ -2,6 +2,7 @@
 title: 科幻小说
 date: 2025-02-05 18:47:10
 permalink: false
+article: false
 categories:
   - more
   - ai

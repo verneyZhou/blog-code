@@ -1,5 +1,5 @@
 ---
-title: html学习记录
+title: HTML
 date: 2020-09-27 11:18:08
 # permalink: null
 article: false
@@ -12,18 +12,11 @@ permalink: false # 94c330/
 ---
 
 
-# html学习记录
+# HTML
 > 这里是我的 html 相关的学习记录~
 
 
-## 已完成
-
-
-## 进行中
-
-
-
-## 未开始
+## 笔记
 
 - [一些html使用小技巧](./some-skills.html)
 - [audio、video媒体元素](./media-html.html)
@@ -31,6 +24,8 @@ permalink: false # 94c330/
 - [懒加载]
 - [分页]
 - [通信](page-message.html)
+
+
 
 
 ## 收藏

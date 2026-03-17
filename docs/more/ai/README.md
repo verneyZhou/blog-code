@@ -1,5 +1,5 @@
 ---
-title: AI资源收集
+title: AI学习笔记&资料收集
 date: 2024-01-14 22:21:43
 permalink: false
 article: false
@@ -10,19 +10,30 @@ tags:
 ---
 
 
-# AI资源收集
-
-
+# AI学习笔记&资料收集
 
 
 ## 笔记
 
-- [AI笔记](./note.html)
-- [DeepSeek相关资料整理收集](./deepseek.html)
+- [AI学习笔记-基础篇](./note01.html)
+- [AI学习笔记-进阶篇](./note02.html)
+
+- [LLM大模型原理学习笔记](./llm.html)
+- [RAG学习笔记-理论篇](./rag.html)
+- [Agent学习笔记-理论篇](./agent.html)
+- [LangChain学习笔记](./langchain.html)
+- [Python学习笔记梳理](./python.html)
+- [Fine-tuning学习笔记](./fine-tuning.html)
+
+- [DeepSeek进阶使用](./deepseek.html)
+- [前端AI学习实践笔记](./fe-learn.html)
+- [Vibe-Coding前端实践笔记](./vibe-coding.html)
+
+- [AI原创短片创作实操笔记](./video.html)
+
+- [RAG实战：低码平台接入RAG知识库](./rag-lowcode.html)
 
 
-
-> 这里收集整理了一些AI相关的工具和博客，方便以后用的时候能够快速找到~
 
 
 
@@ -105,6 +116,21 @@ tags:
 
 - [免费玩转 AI 编程！Claude Code Router + Qwen3-Code 实战教程](https://juejin.cn/post/7539760011855413290)
 
+- [浅谈上下文工程｜从 Claude Code 、Manus 和 Kiro 看提示工程到上下文工程的转变](https://mp.weixin.qq.com/s/KbviOJ6q-K4ik_wzsUs2dw)
+
+- [AI Agent 记忆系统：从短期到长期的技术架构与实践](https://mp.weixin.qq.com/s/AeqetxatPrZXapanYWRC6g)
+
+- [如何把你的 DeePseek-R1 微调为某个领域的专家？](https://juejin.cn/post/7473309339294695460)
+
+- [有赞AI研发全流程落地实践](https://juejin.cn/post/7592094358658138146)
+
+
+实战系列: 
+- [前端仔如何在公司搭建 AI Review 系统](https://juejin.cn/post/7532596434031149106)
+- [历经4个月，基于 Tiptap 和 NestJs 打造一款 AI 驱动的智能文档协作平台](https://juejin.cn/post/7553165143376134195)
+- [3天，1人，从0到付费产品：AI时代个人开发者的生存指南](https://juejin.cn/post/7577653509862654002)
+- [一天 AI 搓出痛风伴侣 H5 程序，前后端+部署通吃，还接入了大模型接口（万字总结）](https://juejin.cn/post/7517496354244067339)
+- [Cursor猛干3小时出100+工具站，轻松上线自己的网站（部署全流程）](https://juejin.cn/post/7514943187859603497)
 
 
 
@@ -114,7 +140,22 @@ tags:
 - [DeepSeek+扣子，一个小时构建全网多路搜索智能体！](https://mp.weixin.qq.com/s/gzNcDUa4f3rqpB-IwzWp9Q)
 - [从开发新手角度对比 dify 和 n8n：哪个更适合你？](https://juejin.cn/post/7485285613463650358)
 
+- [Agent 的三重觉醒：Tool、Plan、Memory 如何赋予 LLM 灵魂](https://mp.weixin.qq.com/s/J3Oa1PzB1-2PB-rroVWtnw)
 
+
+agent课程：
+- [hello-agents](https://github.com/datawhalechina/hello-agents)
+- [ai-agents-for-beginners](https://github.com/microsoft/ai-agents-for-beginners)
+
+
+
+
+### RAG
+
+- [面试官问我会不会用 AI，我拿出这个 Ollama + FastGPT 项目给他看](https://juejin.cn/post/7532596434030837810)
+- [万字长文分享AI落地前端实操，带你成为公司最懂AI的前端大佬！](https://juejin.cn/post/7409191765708947465)、[基于开源知识库平台接入私有组件库](https://ai.iamlv.cn/guide/advanced-improvement/private-components/integration-solutions/solution-1.html)
+
+- [ai-medical-assistant](https://github.com/zhttyy520/ai-medical-assistant/tree/main)
 
 
 ### MCP
@@ -134,6 +175,14 @@ tags:
 - [让 AI 更懂 Ant Design：MCP 协议在前端领域的落地实践](https://juejin.cn/post/7494106899646939173)
 - [我们做了可能是第一个支持了MCP服务的ERP/WMS系统？](https://juejin.cn/post/7491481176224350220)
 
+- [全网最细，一文带你弄懂 MCP 的核心原理！](https://juejin.cn/post/7493455615244959794)
+
+
+MCP开发：
+- [从0到1开发一个MCP Server：让AI助手拥有数据库操作能力](https://aicoding.juejin.cn/post/7514249914298843187)、[mysql-mcp-server](https://github.com/TickHaiJun/mysql-mcp-server)
+- [一文带你 "看见" MCP 的过程，彻底理解 MCP 的概念](https://mp.weixin.qq.com/s/UfzmzJ3zTOQ45ppRy5D6kA)
+- [一个例子带你学会用本地Cherry-Studio接入MCP服务](https://modelscope.cn/headlines/article/1130)
+
 
 
 - [awesome MCP server 大全整理](https://juejin.cn/post/7480350360964530213)
@@ -142,11 +191,17 @@ tags:
 
 
 
-### LangChain.js
+### LangChain
 
 - [30 行代码 langChain.js 开发你的第一个 Agent](https://juejin.cn/post/7524180232024490020)
 - [使用 langChain.js 实现 RAG 知识库语义搜索](https://juejin.cn/post/7526914707665829923)
 - [使用 langChian.js 实现掘金“智能总结” 考虑大文档和 token 限制](https://juejin.cn/post/7539932143431352335)
+
+- [LangChain.js:打造自己的 LLM 应用](https://article.juejin.cn/post/7493033903289319459)
+- [从零用LangChain+MongoDB带你构建一个能自主卖货的AI导购员 (React+Node.js全栈)](https://www.bilibili.com/video/BV1kCevzzEzo)
+
+- [别再堆 Prompt 了：用 LangChain 1.0 搭建“深度思考 Agent”](https://mp.weixin.qq.com/s/w4NHfT4HckgRud9yKEfnyw)、[langchain-travel-agent](https://github.com/SWUSTcyt/langchain-travel-agent/tree/main)
+
 
 
 
@@ -155,19 +210,45 @@ tags:
 
 ### AI编程
 
-- [cursor](https://www.cursor.com/)，近两年最火的AI编程工具，AI版的VSCode，基于 Visual Studio Code 的一个分支开发而来，它集成了先进的 AI 功能。根据我的经验，它提供了目前最好的 AI 辅助编码体验，在速度、准确性和用户体验方面超越了 GitHub Copilot 等竞争对手
+**零代码平台**
 
 - [bolt.new](https://bolt.new/)：Bolt․new 是 StackBlitz（做在线编辑器的） 开发的一个AI全栈Web 编程工具，自动编写代码、运行、编辑和部署应用程序。 Bolt․new依托于 `WebContainers` 技术，支持在浏览器中直接运行完整的Node.js 环境，无需任何本地安装或配置。 用户只需通过简单的提示命令，快速生成代码，并且立即在浏览器中运行和测试代码。
 
-- [v0.dev](https://v0.dev/)，vercel出的一个AI编程工具~
+- [v0.dev](https://v0.dev/)，vercel出的一个在线AI编程工具~
+
+- [Lovable](https://lovable.dev/), 强大的零代码平台，它不仅能做前端，还能做全栈应用
+
+- [秒哒](https://www.miaoda.cn/)，百度出的零代码平台，能生成应用，还能直接商业化，内置了支付功能
+
+
+**AI 编辑器**
+
+- [cursor](https://www.cursor.com/)，近两年最火的AI编程工具，AI版的VSCode，基于 Visual Studio Code 的一个分支开发而来，它集成了先进的 AI 功能。根据我的经验，它提供了目前最好的 AI 辅助编码体验，在速度、准确性和用户体验方面超越了 GitHub Copilot 等竞争对手
 
 - [Windsurf](https://windsurf.com/editor)
 
 - [trae](https://www.trae.ai/), 字节出的AI编程工具，对标Cursor
 
+
+**AI插件**
+
 - [通义灵码](https://lingma.aliyun.com/lingma): 阿里出的AI编码助手, 类似于 github 的Copilot，可通过VSCode插件使用。
 
 - [文心快码 - Baidu Comate](https://comate.baidu.com/zh), 百度出的AI编程助手，可通过VSCode插件使用。
+
+- [Cline](https://cline.bot/)，是目前功能强大的开源 AI 编程插件，被称为 开源版 Cursor。跨平台支持，不仅支持 VS Code，还支持 JetBrains 系列的 IntelliJ IDEA、PyCharm、WebStorm 等多个编辑器。
+
+- [Copilot](https://github.com/features/copilot), GitHub Copilot 是比较成熟的 AI 编程助手，支持 VS Code、JetBrains 全系列、Vim、Neovim 等多个编辑器。
+
+- [Continue](https://www.continue.dev/) 是开源的 AI 编程插件，功能和 Cline 类似但更轻量。支持多种 AI 模型，有代码补全、对话、代码编辑等功能，界面比较简洁，上手容易。完全免费，支持 VS Code 和 JetBrains。
+
+
+**其他**
+
+- [Claude Code](https://claude.com/product/claude-code)，Anthropic 公司推出的官方命令行 AI 编程工具，直接集成了 Claude 模型。它是目前功能最强大的命令行编程工具之一。
+- [Gemini CLI](https://geminicli.com/), Google 推出的开源命令行工具，集成了 Gemini 模型。最大的优势是有免费额度，而且支持超长上下文（100 万 Token），可以一次性分析整个大型项目。适合想尝试命令行工具，但预算有限、需要分析大型项目的开发者。
+
+
 
 
 

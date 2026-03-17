@@ -1,5 +1,6 @@
 module.exports = [
     { text: '时间轴', link: '/archives/' },
+    { text: 'AI', link: '/more/ai/'},
     { text: '基础', 
         items: [
             { text: 'JS', link: '/frontend/js/'},
@@ -28,7 +29,7 @@ module.exports = [
                     {text:'vue3-cli-admin', link: '/skills/vue/vue3-cli-admin'},
                     {text:'vue3-webpack5-admin', link: '/skills/vue/vue3-webpack5-admin'},
                     {text: 'teach-react-mono', link: '/project/mono-react-project'},
-                    {text: 'yiwei-fullstack-web', link: '/project/yiwei-fullstack-web'},
+                    {text: 'yiwei-fullstack-web', link: '/project/yiwei-fullstack-web/'},
                 ]
             },
             {
@@ -43,7 +44,7 @@ module.exports = [
             
         ]
     },
-    { text: 'AI', link: '/more/ai/'},
+    
     { text: '其他', link: '/tool/'},
     { text: '关于',
         items: [

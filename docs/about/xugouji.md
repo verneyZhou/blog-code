@@ -16,6 +16,8 @@ tags:
 
 - [夜游](./yeyou/)
 
+- [绿漪砚](./lvyiyan.html)
+
 
 - [科幻小说](./science-fiction.html)
 - [阿三的故事](./asan.html)

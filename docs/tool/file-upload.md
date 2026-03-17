@@ -51,3 +51,5 @@ permalink: false # b9398f/
 - [使用html2canvas+jspdf生成可编辑的矢量pdf](https://juejin.cn/post/7530080951524065290)
 
 - [Vue3+Node.js 实现大文件上传：断点续传、秒传、分片上传完整教程](https://juejin.cn/post/7547965581753237519)
+
+- [🏮一眼就会🗂️大文件分片上传，白送前后端全套功法](https://juejin.cn/post/7570268773333205019)

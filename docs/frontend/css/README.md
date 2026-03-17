@@ -15,6 +15,8 @@ permalink: false # 23f87d/
 > 这里是我的`CSS`相关学习记录~
 
 
+## 笔记
+
 - [css3使用笔记](./css3.html)
 - [一些css小技巧](./css-skills.html)
 - [一些关于css的问题](./question.html)
@@ -59,13 +61,6 @@ permalink: false # 23f87d/
 
 - [彻底搞懂CSS层叠上下文、层叠等级、层叠顺序、z-index](https://juejin.cn/post/6844903667175260174)
 
-
-
-
-### 面试类
-
-- [57道CSS常问面试题及答案汇总](https://mp.weixin.qq.com/s/c5PyoDxwOUX5TzdL-QPpoA)
-- [【爆肝面试系列】CSS 垂直居中的正确打开方式](https://juejin.cn/post/6991465721565806605)
 
 
 

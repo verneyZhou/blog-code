@@ -45,9 +45,9 @@ module.exports = {
         // link: 'https://github.com/verneyZhou/' // 可选的
     },
     blogger: { // 博主信息，显示在首页侧边栏
-        avatar: 'images/poster03.jpeg',
+        avatar: 'images/poster202503.png',
         // name: '阿沐',
-        slogan: '是旷野，不是轨道。'
+        slogan: '慎独。'
     },
     social: { // 社交图标，显示于博主信息栏和页脚栏
         // iconfontCssFile: '//at.alicdn.com/t/font_1879460_0lacnxoigx9.css', // 可选，阿里图标库在线css文件地址，对于主题没有的图标可自由添加
@@ -67,6 +67,6 @@ module.exports = {
     },
     footer: { // 页脚信息
         createYear: 2021, // 博客创建年份
-        copyrightInfo: '一苇 | <a href="https://beian.miit.gov.cn/" target="_blank" style="font-weight:normal"><img src="/blog/images/icp.png" width="20" height="20" alt="公网备案"/>京ICP备2021006935号-2</a> ', // 博客版权信息，支持a标签
+        copyrightInfo: '四零肆 | <a href="https://beian.miit.gov.cn/" target="_blank" style="font-weight:normal"><img src="/blog/images/icp.png" width="20" height="20" alt="公网备案"/>京ICP备2021006935号-2</a> ', // 博客版权信息，支持a标签
     }
 }

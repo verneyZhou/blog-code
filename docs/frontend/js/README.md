@@ -1,5 +1,5 @@
 ---
-title: js学习笔记
+title: JS
 date: 2020-09-27 11:18:20
 # permalink: false # c6fcf5/
 article: false
@@ -10,9 +10,9 @@ tags:
 permalink: false # 40e551/
 ---
 
-# js学习笔记
+# JS
 
-## 已完成
+## 笔记
 
 - [js深入系列](./depth.html)
 - [深拷贝、浅拷贝](./js-copy.html)
@@ -25,25 +25,14 @@ permalink: false # 40e551/
 - [Typescript入门笔记](./ts.html)
 
 
-
-## 进行中
-
-
 - [js手写系列](./handle-codes.html)
 - [js中数组常用方法整理](./array-methods.html)
 - [一些js的使用小技巧](./js-skills.html)
 - [瀑布流布局学习笔记](./waterfall.html)
 
 
-
-- [JS笔试题收集](./js-interview.html)
-- [JS异步题集](./async-interview.html)
-
 - [js常用库整理](./web.html)
 
-
-
-## 未开始
 
 - [正则](./regexp.html)
 
@@ -87,7 +76,7 @@ permalink: false # 40e551/
 - ServiceWorker: 
   - [ServiceWorker 让你的网页拥抱服务端的能力](https://juejin.cn/post/7165893682132959245)
   - [使用 Service Worker 让首页秒开](https://juejin.cn/post/7443159206318686246)
-  - [前端如何设计ServiceWorker缓存架构，优化前端性能，面试怎么说？](https://mp.weixin.qq.com/s/MuHYNfmjh4DvxSWb25a_2g)
+  - [前端如何设计ServiceWorker缓存架构，优化前端性能](https://mp.weixin.qq.com/s/MuHYNfmjh4DvxSWb25a_2g)
 
 
 - AbortController:[这个 JavaScript API 比你想象中更强大！](https://mp.weixin.qq.com/s/m9jV0gENV1GDiv1MHC5sWQ)

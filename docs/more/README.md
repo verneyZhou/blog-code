@@ -17,10 +17,9 @@ permalink: false # 292799/
 > 前端工程化可以分成四个方面来说，分别为模块化、组件化、规范化和自动化。
 
 
+**笔记：**
+
 - [前端工程化-webpack入门](./engineer-start.html)
-- [rollup项目实践整理](./rollup.html)
-- [前端打包工具](./package-tools.html)
-- [前端自动化](./ci-cd.html)
 
 - [《从 0 到 1 实现一套 CI/CD 流程》学习笔记](./ci-cd-note.html)
 - [Docker入门学习笔记](./docker-note.html)
@@ -30,7 +29,12 @@ permalink: false # 292799/
 
 - [Vue+Node实现可视化部署工具](./node-deploy.html)
 
-### 收藏
+- [rollup项目实践整理](./rollup.html)
+- [前端打包工具](./package-tools.html)
+
+
+
+**收藏：**
 
 - [前端构建这十年](https://segmentfault.com/a/1190000040496020)
 - [前端构建工具进化历程](https://mp.weixin.qq.com/s/o8B8HAczZtIZM8V_HHwNqg)
@@ -47,7 +51,6 @@ permalink: false # 292799/
 - [再也不用手动改package.json的版本号](https://juejin.cn/post/7220164534316433467)
 
 - [作为前端 leader，怎么快速搭建多环境CICD自动化部署？](https://juejin.cn/post/7250083673189253176)
-- [Vue + Node.js 从 0 到 1 实现自动化部署工具](https://juejin.cn/post/7070921715492061214)
 
 - [实现前后端全自动化部署，解放你的双手。——从零开始搭建一个高颜值后台管理系统全栈框架(五)](https://juejin.cn/post/7245613765693702201)
 
@@ -156,7 +159,7 @@ permalink: false # 292799/
 
 - [一份完整的「前端性能优化」手册](https://juejin.cn/post/7429128606749949978)
 
-- [面试复盘：如何回答「千万级Tree组件」封装问题？](https://juejin.cn/post/7533048503934976009)
+- [如何回答「千万级Tree组件」封装问题？](https://juejin.cn/post/7533048503934976009)
 
 
 > 浏览器原理相关：
@@ -169,18 +172,18 @@ permalink: false # 292799/
 
 
 
-### 监控相关
+## 监控相关
 
-> 笔记：
+**笔记：**
 
 - [前端监控学习笔记](./monitor.html)
 
 - [监控埋点调研报告](./monitor-report.html)
 
 
-> 收藏：
+**收藏：**
 
-- [腾讯三面：说说前端监控平台/监控SDK的架构设计和难点亮点？](https://juejin.cn/post/7108660942686126093)
+- [说说前端监控平台/监控SDK的架构设计和难点亮点？](https://juejin.cn/post/7108660942686126093)
 
 - Dom快照录制: [还原现场🔍前端录制用户行为技术方案](https://juejin.cn/post/7280429214607769658)
 
@@ -192,7 +195,7 @@ permalink: false # 292799/
 
 <!-- 2024.06.30整理 -->
 - [「历时8个月」10万字前端知识体系总结（工程化篇）🔥](https://juejin.cn/post/7146976516692410376)
-- [从0到1搭建前端监控平台，面试必备的亮点项目](https://github.com/xy-sea/blog/blob/main/markdown/%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E5%89%8D%E7%AB%AF%E7%9B%91%E6%8E%A7%E5%B9%B3%E5%8F%B0%EF%BC%8C%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%E7%9A%84%E4%BA%AE%E7%82%B9%E9%A1%B9%E7%9B%AE.md)
+- [从0到1搭建前端监控平台](https://github.com/xy-sea/blog/blob/main/markdown/%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E5%89%8D%E7%AB%AF%E7%9B%91%E6%8E%A7%E5%B9%B3%E5%8F%B0%EF%BC%8C%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%E7%9A%84%E4%BA%AE%E7%82%B9%E9%A1%B9%E7%9B%AE.md)
 
 - [什么？原来前端错误上报这么简单！！](https://juejin.cn/post/7383955685368086562)
 
@@ -206,6 +209,10 @@ permalink: false # 292799/
 
 - [前端架构-前端监控sdk设计与实现（完整版）](https://mp.weixin.qq.com/s/xKlX5RMyeH1X_ZqXD-DEfA)
 
+- [Sentry 都不想接，这锅还让我背？这xx工作我不要了！](https://juejin.cn/post/7563928374277750793)
+
+- [【性能监控】别只做工具人了！手把手带你写一个前端性能检测SDK](https://juejin.cn/post/7586482860104613915)
+
 
 
 
@@ -214,8 +221,8 @@ permalink: false # 292799/
 
 ## Node
 
-- [express中间件实现原理]
-- [挑战一轮大厂后的面试总结 (含六个方向) - nodejs 篇](https://juejin.cn/post/6844904071501971469)
+
+- [nodejs常见问题](https://juejin.cn/post/6844904071501971469)
 - [看了就会的 Node.js 常用三方工具包](https://juejin.cn/post/6947856427247468551)
 - [为什么 Node 应用要用 PM2 来跑？](https://mp.weixin.qq.com/s/GLTn28eBkBlNR7TsN_Gtlw)
 - [用 Node.js 手写 WebSocket 协议](https://mp.weixin.qq.com/s/H_ArkbL_m_HXHX4AVfRkhg)、[前后端实时双向通信WebSocket技术](https://mp.weixin.qq.com/s/NAZvFWUwg-FAikxFzAYtjQ)
@@ -228,14 +235,14 @@ permalink: false # 292799/
 
 - [前端要想学好 NodeJs，这些性能监控指标可不能不会！！！](https://juejin.cn/post/7436218509947469876)
 
-- [面试官：为什么选择Nestjs作为服务端框架，而不是Express？](https://mp.weixin.qq.com/s/IJX12Pmymg2xjSKwXVrDUA)
+- [为什么选择Nestjs作为服务端框架，而不是Express？](https://mp.weixin.qq.com/s/IJX12Pmymg2xjSKwXVrDUA)
 
 
 
 
 ## Nginx
 
-- [手撸架构，Nginx 面试40问](https://blog.csdn.net/wuzhiwei549/article/details/122758937)
+- [手撸架构，Nginx 40问](https://blog.csdn.net/wuzhiwei549/article/details/122758937)
 - [Nginx的这些妙用，你肯定有不知道的！](https://mp.weixin.qq.com/s/9VZi2suAlomu1IRGy-qdCA)
 - [超越 Nginx！号称下一代 Web 服务器，用起来够优雅！](https://juejin.cn/post/7085519712901136392)
 - [Nginx 简单入门指北不指南](https://mp.weixin.qq.com/s/UCtlOUCHQYmpXNai7NonSg)
@@ -254,8 +261,13 @@ permalink: false # 292799/
 
 ## 低代码
 
-- 笔记：[低代码平台搭建实战](./low-code.html)
 
+**笔记：**
+- [低代码平台搭建实战](./low-code.html)
+- [B端低码平台的实践与思考](./b-lowcode.html)
+
+
+**收藏：**
 - [前端低代码平台-CodeFun](https://code.fun/)
 - [低代码都做了什么？(为什么？怎么实现Low-Code？)](https://juejin.cn/post/7127409867123327012)
 - [从零开发一款可视化大屏制作平台](https://juejin.cn/post/6937257727106220040)
@@ -297,12 +309,15 @@ permalink: false # 292799/
 
 ## 组件库
 
+**笔记：**
 - [使用vite开发一个自己的Vue3组件库](./npm-package.html)
 - [从0到1搭建Monorepo组件库](/skills/vue/vue-design.html)
-- [组件化](./comp-design.html)
 - [关于虚拟列表的组件封装](./virtual-list.html)
 
+**收藏：**
 - [想要开发组件库？那你一定要提前了解一下这个神器](https://mp.weixin.qq.com/s/XuEc1TnLuzMokylde4DkhQ)
+- [通用组件的设计需要考虑什么](https://juejin.cn/post/6844903847874265101)
+- [使用 Next.js 搭建 Monorepo 组件库文档](https://juejin.cn/post/7168885699507126303)
 
 
 
@@ -320,15 +335,16 @@ permalink: false # 292799/
 
 ## 跨端
 
-
+**笔记：**
 - [前端跨端技术调研报告](./kuaduan.html)
 
 - [taro开发实操笔记](./taro-surround.html)
 
 - [Flutter学习笔记](./flutter.html)
 
-- [跨端技术的本质是什么？现状如何？](https://mp.weixin.qq.com/s/VGZVnoTGT6BTS101jOPiQw)
 
+**收藏：**
+- [跨端技术的本质是什么？现状如何？](https://mp.weixin.qq.com/s/VGZVnoTGT6BTS101jOPiQw)
 - [Taro 源码揭秘：11. Taro 项目开发编译速度太慢，怎么办？写个简单插件按需编译](https://juejin.cn/post/7493379997325377570)
 
 
@@ -341,10 +357,15 @@ permalink: false # 292799/
 
 ## 其他
 
+**笔记：**
+
 - [前端登录相关知识梳理](./login.html)
 
 - [Turbopack初印象](./turbopack.html)
 
+
+
+**收藏：**
 
 - [万字详文：彻底搞懂 Jest 单元测试框架](https://segmentfault.com/a/1190000040539268)
 
@@ -375,11 +396,12 @@ permalink: false # 292799/
   - [开发一个纯前端在线代码编辑器、制作一个炫酷动画收藏网站](https://juejin.cn/post/7405769445027594266)、[online-snippet-editor](https://github.com/CooperJiang/online-snippet-editor)
 
   - [多人在线协作的神秘代码：Yjs 底层解密](https://juejin.cn/post/7470348137419587593)
+  - [一杯茶时间带你基于 Yjs 和 reactflow 构建协同流程图编辑器](https://juejin.cn/post/7591330139083898895)
 
 - npm相关：
   - [图文结合简单易学的npm包的发布流程](https://juejin.cn/post/7125709933709885448)
   - [包管理工具的演进（npm,yarn,pnpm）](https://mp.weixin.qq.com/s/beP1bxgbTT1Z91KS3svDvw)
-  - [面试官：如果一个NPM包部分功能不满足需求，如何修改其部分功能](https://juejin.cn/post/7355383157556019239)
+  - [如果一个NPM包部分功能不满足需求，如何修改其部分功能](https://juejin.cn/post/7355383157556019239)
   - [What？你还不明白npm, yarn, pnpm之间的区别？！](https://juejin.cn/post/7433427781928386571)
 
 
@@ -390,6 +412,7 @@ permalink: false # 292799/
   - [纯前端怎么实现检测版本更新，看这一篇就够了！](https://juejin.cn/post/7379157261426671657)
   - [SharedWorker项目实践——纯前端检测版本更新](https://juejin.cn/post/7433604095904727051)、[2种纯前端检测版本更新提示](https://juejin.cn/post/7328670028605784076)
   - [纯前端实现检测版本发布更新提示](https://juejin.cn/post/7159484928136642567)
+  - [只有前端 Leader 才会告诉你：那些年踩过的模块加载失败的坑](https://juejin.cn/post/7572524368876126243)
 
 
 - 内网穿透：
@@ -422,3 +445,5 @@ permalink: false # 292799/
 
 
 - [大模型应用中，前端绕不开的 SSE](https://juejin.cn/post/7459973855101943808)
+
+- [因网速太慢我把20M+的字体压缩到了几KB](https://juejin.cn/post/7490337281866317836)

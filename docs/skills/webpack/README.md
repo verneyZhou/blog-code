@@ -14,7 +14,7 @@ permalink: false # 41c8a9/
 这里是我的 Webpack 学习记录~
 
 
-## 已完成
+## 笔记
 
 - [vue+webpack从0到1搭建项目](./vue-use.html)
 - [vue-cli+webpack搭建项目](./vue-cli.html)
@@ -28,19 +28,13 @@ permalink: false # 41c8a9/
 
 
 
-
-## 进行中
-
 - [webpack配置相关问题记录](./quest-log.html)
 
 
 
-## 未开始
-
 - [webpack优化](./youhua.html)
 - [手写简易版webpack](./mini.html)
 - [eslint相关](./eslint.html)
-- [webpack构建项目性能优化]
 
 
 

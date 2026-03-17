@@ -10,7 +10,7 @@ tags:
 permalink: false # 1fc24a/
 ---
 
-<img :src="$withBase('/images/poster08.jpeg')" width="auto"/>
+<img :src="$withBase('/images/poster2026.png')" width="auto"/>
 
 现在是公元2437年。
 

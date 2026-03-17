@@ -109,6 +109,8 @@ permalink: false # 7c9ee2/
 
 Next.js 是一个 React 服务端渲染框架。[Next.js](https://nextjs.org/)
 
+[dashboard-app/getting-started](https://nextjs.org/learn/dashboard-app/getting-started)
+
 ## Nuxt
 基于`vue.js`的服务端渲染框架，[官方文档](https://www.nuxtjs.cn/guide)
 
