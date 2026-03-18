@@ -45,7 +45,7 @@ module.exports = {
         // link: 'https://github.com/verneyZhou/' // 可选的
     },
     blogger: { // 博主信息，显示在首页侧边栏
-        avatar: 'images/poster202503.png',
+        avatar: 'images/poster202602.png',
         // name: '阿沐',
         slogan: '慎独。'
     },

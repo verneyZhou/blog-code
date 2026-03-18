@@ -1,6 +1,6 @@
 ---
 home: true
-bannerBg: /images/poster202502.png
+bannerBg: /images/poster202601.png
 # heroImage: /images/poster03.jpeg
 # heroText: 四零肆
 tagline: 不欺暗室。
