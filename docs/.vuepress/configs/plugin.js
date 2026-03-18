@@ -21,7 +21,12 @@ module.exports = [
         '@vuepress/pwa', // pwa
         {
            serviceWorker: true,
-           updatePopup: true
+           updatePopup: true,
+           // 避免首访就预缓存大量图片（public/images 会被映射到 dist/images）
+           // 只保留必要静态资源的 precache，图片走按需加载
+           generateSWConfig: {
+             globIgnores: ['**/images/**']
+           }
         }
     ],
     [
