@@ -29,9 +29,9 @@ tags:
 text-shadow, box-shadow, border-raduis, transform, transition, animation, RGBA和透明度，媒体查询
 
 
-- css可继承属性：`font-family、font-size、font-style、color、line-height、text-align、text-indent`
-- css不可继承属性：`display、margin、border、padding、background、height、min-height、max-height、width、min-width、max-width、overflow`
-> 父元素设置 width: 300px; ，子元素不写 width 时，子元素的 width 并不是“继承 300px”，而是在常规块级布局下由规则计算为 auto ，很多情况下结果“看起来等宽”，但这叫 布局计算 ，不是继承。
+- css可继承属性：`font-family、font-size、font-style、color、line-height、text-align、text-indent、visibility、opacity`
+- css不可继承属性：`display、margin、border、padding、background、height、min-height、max-height、width、min-width、max-width、overflow、flex、grid`
+> 父元素设置 width: 300px; ，子元素不写 width 时，子元素的 width 并不是“继承 300px”，而是`在常规块级布局下由规则计算为 auto` ，很多情况下结果“看起来等宽”，但这叫 布局计算 ，不是继承。
 
 
 
@@ -39,10 +39,10 @@ text-shadow, box-shadow, border-raduis, transform, transition, animation, RGBA�
 
 - 伪类：css选择器，向已经存在的元素的某些特殊状态添加一些样式；
 
-`:hover, :active, :focus, :visited, :link, :disabeld, :nth-child()`
+`:hover, :active, :focus, :visited, :link, :disabeld, :first-child, :last-child, :nth-child()`
 
 
-- 伪元素：伪元素是用于在元素之前或之后插入额外的虚拟元素，并为这些虚拟元素应用样式；它们用于创建文档中不存在的元素或者生成特殊的效果；不在 DOM 中，无法用 DOM API 直接选中/遍历/增删（没有对应的节点对象），可通过 `getComputedStyle(el, '::before')` 读取其计算样式。
+- 伪元素：伪元素是用于在元素之前或之后插入额外的虚拟元素，并为这些虚拟元素应用样式；它们用于创建文档中不存在的元素或者生成特殊的效果；`不在 DOM 中`，无法用 DOM API 直接选中/遍历/增删（没有对应的节点对象），可通过 `getComputedStyle(el, '::before')` 读取其计算样式。
 
 `::before, ::after, ::selection`
 
@@ -152,8 +152,8 @@ Flexbox布局也叫Flex布局，`弹性盒子布局`。它的目标是提供一�
 
 ``` css
 display: grid; /*  设置为grid指明当前容器为Grid布局 */
-grid-template-columns: 1fr 1fr 1fr; /*  定义每一列的列宽, 表示分为3行 */
-grid-template-rows: 1fr 1fr 1fr; /*  定义每一行的行高，表示分为3列 */
+grid-template-columns: 1fr 1fr 1fr; /*  定义每一列的列宽, 表示分为3列 */
+grid-template-rows: 1fr 1fr 1fr; /*  定义每一行的行高，表示分为3行 */
 /* `grid-template-columns`和`grid-template-rows`，可以使用绝对单位，也可以使用百分比。并且为了表示比例关系，Grid布局提供了`fr`关键字，如果设置`1fr`和`2fr`，表示后者是前者的两倍。 */
 column-gap：5px; /* 用于设置列间距 */
 grid-template-columns: minmax(40px, 1fr) auto minmax(40px, 1fr); /*  表示分为3行，如果容器宽度很大：左右两列会均分剩余空间；如果容器很窄：左右两列至少 40px，中间 auto 可能被压缩或导致溢出（取决于中间内容的最小宽度）。 */
@@ -168,7 +168,7 @@ grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* 列数不固定
 
 `flex-shrink: 1`: 设置子元素的收缩比例，当容器空间不足时，元素会按照其flex-shrink值与其他元素的比例来缩小。为 1表示子元素会按照等比例收缩。
 
-`flex-basis: 0%`: 设置子元素的基础尺寸(设置子项的占用空间),默认为`auto`, 意味着元素的大小会根据其内容自动计算；`0%`表示子元素的尺寸会尽可能地被拉伸以填充剩余空间。
+`flex-basis: 0%`: 设置子元素的`基础尺寸`(设置子项的占用空间),默认为`auto`, 意味着元素的大小会根据其内容自动计算；`0%`表示子元素的尺寸会尽可能地被拉伸以填充剩余空间。
 
 这样设置后，子元素会根据剩余空间等比例地放大，并在空间不足时按照等比例收缩，同时初始尺寸为 0%，以适应父容器的大小。
 
@@ -187,12 +187,15 @@ grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* 列数不固定
 
 css预处理器：less/scss/sass/...
 
+CSS 预处理器（Sass/Less/Stylus）本质是“`在 CSS 之上加一层更强的语法能力`”，开发时写的是预处理语言，最终都会“`编译成标准 CSS”给浏览器执行` 。所以它跟直接写 CSS 的核心区别在于： 多了一步编译 + 多了抽象能力 。
+
 - **优点：**
-1. 提高 CSS 可维护性。
+1. 提高 CSS `可维护性`。
 2. 易于编写`嵌套选择器`。
-3. 引入变量，增添主题功能。可以在不同的项目中共享主题文件。
-4. 通过混合（Mixins）生成重复的 CSS。
+3. 引入变量，增添主题功能。可以在不同的项目中共享主题文件（更推荐用现代 CSS Variables 能力实现）。
+4. 通过混合（Mixins）生成重复的 CSS，`复用能力强`。
 5. 将代码分割成多个文件。不进行预处理的 CSS，虽然也可以分割成多个文件，但需要建立多个 HTTP 请求加载这些文件。
+6. 有`变量、函数/混入、嵌套、模块化导入、循环/条件`等语法；原生 CSS 要么没有，要么要用更现代的特性/工具链替代。
 
 - **缺点：**
 1. 需要预处理工具。
@@ -239,7 +242,7 @@ css预处理器：less/scss/sass/...
     - 不要使用table布局，因为table中某个元素一旦触发了reflow，那么整个table的元素都会触发reflow。
 
 3. css及动画优化：样式集中改变、开启css3动画硬件加速，把渲染计算交给GPU
-    - 能用transform做的就不要用其他的，因为transform可以开启硬件加速，而硬件加速可以规避重排。直接跳过重排、重绘，走合成进程
+    - 能用transform做的就不要用其他的，因为transform可以开启硬件加速，而硬件加速可以规避重排。直接跳过重排、重绘，走合成线程。
 
 
 
@@ -294,7 +297,7 @@ DOMContentLoaded事件在文档对象模型（DOM）完全加载和解析完成�
 
 这个事件与window.onload事件相似，但有一个主要区别：`window.onload事件必须等到整个页面及所有依赖资源如样式表和图片都已完成加载后才会触发`。因此，如果页面的图片很多，从用户访问到window.onload触发可能需要较长的时间，这会影响用户的体验。
 
-DOMContentLoaded事件在DOM树构建完成后就会触发，因此可以更早地执行脚本和绑定事件到元素，而无需等待所有图片等资源加载完成。
+DOMContentLoaded事件`在DOM树构建完成后就会触发`，因此可以更早地执行脚本和绑定事件到元素，而无需等待所有图片等资源加载完成。
 
 
 > js会阻塞DOM解析，`DOMContentLoaded是在DOM解析完成后才触发`。因此，当css后面有js的时候，css会阻塞js运行，而js会阻塞DOM解析，从而导致DOMContentLoaded必须等到css以及css后面的js执行完成后，才会触发。而当css后面没有js的时候，由于css不阻塞DOM的解析，因此DOMContentLoaded不会等待css的加载。
@@ -310,7 +313,7 @@ DOMContentLoaded事件在DOM树构建完成后就会触发，因此可以更早�
 
 [meta 标签](https://juejin.cn/post/6987919006468407309)
 
-head标签用于定于文档头部信息，它是所有头部元素的容器。head中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供元信息等等: 
+head标签用于`定于文档头部信息`，它是所有头部元素的容器。head中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供元信息等等: 
 
 `base, link, meta, script, style, 以及 title`
 
@@ -385,7 +388,7 @@ rootFontSize = screenWidth / baseValue；
 以width为750px的设计稿为标准，当设备为iPhone6 width为375px，根元素font-size为37.5px （375 / 10）
 
 比如设计稿上p标签内font-size为24px：
-1. 打包的时候转为rem,24 / 75 = 0.32rem;
+1. 通过`postcss-px2rem-exclude`等插件配置的`remUnit`为75，打包的时候转为rem,24 / 75 = 0.32rem;
 2. 由lib-flexible动态计算得iPhone6根元素font-size为37.5px，即该宽度下，1rem为37.5px;
 3. 计算p标签内字体展示大小：0.32 * 37.5 = 12px
 
@@ -650,7 +653,7 @@ js执行主要分为`分析（预编译）`和`执行`两个阶段。
 
 应用场景：
 1. `封装私有变量`：闭包可以用来创建私有变量和方法，这些变量和方法对外部是不可见的，只能在闭包内部访问和修改。
-2. `模块化开发`：闭包可以用于模块化开发，通过创建私有作用域，可以防止变量污染和命名冲突。
+2. `模块化开发`：闭包可以用于模块化开发，通过创建私有作用域，可以防止`变量污染和命名冲突`。
 3. `函数柯里化`：闭包可以用于实现函数的柯里化（Currying），即`将一个多参数的函数转换为一系列单参数函数`的过程。
 4. 异步编程：`闭包可以用于处理异步编程中的回调函数，可以捕获和保存回调函数的上下文`，使其在异步执行时仍能访问所需的变量。
 5. `函数记忆`：闭包可以用于实现函数记忆（Memoization），即缓存函数的计算结果，避免重复计算，提高性能。
@@ -747,7 +750,7 @@ JavaScript的垃圾回收通常会在`程序空闲时间`内运行，或者是�
 1. 引用计数
 > 这其实是早先的一种垃圾回收算法，它把 对象是否不再需要 简化定义为 `对象有没有其他对象引用到它`
 
-`跟踪记录每个值被引用的次数`。当声明了一个变量并将一个引用类型赋值给该变量时，则这个值的引用次数就是1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数就减1。当这个引用次数变成0时，则说明没有办法再访问这个值了, 垃圾回收器会在运行的时候清理掉引用次数为 0 的值占用的内存.
+`跟踪记录每个值被引用的次数`。当声明了一个变量并将一个引用类型赋值给该变量时，则这个值的引用次数就是1。相反，如果`包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数就减1`。当这个引用次数变成0时，则说明没有办法再访问这个值了, 垃圾回收器会在运行的时候清理掉引用次数为 0 的值占用的内存.
 
 **缺点**：引用计数有一个严重的问题，那就是`循环引用`。例如，如果两个对象相互引用，即使外部没有引用它们，它们的引用计数也永远不会为0，因此它们将永远不会被垃圾回收，从而导致`内存泄漏`。
 
@@ -878,7 +881,7 @@ es6 vs commonjs:
 ### Map和WeakMap的区别？
 
 - `键的类型`：Map 允许任何类型的键（对象或原始值）。`WeakMap 只接受对象作为键`。如果尝试使用非对象作为键，它会抛出错误。
-- `键的弱引用：` Map 保持对其键的`强引用`，就不会被垃圾回收。WeakMap 对其键持有`弱引用`, 如果外部没有其他引用指向某个键，垃圾回收器也可以将其清理掉: 可以`帮助防止内存泄漏`。
+- `键的弱引用：` Map 保持对其键的`强引用`，就不会被垃圾回收，需手动进行清除。WeakMap 对其键持有`弱引用`, 如果外部没有其他引用指向某个键，垃圾回收器也可以将其清理掉: 可以`帮助防止内存泄漏`。
 - `迭代`：两者都可以被迭代，但 WeakMap 不暴露其键的列表。不能获取 WeakMap 的所有键，也不能检查某个对象是否作为键存在于 WeakMap 中。你只能通过键来访问或删除对应的值。
 - `用途`：Map 通常用于需要存储键值对且需要保留这些键值对直到`显式删除它们`的情况。WeakMap 特别适用于存储与对象关联的数据，且这些数据不需要在对象被垃圾回收后继续存在。
 
@@ -1065,6 +1068,41 @@ boundFunction2(); // 输出: Object 1，因为已经绑定的上下文不受新�
 通常情况下，`for...of 的性能更好`，因为它是`专门用于迭代可迭代对象的语法结构，不会受到原型链的影响`。而 `for...in 则会遍历对象的原型链上的所有可枚举属性，可能会导致性能上的损耗`。不过，在实际开发中，性能差异可能并不明显，而且在迭代对象时，应该根据具体的需求选择合适的迭代方式。
 
 
+### 什么是可迭代对象？
+
+JS 的可迭代对象（iterable）就是：`对象实现了迭代协议， 拥有 Symbol.iterator 方法 ，调用后返回一个 迭代器`。可以被 `for...of 、展开运算符... 、解构、 Array.from` 等按顺序消费。
+
+常见可迭代对象：`Array、String、Map、Set、TypedArray、Generator`。
+
+怎么判断：`const isIterable = (o) => o != null && typeof o[Symbol.iterator] === "function"`
+
+注意：**普通的对象（plain object， {} ）默认不是可迭代对象**。
+> `for...of ({ a: 1 })` 会报错： `TypeError: obj is not iterable`；普通对象没有 Symbol.iterator ，只能用 `for...in / Object.keys / Object.entries` 这类“枚举属性”的方式遍历
+
+
+
+### 什么是可枚举属性？
+
+`可枚举属性（enumerable）`: JS 每个对象属性都有一组“属性描述符”（descriptor），其中 `enumerable: true/false` 决定它会不会在“枚举属性”的操作里出现 。
+
+`enumerable:true` 的属性，常见会出现在：
+- `for...in` （枚举键，包含原型链上的可枚举属性）
+- `Object.keys(obj)`（只取自身可枚举字符串键）
+- `Object.entries(obj) / Object.values(obj)` （只取自身可枚举字符串键）
+- `JSON.stringify` （只序列化自身可枚举字符串键，值可序列化时）
+
+
+``` js
+const obj = {};
+Object.defineProperty(obj, "hidden", { value: 1, enumerable: false });
+obj.visible = 2; // 默认 enumerable: true
+
+Object.keys(obj); // ["visible"]
+for (const k in obj) console.log(k); // visible
+Object.getOwnPropertyDescriptor(obj, "hidden").enumerable; // false
+```
+
+for...in 走的是“枚举属性”（ enumerable + 还会扫原型链）； for...of 走的是“迭代协议”（ Symbol.iterator ），跟属性是否可枚举不是一回事。
 
 
 ### js中常用的对象继承有哪些？
@@ -1188,7 +1226,7 @@ requestAnimationFrame能在`浏览器下次重绘之前执行指定的回调`，
 
 - **在js中，不使用localStorage，有其他方案实现持久化存储吗?**
 
-1. `IndexedDB`: IndexedDB 是一个事务型数据库系统，用于客户端存储大量结构化数据（包括文件/blobs）。它使用索引实现高性能搜索，并且可以在Web Worker中运行，不会阻塞主线程。IndexedDB比localStorage更复杂，但提供了更多的功能和灵活性。
+1. `IndexedDB`: IndexedDB 是一个事务型数据库系统，`用于客户端存储大量结构化数据`（包括文件/blobs）。它`使用索引实现高性能搜索`，并且`可以在Web Worker中运行，不会阻塞主线程`。IndexedDB比localStorage更复杂，但提供了更多的功能和灵活性。
 2. `WebSQL`: WebSQL是一个早期的浏览器数据库规范，它提供了一套完整的SQL数据库操作接口。然而，WebSQL已被大多数现代浏览器弃用，因此不推荐使用。
 3. `Cookies`: 虽然Cookies主要用于跟踪用户会话，但它们也可以用于存储少量数据。Cookies的大小有限制（通常不超过4KB），并且每次HTTP请求都会发送它们，这可能会影响性能。因此，Cookies不适合存储大量数据或敏感信息。
 4. `SessionStorage`: 与localStorage类似，sessionStorage也在用户的浏览器中提供了存储机制。然而，与localStorage不同的是，sessionStorage中的数据只在当前浏览器窗口或标签页的生命周期内存在。一旦窗口或标签页关闭，数据就会被删除。
@@ -1477,6 +1515,63 @@ instance.greet(); // Calling greet \n Hello
 ```
 
 
+### TypeScript 中的泛型约束(extends)和类型断言(as)分别在什么场景使用?
+
+`泛型约束 extends`：`让“调用方传进来的类型参数”满足某个结构/能力，属于 类型设计与约束`（编译期规则），用来让你的泛型函数/类型“可安全地使用某些属性/操作”。
+``` ts
+// 需要保证泛型参数具备某些属性/方法，才能安全访问
+// 如果泛型参数没有 id 属性，编译器会报错
+function getId<T extends { id: string }>(obj: T) {
+  return obj.id
+}
+
+// 让“多个参数之间”建立类型关联（比 any /宽泛型更强）
+// 这里 K extends keyof T 保证 key 一定是 obj 的键，返回值类型也能跟着精准推导。
+function pluck<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key]
+}
+
+// 限制可选类型集合（如只允许 string/number）
+function toArray<T extends string | number>(x: T) {
+  return [x]
+}
+
+// 在类型层做条件分发/映射（高级类型常用）
+type ConditionalType<T, U, X, Y> = T extends U ? X : Y
+```
+
+`类型断言 as` ：你在某个点上`告诉编译器把它当成某个类型`，属于 绕过/收窄类型检查的声明（不做运行时校验），用在`“你比编译器更确定”的场景`，但有潜在风险。
+``` ts
+// 你已做了运行时校验，但 TS 还推不出来（补齐类型信息）
+// 更典型的是一些库 API 返回 unknown 、或复杂分支后推导不够精确时，你用 as 把信息告诉编译器。
+function isString(x: unknown): x is string {
+  return typeof x === "string"
+}
+const v: unknown = "hi"
+if (isString(v)) {
+  // 这里不需要 as，类型保护已经够了
+  v.toUpperCase()
+}
+
+// DOM / 外部数据（JSON）等“结构你知道，但 TS 不知道”
+// const el = document.querySelector("#name") as HTMLInputElement
+const el = document.querySelector<HTMLInputElement>("#name")
+if (el) el.value
+
+// 把宽类型收窄到更具体的类型（但你承担正确性）
+const raw: unknown = JSON.parse(data)
+const user = raw as { id: string }  // 这里不会校验 raw 真的有 id
+
+// 字面量/const 场景（让推导更精确）
+// 很多时候用 as const 固定字面量类型：
+const roles = ["admin", "user"] as const
+type Role = typeof roles[number] // "admin" | "user"
+```
+**泛型约束用于限制泛型参数必须符合某种结构，而类型断言用于手动指定一个值的具体类型。**
+- `需要“让 API 的输入类型天然受约束、并且调用时就能得到正确提示/推导”` → 用 extends （这是类型系统给你兜底）。
+- 需要“`在某个点强行指定类型，因为你已通过逻辑/上下文保证它成立，但 TS 看不出来`” → 才用 as 。
+- 能用类型保护（ typeof / in / 自定义 x is T ）或更精确的 API（如 querySelector<T>() ）解决的，优先不用 as ；因为 `as 不会生成任何运行时检查`，断错了就是运行时炸
+
 
 
 
@@ -1588,8 +1683,8 @@ mvvm: `view <===> viewmodel <===> model`；
 
 
 基于数据劫持实现双向绑定的实现思路:
-1. 实现一个调度中心：用来收集订阅者，对监听器和订阅者进行统一管理；
-2. 利用`Proxy或Object.defineProperty`对对象/对象的属性进行"劫持",在属性发生变化后通知订阅者;
+1. 实现一个调度中心：用来收集订阅者，对监听对象和订阅者进行统一管理；
+2. 利用`Proxy或Object.defineProperty`对对象/对象的属性进行"劫持",进行响应式处理，在属性发生变化后通知订阅者;
 3. 同时，解析器`解析模板中的指令，收集指令所依赖的方法和数据`;
 4. 订阅者接收到数据发生变化,并`根据解析器提供的指令进行视图渲染`, 使得数据变化促使视图变化。
 
@@ -1932,7 +2027,7 @@ watchEffect 是`在组件实例被创建后，但在 DOM 挂载之前`立即执�
 
 ### postcss-loader 与 less/scss的区别？
 
-postcss 一种对css编译的工具，类似babel对js的处理。常见功能有：`自动补全浏览器前缀、使用下一代css语法`等等
+postcss 一种对css编译的工具，类似babel对js的处理。常见功能有：`自动补全浏览器前缀、使用下一代css语法、px=>rem转换`等等
 
 less sass 是预处理器，用来支持扩充css语法；
 
@@ -2477,13 +2572,13 @@ qiankun框架为了实现`js隔离`，提供了三种不同场景使用的沙箱
 1. **快照沙箱(snapshotSandbox)**: 把主应用的 window 对象做浅拷贝，将 window 的键值对存成一个 `Hash Map`。之后无论微应用对 window 做任何改动，当要恢复环境时，把这个 Hash Map 又应用到 window 上就可以了。
 > snapshotSandbox会污染全局window，但是可以支持不兼容Proxy的浏览器; 每次微应用 unmount 时都要对每个属性值做一次 Diff
 
-qiankun基于es6的Proxy实现了两种应用场景不同的沙箱，一种是legacySandbox(单例)，一种是proxySandbox(多例)。都是基于Proxy实现的, 都称为代理沙箱。
+`qiankun基于es6的Proxy实现了两种应用场景不同的沙箱，一种是legacySandbox(单例)，一种是proxySandbox(多例)。都是基于Proxy实现的, 都称为代理沙箱`。
 2. **legacySandbox(单例沙箱)**: 通过监听对 window 的修改来直接记录 Diff 内容
 > 同样会对window造成污染，但是性能比快照沙箱好，不用遍历window对象。
 
 
 3. **proxySandbox(多例沙箱)**：把当前 window 的一些原生属性（如document, location等）拷贝出来，单独放在一个对象上，这个对象也称为 fakeWindow
-之后对每个微应用分配一个 fakeWindow；当微应用修改全局变量时：如果是原生属性，则修改全局的 window；如果不是原生属性，则修改 fakeWindow 里的内容
+之后对`每个微应用分配一个 fakeWindow；当微应用修改全局变量时：如果是原生属性，则修改全局的 window；如果不是原生属性，则修改 fakeWindow 里的内容`
 > 不会污染全局window，支持多个子应用同时加载。
 
 
@@ -2666,10 +2761,10 @@ vue: nuxt.js
 Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。
 
 特点：
-1. `异步非阻塞`：采用了非阻塞型I/O机制，在做I/O操作的时候不会造成任何的阻塞，当完成之后，以时间的形式通知执行操作, 能够在单个线程上处理大量并发请求
+1. `异步非阻塞`：采用了非阻塞型I/O机制，`在做I/O操作的时候不会造成任何的阻塞，当完成之后，以时间的形式通知执行操作`, `能够在单个线程上处理大量并发请求`
 > 例如在执行了访问数据库的代码之后，将立即转而执行其后面的代码，把数据库返回结果的处理代码放在回调函数中，从而提高了程序的执行效率
 
-2. `事件驱动`：事件驱动就是当进来一个新的请求的时，请求将会被压入一个事件队列中，然后通过一个循环来检测队列中的事件状态变化，如果检测到有状态变化的事件，那么就执行该事件对应的处理代码，一般都是回调函数
+2. `事件驱动`：事件驱动就是当进来一个新的请求的时，`请求将会被压入一个事件队列中，然后通过一个循环来检测队列中的事件状态变化，如果检测到有状态变化的事件，那么就执行该事件对应的处理代码`，一般都是回调函数
 
 
 
@@ -2829,8 +2924,12 @@ Node采用了事件驱动机制，而`EventEmitter就是Node实现事件驱动�
 
 是介于应用系统和系统软件之间的一类软件，它使用系统软件所提供的基础服务（功能），衔接网络上应用系统的各个部分或不同的应用，能够达到资源共享、功能共享的目的
 
+在 Node Web 框架里，中间件本质上是一段“`可插拔的请求处理函数`”，它不一定直接产出最终响应，而是`围绕一次请求的生命周期做一件事，然后把控制权交给下一个处理单元`。
+
 > 在NodeJS中，中间件主要是指`封装http请求细节处理`的方法。例如在express、koa等web框架中，中间件的本质为一个`回调函数`，参数包含请求对象、响应对象和执行下一个中间件的函数，我们可以执行业务逻辑代码，修改请求和响应对象、返回响应数据等操作。
 
+- `Express： (req, res, next)` ，偏回调风格
+- `Koa： async (ctx, next) ， next()` 返回 Promise，更容易表达“前置 + 后置”的控制流
 
 Koa 中间件采用的是`洋葱圈模型`, Koa存在很多第三方的中间件，如`koa-bodyparser、koa-static`等, 都是函数, 会传入两个参数: 
 1. ctx ：封装了request 和 response 的变量
@@ -2864,10 +2963,12 @@ Token，分成了三部分，`头部（Header）、载荷（Payload）、签名�
 2. 服务端文件解析：获取上传的文件，获取文件数据后，可以通过fs创建将文件保存到指定目录（可读流通过管道写入可写流）`fs.createWriteStream`
 
 
-### 如何实现流式输出？
+### 如何实现SSE流式输出？
+> Server-Sent Events (SSE)，这是一种非常适合实时数据推送的技术。与 WebSocket 不同，SSE 只支持服务器到客户端的单向通信。它是基于 HTTP 协议的，能够让服务器推送数据到客户端。简单来说，SSE 就是让服务器能够在不需要客户端不断请求的情况下，主动推送数据。
+
 ``` js
 // node.js
-ctx.set('Content-Type', 'text/event-stream'); // 设置响应内容类型为事件流
+ctx.set('Content-Type', 'text/event-stream'); // 指定数据流格式为 SSE
 const stream = await model.stream(...);
 for await (const chunk of stream) {
     ctx.res.write(`data: ${chunk.content}\n\n`); // 流式输出，同时前端能实时接收
@@ -2877,7 +2978,9 @@ ctx.res.write('data: end\n\n');
 ctx.res.end(); // 结束事件流
 
 // 前端
-const reader = res.body?.getReader(); // 获取流读取器
+// 可用EventSource监听SSE事件，也可以用fetch监听
+const res = await fetch(requestUrl, this.options);
+const reader = res.body?.getReader(); // 核心部分：使用 ReadableStream 处理数据流
 const decoder = new TextDecoder('utf-8'); // 文本解码器
 let text = '';
 while (true) {
@@ -2887,6 +2990,8 @@ while (true) {
     text += chunk; // 前端进行文本拼接
 }
 ```
+后端返回来的是一段不断在输入的ReadableStream，我们在前端处理时使用getReader和TextDecoder来将流数据解码为 UTF-8 格式的文本。
+
 
 
 ### Node性能如何进行监控以及优化？
@@ -2911,6 +3016,10 @@ nodejs性能衡量指标一般有如下：
 
 > 它借鉴了`函数式编程中的compose思想，将中间件（middleware）按照特定的顺序组织起来`，以处理HTTP请求和响应。
 
+所谓“洋葱模型”描述的是：`中间件不是单向流水线，而是“进入一层、再出来一层”的嵌套结构`。
+
+关键在于：`每个中间件在调用 await next() 之前写前置逻辑，在 await next() 之后写后置逻辑；而 next() 会把控制权交给下一个中间件，并在后续完成时 resolve 回来`。
+
 洋葱模型的核心思想是，Koa 中间件的执行顺序和处理流程类似于一个洋葱，请求在经过多个中间件处理时，会像剥洋葱一样，`从外向内逐步执行，然后再从内向外逐步返回结果`。
 
 中间件函数有两个参数第一个是`上下文`，第二个是 `next`，当请求到达某个中间件时，该中间件会执行一些操作，然后`通过调用next函数将控制权传递给下一个中间件`。这个过程会一直持续到最后一个中间件执行完毕。
@@ -2920,6 +3029,68 @@ nodejs性能衡量指标一般有如下：
 
 这种洋葱模型的设计带来了很多好处。首先，它使得中间件的编写更加灵活和强大。由于每个中间件都有两次处理时机，因此可以在进入时执行一些前置操作（如验证、记录日志等），在返回时执行一些后置操作（如清理资源、发送响应等）
 
+
+
+### 自己设计一个 Koa 洋葱模型怎么设计（最小可用实现）
+
+拆成三件事：
+1. 约定 middleware 形态： (ctx, next) => Promise<void> | void
+2. 提供注册能力： use(fn)
+3. 提供组合执行器： compose(middlewares) ，返回一个函数 fn(ctx) ，按洋葱模型执行
+``` js
+function compose(middlewares) {
+  if (!Array.isArray(middlewares)) throw new TypeError('middlewares must be an array')
+  for (const fn of middlewares) {
+    if (typeof fn !== 'function') throw new TypeError('middleware must be a function')
+  }
+
+  return function (ctx, next) {
+    let index = -1
+    return dispatch(0)
+
+    function dispatch(i) {
+      if (i <= index) return Promise.reject(new Error('next() called multiple times'))
+      index = i
+
+      let fn = middlewares[i]
+      if (i === middlewares.length) fn = next
+      if (!fn) return Promise.resolve() // 最后一个中间件执行结束，返回 Promise.resolve()，结束递归调用
+
+      try {
+        return Promise.resolve(fn(ctx, () => dispatch(i + 1))) // 递归调用下一个中间件
+      } catch (err) {
+        return Promise.reject(err)
+      }
+    }
+  }
+}
+
+// 框架层面的骨架会是这样：
+class MiniKoa {
+  constructor() {
+    this.middlewares = []
+  }
+
+  use(fn) {
+    this.middlewares.push(fn)
+    return this
+  }
+
+  callback() {
+    const fn = compose(this.middlewares)
+    return (req, res) => {
+      const ctx = { req, res, state: {} }
+      fn(ctx).then(() => {
+        if (res.writableEnded) return
+        res.end(ctx.body ?? '')
+      }).catch((err) => {
+        res.statusCode = 500
+        res.end('Internal Server Error')
+      })
+    }
+  }
+}
+```
 
 
 
@@ -3631,8 +3802,44 @@ CDN 的最核心原则是“就近访问”,
 - WebSocket: `主要用于实时通信`，例如在线聊天、实时数据更新等场景。WebSocket 提供了一个持久的连接通道，允许客户端和服务器之间双向实时通信，而不需要客户端发起新的 HTTP 请求。
 
 3. 连接机制:
-- HTTP/2 服务器推送: 服务器推送是基于 HTTP/2 的单向通信机制。`客户端发起一个请求，服务器可以通过推送响应来发送额外的资源，但客户端不能直接在同一个连接上向服务器发送数据（静态资源）。`
+- HTTP/2 服务器推送: 服务器推送是基于 HTTP/2 的单向通信机制。`客户端发起一个请求，服务器可以通过推送响应来发送额外的资源，如客户端可能马上要用的静态资源 （CSS/JS/字体等），目的是减少后续请求往返；但客户端不能直接在同一个连接上向服务器发送数据（静态资源）。`
 - WebSocket: `WebSocket 提供了一个双向通信的持久连接`。客户端和服务器之间可以自由地发送和接收数据，而不需要依赖于 HTTP 请求-响应周期。
+
+
+### SSE 流式输出
+
+SSE（Server-Sent Events）：应用层的实时通信方案。客户端用 `EventSource` 发起一个普通 HTTP 请求，服务端以 `Content-Type: text/event-stream` 保持长连接持续输出事件 （一条条消息），用于通知/订阅类实时更新（日志、进度、消息通知等）。它是“事件流协议 + 浏览器 API”，不是 HTTP/2 特有（HTTP/1.1/2/3 都能跑）。
+
+SSE 更加轻量，`原生支持断线重连，基于文本传输`；SSE 是基于 HTTP 的单向流式传输协议，而 WebSocket 是`全双工的二进制协议`。浏览器对 SSE 有连接数限制(HTTP/1.1 下同域名 6个)
+
+SSE 的自动重连机制是基于 `EventSource` 的自动重连机制实现的，这是一个非常简单的机制，在连接错误断开的情况下，浏览器会自动重新发起请求。和websocket不同，在这个过程中，我们并不需要手动介入。
+> EventSource API 存在很多限制，它允许传递的参数只有 url 和 withCredentials；`无法传递请求体；无法自定义请求头；只能使用 GET 请求；自动重连机制无法手动控制；`
+
+可以使用fetch来模拟EventSource，因为他们本质上都是基于 HTTP 的请求：
+``` js
+const response = await fetch(requestUrl, this.options);
+
+// 使用 ReadableStream 处理数据流
+const reader = response.body.getReader();
+const decoder = new TextDecoder("utf-8");
+let buffer = "";
+
+// 内层循环：处理数据流的读取
+while (this.isActive) {
+	const { value, done } = await reader.read();
+	if (done) break;
+
+	// 将二进制数据解码为文本，并处理粘包问题
+	buffer += decoder.decode(value, { stream: true });
+	const lines = buffer.split("\n");
+	buffer = lines.pop() || ""; // 保留最后一个不完整的行
+
+	// 解析每一行数据
+	for (const line of lines) {
+		this.parseEvent(line.trim());
+	}
+}
+```
 
 
 
@@ -3807,6 +4014,12 @@ B 页面在 beforeunload 时，通过 postMessage API 告知自己已经正常�
 如果 B页面在运行的过程中 crash 了，sw 中的 running 状态将不会被清除，更新时间停留在奔溃前的最后一次心跳；
 A 页面 Service Worker 每 10s 查看一遍登记中的网页，发现登记时间已经超出了一定时间（比如 15s）即可判定该网页 crash 了。
 ```
+
+
+如果只做“`同一浏览器同源多标签页的近似感知`”，更简单可靠的是：
+- B 定时写心跳到 localStorage/IndexedDB （以及正常关闭时写一个关闭标记）
+- A 自己定时检查该心跳是否超时 （A 作为活着的一方来判断）
+- 通知可以用 BroadcastChannel （最直接）或 storage 事件做兜底
 
 
 ### 后端一次性返回10万条数据给你，你如何处理？
@@ -4120,7 +4333,7 @@ Cache-Control: max-age=0
 离线包的实现通常包括以下几个步骤：
 1. `资源打包`：将应用所需的静态资源打包成一个或多个离线包文件。这些文件可以是压缩的，以减小文件大小。
 2. `下载与存储`：在应用安装或首次启动时，从服务器下载离线包文件，并存储在设备的本地存储中。
-3. `版本控制`：为离线包添加版本号，以便在应用更新时能够判断是否需要重新下载离线包。
+3. `版本控制`：为`离线包添加版本号`，以便在应用更新时能够判断是否需要重新下载离线包。
 4. `资源加载`：当应用需要加载某个资源时，首先检查本地存储中是否有对应的离线包文件。如果有，则直接从离线包中加载资源；否则，从网络加载资源。
 5. `更新机制`：当服务器上的离线包文件更新时，应用可以通过某种机制（如`轮询、推送通知等）检测到更新`，并提示用户下载新的离线包。
 

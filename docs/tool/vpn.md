@@ -345,3 +345,39 @@ zhou
 verneyzhou@163.com
 20210509zyZY
  -->
+
+
+
+## Just My Socks
+
+> 2026年4月份开始，受可不抗力影响，之前用了好几年的vpn快连（LetsVPN）开始连不上了，发现国内好几个头部vpn都受到了影响；所以需要再次寻找一个可用的vpn~
+
+之后在知乎上找到 Just My Socks，说是由搬瓦工（BandwagonHost）官方运营的代理服务提供商。搬瓦工‌是国外 VPS 服务商 BandwagonHost 的中文谐音简称，隶属于‌加拿大 IT7 Networks 公司‌。该品牌成立于 2004 年，主要提供‌虚拟专用服务器‌（VPS）服务，以性价比高和网络线路优化著称。因注册商标 BandwagonHost 读音类似中文“搬瓦工”，故在国内被广泛称为搬瓦工。‌‌‌
+
+[搬瓦工怎么样？为什么这么多人推荐？](https://zhuanlan.zhihu.com/p/1938916880837514278)、[Just My Socks是什么？](https://bwgjustmysocks.com/32.html)
+
+
+安装参考文档：[qp pack使用最完整教程](https://waimao.pro/pack/)，安装流程参考这个文档即可，博主整理得比较齐全，小白也可以上手；如果想看最新的可以看下该博主最新的文章，应该都是推广Just My Socks的。
+
+
+[Just My Socks国内镜像官网](https://justmysocks6.net/members/clientarea.php)，这是它的官网，购买服务就需要在上面购买，上面的教程里会提到，购买的时候填入官方优惠码可享受一定折扣。但有时访问官网很慢或打不开可能是被墙了，可以看下这里[justmysocks3.github.io](https://justmysocks3.github.io/)，找到最新可用的网站，继续操作。
+
+[Just My Socks 中文网站|官方镜像](https://justmysockss3.net/)，这是它的中文镜像网站，里面会有一些使用教程可参考。
+
+[How-to-use-Just-My-Socks](https://justmysocks6.net/members/index.php?rp=/knowledgebase/2/How-to-use-Just-My-Socks)，购买服务后，需要在自己设备上安装对应的客户端，不同设备需要安装的客户端不一样，具体可参考该文档。
+
+
+
+**备注：**
+1. Mac安装 Jamjams 要比 V2ray 要好用些感觉，因为我先安装了V2Ray，但配置服务的时候始终没有生效，后来安装了Jamjams，直接复制 subscription 信息添加配置就生效了。windows上面也推荐安装Jamjams，用法是一样的。
+2. 安卓上我安装的是 v2rayNG，按照上面的文档，直接进到github中下载Assets中最新的`apk`安装包即可，然后发送到手机上进行安装；注意手机上安装的时候会提示安全问题，需要手动授权；v2rayNG安装完成后，先复制 subscription 信息发送给手机，手机上先复制；然后打开v2rayNG，点击右上角的`+`，点击从剪贴板导入，这样就会自动导入 subscription 信息；之后点击`更新订阅`即可，这样就可以在手机上使用了
+
+
+[justmysocks详细图文购买教程](https://github.com/233boy/v2ray/wiki/justmysocks%E8%AF%A6%E7%BB%86%E5%9B%BE%E6%96%87%E8%B4%AD%E4%B9%B0%E6%95%99%E7%A8%8B)
+
+
+<!-- 
+verneyzhou@gmail.com
+20260504zyZY
+ -->
+

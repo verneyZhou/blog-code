@@ -141,7 +141,7 @@ HTTP协议连接很简单，是无状态的；HTTPS协议是有SSL和HTTP协议�
 - [57道CSS常问面试题及答案汇总](https://mp.weixin.qq.com/s/c5PyoDxwOUX5TzdL-QPpoA)
 - [【爆肝面试系列】CSS 垂直居中的正确打开方式](https://juejin.cn/post/6991465721565806605)
 
-
+- [前端面试常见的 10 个场景题](https://juejin.cn/post/7612495518645174323)
 
 
 ### 管理架构篇

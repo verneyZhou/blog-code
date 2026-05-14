@@ -3,7 +3,7 @@ home: true
 bannerBg: /images/poster202601.png
 # heroImage: /images/poster03.jpeg
 # heroText: 四零肆
-tagline: 不欺暗室。
+tagline: 欢迎来到 Zyro 的前端技术博客~
 # tagline: 谁说河儿宽又广？一条船儿把它航。
 # actionText: 开始阅读 →
 # actionLink: /newest/

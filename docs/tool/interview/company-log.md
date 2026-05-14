@@ -130,3 +130,5 @@ if (checkPermission()) {
     - 切换页面的时候，会根据当前路由的`permissions`中是否有该页面能力，没有则跳转到403页面
 
 
+
+

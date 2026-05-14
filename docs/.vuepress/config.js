@@ -13,8 +13,8 @@ const path = require('path');
 module.exports = {
     // base: '/blog/', // 如果部署到阿里云服务器需要添加这个
     port: 8097,
-    title: '四零肆',
-    description: '这是四零肆的前端技术博客哦~',
+    title: 'Zyro',
+    description: '这是Zyro的前端技术博客~',
     // 关闭默认 prefetch ：禁用 VuePress 对异步 chunk 的 prefetch ，减少首屏后“抢网式”预取；站点页面较多时，默认的 prefetch 可能导致首屏后产生大量无意义的请求
     shouldPrefetch: () => false,
     head,

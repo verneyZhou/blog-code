@@ -139,8 +139,8 @@ console.log(ll.getFirst()); // {value: 3, next: ListNode(val: 2, next: ...)}
 // 1.
 const a = {name: 'aaa'};
 const b = Object.create(a); // b.prototype = a;
-const c = Object.assign({}, b); // 执行浅拷贝
-console.log('===c', c, b); // {} {}; 因为a是b原型上的属性
+const c = Object.assign({}, b); // 执行浅拷贝, 只拷贝b自有的属性，不拷贝原型上的属性
+console.log('===c', c.name, b.name); // undefined aaa;
 
 
 // 2.
@@ -148,6 +148,7 @@ var name = 'aaa';
 var obj = {
     name: 'bbb',
     fn: function() {
+        console.log('===this', this.name); // bbb
         function print() {
             console.log('===print', this.name); // aaa
         }
@@ -301,6 +302,50 @@ console.log(5);
 4. 手写题：
 ``` js
 // 1. 写一个高阶组件，主要是对表单进行校验；需要有onChange和value
+
+// 校验组件
+import React, { useState } from "react";
+export const withValidate = (Comp) => (props) => {
+  const { value, onChange, rules = [] } = props;
+  const [error, setError] = useState("");
+
+  const validate = (v) => {
+    for (const r of rules) {
+      if (r.required && (v == null || v === "")) return r.message || "必填";
+      if (r.validator) {
+        const ok = r.validator(v);
+        if (ok !== true) return typeof ok === "string" ? ok : r.message || "校验失败";
+      }
+    }
+    return "";
+  };
+
+  const handleChange = (e) => {
+    const v = e?.target ? e.target.value : e;
+    const err = validate(v);
+    setError(err);
+    onChange && onChange(v, e);
+  };
+
+  return (
+    <div>
+      <Comp {...props} value={value} onChange={handleChange} />
+      {error && <div style={{ color: "red", fontSize: 12 }}>{error}</div>}
+    </div>
+  );
+};
+
+// 使用
+const VInput = withValidate("input");
+<VInput
+  value={name}
+  onChange={setName}
+  rules={[
+    { required: true, message: "姓名必填" },
+    { validator: (v) => (v.length >= 2 ? true : "至少2个字符") },
+  ]}
+/>
+
 
 
 // 2. 执行顺序题，js基础
@@ -546,12 +591,15 @@ setInterval(async () => {
 ``` js
 // 1. 执行顺序：
 var A = function() {this.b = 3};
-var C = new A();
+var C = new A(); // this 指向 新创建的实例对象 C，构造函数执行 this.b = 3 ，于是给实例 C 加了一个 自有属性 ： C.b = 3
 A.prototype.b = 9;
 var b = 1;
-A();
+A(); // 这种“直接调用”在 非严格模式 下，函数体里的 this 会指向 全局对象 （浏览器里是 window ）
 console.log(b); // 3
-console.log(C.b); // 3
+console.log(C.b); // 3；
+console.log(A.b); // undefined
+delete C.b;
+console.log(C.b); // 9；  从原型链找
 
 
 // 2. 二叉树的锯齿层序遍历
@@ -766,7 +814,7 @@ foo.fn.call(obj2)(1) // 2 3 1
 - 京东超市一面 2024.04.24
 1. 基本都是基础题，es6的class怎么实现原型继承，super()的作用？讲一下js中的严格模式？
 2. fiber架构的遍历规则是什么（父节点，子节点，兄弟节点）
-> fiber的遍历顺序是由根节点开始的，优先级 child > sibling > return父节点
+> fiber的遍历顺序是由根节点开始的，优先级 `child > sibling > return父节点`
 3. 服务端渲染原理？react ssr渲染注水和脱水？组件库开发的架构设计？
 ``` json
 脱水是指在服务端将React组件树渲染成静态HTML字符串的过程，同时保存组件的状态信息。
@@ -1180,6 +1228,7 @@ Q: 低代码项目组件存在树状结构，拖拽怎么准确定位？
 **低代码架构分层**
 
 协议栈 => 低代码引擎 => 引擎生态 => 低代码平台
+
 
 
 
@@ -1606,18 +1655,18 @@ HTML准备完成后，我们在server中挂起所有路由请求; 同时把客�
   2. `STORE连接组件`：需要在路由的组件中放置数据预取逻辑函数。在组件中自定义一个静态函数`asyncData`，由于此函数会在组件实例化之前调用，所以它无法访问 this。需要将 store 和路由信息作为参数传递进去
   3. `服务端获取数据`：在服务器的入口文件server-entry.js中，我们通过URL路由匹配 `router.getMatchedComponents()`得到了需要渲染的组件，这个时候我们可以调用组件内部的asyncData方法，将所需要的所有数据都获取完后，传递给渲染器renderer上下文。
   4. `将state存入context后`，在服务端渲染HTML时候，也就是渲染template的时候，context.state会被序列化到`window.__INITIAL_STATE__`中，方便`客户端激活数据`。
-  5. `客户端激活状态数据`: 服务端预请求数据之后，通过将数据注入到组件中，渲染组件并转化成HTML，然后吐给客户端，那么客户端为了激活后端返回的HTML被解析后的DOM节点，需要将后端渲染组件时用的store的state也同步到浏览器的store中，保证在页面渲染的时候保持与服务器渲染时的数据是一致的，才能完成DOM的激活
+  5. `客户端激活状态数据`: 服务端`预请求数据`之后，通过将数据注入到组件中，渲染组件并转化成HTML，然后吐给客户端，那么客户端为了激活后端返回的HTML被解析后的DOM节点，需要将后端渲染组件时用的store的state也同步到浏览器的store中，保证在页面渲染的时候保持与服务器渲染时的数据是一致的，才能完成DOM的激活
   > 在服务端的渲染中，state已经被序列化到了`window.__INITIAL_STATE__`, 我们需要做的就是将这个window.__INITIAL_STATE__在客户端渲染之前，同步到客户端的store中，通过使用store的`replaceState`函数，将window.__INITIAL_STATE__同步到store内部，完成数据模型的状态同步。
 
 
-**总结：**
+### 总结
 1. 当浏览器访问服务端渲染项目时，服务端将URL传给到预选构建好的VUE应用`渲染器`，渲染器匹配到对应的路由的组件之后，执行我们预先在组件内定义的`asyncData`方法获取数据，并将获取完的数据传递给`渲染器的上下文`，利用template组装成HTML，并`将HTML和状态state一并吐给前端浏览器`;
 2. 浏览器加载了构建好的客户端VUE应用后，`将state数据同步到前端的store中`，并根据数据激活后端返回的被浏览器解析为DOM元素的HTML文本，完成了`数据状态、路由、组件的同步`，同时使得页面得到直出，减少了白屏时间，有了更好的加载体验，同时更有利于SEO。
 
 
 
 
-**Q: 异步数据的服务端渲染方案(数据注水与脱水)?**
+### Q: 异步数据的服务端渲染方案(数据注水与脱水)?
 
 > 客户端和服务端的运行流程，当浏览器发送请求时，服务器接受到请求，这时候服务器和客户端的store都是空的，紧接着客户端执行componentDidMount生命周期中的函数，获取到数据并渲染到页面，然而服务器端始终不会执行componentDidMount，因此不会拿到数据，这也导致服务器端的store始终是空的。换而言之，关于异步数据的操作始终只是客户端渲染。
 

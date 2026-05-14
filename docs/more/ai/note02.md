@@ -113,6 +113,9 @@ Skill 并不是一次性的对话提示。它是一个可长期复用、输入�
 参考：[别搞混了！MCP 和 Agent Skill 到底有什么区别？](https://juejin.cn/post/7584057497205817387)、[一文带你看懂，火爆全网的Skills到底是个啥](https://mp.weixin.qq.com/s/nRVVqPaGxWdNqNrUcurSXg)
 
 
+[skills.sh](https://skills.sh/)
+
+
 
 ## Vibe Coding
 Vibe Coding 是由计算机科学家 Andrej Karpathy 在 2025 年 2 月提出的概念。它描述了一种全新的编程方式：**通过自然语言和 AI 对话，让 AI 帮你写代码，你只需要描述需求、测试结果、指导方向。**
@@ -149,6 +152,13 @@ OpenClaw（曾用名 ClawdBot/Moltbot）是一款开源 AI Agent 平台，2026 �
 
 [OpenClaw 中文教程](https://openclawgithub.cc)、[OpenClaw中文文档](https://docs.openclaw.ai/zh-CN)
 
+
+
+## Hermes Agent
+
+[hermes-agent](https://github.com/NousResearch/hermes-agent/blob/main/README.zh-CN.md)，由 Nous Research 构建的自进化 AI 代理。 它是唯一内置学习闭环的智能代理——从经验中创建技能，在使用中改进技能，主动持久化知识，搜索过往对话，并在跨会话中逐步构建对你的深度理解。
+
+它是一个自主智能体，运行时间越长，能力就越强。
 
 
 ## 社区工具

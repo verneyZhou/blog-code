@@ -89,7 +89,7 @@ componentDidUpdate(prevProps, prevState, snapshot) {
 React 在 渲染 的时候, 会将任务拆分成多个小任务, 这些细分的任务则会在主线程空闲的时候进行执行, 在执行任务的期间可以随时进行暂停
 
 
-时间切片的核心思想是：如果任务不能在50毫秒内执行完，那么为了不阻塞主线程，这个任务应该让出主线程的控制权，使浏览器可以处理其他任务。让出控制权意味着停止执行当前任务，让浏览器去执行其他任务，随后再回来继续执行没有执行完的任务。
+`时间切片`的核心思想是：`如果任务不能在50毫秒内执行完，那么为了不阻塞主线程，这个任务应该让出主线程的控制权，使浏览器可以处理其他任务`。让出控制权意味着停止执行当前任务，让浏览器去执行其他任务，随后再回来继续执行没有执行完的任务。
 
 所以时间切片的目的是不阻塞主线程，而实现目的的技术手段是将一个长任务拆分成很多个不超过50ms的小任务分散在宏任务队列中执行。
 
@@ -972,7 +972,7 @@ store.dispatch({ type: 'counter/decremented' })
 
 1. 在类组件的时代时代, 为了性能优化我们经常会选择使用 PureComponent, 组件每次默认会对 props 进行一次 浅比较, 只有当 props 发生变更, 才会触发 render
 2. 在函数组件中, React 贴心的提供了 React.memo 这个 HOC(高阶组件), 它的作用和 PureComponent 很相似, 只是它是专门为函数组件设计的
-> React.memo: 默认情况下会对组件 props 进行 浅比较, `只有 props 变更才会触发 render`
+> React.memo: 默认情况下`会对组件 props 进行 浅比较, 只有 props 变更才会触发 render`
 
 
 
@@ -1264,7 +1264,7 @@ React使用一个全局标志 `isBatchingUpdates` 来控制是否批处理。Rea
 但在`原生事件、setTimeout、Promise`这些React无法控制的执行上下文中，这个标志是false，setState会立即执行，所以是'同步'的。
 
 React 18的改变 ：
-React 18引入了`自动批处理，不再依赖执行上下文，而是基于调度器`。现在所有的setState都会通过调度器进行批处理，无论在什么场景下都是'异步'的，行为更加一致。如果需要强制同步更新，可以使用 flushSync
+React 18引入了`自动批处理，不再依赖执行上下文，而是基于调度器`。现在`所有的setState都会通过调度器进行批处理`，无论在什么场景下都是'异步'的，行为更加一致。如果需要强制同步更新，可以使用 flushSync
 
 ``` js
 import { flushSync } from 'react-dom';
@@ -1411,3 +1411,178 @@ useState 返回数组相比于对象会更灵活、解构起来也会更简洁�
 然而，React团队也提供了一些优化手段来避免不必要的渲染。例如，可以使用`shouldComponentUpdate`生命周期方法或`React.memo高阶组件`来包裹函数组件，这样`只有当props或state真正发生变化时，组件才会重新渲染`。这种技术被称为“纯组件”（pure component）或“记忆化组件”（memoized component），它们可以帮助提高React应用程序的性能。
 
 如果你使用的是函数组件和Hooks，你可以使用useMemo和useCallback来避免不必要的计算和渲染。
+
+
+
+### React的memo和Vue的computed分别是什么原理？
+
+**React memo 原理**
+
+- 本质是高阶组件，“组件级缓存/短路渲染”： React.memo(Component, areEqual?) 返回一个特殊类型的组件，React 在协调（reconciliation）阶段遇到它时，`会先比较“上一次 props”和“这一次 props”`。
+
+默认是对 props 做`浅比较`（shallow equal）：逐个 key 比较 `Object.is(prevProps[key], nextProps[key]) `。
+
+跳过的是“执行函数组件本身”和“生成新的子 vnode 树”这一步，从而`减少 render 计算和后续 diff 工作量`。
+
+
+**Vue computed 原理**
+
+- 第一次读取 computedRef.value 时才执行 getter（惰性求值），`并把 getter 里访问到的响应式数据收集为依赖`（dep tracking）。
+- `之后再次读取，如果依赖没变，直接返回上次缓存的结果，不重复执行 getter`。当依赖项变更时，不会立刻重新计算，在下一次有人读取 .value 时才重新计算（依然`惰性`）。
+
+computed 解决的是“派生数据的重复计算”，靠的是“依赖收集 + 缓存 + 脏标记”。
+
+
+**Vue v-memo 原理**
+
+本质是“VNode 子树级别的缓存/跳过 patch”： v-memo="[dep1, dep2]" 作用在模板的一段子树上，运行时会把这段子树的“上次依赖数组”和“上次生成的 vnode（或 patch 所需信息）”缓存起来。
+
+- 组件重新渲染生成新 vnode 过程中，遇到 v-memo 节点`会先比较依赖数组是否变化`（逐项 Object.is ）。
+- 如果依赖数组完全相同：`直接复用之前的 vnode/patch 结果，跳过这段子树的重新创建与后续` diff/patch（等价于“这段模板不参与本次更新”）。如果变化：正常重新创建这段 vnode 并走 diff。
+
+一句话：v-memo 解决的是“`某段模板子树不需要跟着父组件一起更新`”，让更新范围更小。
+
+
+
+### react-loashable实现懒加载的原理？路由懒加载的原理？
+
+`react-loadable` 本质是一个`高阶组件：内部维护 loading / loaded / error 状态`。核心就是“把同步 import 变成异步 import() ”，`让打包器（webpack）把目标模块拆成单独 chunk；组件第一次渲染时再去下载该 chunk`。
+- 首次渲染触发 loader() （通常是 `() => import('./X')` ），`返回 Promise`。
+- Promise pending 时渲染 loading 组件（骨架屏/Spinner）。
+- resolve 后把模块缓存起来（避免重复加载），触发 setState，改渲染真正组件。
+- reject 时渲染错误态，可配合重试。
+
+它还会做两类增强：
+- `预加载`：暴露 preload() ，比如提前把“用户即将进入的页面 chunk”拉下来。
+- `SSR`：服务端渲染时收集本次渲染用到的 chunk（模块名/依赖），把对应 `<script>` 预注入到 HTML，避免客户端首屏再二次请求造成闪烁或 mismatch。
+
+`react-loadable = 动态 import + HOC 状态机 + chunk 缓存 +（可选）SSR chunk 收集与预加载`
+
+
+`路由懒加载`就是“按路由维度做 code splitting”：`每个路由组件用 import() 动态加载`，匹配到该路由时才发起网络请求下载对应 chunk。
+
+- React 16.6+ 推荐用原生方案：
+  - `React.lazy(() => import('./Page'))` 把动态 import 包装成一个“可渲染的组件类型”。
+  - 渲染时如果模块还没加载完，会“抛出一个 Promise”，由最近的 <Suspense fallback=...> 接住并显示 fallback；加载完成后再继续渲染真实页面组件。
+
+- 结合路由就是：在路由表里把 element/component 换成 lazy 出来的组件，并在外层放一个 Suspense 。
+
+- 本质流程： `路由匹配 -> 渲染 Lazy 组件 -> 触发 import() 下载 chunk -> Suspense 展示 fallback -> 下载完成 -> 渲染页面 `。
+
+
+跟 react-loadable 有啥区别”：
+- `react-loadable 是早期社区方案`，自己管理 loading/error，且更强调 SSR 的 chunk 预注入。
+- `React.lazy + Suspense 是官方方案`，语义更统一；但早期对 SSR 支持较弱（现在生态里一般用框架/方案解决，比如 Next/Remix 或 React Router 的 data APIs/第三方加载方案）。
+
+
+
+### React中的闭包异步更新问题
+
+有时通过useState拿到的值不是最新的
+
+- 复现例子：
+1. 点击`checkLater`事件，之后马上点击`setCount`进行count增加；这时ui中count会同步渲染为1；
+2. 等待3s以后，checkLater方法中打印count为0
+``` tsx
+import {useEffect, useRef, useState} from 'react';
+
+export default function ClosureStaleDemo() {
+  const [count, setCount] = useState(0);
+
+  const checkLater = async () => {
+    await new Promise(r => setTimeout(r, 3000));
+    console.log(`count=${count}`); // 它读取的是触发 checkLater 那次 render 的快照
+  };
+
+  return (
+    <div>
+      <div>count: {count}</div>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+      <button onClick={checkLater}>异步读取</button>
+    </div>
+  );
+}
+```
+原因：函数式组件每次 render 都生成一套新的变量与函数。事件处理器是“那次 render 的函数引用”。函数一旦开始执行（即便中间 await/定时器暂停），后续继续运行的仍然是“那次调用时的闭包环境”，不会自动切换到新一轮渲染的变量。`事件处理、Promise、setTimeout、订阅等回调会闭包住创建它们那次 render 的快照，后续不会自动变成“新值”`。
+
+因为 useState更新 =》 组件render 是异步发生的，就算通过setTimeout延迟拿数据，也会拿到旧值，因为闭包的特性
+
+解决方案：
+1. 使用 ref 保存最新值
+  - 在 useEffect 里同步最新 state 到 ref；异步/订阅回调中读取 ref.current。
+  - 适用“读最新值”的所有异步场景。
+
+``` tsx
+import {useEffect, useRef, useState} from 'react';
+
+export default function ClosureStaleDemoFixed() {
+  const [count, setCount] = useState(0);
+  const latestCountRef = useRef(count);
+  useEffect(() => {
+    latestCountRef.current = count; // 同步最新值到 ref
+  }, [count]);
+
+  const checkLater = async () => {
+    await new Promise(r => setTimeout(r, 500));
+    alert(`count=${latestCountRef.current}`); // 读取最新值
+  };
+
+  return (
+    <div>
+      <div>count: {count}</div>
+      <button onClick={() => setCount(c => c + 1)}>+1</button>
+      <button onClick={checkLater}>异步读取</button>
+    </div>
+  );
+}
+```
+
+2. 把后续逻辑搬到 useEffect
+  - 监听相关 state/props 变化，在 effect 中继续流程，避免在旧闭包里推进逻辑。
+
+3. 使用函数式 setState
+  - 对基于旧值的更新使用 setState(prev => next)，避免多次更新的竞态和丢失。
+
+4. 等下一帧再读
+  - 在触发一次 setState/store 更新后，用 requestAnimationFrame/微任务再读取 ref，从而避开当前闭包的旧快照。
+
+
+
+### React中useContext主要是做什么的？和其他的React第三方数据管理库如Redux有什么区别？
+
+useContext 主要用来“读取并订阅”某个 React Context 的值，从而实现 `跨组件层级传参` （避免层层 props 透传）。它更像是 React 内置的“依赖注入/全局配置通道”，常见用途是：`主题（theme）、多语言（i18n）、当前用户信息、权限、组件库配置、路由/表单上下文等`。
+
+**useContext 做什么**
+- 你用 `createContext` 创建一个上下文，然后用 `<Provider value={...}>` 在组件树上方提供值
+- 子树里的组件通过 `useContext(MyContext)` 直接拿到这个值
+- 当 Provider 的 value 发生变化时， 所有消费该 Context 的组件都会重新渲染 （更准确：所有读取该 Context 的 consumer 都会被通知）
+
+
+**和 Redux（等第三方状态管理）有什么区别**
+
+1. `定位不同`
+- Context：`解决“怎么把值传到深层组件”的问题`（通道/机制）。不自带复杂的状态组织、更新约束、调试体系。
+- Redux（及类似库：MobX、Zustand、Recoil、Jotai…）：`解决“状态怎么存、怎么更新、怎么推导、怎么调试、怎么扩展”的系统性问题`。
+
+2. `更新与性能模型不同`
+- Context：`Provider value 变了，所有用到该 Context 的组件都会受影响`；如果 value 是对象且每次 render 都创建新对象，容易造成“无意义的全量刷新”。
+> Context 默认`不是字段级订阅`。React 判断是否需要通知 consumers，会对 Provider的value进行浅比较，只要 value 变了（`通常你更新某个属性会创建一个新对象： setValue(v => ({...v, a: 2}))` ），React 就会通知所有useContext(MyContext) 的组件更新。`即使某个组件“只读了 value 里的另一个字段”，它也会重新渲染，因为它订阅的是这个 Context 的整体 value`。
+
+- Redux：组件通常通过 selector 订阅 store 的“切片”，`只有 selector 结果变化才触发更新；并且有成熟的 memo/selector 生态（例如 Reselect）来控制重渲染粒度`。
+
+
+3. `工程能力与生态不同`
+- Context：React 内置、零依赖；但缺少内建的 devtools 时间旅行、action 日志、middleware、可预测的数据流约束等。
+- Redux：`强约束、可预测`（尤其 Redux Toolkit 体系），配套 DevTools、middleware（日志、埋点、持久化、请求流、权限等）、更适合大型团队协作与复杂业务。
+
+
+4. `适用场景不同`
+- 更适合 Context/useContext：
+  - `“全局但低频变化”的数据`：theme、locale、feature flags、权限能力集、当前用户（若不频繁变更）、DI 服务（API client）等
+  - `组件库/业务组件内部的“局部共享状态”`：例如一个 Form/Modal/Table 子树内共享数据
+
+- 更适合 Redux/第三方库：
+  - `“全局且高频变化”的数据`：复杂页面状态、列表筛选分页、实时数据、跨页面共享且交互多的状态
+  - `需要强可维护性`：`统一更新入口、可追踪 action、可回放调试、复杂异步/副作用治理、多人协作边界清晰`
+
+

@@ -157,6 +157,9 @@ agent课程：
 
 - [ai-medical-assistant](https://github.com/zhttyy520/ai-medical-assistant/tree/main)
 
+- [AI 应用的前端性能优化：流式渲染、Token 节约与缓存策略](https://mp.weixin.qq.com/s/JqY-AX6n9HtghRr-T3NwZQ)
+
+
 
 ### MCP
 
