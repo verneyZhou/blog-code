@@ -46,11 +46,11 @@ module.exports = [
     },
     
     { text: '其他', link: '/tool/'},
-    { text: '关于',
-        items: [
-            {text: 'ME', link: '/about/'},
-            { text: 'Github', link: 'https://github.com/verneyZhou'},
-            // {text: '考研', link: '/about/kaoyan/'}
-        ]
-    },
+    // { text: '关于',
+    //     items: [
+    //         {text: 'ME', link: '/about/'},
+    //         { text: 'Github', link: 'https://github.com/verneyZhou'},
+    //         // {text: '考研', link: '/about/kaoyan/'}
+    //     ]
+    // },
 ]
