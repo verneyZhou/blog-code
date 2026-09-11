@@ -1,3 +1,13 @@
+---
+title: README
+date: 2026-09-01 13:42:19
+permalink: /pages/5c4606/
+categories:
+  - about
+  - kehuan
+tags:
+  - 
+---
 # 《批改者》科幻中篇设计文档
 
 > 一部以"宇宙的目的"为主题的硬科幻中篇小说（约 5 万字）完整设计稿
