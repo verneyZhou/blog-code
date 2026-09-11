@@ -10,7 +10,7 @@ tags:
 ---
 
 
-# 面试题收集2024
+<!-- # 面试题收集2024 -->
 
 
 
@@ -26,7 +26,7 @@ tags:
 
 ### CSS3新属性？
 
-text-shadow, box-shadow, border-raduis, transform, transition, animation, RGBA和透明度，媒体查询
+text-shadow, box-shadow, border-radius, transform, transition, animation, RGBA和透明度，媒体查询
 
 
 - css可继承属性：`font-family、font-size、font-style、color、line-height、text-align、text-indent、visibility、opacity`
@@ -64,12 +64,19 @@ ie盒模型（border-box）: width = content + padding + border; `box-sizing: bo
     overflow: hidden; /*文字长度超出限定宽度，则隐藏超出的内容*/
     text-overflow: ellipsis; /* 规定当文本溢出时，显示省略符号来代表被修剪的文本 */
     white-space: nowrap; /* 设置文字在一行显示，不能换行 */
+
+    /* Flex/Grid 布局中，flex item 的 min-width 初始值为 auto（不允许缩小到小于内容固有尺寸），导致即使空间不足也不收缩。必须显式设为 min-width: 0。 */
+
 }
+
 
 .ellipse-2 {
     display: -webkit-box; /* 将对象作为弹性伸缩盒子模型显示  */
     -webkit-line-clamp: 2; /* 用来限制在一个块元素显示的文本的行数, 2 表示最多显示 2 行。 为了实现该效果，它需要组合其他的WebKit属性 */
+    /* 单独写-webkit-box-orient这个属性wepack打包会被过滤掉 */
+    /*! autoprefixer: off */
     -webkit-box-orient: vertical; /* 设置或检索伸缩盒对象的子元素的排列方式 */
+    /* autoprefixer: on */
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -88,6 +95,27 @@ ie盒模型（border-box）: width = content + padding + border; `box-sizing: bo
   }
 }
 ```
+
+
+### 怎么实现文本自适应溢出省略，当文本省略时鼠标悬浮还能展示？
+
+``` css
+  max-width: 100%;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  /* 省略号的展示/隐藏完全由浏览器（CSS）自动处理，JS 不参与渲染。JS 只负责「检测是否发生了截断」这一件事。 */
+```
+ResizeObserver监听页面宽度变化，判断是否有省略：
+1. css：往元素里临时插入一个 em ，用 getBoundingClientRect() 比较是否越界，越界就认为发生省略
+2. js：通过隐藏测量节点 `scrollHeight > clientHeight`（多行） 判断是否超出行数
+
+*工作流程示意*
+- 用户拖拽面板变窄 → 触发 ResizeObserver 回调
+- 此时浏览器已经根据新宽度重新布局：若内容放不下，CSS 自动在该元素末尾画出`…`
+- 同一帧内你的 JS 回调执行检测：`el.scrollWidth - el.clientWidth > 1`（单行）则认为发生省略；省略则添加悬浮展示tooltip
+
 
 
 ### BFC
@@ -156,7 +184,7 @@ grid-template-columns: 1fr 1fr 1fr; /*  定义每一列的列宽, 表示分为3�
 grid-template-rows: 1fr 1fr 1fr; /*  定义每一行的行高，表示分为3行 */
 /* `grid-template-columns`和`grid-template-rows`，可以使用绝对单位，也可以使用百分比。并且为了表示比例关系，Grid布局提供了`fr`关键字，如果设置`1fr`和`2fr`，表示后者是前者的两倍。 */
 column-gap：5px; /* 用于设置列间距 */
-grid-template-columns: minmax(40px, 1fr) auto minmax(40px, 1fr); /*  表示分为3行，如果容器宽度很大：左右两列会均分剩余空间；如果容器很窄：左右两列至少 40px，中间 auto 可能被压缩或导致溢出（取决于中间内容的最小宽度）。 */
+grid-template-columns: minmax(40px, 1fr) auto minmax(40px, 1fr); /*  表示分为3列，如果容器宽度很大：左右两列会均分剩余空间；如果容器很窄：左右两列至少 40px，中间 auto 可能被压缩或导致溢出（取决于中间内容的最小宽度）。 */
 grid-template-columns: repeat(4, minmax(0, 1fr)); /* 定义一个 4 列 的 Grid, 每列宽度在 0 到 1fr 之间 */
 grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* 列数不固定 ，能放下多少列就放多少列；每列 至少 320px ，有多余空间时再拉伸。*/
 ```
@@ -313,7 +341,7 @@ DOMContentLoaded事件`在DOM树构建完成后就会触发`，因此可以更�
 
 [meta 标签](https://juejin.cn/post/6987919006468407309)
 
-head标签用于`定于文档头部信息`，它是所有头部元素的容器。head中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供元信息等等: 
+head标签用于`定义文档头部信息`，它是所有头部元素的容器。head中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供元信息等等: 
 
 `base, link, meta, script, style, 以及 title`
 
@@ -353,6 +381,7 @@ meta: `<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requ
 ### visibility: hidden 与 opacity: 0 有什么区别
 
 1. visibility:hidden 会被子元素继承，可以通过设置子元素visibility:visible 使子元素显示出来; opacity: 0 也会被子元素继承，但是不能通过设置子元素opacity: 0使其重新显示; 
+> opacity 在 CSS 规范里是 non-inherited 属性。子元素看起来也透明，是因为 opacity 作用于整个元素子树作为一个渲染组（且 opacity < 1 会创建 stacking context），子元素无法通过自身设置抵消——这是"分组渲染"效果，不是属性继承。
 2. visibility:hidden 元素上绑定的事件也无法触发；opacity: 0元素上面绑定的事件是可以触发的。
 3. visibility触发的是重绘（repaint），而opacity触发的是合成线程（composite）
 
@@ -432,6 +461,194 @@ SVG和Canvas都是用于在Web页面上绘制图形的技术
 - PNG格式是一种`无损压缩格式`，它支持透明度，可创建带有透明背景的图像, PNG图像的优点是图像质量不会受到损失，但文件大小相对较大，不如JPG和WebP压缩得那么好
 
 - WebP格式是一种新的图像格式，由Google开发。它支持有损和无损压缩，`具有更高的压缩比，同时保留较好的图像质量`。WebP图像支持透明度，可用于制作带有透明背景的图像，还支持动画。然而，WebP尚未被所有设备和软件广泛支持，但在现代浏览器中得到了很好的支持。图片压缩内存较小
+
+
+
+
+### 在选择样式方案的时候， CSS Modules 和 一般的css方案有什么区别？
+
+``` js
+// css modules
+import styles from './index.module.css'
+<button className={`${styles.button} ${styles[variant]}`} />
+
+// 一般的css方案
+import './index.css'
+<button className="button" />
+```
+
+1. `作用域隔离`：CSS Modules 自动给类名加 hash，从机制上杜绝样式冲突。全局 class 依赖人工命名约定（BEM 等），AI 生成代码时容易产生类名碰撞。
+2. `类型安全`：CSS Modules 配合 TypeScript 有类型提示，styles.button 写错了编译期就能发现。全局 className="button" 是纯字符串，AI 生成时容易拼写错误且无感知。
+3. `死代码消除`：CSS Modules 能 tree-shake 未使用的样式。import './index.less' 是副作用导入，无论用没用都会打包进去。
+4. `AI 友好性`：这是最关键的一点。对于 AI Agent 自动生成代码的场景，CSS Modules 的约束更强、更确定——AI 不可能意外创建全局污染的类名。而全局 class 方案下，AI 生成的类名可能跟已有类冲突，且难以自动检测。
+
+
+### preload和prefetch有什么异同呢？
+
+两者的本质区别一句话：preload 是"我现在就要用"，prefetch 是"我下一步可能用"。 一个服务当前页面，一个服务未来页面。
+
+preload 靠"内存复用 + 提前下载"服务当前页；prefetch 靠"HTTP 缓存"服务未来页——两者机制本质不同。
+
+```
+preload（高优先级，立即下载）
+  解析 head 时 → 立刻发起请求，抢占带宽
+  → 遇到 <img src="同URL"> → 从内存直接拿，不再请求
+  → 如果页面没用这张图 → 白下了（浪费 + warning）
+
+prefetch（低优先级，空闲下载）
+  解析时 → 放进"空闲队列"，浏览器没事干才下载
+  → 下载完存进 HTTP 缓存
+  → 用户真正跳到下一个页面时 → 从缓存秒加载
+  → 用户没跳 → 这个资源只是占了点缓存，无伤大雅
+```
+
+- **电商场景怎么选（判断标准）：**
+```
+判断："这个资源，用户这次打开页面时一定用得到吗？"
+
+┌─ 一定用得到（当前页核心内容）──→ preload
+│     · 首页 LCP 轮播图
+│     · 首屏关键 CSS / JS bundle
+│
+└─ 大概率用不到（用户下一步才可能用）──→ prefetch
+      · hover 到秒杀入口 → prefetch 秒杀页 chunk
+      · 进入商品详情 → prefetch 结算页资源
+      · 浏览列表 → prefetch 下一页数据
+```
+
+- **React项目中如何使用？**
+
+1. 创建动态注入方法：
+``` js
+// src/utils/resource-hints.ts
+
+/** 动态注入 preload（立即、高优先级下载） */
+export function preloadResource(href: string, as: 'image' | 'script' | 'style' = 'image') {
+  // 已存在同 URL 就不重复注入
+  if (document.querySelector(`link[href="${href}"][rel="preload"]`)) return;
+
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = as;
+  link.href = href;
+  if (as === 'image') link.fetchPriority = 'high'; // 在 preload 之上再叠加的优先级增强，只对支持它的浏览器生效
+  document.head.appendChild(link);
+}
+
+/** 动态注入 prefetch（浏览器空闲时低优先级下载，用于核心链路预取） */
+export function prefetchResource(href: string) {
+  if (document.querySelector(`link[href="${href}"][rel="prefetch"]`)) return;
+
+  const link = document.createElement('link');
+  link.rel = 'prefetch';
+  link.href = href;
+  document.head.appendChild(link);
+}
+
+```
+
+2. 使用：
+``` tsx
+// src/pages/Home.tsx
+import { useEffect } from 'react';
+import { prefetchResource } from '@/utils/resource-hints';
+import Banner from '@/components/Banner';
+
+export default function Home() {
+  // 进入首页：preload LCP 图（双保险，防止 index.html 漏配/动态 URL）
+  useEffect(() => {
+    preloadResource('/images/banner-1.webp', 'image');
+  }, []);
+
+  // 秒杀入口：hover 时就 prefetch 秒杀页的 JS chunk（点击时零等待）
+  const handleHoverSeckill = () => {
+    prefetchResource('/assets/seckill-page.abc123.js');
+  };
+
+  return (
+    <div>
+      <section onMouseEnter={handleHoverSeckill} className="seckill-entry">
+        {/* 秒杀入口卡片 */}
+      </section>
+      {/* LCP 图片：同一 URL，复用 preload 结果 */}
+      <Banner src="/images/banner-1.webp" />
+    </div>
+  );
+}
+```
+
+3. 进阶使用：
+``` tsx
+// src/router.tsx
+import { lazy, Suspense } from 'react';
+
+// lazy 分包：秒杀页、结算页各自独立 chunk
+const Seckill = lazy(() => import('@/pages/Seckill'));
+const Checkout = lazy(() => import('@/pages/Checkout'));
+
+// 预取工具：手动触发 import() 加载 chunk（prefetch 的 JS 版）
+export function prefetchRoute(path: string) {
+  switch (path) {
+    case '/seckill': import('@/pages/Seckill'); break;   // 预热秒杀页 chunk
+    case '/checkout': import('@/pages/Checkout'); break;  // 预热结算页 chunk
+  }
+}
+
+// src/pages/Home.tsx —— 秒杀入口 hover 时预热 chunk
+<div
+  className="seckill-entry"
+  onMouseEnter={() => prefetchRoute('/seckill')}
+  onClick={() => navigate('/seckill')}
+>
+  秒杀专场
+</div>
+```
+
+
+### preconnect、prerender 跟 preload 和 prefetch 有什么异同呢？
+
+成本从轻到重：`preconnect < prefetch < preload < prerender`
+```
+preconnect（最轻）：只做"预握手"
+  浏览器提前 DNS 解析 + TCP 建连 + TLS 握手
+  → 后续请求到达时，连接已就绪，直接传数据
+  → 典型例子：<link rel="preconnect" href="https://api.example.com" />
+  → 节省的是 1-3 次 RTT 的握手时间
+
+prerender（最重）：整页预渲染
+  后台完整执行目标页面的 HTML/CSS/JS
+  → 用户点击那一刻 → 页面已经完全渲染好，切换零延迟
+  → 代价：内存翻倍、CPU 持续占用
+  → 所以浏览器严格限制：只预渲染"用户高概率会去"的同源页面
+```
+> prerender 只对同源页面生效，而且浏览器会自己判断资源是否够用（低端机/内存紧张时可能忽略 prerender 指令）。所以它不能依赖，只能当"锦上添花"。`<link rel="prerender">` 老语法已经被 Chrome 移除，现在用 Speculation Rules API
+
+
+**四个属性怎么配合（优化管线）：**
+```
+一次完整的"预测用户下一步"应该这样组合：
+
+用户 hover 到"支付结果页"入口
+  ├── preconnect → 提前和 API 域名握手
+  ├── prefetch   → 空闲时下结果页的 JS chunk
+  └── prerender  → 用户几乎确定会点 → 整个页面后台跑起来
+
+用户 hover 到"秒杀入口"
+  ├── preconnect → 连接已就绪
+  └── prefetch   → 下秒杀页 chunk（不一定点，别 prerender，太浪费）
+
+首页 LCP 图（每次必显示）
+  └── preload + fetchpriority="high"
+```
+> 支付链路是全站对延迟最敏感的一环，preconnect 把这段握手提前到用户进入收银台时并行完成，真正点击支付时连接已就绪，首次请求直接发数据。如果支付请求是带 Cookie 或需要 CORS 凭据，用 crossOrigin="use-credentials"
+
+
+
+
+
+
+
+
 
 
 
@@ -792,6 +1009,18 @@ V8 的垃圾回收策略主要基于分代式垃圾回收机制，V8 中`将堆�
 
 
 
+**GC 什么时候触发？**
+
+- `新生代空间分配失败`：`最主要的触发方式`。往新生代（Eden）分配对象时发现空间不足 → 立刻触发一次 Minor GC（Scavenge）
+- `老生代增长超过阈值`：V8 会动态计算「老生代已用内存 / 堆上限」的增长因子，超过阈值就调度 Major GC（增量标记启动）
+- `晋升失败`：新生代对象要晋升到老生代，但老生代空间不够 → 触发 Major GC 腾地方
+- `内存压力信号`：系统内存紧张（比如移动端收到 memory warning）、performance.measureUserAgentSpecificMemory() 调用、页面切到后台（visibilitychange，部分浏览器会趁机做全量 GC）
+- `手动触发`：`--expose-gc 标志下的 window.gc()`，仅调试用
+
+分配行为驱动的被动回收。你的代码不分配内存，GC 基本不会动。这就是为什么“死循环不产生垃圾”不会引发 GC 卡顿，而“高频创建临时对象”会频繁触发 Scavenge。
+> 实际上 Chrome 只是在特定时机（如页面隐藏）做机会性回收，不存在固定的轮询周期。
+
+
 
 
 ### js模块化
@@ -800,7 +1029,7 @@ V8 的垃圾回收策略主要基于分代式垃圾回收机制，V8 中`将堆�
 
 `namespace模式`: 减少了全局变量，解决命名冲突; 会暴露所有模块成员，数据不安全
 
-`IIFE模式`: 匿名函数自调用(闭包)，数据是私有的, 外部只能通过暴露的方法操作
+`IIFE模式`: 匿名函数自调用，数据是私有的, 外部只能通过暴露的方法操作
 > 保证模块的独立性，还使得模块之间的依赖关系变得明显。
 
 
@@ -899,6 +1128,11 @@ es6 vs commonjs:
 > 消息的发布者，不会将消息直接发送给特定的订阅者，而是通过消息通道广播出去，然后呢，订阅者通过订阅获取到想要的消息。
 
 4. 装饰者模式：动态地给某个对象添加一些额外的职责，是一种实现继承的替代方案；`在不改变原对象的基础上，通过对其进行包装扩展，使原有对象可以满足用户的更复杂需求`，而不会影响从这个类中派生的其他对象。
+> B端平台权限组件
+
+
+5. 代理模式：不直接操作真实对象，而是通过一个“代理”做访问控制、延迟执行、缓存复用等
+> 封装图片组件，实现url懒加载和缓存处理
 
 
 
@@ -1250,6 +1484,136 @@ IndexedDB 就是`浏览器提供的本地数据库`，它可以被网页脚本�
 6. `支持二进制储存。` IndexedDB 不仅可以储存字符串，还可以储存二进制数据（ArrayBuffer 对象和 Blob 对象）。
 
 
+**简单使用 Demo（缓存商品列表数据的完整流程）**
+
+IndexedDB 的 API 全部是异步的，基本套路固定为四步：`打开数据库（含版本升级建表） => 建事务 => 拿到对象仓库 => 增删改查`。下面以「缓存商品列表，下次进入秒开」为例。
+
+```js
+// ====== 1. 打开数据库（首次打开会触发 onupgradeneeded，在这里建表建索引）======
+// 参数：数据库名、版本号。版本号变更时才会触发 onupgradeneeded
+const DB_NAME = 'mall'
+const DB_VERSION = 1
+const STORE = 'products'
+
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, DB_VERSION)
+
+    // 数据库不存在或版本升级时触发，只在这里建表/建索引
+    req.onupgradeneeded = (e) => {
+      const db = e.target.result
+      if (!db.objectStoreNames.contains(STORE)) {
+        // 建对象仓库，keyPath 指定主键；也可以 autoIncrement: true 自增
+        const store = db.createObjectStore(STORE, { keyPath: 'id' })
+        // 按 name 建索引，之后可以按 name 快速查询
+        store.createIndex('name_idx', 'name', { unique: false })
+      }
+    }
+
+    req.onsuccess = () => resolve(req.result)
+    req.onerror = () => reject(req.error)
+  })
+}
+
+// ====== 2. 封装一套简单 API =======
+const dbp = openDB() // 模块内只打开一次，后续复用连接
+
+// 增 / 改（put：主键存在就更新，不存在就插入）
+async function saveProduct(product) {
+  const db = await dbp
+  const tx = db.transaction(STORE, 'readwrite') // 事务：要么全成功，要么全回滚
+  tx.objectStore(STORE).put(product)
+  return new Promise((resolve, reject) => {
+    tx.oncomplete = () => resolve() // 事务完成
+    tx.onerror = () => reject(tx.error)
+  })
+}
+
+// 查（按主键 id 查）
+async function getProduct(id) {
+  const db = await dbp
+  const tx = db.transaction(STORE, 'readonly')
+  const req = tx.objectStore(STORE).get(id)
+  return new Promise((resolve, reject) => {
+    req.onsuccess = () => resolve(req.result) // 没有则为 undefined
+    req.onerror = () => reject(req.error)
+  })
+}
+
+// 查（按索引 name 查：命中索引，不需要遍历全部数据）
+async function getByName(name) {
+  const db = await dbp
+  const tx = db.transaction(STORE, 'readonly')
+  const idx = tx.objectStore(STORE).index('name_idx')
+  const req = idx.getAll(name)
+  return new Promise((resolve, reject) => {
+    req.onsuccess = () => resolve(req.result)
+    req.onerror = () => reject(req.error)
+  })
+}
+
+// 删
+async function deleteProduct(id) {
+  const db = await dbp
+  const tx = db.transaction(STORE, 'readwrite')
+  tx.objectStore(STORE).delete(id)
+  return new Promise((resolve, reject) => {
+    tx.oncomplete = () => resolve()
+    tx.onerror = () => reject(tx.error)
+  })
+}
+
+// 遍历全部
+async function getAll() {
+  const db = await dbp
+  const tx = db.transaction(STORE, 'readonly')
+  const req = tx.objectStore(STORE).getAll()
+  return new Promise((resolve, reject) => {
+    req.onsuccess = () => resolve(req.result)
+    req.onerror = () => reject(req.error)
+  })
+}
+
+// ====== 3. 实际使用：缓存 + 二次进入秒开 =======
+async function loadProductsFromCacheOrNetwork() {
+  // 优先读本地缓存
+  const cached = await getAll()
+  if (cached.length > 0) {
+    console.log('命中本地缓存，直接渲染，实现秒开')
+    return cached
+  }
+  // 缓存未命中才请求接口
+  const res = await fetch('/api/products')
+  const list = await res.json()
+  // 批量写入缓存（事务内连续 put，失败整体回滚）
+  const db = await dbp
+  const tx = db.transaction(STORE, 'readwrite')
+  const store = tx.objectStore(STORE)
+  list.forEach((p) => store.put(p))
+  await new Promise((resolve, reject) => {
+    tx.oncomplete = resolve
+    tx.onerror = () => reject(tx.error)
+  })
+  return list
+}
+
+// ====== 4. 调用示例 =======
+saveProduct({ id: 1, name: '苹果手机', price: 5999 })
+  .then(() => saveProduct({ id: 2, name: '华为平板', price: 3999 }))
+  .then(() => getProduct(1))        // → { id:1, name:'苹果手机', price:5999 }
+  .then(() => getByName('苹果手机')) // 走 name_idx 索引查询
+  .then(() => loadProductsFromCacheOrNetwork()) // 第二次进入直接走缓存
+```
+
+**几个面试可用的要点：**
+1. `onupgradeneeded 只在首次或版本升级时触发`，建表建索引必须放在这里；老数据结构变更靠 bump 版本号。
+2. 所有操作都要走 `transaction`，且 `readwrite` 事务内的操作会排队执行（同一事务内连续 put 是安全的）。
+3. 一定要监听 `oncomplete / onerror` 来判断成功与失败，因为 IDBRequest 本身是异步的。
+4. `getAll` 全量读取适合小表；数据量大时用 `index.getAll(条件)` + `openCursor` 游标分批遍历，避免一次性撑爆内存。
+5. 实际工程里常配合 `idb`（一个轻量 promise 封装库）使用，可以少写很多回调样板代码。
+
+
+
 
 ### cookie 与 session 的区别
 
@@ -1439,6 +1803,8 @@ source.cancel('Operation canceled by the user.');
 
 
 Web Worker解决计算`不阻塞 UI（CPU 密集）`，Service Worker解决`网络与离线体验`（拦截请求 + 缓存 + PWA 能力）。
+
+
 
 
 ## TS部分
@@ -1916,30 +2282,27 @@ initProvide(vm) // resolve provide after data/props
 callHook(vm, 'created')
 ```
 
-1. `初始化Vue实例`： 创建一个新的 Vue 实例对象，并执行 Vue 构造函数。
+1. `初始化Vue实例`： 创建一个新的 Vue 实例对象，并执行 Vue 构造函数（new Vue(options) → this._init(options)）。
 
-2. `合并配置`： 将用户传入的配置选项与默认配置选项进行合并，生成最终的配置对象。通常配置选项包括 data、methods、computed、watch、props、components、created、mounted 等。
+2. `合并配置`： 通过 mergeOptions 将用户传入的配置选项与默认/父级配置进行合并，生成最终的 $options。通常包括 data、methods、computed、watch、props、components、created、mounted 等。
 
-3. `初始化生命周期钩子`： 在合并配置完成后，Vue 将初始化实例的生命周期钩子，如 beforeCreate、created、beforeMount、mounted 等。
+3. `初始化生命周期状态`： initLifecycle 初始化实例的生命周期内部状态（$parent、$children、$root、$refs，以及 _isMounted、_isDestroyed 等标志位）。注意：这里并不是"注册生命周期钩子"，钩子只是配置项里的函数，由 callHook 在对应时机调用。
 
-4. `初始化事件系统`： Vue 实例化过程会初始化事件系统，即为实例绑定事件监听器，以便在实例的生命周期中触发对应的事件。
+4. `初始化事件系统`： initEvents 创建 vm._events，并绑定父组件传入的事件监听器，供 $on / $emit 等使用。
 
-5. `初始化数据响应式`： Vue 会对配置中的 data 属性进行响应式处理，`通过 Object.defineProperty 或 Proxy 等机制实现对数据的监听`，并为数据添加 getter 和 setter。
+5. `初始化渲染`： initRender 初始化 $attrs、$listeners、$slots、$scopedSlots，并绑定创建虚拟节点的 createElement 方法。
 
-6. `初始化依赖注入`： Vue 实例化过程会初始化依赖注入系统，以便在组件中进行依赖注入。
+6. `触发 beforeCreate 钩子`： 此时 props、data 等尚未初始化，无法访问实例数据。
 
-7. `初始化组件`： 如果配置选项中包含 components，Vue 将初始化组件，即注册组件，使其在模板中可以使用。
+7. `初始化依赖注入`： initInjections 解析 provide/inject 注入。注意顺序：在 data/props 之前执行（源码注释 resolve injections before data/props），因为 data/props 的初始化可能引用注入的值。
 
-8. `编译模板`： 如果配置选项中包含 template，Vue 将对模板进行编译，生成渲染函数。
+8. `初始化数据响应式`： initState 依次初始化 props → methods → data → computed → watch。其中 data 通过 Object.defineProperty（Vue 2）为每个属性添加 getter/setter 实现响应式。注意：Vue 2 没有使用 Proxy，Proxy 是 Vue 3 的响应式机制。
 
-9. `挂载实例`： 将实例挂载到 DOM 上，即执行 vm.$mount() 方法，将 Vue 实例与页面中的 DOM 元素进行关联。
+9. `初始化 provide`： initProvide 解析 provide 选项（在 data/props 之后执行）。
 
-10. `触发生命周期钩子`： 在实例挂载完成后，Vue 将依次触发 beforeMount 和 mounted 生命周期钩子。
+10. `触发 created 钩子`： 此时可以访问 data、methods、props 等，但 $el 尚未挂载。
 
-11. `完成实例化`： 当上述步骤全部完成后，Vue 实例化过程就完成了，此时可以通过实例对象访问数据、方法、计算属性等，并可以响应用户的操作和事件。
-
-
-
+11. `挂载实例`： 若配置了 options.el，执行 vm.$mount()：先编译模板（compileToFunctions，full build；无 template 时取 el.outerHTML），再由 mountComponent 依次触发 beforeMount → 首次渲染 → mounted。
 
 
 ### vue组件中style标签设置scoped的作用是什么，原理是什么
@@ -1996,6 +2359,26 @@ watchEffect 是`在组件实例被创建后，但在 DOM 挂载之前`立即执�
 
 
 
+### vue的nextTick实现原理是什么，跟Promise有什么区别？
+
+数据变更不会立刻同步改 DOM，而是`把“需要更新的组件渲染任务”放进队列，合并去重后在“下一次调度”统一 flush`； nextTick 就是把你的回调也塞进同一套 flush 之后的回调队列里，`保证执行时机在 DOM 更新之后`。
+> Vue 说的“DOM 更新后”指的是 `Vue 已经把虚拟 DOM patch 到真实 DOM（DOM tree 变了） ，不等于“浏览器已经把变化绘制到屏幕上（paint 完了）`”。
+
+维护 callbacks 队列 + pending 标记； nextTick(cb) 把 cb 推入队列；组件更新本身由 watcher 队列 flush 驱动； nextTick 回调在本轮更新/patch 完成后执行。
+
+“安排 flush”优先用 `微任务` ： Promise.then 或 MutationObserver ；再降级到 setImmediate / setTimeout （宏任务）。
+
+nextTick 在 DOM 更新后指的是：当 nextTick 的回调/resolve 执行时， Vue 这一轮队列导致的 `DOM patch` 已经完成 ，你此时去读 DOM（如 el.offsetHeight 、 textContent ）通常能读到更新后的结果。
+> `但它 不保证 ：你已经“肉眼可见地看到”屏幕完成绘制（paint）、CSS 动画/过渡已经开始/完成`
+
+
+那"DOM 更新后执行"是怎么保证的？
+> 关键点：DOM 更新本身也是通过同一个 nextTick 机制排队的。watcher 变更时 queueWatcher 会执行 nextTick(flushSchedulerQueue)，把调度 flush 排在 callbacks 数组的更前面。你随后 nextTick(cb) 的 cb 排在它后面。微任务触发时按 FIFO 执行：`flushSchedulerQueue（patch 虚拟 DOM → 真实 DOM）→ 你的 cb（此时 DOM 已更新）`
+
+- `Promise.then` ：只保证“当前调用栈结束后，以微任务执行”，不关心 Vue 是否已经把 DOM 更新完。只是单纯排一个微任务，不会自动对齐 Vue 的渲染批处理边界。
+- `nextTick` ：保证“Vue 已经把由你这次状态变更引起的渲染队列 flush 完、DOM 已更新”之后执行。同一轮多次状态变更只触发一次渲染 flush，你的回调也在 flush 后统一触发。
+
+Promise.then 和 Vue 的 nextTick 在现代实现里 通常都走`微任务` ，它们彼此的先后确实取决于“`谁先入队`”
 
 
 
@@ -2120,7 +2503,7 @@ StyleLint 是『一个强大的、现代化的 CSS 检测工具』, 与 ESLint �
 
 1. 减少了开发服务器启动时间：
     - webpack 需要对所有运行资源进行`提前编译处理，对依赖模块进行了语法分析转义`，最终将模块被打包到内存中；
-    - Vite 在第一次加载的时候会使用 esbuild 预构建依赖, 预构建可以提高页面加载速度：`通过依赖预构建，Vite 将有许多内部模块的 ESM 依赖关系转换为单个模块，以提高后续页面加载性能。` 
+    - Vite 在第一次加载的时候会使用 `esbuild 预构建依赖`, 预构建可以提高页面加载速度：`通过依赖预构建，Vite 将有许多内部模块的 ESM 依赖关系转换为单个模块，以提高后续页面加载性能。` 
     - Vite 以原生 ESM 方式提供源码，在浏览器请求对应URL时，再提供文件，实施了真正的路由懒加载，这个比起Webpack就要节省了不少时间。
 2. Vite减少了热更新时间:
     - webpack虽然支持动态模块热重载（HMR），即允许一个模块 “热替换” 它自己，而不会影响页面其余部分，但实践证明，其`热更新速度也会随着应用规模的增长而显著下降`。
@@ -2539,28 +2922,51 @@ iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论�
 
 ### 微前端qiankun通信方案？
 
+qiankun 有三种通信方式：Props 注入、Actions（官方全局状态）、Shared（自定义状态池）。
+
+- **Props 通信（父→子单向）**
+
+主应用在 `registerMicroApps` 或 `loadMicroApp` 时通过 `props` 字段向子应用注入数据，子应用在 `mount` 生命周期里接收。只支持父传子，不支持子传父。
+
 - **Actions 通信**
-> qiankun 官方提供的通信方式，是通过`全局状态池`和`观察者函数`进行应用间通信
+> qiankun 官方提供的通信方式，底层是`发布-订阅`模式，通过`全局状态池`和`观察者函数`进行应用间通信
 
-1. qiankun 内部提供了 initGlobalState 方法用于注册 MicroAppStateActions 实例用于通信
-2. 子应用可以先注册 `观察者` 到观察者池中，然后通过修改 `globalState` 可以触发所有的 `观察者` 函数，从而达到组件间通信的效果。
+1. qiankun 内部提供了 `initGlobalState` 方法用于初始化全局状态，返回 `MicroAppStateActions` 实例
+2. 主/子应用均可注册 `观察者` 到观察者池中，任意一方调用 `setGlobalState` 修改状态后，会触发所有已注册的`观察者`函数，从而达到双向通信的效果
 
+```js
+// 主应用
+import { initGlobalState } from 'qiankun'
+const actions = initGlobalState({ user: null })
+actions.onGlobalStateChange((state, prev) => { /* 监听变更 */ })
+actions.setGlobalState({ user: { name: 'alice' } })
+
+// 子应用（通过 mount 的 props 拿到 actions）
+export function mount(props) {
+  props.onGlobalStateChange((state, prev) => { /* 监听变更 */ })
+  props.setGlobalState({ user: { name: 'bob' } })
+}
+```
+
+> 注意：`setGlobalState` 是浅合并，只能修改初始化时声明过的一级 key，不支持深路径更新，也没有 devtools 支持。
 
 - **Shared 通信**
 
-原理就是，`主应用基于 redux 维护一个状态池，通过 shared 实例暴露一些方法给子应用使用`。同时，子应用需要单独维护一份 shared 实例，在独立运行时使用自身的 shared 实例，在嵌入主应用时使用主应用的 shared 实例，这样就可以保证在使用和表现上的一致性。
+原理是，`主应用基于某个状态管理工具（redux、mobx、zustand 等均可）维护一个状态池，通过 shared 实例暴露一些方法给子应用使用`。同时，子应用需要单独维护一份 shared 实例，在独立运行时使用自身的 shared 实例，在嵌入主应用时使用主应用的 shared 实例，这样就可以保证在使用和表现上的一致性。
 
-Shared 通信方案需要自行维护状态池，这样会增加项目的复杂度。好处是可以使用市面上比较成熟的状态管理工具，如 redux、mobx，可以有更好的状态管理追踪和一些工具集。
+Shared 通信方案需要自行维护状态池，这样会增加项目的复杂度。好处是可以使用市面上比较成熟的状态管理工具，可以有更好的状态管理追踪和一些工具集。
 
 Shared 通信方案也可以帮助主应用更好的管控子应用。子应用只可以通过 shared 实例来操作状态池，可以避免子应用对状态池随意操作引发的一系列问题。主应用的 Shared 相对于子应用来说是一个黑箱，子应用只需要了解 Shared 所暴露的 API 而无需关心实现细节。
 
 
-### 微前端实现通信隔离的原理是什么呢？
+### 微前端如何实现应用间的隔离？
 
-1. `沙箱隔离`：微前端架构中，每个子应用都运行在自己的沙箱环境中，这意味着每个子应用都有自己独立的全局变量、DOM结构以及事件循环等。通过沙箱隔离，不同子应用之间的代码互不干扰，避免了全局状态污染和潜在的冲突。
-2. `消息通信`：尽管子应用被隔离在各自的沙箱中，但它们之间以及主应用与子应用之间仍然需要通信。这通常通过定义明确的通信协议和接口来实现，例如`使用事件总线（Event Bus）或者基于消息队列的方式进行通信`。
-3. `路由管理`：在微前端架构中，路由管理也是实现通信隔离的重要一环。每个子应用都有自己的路由系统，主应用负责管理和协调这些路由。通过路由管理，可以确保在切换子应用时，旧子应用的资源得到正确释放，新子应用能够正确加载和渲染，从而实现不同子应用之间的隔离。
-4. `资源加载`：资源加载的隔离也是微前端通信隔离的重要方面。每个子应用的CSS、JavaScript等资源都是单独加载的，这可以避免样式冲突和脚本错误。
+> 更好的分类维度是四个维度：`JS 隔离（沙箱）、样式隔离、路由隔离（activeRule 前缀匹配）、通信机制（受控通道）`。沙箱负责隔离，通信是打破隔离的受控通道。
+
+1. `沙箱隔离`：微前端架构中，每个子应用都运行在自己的沙箱环境中，这意味着每个子应用都有自己独立的全局变量等。通过沙箱隔离，不同子应用之间的代码互不干扰，避免了全局状态污染和潜在的冲突。
+2. `消息通信`：尽管子应用被隔离在各自的沙箱中，但它们之间以及主应用与子应用之间仍然需要通信。这通常通过定义明确的通信协议和接口来实现，例如`使用事件总线（Event Bus）、initGlobalState 全局状态池或者 props 注入的方式`。
+3. `路由隔离`：每个子应用都有自己的路由系统，主应用通过 activeRule（通常基于 url 前缀匹配）负责管理和协调这些路由。通过路由管理，可以确保在切换子应用时，旧子应用的资源得到正确释放，新子应用能够正确加载和渲染。
+4. `样式/资源隔离`：每个子应用的CSS、JavaScript等资源都是单独加载的，配合样式隔离方案避免样式冲突和脚本错误。
 
 
 
@@ -2568,26 +2974,92 @@ Shared 通信方案也可以帮助主应用更好的管控子应用。子应用�
 
 qiankun框架为了实现`js隔离`，提供了三种不同场景使用的沙箱，分别是 `snapshotSandbox、proxySandbox、legacySandbox`。
 
+执行原理：qiankun 依赖 `import-html-entry` 抓取子应用 HTML 并抽取所有 script 内容为字符串，然后用 `new Function` 包一层并配合 `with(proxyWindow)` 执行——`function 包裹 + with + proxy` 让子应用里所有裸标识符（window、document、全局函数）都经过 Proxy 的 get 陷阱，从而实现拦截隔离：
 
-1. **快照沙箱(snapshotSandbox)**: 把主应用的 window 对象做浅拷贝，将 window 的键值对存成一个 `Hash Map`。之后无论微应用对 window 做任何改动，当要恢复环境时，把这个 Hash Map 又应用到 window 上就可以了。
-> snapshotSandbox会污染全局window，但是可以支持不兼容Proxy的浏览器; 每次微应用 unmount 时都要对每个属性值做一次 Diff
+```js
+// qiankun 执行子应用脚本的核心方式（简化）
+new Function('window', `with(window) {\n${scriptCode}\n}`)(proxyWindow)
+```
+
+---
+
+1. **快照沙箱(snapshotSandbox)**: 不支持 Proxy 的旧浏览器降级方案。把主应用的 window 对象做浅拷贝，将 window 的键值对存成一个 `Hash Map`（windowSnapshot）。
+
+```
+activate（mount）：
+  1. 全量遍历 window，存为 windowSnapshot
+  2. 将上次子应用保存的 diff（sandboxSnapshot）重新应用到 window
+
+deactivate（unmount）：
+  1. 全量遍历 window，与 windowSnapshot 逐键对比，记录变化到 sandboxSnapshot
+  2. 将 window 恢复为 windowSnapshot
+```
+
+> snapshotSandbox 会污染全局 window，且 mount/unmount 两侧都要全量遍历 window（性能差）；只支持单例，无法同时运行两个子应用。
 
 `qiankun基于es6的Proxy实现了两种应用场景不同的沙箱，一种是legacySandbox(单例)，一种是proxySandbox(多例)。都是基于Proxy实现的, 都称为代理沙箱`。
-2. **legacySandbox(单例沙箱)**: 通过监听对 window 的修改来直接记录 Diff 内容
-> 同样会对window造成污染，但是性能比快照沙箱好，不用遍历window对象。
 
+2. **legacySandbox(单例沙箱)**: 代理整个 window，用三个 Map 精准记录 Diff，避免快照沙箱的全量遍历：
 
-3. **proxySandbox(多例沙箱)**：把当前 window 的一些原生属性（如document, location等）拷贝出来，单独放在一个对象上，这个对象也称为 fakeWindow
-之后对`每个微应用分配一个 fakeWindow；当微应用修改全局变量时：如果是原生属性，则修改全局的 window；如果不是原生属性，则修改 fakeWindow 里的内容`
-> 不会污染全局window，支持多个子应用同时加载。
+```js
+// 三个 Map 各司其职
+const addedPropsMapInSandbox = new Map()     // 子应用新增的属性 → 当前值
+const modifiedPropsMapInSandbox = new Map()  // 被修改属性 → 原始值（用于 unmount 恢复）
+const currentUpdatedPropsValueMap = new Map() // 全部变化 → 最新值（用于下次 mount 重放）
 
+const proxy = new Proxy(window, {
+  set(target, prop, value) {
+    if (!target.hasOwnProperty(prop)) {
+      addedPropsMapInSandbox.set(prop, value)       // 记录新增
+    } else if (!modifiedPropsMapInSandbox.has(prop)) {
+      modifiedPropsMapInSandbox.set(prop, target[prop]) // 记录原始值
+    }
+    currentUpdatedPropsValueMap.set(prop, value)
+    target[prop] = value  // 写入真实 window
+  }
+})
+// deactivate：删除新增属性，把 modifiedPropsMapInSandbox 的原始值还原回 window
+// activate：把 currentUpdatedPropsValueMap 重新应用到 window
+```
 
-原理很容易理解, 就是 function 包裹了一层，所以代码放在了单独作用域跑，又用 with 修改了 window，所以 window 也被隔离了。这是 qiankun 的 JS 沙箱实现方案，其他的微前端方式实现沙箱可能用 iframe、web components 等方式。
+> 同样会对 window 造成污染（单例下子应用操作的是被代理的真实 window），不支持多例并行。但性能比快照沙箱好：恢复时只需回放 Diff。
+
+3. **proxySandbox(多例沙箱)**：每个子应用一个独立的 fakeWindow，是默认使用的沙箱方案：
+
+```js
+// 为每个子应用创建独立的 fakeWindow
+function createFakeWindow(globalContext) {
+  const fakeWindow = Object.create(null)
+  // 把 non-configurable 属性（top、parent 等）拷贝到 fakeWindow
+  Object.getOwnPropertyNames(globalContext)
+    .filter(p => !Object.getOwnPropertyDescriptor(globalContext, p).configurable)
+    .forEach(p => Object.defineProperty(fakeWindow, p, Object.getOwnPropertyDescriptor(globalContext, p)))
+  return fakeWindow
+}
+
+const proxy = new Proxy(fakeWindow, {
+  get(target, prop) {
+    // 先查 fakeWindow，没有则回落到真实 window（setTimeout、Array 等原生 API 都能读到）
+    return prop in target ? target[prop] : globalContext[prop]
+  },
+  set(target, prop, value) {
+    // 白名单（如 System、__cjsWrapper）：写穿到真实 window，供跨应用共享
+    if (variableWhiteList.includes(prop)) globalContext[prop] = value
+    // non-configurable / 带 setter 的属性无法重定向，穿透到真实 window（沙箱逃逸的局限）
+    // 其他属性写入 fakeWindow，不污染全局
+    target[prop] = value
+  }
+})
+```
+
+> 不会污染全局 window，支持多个子应用同时加载。`variableWhiteList` 是一个写穿白名单，用于 SystemJS 等需要跨应用共享全局变量的场景，是受控的沙箱逃逸出口。
+
+> 局限（已知逃逸向量）：`document.createElement('script')` 动态注入脚本会绕过代理执行环境；`(0, eval)(code)`、`Function('return this')()`、`window.__proto__` 等原型链操作可拿到真实 window——这也是 wujie 改用 iframe 域级隔离的动机之一。
 
 微前端方案的功能就那一句话：**当路由切换的时候，去下载对应应用的代码，然后跑在容器里。只不过这个容器的实现方案有差异。**
 
 
-qiankun、wujie、micro-app 的区别主要还是实现容器（或者叫沙箱）上有区别，比如 qiankun 是 `function + proxy + with`，micro-app 是 `web components`，而 wujie 是 `web components 和 iframe`。
+qiankun、wujie、micro-app 的区别主要还是实现容器（或者叫沙箱）上有区别，比如 qiankun 是 `function + proxy + with`，micro-app 是 `web components`，而 wujie 是 `JS 跑在 iframe 的 window 里（JS 沙箱），DOM 渲染在 Web Component 的 shadow-root 里，通过 DOM 操作代理把两者映射起来`。
 
 
 
@@ -2595,8 +3067,8 @@ qiankun、wujie、micro-app 的区别主要还是实现容器（或者叫沙箱�
 ### 微前端样式隔离
 
 qiankun 做了样式隔离，有 shadow dom 和 scoped 两种方案：
-1. shadow dom 自带样式隔离，但是 shadow dom 内的样式和外界互不影响，导致挂在body上的弹窗的样式会加不上。父应用也没法设置子应用的样式。
-2. scoped 的方案是给选择器加了一个 data-qiankun='应用名' 的选择器，这样父应用能设置子应用样式，这样能隔离样式，但是同样有挂在 body 的弹窗样式设置不上的问题，因为 qiankun 的 scoped 不支持全局样式
+1. shadow dom（`strictStyleIsolation: true`）自带样式隔离，但是 shadow dom 内的样式和外界互不影响，导致挂在body上的弹窗的样式会加不上。父应用设置子应用样式受限，但不是完全没办法：CSS 变量（custom properties）可以穿透 shadow DOM，`::part()` 也能作用于子应用暴露的 shadow 部件。
+2. scoped（`experimentalStyleIsolation: true`）的方案是运行时改写子应用的 CSS 规则，给选择器加上 `div[data-qiankun='应用名']` 前缀，并给子应用容器加上 data-qiankun 属性。子应用样式不会漏出到外部，但注意这是半隔离：`主应用的全局样式仍然会影响子应用`。同样有挂在 body 的弹窗样式设置不上的问题——弹层挂在 body 上，拿不到带 data-qiankun 属性的前缀。
 
 - react 和 vue 项目本身都会用 scoped css 或者 css modules 的组件级别样式隔离方案
 
@@ -2629,7 +3101,7 @@ qiankun 做了样式隔离，有 shadow dom 和 scoped 两种方案：
 
 - 样式隔离：iframe
 
-- 组件库打包：vite进行打包, 它提供了一个库模式 (opens new window)专门用于打包库组件~
+- 组件库打包：vite进行打包, 它提供了一个库模式专门用于打包库组件~
 
 
 ### 代码规范
@@ -2761,7 +3233,7 @@ vue: nuxt.js
 Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。
 
 特点：
-1. `异步非阻塞`：采用了非阻塞型I/O机制，`在做I/O操作的时候不会造成任何的阻塞，当完成之后，以时间的形式通知执行操作`, `能够在单个线程上处理大量并发请求`
+1. `异步非阻塞`：采用了非阻塞型I/O机制，`在做I/O操作的时候不会造成任何的阻塞，当完成之后，以事件的形式通知执行操作`, `能够在单个线程上处理大量并发请求`
 > 例如在执行了访问数据库的代码之后，将立即转而执行其后面的代码，把数据库返回结果的处理代码放在回调函数中，从而提高了程序的执行效率
 
 2. `事件驱动`：事件驱动就是当进来一个新的请求的时，`请求将会被压入一个事件队列中，然后通过一个循环来检测队列中的事件状态变化，如果检测到有状态变化的事件，那么就执行该事件对应的处理代码`，一般都是回调函数
@@ -2771,6 +3243,7 @@ Node.js 是一个开源的、跨平台的 JavaScript 运行时环境。
 Node.js底层的实现包括两个主要组件：
 1. `V8引擎`: 这是一个高性能的JavaScript引擎，负责将JavaScript代码编译成机器码并执行。它是Node.js的核心组件，使得Node.js能够运行JavaScript代码。
 2. `libuv库`: 这是一个跨平台的库，用于`处理事件循环、异步I/O、文件系统操作`等。它提供了对底层操作系统API的封装，使得Node.js`可以实现非阻塞式的异步操作，从而达到高性能和高并发`的目标。
+> 除了 V8 + libuv，Node.js 还集成了 c-ares（异步 DNS 解析）、OpenSSL（TLS/crypto）、llhttp（HTTP 解析）、zlib 等
 
 
 优点：
@@ -2780,6 +3253,7 @@ Node.js底层的实现包括两个主要组件：
 因为Nodejs是单线程，带来的缺点有：
 1. 不适合CPU密集型应用
 2. 只支持单核CPU，不能充分利用CPU
+> 更正：Node.js 的主事件循环（JS 执行线程）是单线程的，但 Node.js 进程整体从来不是纯单线程的——libuv 线程池一直存在（处理文件 I/O、DNS、crypto 等），worker_threads 更是明确支持多线程。
 3. 可靠性低，一旦代码某个环节崩溃，整个系统都崩溃
 
 
@@ -4608,6 +5082,84 @@ SaaS是一种通过Internet提供软件的模式，用户不用再购买软件�
 
 > 比如有赞、微盟、小鹅通这种平台提供的就是电商saas系统。
 
+
+
+### Chromium、Chrome、Google、WebKit、V8、Blink、Trident、Electron、Node.js这些名词分别是什么意思呢，他们彼此之间又有什么关系呢？
+
+**渲染引擎层**
+- `Trident` — 微软 IE 浏览器的渲染引擎（已淘汰）
+- `WebKit` — Apple 开发的渲染引擎，Safari 使用，也是 Blink 的前身
+- `Blink` — Google 从 WebKit fork 出来的渲染引擎，现用于 Chrome/Chromium
+
+**JS 引擎层**
+- `V8` — Google 开发的 JavaScript 引擎，高性能，用于 Chrome 和 Node.js
+
+**浏览器/运行时层**
+- `Chromium` — Google 主导的开源浏览器项目，Chrome 的基础
+- `Chrome` — Google 在 Chromium 基础上加入私有组件（Flash、Widevine 等）发布的商业浏览器
+- `Node.js` — 将 V8 引擎嵌入服务端，让 JS 可以在服务器运行
+
+**跨平台框架层**
+- `Electron` — 将 Chromium（界面渲染）+ Node.js（系统能力）打包，用于构建桌面应用
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        应用层                                    │
+│                                                                  │
+│  ┌──────────────┐   ┌──────────────┐   ┌──────────────────────┐ │
+│  │    Chrome    │   │   Electron   │   │  其他Chromium浏览器   │ │
+│  │  (商业版本)  │   │  (桌面应用)  │   │ (Edge/Opera/Brave等) │ │
+│  └──────┬───────┘   └──────┬───────┘   └──────────┬───────────┘ │
+│         │                  │                       │             │
+│         │         ┌────────┴────────┐              │             │
+│         │         │                 │              │             │
+│         │    Chromium内核       Node.js            │             │
+│         └────────►│               运行时            │             │
+│                   └────────────────┘               │             │
+└───────────────────────────┬────────────────────────┘─────────────
+                            │
+┌───────────────────────────▼────────────────────────────────────┐
+│                       Chromium 内核                             │
+│                                                                │
+│   ┌──────────────────────┐    ┌────────────────────────────┐  │
+│   │    Blink             │    │         V8                 │  │
+│   │   (渲染引擎)          │    │      (JS 引擎)             │  │
+│   │                      │    │                            │  │
+│   │  HTML 解析            │    │  JIT 编译 JavaScript       │  │
+│   │  CSS 布局             │    │  垃圾回收                   │  │
+│   │  DOM 构建             │    │  ECMAScript 标准实现        │  │
+│   │  页面绘制             │    │                            │  │
+│   └──────────┬───────────┘    └────────────────────────────┘  │
+│              │ fork自                                          │
+└──────────────┼────────────────────────────────────────────────┘
+               │
+┌──────────────▼──────────────────────────────────────────────────┐
+│                        WebKit                                    │
+│               (Apple 渲染引擎，Blink 的前身)                      │
+│                                                                  │
+│          Safari / iOS WebView 继续使用 WebKit                    │
+└──────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────┐
+│                     Node.js 内部结构                              │
+│                                                                  │
+│   ┌──────────────┐    ┌──────────────┐    ┌─────────────────┐   │
+│   │     V8       │    │   libuv      │    │  Node.js APIs   │   │
+│   │  (JS 引擎)   │    │ (事件循环/IO) │    │ (fs/http/etc.)  │   │
+│   └──────────────┘    └──────────────┘    └─────────────────┘   │
+└──────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────┐
+│                     历史/对比参考                                  │
+│                                                                  │
+│   Internet Explorer  ──►  Trident 渲染引擎（已废弃）               │
+│   Edge (旧版)        ──►  EdgeHTML 渲染引擎（已废弃）              │
+│   Edge (新版)        ──►  基于 Chromium（Blink + V8）             │
+│   Safari             ──►  WebKit + JavaScriptCore                │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+> Google 用 V8 驱动 Blink，两者组成 Chromium，套上商业外壳变成 Chrome；V8 被 Node.js 带到服务端；Chromium + Node.js 合体变成 Electron 桌面框架。WebKit 是 Blink 的老祖宗，Trident 是已作古的 IE 引擎。
 
 
 

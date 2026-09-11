@@ -234,11 +234,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 function App() {
   const [data, setData] = useState({ hits: [] });
-  useEffect(async () => {
-    const result = await axios(
+  useEffect(() => {
+    axios(
       'https://api/url/to/data',
-    );
-    setData(result.data);
+    ).then(res => {
+      setData(res.data);
+    })
   });
   return (
     <ul>
@@ -1104,8 +1105,13 @@ React 框架的 Virtual DOM diff 算法是针对 Virtual DOM 的更新过程进�
 2. 此外，React 17还移除了部分已废弃的API和生命周期方法，如`componentWillMount、componentWillReceiveProps和componentWillUpdate`等，使得React的API更加清晰和一致。
 
 - `React v18`：
-1. 在React 18中，主要关注的是`并发模式（Concurrent Mode）`的优化。并发模式`允许React在更新过程中暂停和恢复`，从而提高了应用的响应性和性能。为了支持并发模式，React 18对diff算法进行了进一步的优化。例如，它引入了新的调度器（Scheduler）和任务优先级（Task Priorities），使得React可以更加智能地管理组件的更新和渲染。
+1. 在React 18中，主要关注的是`并发模式（Concurrent Mode）`的优化。并发模式`允许React在更新过程中暂停和恢复`，从而提高了应用的响应性和性能。为了支持并发模式，React 18对diff算法进行了进一步的优化。例如，它`引入了新的调度器（Scheduler）和任务优先级（Task Priorities），使得React可以更加智能地管理组件的更新和渲染`。
 2. 此外，React 18还引入了新的API，如startTransition和useTransition，使得开发者可以更方便地控制组件的更新优先级和过渡效果。
+
+
+**Fiber（React 16）VS 并发渲染（React 18）**
+- `Fiber（React 16`） ：重写了 React 的“协调（reconciliation）+ 调度（scheduling）”内核，让一次更新的工作可以被拆分成小任务、打断、恢复，并按优先级执行。核心目标是：在 JS 单线程下减少长任务卡顿，为“可中断渲染/优先级调度”打基础。
+- `并发渲染（React 18）` ：在 Fiber 之上，真正启用“可中断的渲染（render/reconciliation 阶段）”并配套一系列特性（ createRoot 、 startTransition/useTransition 、更成熟的 Suspense 等），让 React 能同时处理“高优先级交互”和“低优先级更新”，提升响应性与可用性。
 
 
 
@@ -1122,7 +1128,7 @@ React 框架的 Virtual DOM diff 算法是针对 Virtual DOM 的更新过程进�
 
 需要注意的是，并发模式并不会自动提高应用的性能。开发者仍然需要遵循最佳实践，如避免不必要的重新渲染、使用纯组件等，以确保应用能够充分利用并发模式带来的优势。
 
-总的来说，React v18 的并发模式是一种改进 React 更新机制的底层设计，它通过引入异步渲染、可中断的更新流程和时间切片等概念，提高了应用的响应性和性能。
+总的来说，React v18 的并发模式是一种改进 React 更新机制的底层设计，它通过`引入异步渲染、可中断的更新流程和时间切片`等概念，提高了应用的响应性和性能。
 
 
 
@@ -1198,7 +1204,7 @@ import styles from './styles.module.css';
 <div className={styles.hello}>Hello, World!</div>
 ```
 
-3. CSS-in-JS库：有一些库，如`styled-components`和emotion，它们允许你在JavaScript中直接编写CSS样式。这种方式可以让你在组件中直接定义样式，而且可以利用JavaScript的变量和函数来动态生成样式。
+3. CSS-in-JS库：有一些库，如`styled-components`和`emotion`，它们允许你在JavaScript中直接编写CSS样式。这种方式可以让你在组件中直接定义样式，而且可以利用JavaScript的变量和函数来动态生成样式。
 
 ``` js
 import styled from 'styled-components';  
@@ -1235,7 +1241,7 @@ const StyledDiv = styled.div`
 setState和 useState 只在`合成事件`如onClick等和钩子函数包括`componentDidMount、useEffect`等中是“异步”的，在`原生事件`和 setTimeout、Promise.resolve().then 中都是同步的。
 
 
-这里的“异步”并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，只是`合成事件和钩子函数的调用顺序在更新之前`，导致在合成事件和钩子函数中没法立马拿到更新后的值，形式了所谓的“异步”。
+这里的“异步”并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，只是`合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值`，形式了所谓的“异步”。
 
 
 `批量更新优化`也是建立在“异步”（合成事件、钩子函数）之上的，在原生事件和setTimeout、Promise.resolve().then 中不会批量更新；在“异步”中如果对同一个值进行多次修改，批量更新策略会对其进行覆盖，取最后一次的执行，结果只会产生一次render。
@@ -1261,7 +1267,7 @@ setState和 useState 只在`合成事件`如onClick等和钩子函数包括`comp
 React 18之前：
 React使用一个全局标志 `isBatchingUpdates` 来控制是否批处理。React在合成事件处理器外层包装了 batchedUpdates，当`React能够控制执行上下文`时，比如`合成事件onClick、生命周期`方法，React会将这个标志设为true，多个setState会被收集到队列中批量处理，看起来就是'异步'的。
 
-但在`原生事件、setTimeout、Promise`这些React无法控制的执行上下文中，这个标志是false，setState会立即执行，所以是'同步'的。
+但在`原生事件、setTimeout、Promise`这些`React无法控制的执行上下文`中，这个标志是false，setState会立即执行，所以是'同步'的。
 
 React 18的改变 ：
 React 18引入了`自动批处理，不再依赖执行上下文，而是基于调度器`。现在`所有的setState都会通过调度器进行批处理`，无论在什么场景下都是'异步'的，行为更加一致。如果需要强制同步更新，可以使用 flushSync
@@ -1507,6 +1513,8 @@ export default function ClosureStaleDemo() {
 
 因为 useState更新 =》 组件render 是异步发生的，就算通过setTimeout延迟拿数据，也会拿到旧值，因为闭包的特性
 
+> 闭包陷阱不是“React 没更新”，而是“更新发生在新的一次函数调用里，而你已经启动的那个回调被困在上一次函数调用的作用域中”。React 每次渲染都会用最新的 render 输出去更新 DOM 属性，包括 onClick 指向哪个函数。所以你下次点按钮，触发的是新一次 render 里的 checkLater。如果在等待期间又更新了 state，那个更新属于新的一次 render，而你正在执行的旧函数无法感知新 render。
+
 解决方案：
 1. 使用 ref 保存最新值
   - 在 useEffect 里同步最新 state 到 ref；异步/订阅回调中读取 ref.current。
@@ -1582,7 +1590,93 @@ useContext 主要用来“读取并订阅”某个 React Context 的值，从而
   - `组件库/业务组件内部的“局部共享状态”`：例如一个 Form/Modal/Table 子树内共享数据
 
 - 更适合 Redux/第三方库：
-  - `“全局且高频变化”的数据`：复杂页面状态、列表筛选分页、实时数据、跨页面共享且交互多的状态
+  - `"全局且高频变化"的数据`：复杂页面状态、列表筛选分页、实时数据、跨页面共享且交互多的状态
   - `需要强可维护性`：`统一更新入口、可追踪 action、可回放调试、复杂异步/副作用治理、多人协作边界清晰`
 
+
+### React v16 / v17 / v18 各版本核心更新汇总
+
+> 出处：React 官方 Blog — [v16.0](https://legacy.reactjs.org/blog/2017/09/26/react-v16.0.html) / [v16.8](https://legacy.reactjs.org/blog/2019/02/06/react-v16.8.0.html) / [v17.0](https://legacy.reactjs.org/blog/2020/10/20/react-v17.html) / [v18.0](https://react.dev/blog/2022/03/29/react-v18)
+
+#### React v16（2017.09 — 2019.02）
+
+v16 跨度最长，从 16.0 到 16.8 陆续发布了大量新特性：
+
+**v16.0（2017.09）**
+1. `Fiber 架构`：用全新的 Fiber 协调器替换旧的 Stack Reconciler，是内部重写，对外 API 无感知，为后续异步渲染奠基
+2. `render() 支持新返回类型`：可返回数组、字符串、数字，不必再用单一根节点包裹
+3. `Error Boundaries`：新增 `componentDidCatch` 和 `getDerivedStateFromError`，可捕获子组件渲染错误并降级展示
+4. `Portals`：`ReactDOM.createPortal(child, container)`，将子组件渲染到 DOM 树之外的节点
+5. `SSR 重写`：服务端渲染支持流式传输（streaming），新增 `renderToNodeStream`，性能大幅提升
+6. `支持自定义 DOM 属性`：不再忽略未知 HTML 属性，直接透传给 DOM
+7. `体积减小 ~32%`：`react + react-dom` 从 161.7 kb 降至 109 kb
+
+**v16.3（2018.03）**
+1. `新 Context API`：`React.createContext()` + `Provider / Consumer`，取代长期被标记为实验性的旧 Context
+2. `新 Ref API`：`React.createRef()` 和 `forwardRef()`
+3. `新生命周期`：新增 `static getDerivedStateFromProps`、`getSnapshotBeforeUpdate`
+4. `废弃三个旧生命周期`：`componentWillMount`、`componentWillReceiveProps`、`componentWillUpdate` 被标记为 deprecated，加 `UNSAFE_` 前缀（**仅废弃，v16/v17/v18 均未删除**）
+
+**v16.6（2018.10）**
+1. `React.lazy + Suspense`：支持代码分割和动态 import 的组件懒加载（仅客户端）
+2. `React.memo`：函数组件版的 `PureComponent`，浅比较 props 决定是否重渲染
+3. `static contextType`：Class 组件消费 Context 的便捷语法
+
+**v16.8（2019.02）**
+1. `React Hooks 正式发布`：`useState`、`useEffect`、`useContext`、`useReducer`、`useRef`、`useMemo`、`useCallback`、`useLayoutEffect` 等，函数组件可使用 state 和生命周期能力，是 React 编程范式最大的一次转变
+
+
+#### React v17（2020.10.20）
+
+官方原话：**「React 17 doesn't add any new developer-facing features.」** 定位是「过渡版本」，目标是让大型应用可以逐步升级、多版本共存。
+
+1. `事件委托从 document 改到根容器`（最重要的 breaking change）：原来所有事件委托绑定在 `document` 上，v17 改为绑定在 `ReactDOM.render` 的根 DOM 容器上，解决微前端等多 React 版本共存时的事件冲突
+2. `新 JSX Transform`：不再需要在每个文件顶部写 `import React from 'react'`（需 Babel 7.9+ 配合）
+3. `移除 Event Pooling（事件池）`：合成事件不再复用，`e.persist()` 变为空操作，异步访问事件属性不再报错
+4. `useEffect cleanup 改为异步执行`：清理函数始终在下次渲染绘制后异步执行，与 effect 本身的时序对齐
+5. `onScroll 不再冒泡`：对齐浏览器原生行为
+6. `onFocus / onBlur 底层改用原生 focusin / focusout`：语义更准确
+7. `Capture 事件使用真实浏览器捕获阶段监听器`（而非之前的模拟实现）
+
+
+#### React v18（2022.03.29）
+
+v18 是真正启用 Fiber 并发能力的版本，所有新特性都建立在并发渲染器之上。
+
+1. `新入口 API createRoot`（Concurrent 模式的 opt-in）：
+```js
+// v18 之前（Legacy 模式）
+ReactDOM.render(<App />, document.getElementById('root'))
+
+// v18（Concurrent 模式）
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)
+```
+`createRoot` 是使用 v18 所有并发特性的前提，旧 `ReactDOM.render` 在 v18 被标记为 deprecated
+
+2. `自动批处理（Automatic Batching）`：v17 及之前只有 React 事件处理器内的 setState 会批处理，v18 对 setTimeout、Promise、原生事件中的多次 setState 也统一批处理，减少不必要的重渲染；不想批处理可用 `ReactDOM.flushSync()` 强制同步
+
+3. `Transitions（并发调度 API）`：区分「紧急更新」和「过渡更新」，让 React 可以中断低优先级渲染以优先响应用户输入：
+```js
+import { startTransition, useTransition } from 'react'
+
+// 标记低优先级更新，可被高优先级更新打断
+startTransition(() => {
+  setSearchResults(data)
+})
+```
+
+4. `新 Hooks`：
+   - `useTransition`：标记低优先级更新，提供 pending 状态
+   - `useDeferredValue`：延迟某个值的更新，类似防抖但基于优先级而非时间
+   - `useId`：生成稳定的唯一 ID，解决 SSR 水合阶段 ID 不匹配的问题
+   - `useSyncExternalStore`：供外部状态管理库与并发模式兼容的订阅方式（Redux 等库内部使用）
+   - `useInsertionEffect`：专供 CSS-in-JS 库在 DOM 变更前插入样式
+
+5. `Streaming SSR + Suspense 服务端支持`：
+   - 新增 `renderToPipeableStream`（Node.js）和 `renderToReadableStream`（Edge/Web Streams）
+   - 支持流式传输：慢组件不阻塞整页，先返回 fallback，数据就绪后流式注入 HTML
+   - 支持选择性水合（Selective Hydration）：用户点击的区域优先完成水合
+
+6. `Strict Mode 行为变更`：开发模式下对每个组件执行 mount → unmount → remount，帮助暴露 useEffect cleanup 不完整的问题
 

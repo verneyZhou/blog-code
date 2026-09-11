@@ -319,6 +319,8 @@ permalink: false # 292799/
 - [通用组件的设计需要考虑什么](https://juejin.cn/post/6844903847874265101)
 - [使用 Next.js 搭建 Monorepo 组件库文档](https://juejin.cn/post/7168885699507126303)
 
+- [前端组件性能怎么测？从场景设计到 CI 接入的 11 步 SOP](https://mp.weixin.qq.com/s/Qv-H41AnvPqZg3yL2wKPBA)
+
 
 
 ## SSR

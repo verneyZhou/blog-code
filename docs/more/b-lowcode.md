@@ -313,6 +313,256 @@ const shadowRoot = modalContainer.attachShadow({ mode: 'open' });
 
 后续会出一个自动检查所有已有页面渲染引擎版本的脚本，自动检测所有页面的渲染引擎版本，再根据设置的过期时间，动态筛除已经过期且不再使用的渲染引擎版本，释放相关的静态资源空间。
 
+> 备注：上面这个方案AI评估技术成本较高，属于理论可行但实践存疑的方案~
+
+
+
+
+### 前端部署流程
+
+> 目前主要有 debug、test、pre、opn、online 这五个环境，debug是研发自测联调环境，test是测试环境，pre是预发环境，opn是仿真环境，online是线上生产环境
+
+- 本地项目开发联调完毕，`git commit` 提交，`git push` 推送到线上代码仓库；
+
+- 开发分支自动编译，编码规范检查；编译通过后 Code Review 评审；评审通过可将提交代码合并到线上开发分支；
+
+- 之后将开发分支合并到部署分支，比如debug环境的`DEBUG`分支，自动会触发已经配置好的流水线编译任务；
+
+- 执行的其实是项目根目录下的`ci.yml`配置好的命令，这个文件是环境部署编译的入口，这里会配置好不同name具体需要执行的command，比如：
+``` yml
+Default:
+profile: [editor] # 默认执行的name
+Profiles:
+    - profile:
+    name: editor # 低码编辑端
+    mode: AGENT
+    environment:
+        image: DECK_STD_CENTOS7 # 镜像
+        tools: # 工具
+            - nodejs: 20.10.0
+            - yarn: 1.22.4
+            - pnpm: 10.0.0
+    build:
+        command: pnpm install && pnpm deploy:editor # 具体执行命令
+    artifacts:
+        release: true
+    cache:
+        enable: true
+        paths:
+            - node_modules
+    check:
+        - enable: true
+        reuse: TASK
+```
+> 流水线中如果配置的name是`editor`，那么就会执行command: `pnpm install && pnpm deploy:editor`；
+
+- 上面配置的命令是先通过 pnpm 安装依赖，之后执行项目根目录下`package.json`中的`deploy:editor`命令：
+``` json
+"build:editor": "rimraf -rf dist/editor && pnpm --filter editor build",
+"deploy:editor": "pnpm build:editor && bash ./deploy.sh editor",
+```
+> 可以看到，deploy:editor 执行的是上面的 build:editor 命令，它是先删除 dist 下面的 editor 目录，然后通过`pnpm --filter editor`执行`packages/editor/`项目下`package.json`中的`build`命令：
+``` json
+"build": "tsc && vite build" // 这条命令就是通过 vite 进行打包
+```
+> 需要提前在editor项目中的`vite.config.ts`中配置`outDir: '../../dist/editor'`, 也就是打包产物输出到根目录下的dist目录下
+
+- 打包完成后会在根目录下的`dist/editor`目录下生成打包后的静态资源，然后执行`bash ./deploy.sh editor`命令：
+``` sh
+# deploy.sh
+
+# 部署单个项目的函数
+deploy_project() {
+  local project=$1 # 获取传入的项目名称
+  
+  echo "开始部署 $project 项目到生产环境..."
+  
+  # 检查构建结果
+  if [ ! -d "dist/$project" ]; then
+    echo "构建失败，dist/$project 目录不存在！"
+    exit 1
+  fi
+  
+  # 连接服务器并部署
+  echo "正在部署到服务器..."
+
+  
+  # 上传dist目录下的所有文件到服务器
+  echo "正在上传文件..."
+
+  rm -rf output # 删除服务器上的output目录
+  mkdir output # 新建output目录
+  cp -rf dist/$project/* output # 将dist目录下项目目录的文件复制到output目录下
+  
+  echo "$project 部署完成！"
+}
+
+# 根据参数部署对应项目
+case $PROJECT in
+  "web")
+    deploy_project "web"
+    ;;
+  "editor")
+    deploy_project "editor"
+    ;;
+esac
+```
+> 这个脚本就是将打包后的静态资源复制到对应环境服务器的指定目录上
+
+- 至此前端就完成了项目的打包和环境部署；
+> FCnap到这里就可以了，Opera部署的项目，还需要将生成的产物打包生成版本号；之后流水线中【上线】操作则是通过这个版本号拿到产物，部署到服务器上；在整个流流水线执行过程中QA可以添加数据采集、部署前检查等任务，用于限制非窗口期，或非测试状态的需求部署~
+
+
+
+
+
+### 后端服务部署流程
+
+> 后端Node服务的部署跟上面前端类似，都是有好几个环境，都需要推送代码到线上仓库，合并，指定对应流水线
+
+- 首先流水线编译时执行的`ci.yml`中的命令：
+``` yml
+- profile:
+    name: serverTest # opera 部署 test
+    build:
+        command: sh buildserver.sh test
+```
+
+- 上面的command是直接执行`sh buildserver.sh test`：
+``` sh
+# buildserver.sh
+
+# 获取部署项目参数
+build_command=$1
+echo "build_command: $build_command"
+# 根据 build_command 设置 NODE_ENV 环境变量
+if [ -n "$build_command" ]; then
+  export NODE_ENV=$build_command
+  echo "设置环境变量 NODE_ENV=$NODE_ENV"
+else
+  export NODE_ENV="test"
+  echo "未指定环境，默认使用 test 环境"
+fi
+
+# 目录
+DIR=$(cd $(dirname $0);pwd) # 当前脚本所在目录
+SERVER_DIR=$DIR/server # 服务端代码目录
+OUTPUT_WORKSPACE_DIR=$DIR/output/workspace # 输出目录
+OPERA_MODULE_DIR=$OUTPUT_WORKSPACE_DIR/output # 输出目录
+# 清理工作目录
+rm -rf $DIR/output $DIR/dist
+mkdir -p $OUTPUT_WORKSPACE_DIR # 创建输出目录
+
+# 切换到 server 目录
+cd $SERVER_DIR
+# 下载依赖
+yarn install --ignore-scripts --prefer-offline --registry=http://registry.npm.baidu-int.com --production
+
+# 进入到服务器输出目录，下载打包工具
+cd $OUTPUT_WORKSPACE_DIR
+# 下载打包工具(baidu/apaas/package-template)的最新发布版本
+curl "http://agile.baidu.com/api/agile/ge...."
+# 创建输出目录
+mkdir -p $OPERA_MODULE_DIR/package 
+
+# 创建环境配置文件（服务器受限，不能将配置文件复制过去，只能手动创建）
+cat > $SERVER_DIR/env-config.js << EOF
+// 此文件由构建脚本自动生成，请勿手动修改
+process.env.NODE_ENV = '$NODE_ENV';
+console.log('环境变量已从构建时注入: NODE_ENV=$NODE_ENV');
+EOF
+
+# 将环境变量硬编码到打包文件中
+echo "require('./env-config.js');" > temp_header # 创建临时文件
+cat app.js >> temp_header # 合并文件
+mv temp_header app.js # 替换文件
+
+# 将项目源码复制到输出目录
+cp -rL app.js config.js controller error main.js package.json pm2.config.js router service sql data utils env-config.js $OPERA_MODULE_DIR/package
+# 将 node_modules 目录递归复制到 output 目录下，-r 表示递归复制，-f 表示强制覆盖已存在的文件
+cp -rf node_modules  $OPERA_MODULE_DIR/package
+
+# 打成指定包opera-module.tgz
+tar zcf $DIR/output/opera-module.tgz -C $OPERA_MODULE_DIR .
+
+# 清理工作目录
+rm -rf $OUTPUT_WORKSPACE_DIR
+```
+
+- 上面的脚本执行命令比较复杂，大致就是打包，拷贝代码，然后打包成tar.gz文件；之后流水线执行【发布】命令生成版本号；之后通过流水线执行【上线】操作，将对应版本号的压缩包解压部署到对应服务器上；Opera平台好像针对Node服务会自动读取`pm2.config.js`启动服务，不需要脚本中显式启动；
+
+- 如果是Fcnap中部署Node服务的话，前面流程都差不多，推送代码 => 打包 => 拷贝文件，除此外项目根目录下还需要新建`Dockerfile`文件：
+``` sh
+# Dockerfile
+
+ARG NODE_VERSION=iregistry.baidu-int.com/ee-fe/node:20.1.0-alpine3.17 # 基础镜像
+
+FROM $NODE_VERSION AS intermediate # 临时镜像，用于拷贝代码
+
+COPY output/ /app/ # 上一步build.sh输出的output/ 拷贝到 当前服务器 /app 上
+
+RUN mkdir -p /app/logs # 打印当前目录和目录下的文件
+RUN chown -R node:node /app && chmod -R 777 /app # 更改用户和权限
+
+FROM $NODE_VERSION AS runner # 实际镜像，用于运行
+WORKDIR /app # 设置工作目录
+COPY --from=intermediate /app /app # 从临时镜像中拷贝代码
+
+ENV NODE_ENV=production # 设置环境变量
+ENV TZ=Asia/Shanghai # 设置时区
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone # 设置时区
+
+# 添加健康检测（解决fcnap部署失败）
+# 容器应用的pod不断重启，无法部署成功; 考虑容器是否未向外暴露端口，如果没有，健康检测会认为容器没启动成功然后重启。
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+  CMD wget -q --spider http://localhost:9527/health || exit 1
+
+USER node
+
+EXPOSE 9527 # 暴露端口
+
+CMD ["yarn", "prd"] # 启动命令
+```
+
+- 后端服务中`package.json`配置`prd`命令：
+``` js
+// package.json
+"prd": "pm2-runtime start pm2.config.js" // 通过pm2启动服务
+
+// pm2.config.js
+module.exports = {
+  apps: [
+    {
+      name: 'LowcodeNodeServer', // 应用名称
+      script: './app.js' // 入口文件
+    }
+  ]
+};
+```
+> 用 pm2 来进行服务管理
+
+- 之后在`service`层通过`const connection = require('../sql/index')`引入`mysql2`配置，进行数据库初始化，主要是通过传入的`host,port,user,password,database`进行数据库连接：
+``` js
+const pool = mysql2.createPool({
+  ...sqlParams,
+  dateStrings: true, // 日期作为字符串返回
+  connectionLimit: 10, // 连接池最大连接数
+  queueLimit: 0, // 排队限制，0 表示不限制
+  waitForConnections: true, // 当没有可用连接时是否等待
+  enableKeepAlive: true, // 启用 TCP keepalive
+  keepAliveInitialDelay: 0 // keepalive 初始延迟
+});
+```
+
+- 之后需要调数据库时则通过`const [result] = await connection.execute('SELECT * FROM lowcode_user_table WHERE 1=1', params)`进行查询操作；
+
+
+**整体流程：ci.yml  => buildserver.sh => Dockerfile => pm2启动Node服务 => 数据库创建连接，配置初始化**
+
+
+
+
 
 
 ### 平台监控

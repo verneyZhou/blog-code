@@ -19,19 +19,25 @@ tags:
 - [AI学习笔记-进阶篇](./note02.html)
 
 - [LLM大模型原理学习笔记](./llm.html)
+- [Fine-tuning学习笔记](./fine-tuning.html)
+
 - [RAG学习笔记-理论篇](./rag.html)
 - [Agent学习笔记-理论篇](./agent.html)
 - [LangChain学习笔记](./langchain.html)
 - [Python学习笔记梳理](./python.html)
-- [Fine-tuning学习笔记](./fine-tuning.html)
 
 - [DeepSeek进阶使用](./deepseek.html)
 - [前端AI学习实践笔记](./fe-learn.html)
-- [Vibe-Coding前端实践笔记](./vibe-coding.html)
 
 - [AI原创短片创作实操笔记](./video.html)
 
 - [RAG实战：低码平台接入RAG知识库](./rag-lowcode.html)
+
+> 前端Spec Coding系列：
+- [Vibe-Coding前端实践笔记](./vibe-coding.html)
+- [Claude-Code学习笔记](./claude-code.html)
+- [如何设计一个AI Agent？](./agent02.html)
+- [智能客服助手 AI Agent 完整技术方案设计](./agent-service.html)
 
 
 
