@@ -1197,11 +1197,19 @@ React v17则主要是一个稳定版本，没有引入太多新的功能。它�
 1. 内联样式（Inline Styles）：直接在JSX中通过style属性来添加CSS样式。
 
 2. CSS Modules：CSS Modules是一种将CSS类名局部化的技术，它通过`在编译时生成唯一的类名来避免全局样式冲突`。
-
+> 原理：css-loader 在编译时把每个类名重写为 [文件名]_[类名]_[哈希]，并生成一份 类名 → 重写后类名 的映射对象，JS 里通过 import styles 拿到真实类名。
 ``` js
 import styles from './styles.module.css';  
   
 <div className={styles.hello}>Hello, World!</div>
+// 实际输出class：styles_hello__3k2f
+```
+注意点：
+- 只能隔离类名，`:global` 声明的全局样式和元素选择器（button、div）仍然会泄漏
+- 不能用字符串拼接类名，条件样式要用 `classnames` 库组合
+``` tsx
+import cn from 'classnames';
+<button className={cn(styles.button, { [styles.active]: isActive })} />
 ```
 
 3. CSS-in-JS库：有一些库，如`styled-components`和`emotion`，它们允许你在JavaScript中直接编写CSS样式。这种方式可以让你在组件中直接定义样式，而且可以利用JavaScript的变量和函数来动态生成样式。

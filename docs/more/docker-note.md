@@ -562,8 +562,37 @@ networks:
 ```
 > 此时可通过 `docker compose up` 启动容器。
 
-
 [docker-compose教程（安装，使用, 快速入门）](https://blog.csdn.net/pushiqiang/article/details/78682323)
+
+
+## Dockerfile	vs docker-compose
+
+- Dockerfile：一个镜像（单个应用的构建说明书）；`docker build -t xxx .` 产出镜像
+> "这个应用怎么从代码变成可运行的镜像？"
+
+- docker-compose：一组服务（多个容器的编排方案）；`docker compose up -d` 拉起整个服务栈
+> "这些容器之间怎么网络互联、端口怎么映射、启动顺序、数据卷挂哪？"
+
+> Dockerfile 是"一道菜的做法"（食材、步骤、火候）；docker-compose.yml 是"一桌宴席怎么摆"（上哪些菜、餐具放哪、上菜顺序、几桌）。没有 Dockerfile，你连菜都做不出来；没有 compose，你可以一道菜一道菜地分别上桌，但协调它们会很麻烦。
+
+- compose 文件里的每个 service，镜像来源有两种：
+``` yml
+services:
+  server:
+    build: ./server        # 方式一：指向含 Dockerfile 的目录，compose 自己 build
+    # 等价于手动 docker build -t xxx ./server
+  postgres:
+    image: pgvector/pgvector:pg16   # 方式二：直接用现成镜像，完全没有 Dockerfile
+```
+
+*Q：为什么有的项目只有 Dockerfile 没有 compose？*
+1. `单服务项目`：一个应用就一个容器，不需要编排。`docker build + docker run` 两条命令足够，加 compose 是多余的一层
+2. `中间件是托管的`：数据库/Redis 用云厂商托管（云 RDS、云 Redis），本地不需要 compose 去编排它们，应用镜像只管自己——所以项目里只有自己的 Dockerfile
+3. `部署平台是 k8s/云平台`：容器编排由 k8s 的 manifest 或云平台承担，compose 只在本地开发/小规模部署时用，生产交付物只有镜像（由 Dockerfile 构建）
+4. `仓库拆分`：微服务各自独立仓库、独立 CI，每个仓库只负责"把自己打成镜像"推到镜像仓库，编排是另一个"部署仓库"的事
+> 反过来说，也有可能只有 compose 没有 Dockerfile——全用现成镜像的场景
+
+
 
 
 ### .dockerignore

@@ -3229,7 +3229,82 @@ COMMIT;  -- 提交后锁释放，等待中的事务才能继续
 
 
 
-### 当前项目的node服务怎么做自动部署？怎么实现测试环境的隔离？什么是nodejs的守护进程？node在部署过程中怎么应对客户端突然的访问量？监控系统的插件怎么挂载到内核上？
+### 当前项目的node服务怎么做自动部署？怎么实现测试环境的隔离？什么是nodejs的守护进程？node在部署过程中怎么应对客户端突然的访问量？监控怎么接入到当前系统？
+
+
+**Node 服务的自动部署**
+
+```
+git push → 流水线触发
+  → 构建（pnpm install + lint + test + tsc build）
+  → 产物化（打 Docker 镜像，打上版本 tag）
+  → 推送到镜像仓库
+  → 部署（目标机器拉新镜像 → 重启服务 / 或 k8s 滚动更新）
+```
+1. 写一个 `Dockerfile`，用 node 官方镜像多阶段构建：`pnpm install --frozen-lockfile` → pnpm build → 用精简运行时镜像（node:22-alpine）跑 dist/
+2. 流水线脚本（GitHub Actions / GitLab CI / 公司内部流水线都行）：`pnpm install && pnpm test && pnpm build && docker build && docker push registry/xxx:${TAG}`
+3. 部署步骤：SSH 到目标机器执行 `docker compose pull && docker compose up -d`，`docker-compose.yml` 里已经定义好了 `server/postgres/pgbouncer/redis`全套，新增服务只改镜像 tag
+
+> 不可变部署：每次发布都打新镜像，不 SSH 进机器手动改代码、手动 npm install；机器状态只增不减，回滚 = 把 tag 指回旧镜像重新 up -d
+
+>发布与回滚都要能一键做：发布失败能 30 秒内回滚到上一版 tag，比"修 bug"更重要
+
+
+
+**测试环境的隔离**
+
+1. *数据库隔离*：每个环境独立的 PG 实例或独立 `database/schema`，测试数据用 seed 脚本初始化，禁止测试环境连生产库（哪怕只读）。当前项目 config.ts 读 `PG_HOST/PG_DATABASE` 等环境变量，天然支持不同环境指不同库
+2. *Redis 隔离*：不同环境用不同 Redis 实例，或至少不同 db index；测试环境给 key 统一加短 TTL，防止测试数据把内存撑爆
+3. *配置隔离*：用 `.env.development / .env.staging / .env.production` 分文件管理，或从部署平台的 env 注入，代码里只从环境变量读配置、绝不硬编码环境专属值（当前项目 config.ts 已经是这个风格）
+4. *进程/端口隔离*：不同环境不同端口、不同域名。一个环境崩了不影响另一个
+5. *外部依赖隔离*：测试环境的外部 MCP 服务用 mock/stub，不要调真实订单系统（mcp/skill.ts 的 Error-as-Data 设计正好可以在 mock 场景复用）
+
+
+
+**什么是 Node.js 守护进程**
+
+守护进程（daemon）指`常驻后台、不随终端/SSh 会话关闭而退出、崩溃后能自动恢`复的长期运行进程。
+1. `脱离终端会话`：SSH 断开、终端关闭都不会杀掉它（这就是为什么很多人把 `nohup node app.js &` 当守护进程，但那其实是不完整的，nohup 只解决了"忽略挂断信号"，没有自动重启能力）
+2. `崩溃自动重启`：进程挂掉后能自己拉起来
+3. `日志与开机自启管理`：`stdout/stderr` 落到文件、能 `systemctl enable` 开机启动
+
+
+PM2（最常用）：`pm2 start app.js` 一条命令就完成`守护 + 崩溃重启 + 日志管理 + 多实例 cluster 模式`，pm2 startup 配开机自启
+
+
+
+**部署过程中怎么应对客户端突然的访问量**
+
+
+*A. 发布瞬间的流量冲击（发布本身别造成抖动）*
+- `滚动/蓝绿/金丝雀发布`：负载均衡后面挂多个实例，逐个替换（滚动）或整体切流（蓝绿），保证任意时刻都有可用实例在服务
+- `优雅下线（drain）`：新版本收到退出信号后，先从负载均衡摘除、拒绝新连接，把存量请求处理完再退出。
+> server.close() 只停止接收新连接，不会中断正在处理的请求，所以是符合要求的；如果用了 BullMQ 多实例模式，还要等当前 job 跑完（之前的优雅退出逻辑已经加了 await ctx.executor.close?.()）
+- `健康检查（readiness probe）`：新实例启动完成、PG/Redis 连接池建好、/health 返回 200 之后，负载均衡才把流量放进去；防止冷启动时请求打到还没就绪的实例上
+- `启动预热`：PG 连接池（当前 pg.Pool max 默认 10）和 Redis 连接在启动时建立，避免上线瞬间大量请求触发连接建立风暴
+
+
+*B. 流量本身突增（突发访问量）*
+- `横向扩容`：负载均衡后面加实例，配合自动扩缩容（k8s HPA / 云厂商 ASG），按 CPU/请求量自动增减
+- `限流`：入口层做 rate limit（固定窗口/令牌桶），防单点打爆；超过阈值直接返回友好的降级响应，而不是让服务在过载中雪崩
+- `缓存分担`：热点数据放 Redis 缓存，把重复查询的读压力从 PG 卸掉——但注意缓存击穿/穿透要处理
+- `队列削峰`：把非实时任务（比如复杂工单的 Agent 执行）放进队列，用 BullMQ 多实例消化洪峰，前端立刻收到"已受理"，实际处理异步完成
+
+> 优先级建议：先保证"发布不停机 + 优雅退出"（B 的前提是先有 A 的稳定基座），再加健康检查和限流；自动扩缩容是流量真的到了"多实例都扛不住"再上，不要一开始就搞。
+
+
+
+监控怎么接入到当前系统
+
+```
+采集（prom-client 在 Node 进程里暴露 /metrics）
+  → 存储查询（Prometheus 定时拉取）
+  → 展示（Grafana 仪表盘）
+  → 告警（Alertmanager，超阈值发通知）
+```
+> prom-client 是 Node 库，在进程内通过读取自身状态（进程内存、事件循环延迟、自定义业务指标）暴露 /metrics 端点；Prometheus 用 HTTP 轮询拉取这些指标，存进自己的时序库
+
+prom-client 暴露进程与业务指标（LLM 调用延迟、token 消耗、Run 成功率、步骤耗时）→ Prometheus 采集 → Grafana 展示 → Alertmanager 告警。
 
 
 
@@ -3237,8 +3312,87 @@ COMMIT;  -- 提交后锁释放，等待中的事务才能继续
 
 ### 当前Agent项目的应用场景主要是：C端的用户工单流转到了运营平台，然后我们运营输入工单，调我们的Agent服务，然后编辑草稿，再手动回复C端用户的工单问题；那如果说现在我们的C端APP想接入我们的客服Agent，不想中间多一层运营人工介入，可以在已有的架构基础上做哪些改造呢？
 
+> 这个项目是"Agent 起草 + 人审批"，C 端智能客服是"Agent 直接回复 + 人兜底"。它在产品定位上就是"运营提效工具"，这个定位下 HITL 不是缺陷而是特性
+
+核心改造只有一件事：`把"人工审批这个闸门"替换成"代码层面的分级放行 + 多层自动护栏"`，其余 RAG、检索、生成、记忆、并发全部复用。
 
 
+**闸门层：requires_approval 从硬编码变成动态放行策略**
+``` ts
+// 示意：AutoReleasePolicy —— 替代硬编码 requires_approval 的自动放行决策
+function shouldAutoSend(obs: Observation, draft: DraftResult): 'auto_send' | 'human' | 'refuse' {
+  // 1. 高危分类（退款/改地址/资金类）→ 永不自动发送，转人工
+  if (HIGH_RISK_CATEGORIES.has(obs.classification?.category)) return 'human';
+  // 2. urgent → 复用现有升级逻辑，直接转人工
+  if (obs.classification?.priority === 'urgent') return 'human';
+  // 3. 知识库不充分 → 不生成回复，走"需核实"兜底（现有 has_sufficient_results 已覆盖）
+  // 4. 置信度不足 → 转人工（draft 自带的 confidence < 阈值）
+  if (draft.confidence < 0.8) return 'human';
+  // 5. lint 不过 → 转人工（现有 lintDraft 已覆盖敏感词）
+  // 全部通过 → 自动发送
+  return 'auto_send';
+}
+```
+> 不是删掉 HITL，而是把"全量进人工"变成"按风险分级"。handleHitl 那条路保留给 high-risk/urgent，新增一条 auto_send 分支。现有状态机可以加一个 auto_sending 过渡态，或者直接复用 completed。
+
+
+
+**护栏层：把"人审的安全网"换成"自动检查矩阵"**
+
+- 知识库没答案还硬答 => 已有：`has_sufficient_results === false` → 不进入 draft，走兜底话术/转人工
+- 生成内容跑偏/编造	=> confidence 阈值 + 强化 lintDraft（加"话题一致性"检查，之前讨论过）
+- 涉及敏感操作 => 高危分类黑名单
+- 格式/规范错误	=> 已有：`validateSkillOutpu`t Zod 校验 + LLM_NOT_JSON 重试
+
+> 每一条"人工审批能拦住的问题"，都必须有一个确定性的自动检查兜住，不能有任何一条只依赖"模型大概率不会出错"。
+
+
+**动作层：新增 send_reply skill**
+
+> C 端直连需要一个真正的发送动作：
+``` ts
+// 示意：send_reply —— 把回复推送给 C 端用户
+export const sendReplySkill: RegisteredSkill = {
+  name: 'send_reply',
+  requires_approval: false,   // 分级策略已决定放行
+  retrySafe: false,           // 发送是不可逆副作用，崩溃后绝不能自动重发（复用现有 retrySafe 语义）
+  async execute(params, ctx) {
+    // 通过 MCP 包装的 C 端消息推送接口（复用 mcp/skill.ts）发送
+    // 发送成功后写回工单，emit reply_sent 事件
+  },
+};
+```
+> retrySafe: false 这一条必须重点强调——现有 recovery.ts 的崩溃恢复逻辑会判断 retrySafe 决定能否安全自动重试，发送这类副作用操作如果标记错，崩溃恢复时会重复发消息给用户，这是 C 端直连最容易出的生产事故。
+
+
+**会话层：从"单轮工单"到"多轮对话"**
+
+- 现有 Thread 模型：`用户追问 = 同一 thread 上新建一个 Run`，而不是新开工单
+- Layer 2/3 记忆系统：`threadMemory（本对话上下文/失败历史）和 customerMemory（客户画像）`已经在 context.ts 注入，C 端多轮需要的"记得上次说过什么"它已经覆盖
+- 新增"澄清追问"能力：现有 classify_ticket 之后直接走 search/draft，`信息不足时应该能反问用户而不是硬生成——这需要加一个"信息是否足够"的判断步骤，或者让分类结果多一个"需澄清"分支`
+
+
+**兜底层：自动回复后的监控与回流**
+
+> 自动回复没有"发送前人工看一道"，出错不可逆，所以要补"发送后"的质量闭环：
+- `抽检`：按 confidence 分层抽样，低置信度区间全部人工复核（这些正好回流成评测集 badcase）
+- `用户反馈`：C 端回复带"解决/未解决"按钮，未解决 → 自动转人工，并把这个 case 标记为 badcase
+- `监控指标`：自动发送率、转人工率、用户不满意率、误答率——这些是"自动回复是否该继续放开"的决策依据，没有监控就贸然全自动等于盲开
+
+
+**性能层：C 端高 QPS 特有的改造**
+
+> C 端直连意味着每个用户问题都是一次 LLM 调用，成本和并发都上来了，需要补：
+- `语义缓存`：相同/相似问题的回复直接复用（LLM 调用成本是当前主要成本项，这是最有效的降本手段）
+- `限流与降级`：之前聊过的入口限流 + 队列削峰（BullQueueRunExecutor 多实例已具备）
+- `流式体验`：之前聊过的 llm-complete 流式改造，C 端在线等待更需要打字机效果
+
+
+*最稳妥的路径不是"今天全自动"，而是按分类和置信度分级逐步放开：*
+1. 第一阶段：低风险分类（查询类、知识咨询类）+ 高置信度 → 自动发送；其余全走人工（现状）
+2. 第二阶段：中风险分类的高置信度 case 放开自动，用监控指标验证误答率
+3. 第三阶段：只有达到"自动发送率 X% 且误答率 < Y%"才考虑进一步放开，urgent/资金类永远保留人工
+> 这一步一步走的每一步，正好都用"自动发送率、转人工率、误答率"这些指标做决策门禁——有数据支撑的放开才是安全的放开。
 
 
 
