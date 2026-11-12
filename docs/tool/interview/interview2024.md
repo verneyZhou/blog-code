@@ -29,7 +29,7 @@ tags:
 text-shadow, box-shadow, border-radius, transform, transition, animation, RGBA和透明度，媒体查询
 
 
-- css可继承属性：`font-family、font-size、font-style、color、line-height、text-align、text-indent、visibility、opacity`
+- css可继承属性：`font-family、font-size、font-style、color、line-height、text-align、text-indent、visibility`
 - css不可继承属性：`display、margin、border、padding、background、height、min-height、max-height、width、min-width、max-width、overflow、flex、grid`
 > 父元素设置 width: 300px; ，子元素不写 width 时，子元素的 width 并不是“继承 300px”，而是`在常规块级布局下由规则计算为 auto` ，很多情况下结果“看起来等宽”，但这叫 布局计算 ，不是继承。
 

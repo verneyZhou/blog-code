@@ -735,6 +735,52 @@ React15 的 StackReconciler 方案由于递归不可中断问题，如果 Diff �
 
 基于 Fiber 的链表结构，对于后续（React 17 lane 架构）的异步渲染和 （可能存在的）worker 计算都有非常好的应用基础
 
+React 16 的 Fiber 把每个节点改造成一个链表节点,每个 Fiber 节点上有三个关键指针:
+- `child`:指向第一个子节点(深度优先,先往下走);
+- `sibling`:指向下一个兄弟节点(往下走到底了,横向走);
+- `return`:指回父节点(用于回溯,同时让每处理完一个节点都能把结果"传"回父节点)。
+
+
+**遍历的顺序——DFS + 两阶段**
+
+遍历顺序其实跟递归 DFS 完全一致,`先父后子、子完了兄弟、兄弟完了回溯`,但每个节点要经历两个阶段:
+1. `begin 阶段`:刚进到这个节点,做"创建/更新 Fiber、执行 render、收集 diff 结果"这些可中断的工作;
+2. `complete 阶段`:该节点的子树都处理完了,再回来看它,做不可中断的收尾(比如把子树的工作结果汇总、提交*副作用列表*)。
+> 中断发生在节点边界——每处理完一个 fiber 单元就检查一次是否需要让出;单个节点内的 begin→complete 是原子过程。React 保证"在组件之间让出",粒度足够细(单个组件渲染通常不超过一帧)。
+
+begin 和 complete 都属于 render 阶段,整个 render 阶段可中断;真正不可中断的是 render 之后的 commit 阶段(同步一次性把副作用提交到 DOM)。
+
+`副作用列表`是一张"本次更新要动哪些 DOM、怎么动"的清单,用链表串起来,React 在 render 阶段顺手把需要更新的节点记在这张单子上,commit 阶段直接照着单子逐项执行,不用再遍历整棵树。
+```
+begin 阶段：收集 diff 结果
+complete 阶段：把子树的工作结果汇总，形成副作用列表，本质上是一条"本次更新中需要变更 DOM 的节点"的有序链表。
+commit 阶段：render 全部结束后,React 进入 commit 阶段；commit 拿到这条副作用链表,从头到尾遍历一遍,按每个节点的标签执行对应操作:该插入的插入、该更新的更新、该删除的删除。
+```
+
+具体走法就是:`从根节点一直 child 往下,走到底了没有 child,就沿 sibling 找兄弟;兄弟也没有了,就沿 return 回父节点进入 complete;直到回到根节点 complete,整棵树的遍历结束`。
+
+
+**为什么这样设计就能"可中断"**
+
+两个机制配合:
+1. `链表天然支持"记住位置"`:中断时我只需要记住当前正在处理哪个节点,恢复时从这个节点继续 child/sibling/return 往下走就行——不需要像递归那样保存整个调用栈。这就是可中断的根基。
+2. `双缓冲(current 和 workInProgress 两棵树)`:工作都做在"新树"上,旧树完整保留;一旦时间片用尽(默认 5ms),就主动让出主线程去处理输入事件,下次接着在新树上干。整个 diff 过程中 DOM 一丁点都不动,等全部算完,一次性把 complete 阶段收集到的副作用列表提交到真实 DOM,并切换 current 指针。
+> 所以用户看到的效果是:一次大更新被切成很多小片,中间随时能响应输入,但最终渲染结果和递归全量算出来的一模一样——因为遍历规则没有变,变的只是"执行的方式"。
+
+
+中断了怎么保证不会渲染出半成品?
+> 双缓冲,工作做在新树上,DOM 只字未动,全部算完才一次提交。
+
+优先级怎么体现?
+> 每个 Fiber 带 lane 优先级标记,高优先级的(如输入、点击)可以插队,把低优先级的工作重新调度; 16 用 expirationTime,17 起换成 lane 车道模型,React 18 的 startTransition 就是利用低优先级 lane 实现"延迟更新"。
+
+React 15 递归和 16 循环的结果一样吗?
+> 一样,遍历顺序没变,变的只是执行方式,这是 Fiber 兼容旧行为的关键。
+
+
+
+v16 就在跑 Fiber 了，它把递归树遍历换成了可中断的链表循环遍历（DFS 顺序不变），具备了时间切片的能力；但 v16/v17 默认仍是同步渲染，这个能力没启用；直到 v18 createRoot 默认进入并发渲染器，才真正用上时间切片和优先级调度。所以不是"v18 才有 Fiber"，而是"v18 才启用 Fiber 的并发能力"——能力(16) ≠ 启用(18)。
+
 
 
 
@@ -1223,7 +1269,35 @@ const StyledDiv = styled.div`
 `;  
   
 <StyledDiv>Hello, World!</StyledDiv>
+
+
+// 编译后（bundle 里的真实代码）
+// CSS 文本仍然以 JS 字符串形式内联在 JS bundle 里，"color: red; font-size: 16px;" 就是一段普通字符串常量；
+// 不会生成独立的 .css 文件（这点和 CSS Modules 完全不同，CSS Modules 会产出真实的 CSS 文件）
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(
+  ["\n  color: red;\n  font-size: 16px;\n"]
+);
+const StyledDiv = styled.div(_templateObject());
+
+
+// 运行时（JS 执行时插入 style 标签）
+// 组件运行时把该字符串经 stylis 处理后，动态创建带哈希类名的 <style> 标签注入 <head>，靠哈希类名保证全局唯一、实现样式隔离；
+<head>
+  {/* 注入的 style 标签 */}
+  <style data-styled="active">
+    .kGfBzF {
+      color: red;
+      font-size: 16px;
+    }
+  </style>
+</head>
+// 组件渲染结果：两个类名
+// sc-bdVaJa	组件定义时的唯一标识（component id）
+// kGfBzF	CSS 文本的哈希值；真正的样式类，全局唯一，所以不会和其他组件冲突
+<div class="sc-bdVaJa kGfBzF">Hello, World!</div>
 ```
+
+
 
 4. 全局CSS：如果你的React应用是一个单页应用（SPA），你也可以像在传统的前端开发中一样，通过`<link>`标签在HTML中引入全局的CSS文件。
 
@@ -1353,58 +1427,141 @@ useState 返回数组相比于对象会更灵活、解构起来也会更简洁�
 
 ### React性能优化？
 
-1. **跳过不必要的组件更新**
-  - PureComponent、React.memo、shouldComponentUpdate
-  - useMemo、useCallback 来生成稳定值
-  - 列表项使用 key 属性
+> 前置原则：**先测量再优化**。用 React DevTools Profiler / Chrome Performance 先定位真实瓶颈，再决定手段；不要凭感觉加 memoization。React 团队估计生产代码中约 60-70% 的 useMemo/useCallback 是不必要甚至有害的——过度 memo 增加对比开销与维护成本，引用不稳定时还会失效。
 
-2. **组件按需挂载**: 
-  - 懒加载: 通过 `Webpack` 的动态导入和 `React.lazy` 方法来实现
-  - 懒渲染: 懒渲染指当组件进入或即将进入可视区域时才渲染组件, 常见的组件 `Modal/Drawer` 等
-  - 虚拟列表
+#### 1. 减少不必要的重渲染
+- **PureComponent / React.memo / shouldComponentUpdate**：对 props 浅比较，未变化则跳过重渲染
+  - 适用条件：组件渲染成本高（>16ms）、父组件频繁重渲染、props 很少变化
+  - 若每次传入的都是新对象/新函数（内联对象、内联箭头函数），浅比较必然失败，memo 失效
+- **useMemo**：缓存昂贵计算（大数组过滤/排序/变换），或给 memo 子组件提供稳定引用
+  - 依赖数组放「每次渲染都是新引用」的对象会必然失效；不要用它包 JSX 节点、不要 memo 简单计算（memo 本身有开销）
+- **useCallback**：只为传给 memo 子组件的函数稳定引用；传给原生 DOM 事件（onClick 等）没必要
+- **列表 key**：稳定且唯一，不要用 index
+- **避免内联对象/函数**：每次渲染创建新引用破坏 memo，常量可提到组件外部
+- **不要在 render 内定义组件**：每次渲染都是新组件类型，导致子树全部卸载重挂载
+- **children 传参**：把不需要随父组件更新的 JSX 作为 children 传入，可跳过该子树重渲染
 
-3. **批量更新**:
-  - 类组件, setState 自带批量更新操作
-  - 函数组件, 尽量将相关的状态进行合并, 然后进行批量更新
+#### 2. 组件按需挂载
+- **懒加载**：`React.lazy` + Suspense（或 Webpack 动态 import），按路由/组件拆包，减小首屏体积
+- **懒渲染**：组件进入（或即将进入）可视区域才渲染，常见于 `Modal/Drawer` 等
+- **虚拟列表**：react-window / react-virtualized，只渲染可视区域行，支撑万级数据
 
-4. **缓存优化**:
-  - React 组件中常用 useMemo 缓存上次计算的结果, 一般用在计算非常耗时的场景中, 如: 遍历大列表做统计信息, 当然 useMemo 只能缓存上一次结果, 如果需要缓存结果则需要自定义一个缓存表, 进行处理
-  - 当然对于接口数据缓存来说, 如果实时性比较高的, 那么我们可以先取缓存时间, 然后通过 `requestIdleCallback` 在系统闲暇时重新发起请求获取数据, 这样在请求比较耗时情况下, 可以优化用户的体验
+#### 3. 状态更新优化
+- **批处理**：React 18 起所有更新自动批处理（含 Promise、定时器、原生事件），多次 setState 合并为一次渲染；需同步时用 `flushSync`
+- **状态管理优化**：状态下沉（状态放在最近的公共父组件）、状态分割（避免单一大状态对象）；Context 场景可拆分 Context + value 用 useMemo，避免无关消费者重渲染
+- **并发特性（React 18+，需 createRoot 启用）**：
+  - `startTransition` / `useTransition`：把更新标记为非紧急，输入等紧急更新可打断它
+  - `useDeferredValue`：类似 debounce 但没有固定延迟，延迟值渲染可中断、不阻塞输入（适合大列表过滤）
+- **debounce / throttle**：优化频繁触发的回调（搜索、滚动、resize）
 
-5. 通过 debounce、throttle 优化频繁触发的回调函数
+#### 4. 缓存优化
+- useMemo 只能缓存上一次计算结果，需跨渲染缓存时自定义缓存表
+- 接口数据缓存：实时性要求不高时可先取缓存展示，再用 `requestIdleCallback` 在系统闲暇时刷新数据，优化体验
 
-6. 其他：
-  - 在组件中为 window 注册的全局事件、定时器等, 在组件卸载前要清理掉. 防止组件卸载后继续执行影响应用性能
-  - 使用 Fragment 避免额外标记
-  - 不要使用内联函数定义
-  - 避免使用内联样式属性
-  - 为组件创建错误边界
+#### 5. React Compiler（自动 memoization，2025 起新方向）
+- 构建期编译器，自动为组件和值做 memoization，目标是替代手写 useMemo / useCallback / React.memo
+- 1.0 已稳定（2025-10）；官方推荐配合 React 19，同时支持 17/18
+- 安装 `babel-plugin-react-compiler`，支持 Vite / Webpack / Next.js / React Native（Metro）等；`"use no memo"` 指令可跳过单个组件
 
+#### 6. 加载与体积（React 层面）
+- **Server Components（React 19）**：渲染移到服务端，客户端只收到结果，JS 显著减少（Next.js App Router 默认方案）
+- **Suspense 流式 SSR（React 18）**：按 Suspense 边界分段下发，不必等最慢的数据
 
-::: tip 总结
-- 如果是因为存在不必要更新的组件进入了 Render 过程, 则选择`跳过不必要的组件更新`进行优化
-- 如果是因为页面挂载了太多不可见的组件, 则选择 `懒加载、懒渲染 或 虚拟列表` 进行优化。
-- 如果是因为多次设置状态, 引起了多次状态更新, 则选择`批量更新或 debounce(防抖)、throttle(节流) `优化频繁触发的回调进行优化
-- 如果组件 Render 逻辑的确非常耗时, 我们需要先定位到耗时代码(这里我们可以选择使用 React 官方提供的性能分析插件、或者使用 chrome 自带的性能分析插件), 并判断能否通过缓存优化它, 如果可以则选择缓存优化, 否则选择按优先级更新, 及时响应用户, 将组件逻辑进行拆解, 以便更快响应用户
+#### 7. 其他
+- 组件卸载前清理 window 全局事件、定时器，避免卸载后继续执行
+- 使用 Fragment 避免多余节点
+- 避免内联样式属性
+- 为组件创建错误边界
+- 图片懒加载、代码压缩、CDN 加速（通用 Web 优化，非 React 专属）
+
+::: tip 总结（按问题定位优化手段）
+- 存在不必要更新的组件进入 Render → `跳过不必要的组件更新`（memo / useMemo / useCallback）
+- 挂载了太多不可见组件 → `懒加载、懒渲染、虚拟列表`
+- 多次设置状态引起多次更新 → `批处理、debounce/throttle、startTransition / useDeferredValue`
+- Render 逻辑确实耗时 → 先用 Profiler 定位耗时代码：能缓存则缓存，否则按优先级更新（transition）或拆解组件逻辑，及时响应用户
 :::
 
+#### 开发工具辅助
+- React DevTools Profiler：分析组件渲染性能（哪个组件渲染、耗时、为何渲染）
+- `<Profiler>` 组件（React 16.9+）：`onRender` 回调，可在生产环境采集渲染数据
+- Chrome DevTools：监控内存与主线程长任务
+- Bundle Analyzer：分析打包体积
 
-- `组件层面优化`: 
-  - React.memo ：防止函数组件不必要的重新渲染
-  - useMemo ：缓存计算结果
-  - useCallback ：缓存函数引用
-- `渲染优化`
-  - 避免内联对象和函数 ：内联每次渲染都创建新对象，可提取到外部
-  - 合理使用key ：帮助React识别列表项变化
-- `状态管理优化`：状态下沉 ：将状态放在最近的公共父组件；状态分割 ：避免单一大状态对象
-- `代码分割和懒加载`：React.lazy + Suspense
-- `虚拟化长列表`：使用 react-window 或 react-virtualized
-- `图片和资源优化`：图片懒加载、代码压缩、CDN加速
-- `开发工具辅助`
-  - React DevTools Profiler ：分析组件渲染性能
-  - Chrome DevTools ：监控内存使用和性能
-  - Bundle Analyzer ：分析打包体积
-- `服务端渲染` ：使用 Next.js 或自建 SSR 提升首屏性能
+
+### 在React组件渲染中，子组件、children和 React.memo 的渲染机制有什么异同呢？
+
+三者回答的是同一个问题："父组件重渲染时，子组件要不要跟着渲染？"，机制完全不同：
+
+**代码对比**（ExpensiveTree 为渲染昂贵的子树，可用 console.log 观察它是否重新渲染）
+
+```jsx
+// ① 默认子组件：敲一下输入框，App 重渲染，ExpensiveTree 无条件跟着渲染
+function App() {
+  const [color, setColor] = useState('red');
+  return (
+    <div>
+      <input value={color} onChange={e => setColor(e.target.value)} />
+      <p>当前颜色：{color}</p>
+      <ExpensiveTree />
+    </div>
+  );
+}
+```
+
+
+```jsx
+// ② children 传参：ExpensiveTree 元素在 App 的 render 里创建（App 无状态、不重渲染），
+//    color 变化只触发 ColorPicker 重渲染，{children} 引用不变 → React 跳过
+function App() {
+  return (
+    <ColorPicker>
+      <ExpensiveTree />
+    </ColorPicker>
+  );
+}
+
+function ColorPicker({ children }) {
+  const [color, setColor] = useState('red');
+  return (
+    <div>
+      <input value={color} onChange={e => setColor(e.target.value)} />
+      <p>当前颜色：{color}</p>
+      {children}
+    </div>
+  );
+}
+```
+> 为什么有效？（关键机制）
+1. `<ExpensiveTree />` 本质是一个元素对象 `jsx(ExpensiveTree, null)`，它是在 App 的 render 函数里创建的。
+2. App 没有状态、从不重渲染 → 这个元素对象的引用永远不变。
+3. `ColorPicker` 重渲染时，`{children}` 只是把这个原对象原样插进 JSX 里，不会重新创建。
+4. React 协调到 `ExpensiveTree` 这个 `fiber` 时，发现它的 props 对象引用和上次一模一样（oldProps === newProps）→ 直接跳过，连 render 都不执行。
+
+> 什么时候会失效（重要）？
+- 如果 App 自己也有状态，App 每次重渲染都会重建这个元素
+
+
+```jsx
+// ③ React.memo：props 浅比较相等才跳过；传内联对象/函数（每次都是新引用）会让比较必失败，
+//    所以常配合 useCallback / useMemo 稳定引用
+const ExpensiveTree = memo(function ExpensiveTree({ data, onClick }) {
+  return <div>昂贵子树</div>;
+});
+```
+
+
+
+**关键差异**
+
+1. **默认 vs memo**：默认是"父渲染必子渲染"；memo 是"先比较后渲染"，相等才跳过。
+2. **children vs memo**：children 靠**引用相等**直接跳过、不进比较流程（比 memo 更省）；memo 靠**值比较**，即使值相同，只要传的是新引用（内联对象/函数）比较必失败、照样渲染——所以 memo 常要配合 useMemo/useCallback 稳定引用。
+3. **适用场景**：children 传参适合"昂贵子树 + 创建点组件稳定不重渲染"（本质是状态隔离）；React.memo 适合"组件昂贵 + props 变化不频繁 + 父组件频繁重渲染"。
+4. 两者不冲突：memo 组件同样可以接收 children 传参，在不同环节各自起作用。
+
+> 一句话：默认渲染"无条件"，memo 是"浅比较后决定"，children 是"引用没变压根不比"。
+
+
+
 
 
 ### 使用 React 需要注意的事项有哪些?
@@ -1523,6 +1680,8 @@ export default function ClosureStaleDemo() {
 
 > 闭包陷阱不是“React 没更新”，而是“更新发生在新的一次函数调用里，而你已经启动的那个回调被困在上一次函数调用的作用域中”。React 每次渲染都会用最新的 render 输出去更新 DOM 属性，包括 onClick 指向哪个函数。所以你下次点按钮，触发的是新一次 render 里的 checkLater。如果在等待期间又更新了 state，那个更新属于新的一次 render，而你正在执行的旧函数无法感知新 render。
 
+闭包拿到的是"创建回调那一刻所在的那次 render 的值"，每次 render 把状态拷贝一份成局部变量，闭包捕获的就是这份拷贝。更新会开启新 render、产生新拷贝、新闭包
+
 解决方案：
 1. 使用 ref 保存最新值
   - 在 useEffect 里同步最新 state 到 ref；异步/订阅回调中读取 ref.current。
@@ -1559,8 +1718,6 @@ export default function ClosureStaleDemoFixed() {
 3. 使用函数式 setState
   - 对基于旧值的更新使用 setState(prev => next)，避免多次更新的竞态和丢失。
 
-4. 等下一帧再读
-  - 在触发一次 setState/store 更新后，用 requestAnimationFrame/微任务再读取 ref，从而避开当前闭包的旧快照。
 
 
 

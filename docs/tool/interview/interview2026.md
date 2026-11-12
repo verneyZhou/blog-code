@@ -1056,7 +1056,7 @@ WebGL渲染+二进制协议+流式消费+OffscreenCanvas
 - 字体： font-display: swap ，子集化（subset），必要时预加载 WOFF2。
 
 
-3. 渲染与主线程（让浏览器更快“画出来”）
+3. 主线程渲染优化（让浏览器更快“画出来”）
 - `降低首屏 DOM 复杂度`，避免巨型列表（虚拟列表/骨架屏）。
 - 避免 layout thrashing：`读写分离（先读后写），批量更新（ requestAnimationFrame ）`。
 - `让动画走合成`： transform/opacity ，减少大面积重绘；合理使用 will-change 。

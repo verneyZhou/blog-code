@@ -457,7 +457,7 @@ mysql>
 
     - 打开mysql客户端navicat，新建mySql连接，连接云服务器：
     <img class="zoom-custom-imgs" :src="$withBase('/images/project/centos008.png')" width="auto"/>
-    > 主机为阿里云服务器ip，端口3306，用户名为root，密码为配置的2020zyZY
+    > 主机为阿里云服务器ip，端口3306，用户名为root，密码为配置的***
 
 
 3. 新建站点成功后，连接，并导入数据库book，和之前在本地的操作一样。

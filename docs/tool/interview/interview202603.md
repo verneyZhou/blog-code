@@ -213,7 +213,7 @@ Harness
 
 
 
-**为什么mapvg只有全量方法，没有提供增量绘制的方法呢，这是出于什么考虑呢？**
+**为什么mapvgl只有全量方法，没有提供增量绘制的方法呢，这是出于什么考虑呢？**
 
 这个问题我先直接给结论：`这不是 mapvgl 能力上的缺失，而是 API 设计上的取舍——它选择了"简单可控"，放弃了"极致性能"。`可以从三个层面理解。
 
@@ -226,3 +226,469 @@ Harness
 当然，它也不是完全没有轻量操作——setOptions 改样式、show/hide 显隐、clear 清空，这些都是轻量的，缺的只是"数据级"的增量。
 
 所以回到我们项目的应对思路就很清晰了：既然全量替换消不掉，我们就从三头下手——把全量次数压到最低（聚合）、把单次规模限住（子层化）、把执行摊进多帧（时间切片）——在框架的约束下，把性能挖到极限。
+
+
+
+
+## SSR渲染为什么会缩短白屏时间，它相较于CSR最大的不同的什么，底层是如何实现的？
+> ai结合整理的知识点生成
+
+其实白屏的本质,就是用户从发出请求,到眼睛里第一次看到有内容的页面,中间这段「什么都看不到」的时间。那 CSR 和 SSR 最大的区别,就在于这段等待里到底塞了多少步骤。SSR 之所以能缩短白屏,核心就一句话:它把「首屏内容」这件事,从浏览器挪到了服务端提前做完了。
+
+*第一层·为什么白屏更短？*
+
+我们先看 CSR 的链路。浏览器请求一个 URL,服务器先甩回来一个基本是空壳的 HTML,里面就一个 `<div id="app">`。这时候页面是白的。然后浏览器得去下载 JS、解析执行 JS,JS 跑起来之后再去调后端接口要数据,数据回来了才开始渲染 DOM。所以 CSR 的白屏时间大概等于:网络请求 + JS 下载 + JS 执行 + 接口请求 + 渲染,是一条串行的、很长的瀑布。应用越复杂、JS 越大,这个白屏就越久。
+
+那 SSR 呢?浏览器请求 URL,是前端的 Node 服务直接去把数据取好、在服务端就把带数据的完整 HTML 拼出来,一次性返回。浏览器拿到的不是空壳,而是已经有内容的 HTML,解析完直接就能画出来。这时候 JS 还没加载完也没关系,用户已经先看到页面了。
+
+所以关键差别是:CSR 是「等 JS 和数据都齐了才给看」,SSR 是「内容先给看,JS 慢慢在后台补」。 白屏自然就短了。
+
+
+*第二层·跟 CSR 最本质的不同*
+
+第一,首屏内容的产出方不一样。CSR 的首屏是浏览器端 JS 跑出来的;SSR 的首屏是服务端直出的 HTML 字符串。
+
+第二,也是更底层的——它缩短的是「请求数据的路径」。CSR 必须先把空 HTML 返回给浏览器,再由浏览器发起第二趟请求去要数据,这是两个来回。SSR 是前端服务器离后端更近,直接在服务端把数据取好拼进 HTML,少了「浏览器→拿到壳→再发数据请求」这一整个往返。这也是为什么 SSR 对低带宽、弱网用户体验提升特别明显。
+
+当然顺带的收益还有 SEO,因为爬虫不等你 Ajax,SSR 返回的 HTML 本身就是有内容的,利于抓取和索引。
+
+
+*第三层·底层怎么实现*
+
+底层我用一个词概括:`同构(isomorphic)`,就是同一套代码,在服务端跑一遍、在浏览器又跑一遍。服务端负责把页面结构渲染出来,浏览器端负责把事件绑定「激活」上去。
+
+具体拆成几个环节:
+
+`一是编译阶段`。 一套代码会打包成两个 bundle,两个入口——entry-server 和 entry-client。服务端那份不需要编译 CSS、不需要 code split,因为 Node 一次性加载进内存反而更快;客户端那份会生成一个资源清单 client-manifest,告诉服务端这个页面该注入哪些 JS 和 CSS 标签。
+
+`二是渲染阶段`。 服务端用 createBundleRenderer 创建一个渲染器,用户请求进来时调 renderToString,把 Vue/React 组件递归转成 vnode,再拼成 HTML 字符串。数据怎么来?组件上会定义一个预取数据的方法——Vue 里叫 asyncData,它在实例化之前就执行,所以拿不到 this,得把 store 和路由当参数传进去。服务端先把这些数据全取好,塞给渲染器的上下文。
+
+`三是最关键的「注水」和「脱水」`。 服务端渲染完,会把这次用到的状态数据序列化,塞到 HTML 里的 `window.__INITIAL_STATE__`,这叫注水;浏览器端 JS 启动的时候,再把这个全局变量读出来,通过 `store.replaceState` 同步回客户端的 store,这叫脱水。这一步是为了保证两端的数据状态完全一致,否则会出现服务端渲染的和客户端对不上的问题。
+
+`四是激活,也就是 hydration`。 服务器已经把 HTML 画好了,浏览器没必要把 DOM 全删了重建。所以 Vue 在 $mount 的时候会检查根节点有没有 data-server-rendered 这个属性,有的话就跳过重新渲染,只在现有的静态 DOM 上把事件监听绑定上去,让这个静态页面「活」过来,能响应后续交互。从这之后,路由跳转、交互就全在客户端跑了。
+
+SSR 把渲染和数据 IO 的压力从浏览器挪到了 Node 服务,高并发下服务器 CPU 和负载会上来,所以落地时我会特别注意几件事:一是加缓存,页面级或片段级缓存,相同请求直接返回别重复渲染;二是只渲染首屏,比如列表一屏看得见五条就只服务端渲五条,剩下的客户端异步补;三是严格控制服务端接口的超时时间,防止后端抖动把 Node 服务拖垮;四是要有降级方案,SSR 挂了能退回 CSR,保证可用性。
+
+
+
+**那在渲染阶段，服务端拼接好的html字符串是已经用asyncData获取到的数据更新之后的，还是等到客户端激活的时候再更新的？**
+
+用户请求进来,服务端不是直接就 renderToString,而是有一个数据预取阶段：
+1. 逐个调用组件上的静态方法 asyncData(React 生态里是 loadData);
+2. asyncData 把数据写入 store(它是同步 await 完才继续的);
+3. 等到所有 asyncData 都 Promise resolve、store 填好了,才调用 renderToString 开始渲染组件。
+
+store 有数据了,组件渲染出的 vnode 转成 HTML 字符串,此时 `{{ count }}、{{ list }}` 这些插值已经被替换成真实值了。然后渲染完顺手把这份 state 序列化,塞进 `window.__INITIAL_STATE__` 一起吐给浏览器,叫`注水`。
+
+所以浏览器拿到的 HTML 里,`<div>{{ count }}</div>` 已经是 `<div>3</div>` 这种成品,连"数据放哪了"都告诉你了——就在 `window.__INITIAL_STATE__` 里。
+
+客户端激活时不做数据更新,只是把注进来的 state 读回 store,并在现成的 DOM 上绑事件：
+1. 先把 `window.__INITIAL_STATE__` 通过 `store.replaceState` 同步进客户端 store,这叫`脱水`，保证两端状态一致;
+2. `$mount` 时检测到 `data-server-rendered` 属性,跳过重新渲染,直接在现成的 DOM 上`绑定事件监听`——这就是 `hydration`;
+3. 在 componentDidMount 里 `if (!this.props.list.length)` 的判断,意思就是:首屏组件已经有服务端给的数据了,就不再发一次请求;只有当路由跳转后新挂载的组件、store 里没有它的数据时,才由客户端自己去拉。
+
+
+**那客户端激活时万一数据和服务端不一致怎么办?**
+
+这正是 hydration 的意义所在,React 18 里叫 `hydrateRoot`,Vue 就是查 `data-server-rendered`;一旦检测到两端不一致,框架会`放弃激活、客户端重新渲染`做兜底,代价是首屏会闪一下(React 会先警告再重渲)。所以正常流程必须保证"`服务端渲染用的数据 = 注入的 state = 客户端同步的 state`"三者严格一致,这也是为什么 asyncData 必须在组件实例化前执行、不能访问 this——它就是为了保证这个一致性而设计的。
+
+
+
+
+## 如何让AI写的代码达到生产上线的标准？以及如何对这个标准量化？你们这套工程上线后有哪些收益呢？提效多少呢？
+
+
+先统计人工审核打回 AI 代码的原因，归成五类：`业务逻辑错、不符合项目已有约定比如重复造轮子、过度设计改动越界、UI 的加载失败空数据三态不全、还有幻觉，就是调用了不存在的接口字段或组件`。
+
+
+*三态缺失*是 AI 代码的高频问题，但人工审核又最容易看漏。代码评审擅长发现"写错的代码"，不擅长发现"没写的代码"。
+> 异步数据的三种非正常状态：加载中（loading）、请求失败（error）、请求成功但数据为空（empty）。"三态缺失"就是 AI 只写了"数据正常返回"那一条路径，另外三条漏了。
+
+
+*第一件，把需求前置成一份变更契约。*
+
+让 AI 写代码之前，人先花五分钟写清楚四件事：`目标、允许改哪些文件、必须复用哪些已有组件`、以及两三条可以点击验证的`验收点`。
+
+一是"必须复用 ProTable、必须走封装的 request 层"这种信息，AI 不是写得差，是我们根本没告诉它。二是允许改哪些文件写死了，那"改动越界"就从人工判断变成了机器判断，CI 直接比对 diff 文件列表超不超范围。
+
+
+*第二件，把语义约束翻译成类型约束。*
+
+凡是能让 tsc 报错的约定，就不要写进规范文档，也不要写进评审清单，因为写了没人看。
+
+举个具体例子。三态检测不了，那我们就封一个 AsyncBoundary 容器，`把 empty 这个 prop 设成必填。漏写空态，TypeScript 直接编译不过`。
+
+这样"你要记得写空态"这条靠自觉的规范，就变成了一条编译错误。幻觉类也是同一个思路，用 OpenAPI 生成 TS 类型。
+
+
+*第三件，CI 门禁。*
+
+这是存量项目的生死线。我们加了类型检查、ESLint、type-coverage 量化 any 比例、jscpd 查重复率、dependency-cruiser 查分层依赖，还有 danger 查改动范围和 diff 规模。
+
+
+
+### 如何标准量化？
+
+**第一层准入指标，是硬门禁**
+
+`CI 全绿、契约完整、改动范围合规、单次改动规模不超标`。全是布尔判定，任何一个不过就合不进去。
+
+
+- *CI 全绿*：iCode 流水线里按固定顺序加这几个 job，前面的挂了后面不跑；`类型检查、eslint、any渗透、重复率、死代码`
+> 存量代码全部只卡变更行、只卡新增。没有这条，这套门禁第一天就全红，团队第三天就绕过它了。
+
+
+- *契约完整*：iCode 的 MR 描述就是契约载体，用 danger 脚本做机器校验（danger 14.x 的 GitLab DSL 原生支持 MR 描述读取）：
+``` ts
+// dangerfile.ts
+// 读 MR 描述
+const contract = danger.github?.pr?.body ?? danger.gitlab?.mr?.description ?? '';
+
+const requiredSections = ['目标', '允许改动范围', '必须复用', '验收点'];
+const missing = requiredSections.filter((s) => !contract.includes(s));
+
+// 验收点至少 2 条
+const acceptanceCount = (contract.match(/^\s*(?:-|\d+\.)\s+/gm) ?? [])
+  .filter((line) => /能|看到|返回|跳转|点击/.test(line)).length;
+
+if (missing.length) {
+  fail(`变更契约缺失：${missing.join('、')}，请先填写 L0 变更契约再提交评审。`);
+}
+if (acceptanceCount < 2) {
+  warn('验收点少于 2 条，建议至少 2 条可点击验证的验收点。');
+}
+```
+> danger.js 是一个跑在 CI 里的 MR 校验框架，只支持 GitHub 和 GitLab 两家平台的 MR/PR；也可以单独写一个脚本 check-contract.ts 实现校验逻辑
+
+
+- *改动范围合规*：这也是 danger 做：解析契约里的文件声明，和本次 MR 实际改动文件做比对。
+
+当初为什么坚决把这条做硬：AI 在长对话里最容易夹带无关改动——你让它改列表页筛选，它顺手把共用 request 层重构了，还改了三个看着"顺手"的文件。这恰恰是"`过度设计/改动越界`"那一类的机器化表达。
+
+这里有个诚实的边界："超出范围但合理"的情况是存在的，比如改着改着发现必须动一个公共组件。所以配套规则是：可以超，但必须回到契约里显式声明"我为什么要动它"，等于把一次静默越界变成一次显式决策。给流程留了理性出口，人才不会想绕过它。
+
+
+- *单次改动规模 ≤ 400 行*：danger 里 git.diff 统计变更行数，超了直接 fail：
+``` ts
+const additions = danger.git.diff?.split('\n').filter((l) => l.startsWith('+')).length ?? 0;
+if (additions > 400) {
+  fail(`本次改动新增 ${additions} 行，超过 400 行，请拆分后分别评审合入。`);
+} 
+```
+> AI 生成的大 diff 里，夹带无关修改的概率随行数急剧上升，机器能查文件范围，查不出"同一行里混了两件事"；二是评审有效性在 diff 变大后断崖下降，超过一定量级人基本只能扫着看。所以宁可强制拆分，让每次评审都只处理一个完整、可理解的事。
+
+
+`开发把契约写进 MR 描述 → 流水线跑 CI（全绿）→ danger 校验契约完整性和文件范围 → 规模检查 → 机器门禁全过`，才轮到人工，人工只看那五条机器看不了的。准入指标的目的是把评审人的注意力从"检查语法和范围"里解放出来，全部留给真正的业务判断。
+
+
+
+
+
+**第二层过程指标，衡量 AI 输出质量，用来反向迭代我们的 skill 和 prompt。** 
+
+最关键的一个叫`人工修改率：合入前人工改了多少行，除以 AI 生成了多少行`。做法是让 AI 的产出先单独一个 commit，commit 打上 AI-Assisted 的 trailer，人工修改另开一个 commit，脚本按 trailer 分组统计。这个数字直接量化了"AI 写的离能上线还差多远"，而且能按 skill 版本做 A/B 对比。
+
+
+
+**第三层结果指标，衡量是不是真达到生产标准。** 
+
+十四天返工率：`一次改动合入后十四天内，有多少行被改掉或删掉`。选它的理由：`纯 git 脚本就能算，不依赖任何新基建`；最重要的是,它同时反映逻辑错误和过度设计,因为写错了要改,过度抽象后来也要拆。
+
+还有一点我想强调,只看前两层是危险的。返工轮次降了、审核快了,只能说明审核成本降了。必须同时看第三层不恶化,否则这套东西就变成"更快地合入更差的代码"。
+
+
+
+> 明确踩过或者避开的坑：
+1. *不要用开发者的主观感受当指标*
+2. *不要指望 AI 自查兜住逻辑错误*。 有篇 ICLR 的论文结论很明确，在没有外部正确性信号的情况下，`模型自我纠错往往越改越差；一旦给它外部判定信号，比如编译器、测试、静态检查，才稳定有效`。所以我们的资源分配是：`前置契约大于机器门禁，机器门禁大于 AI 自查`。
+3. *LLM 打的分不能当门禁*。 它有很明确的 verbosity bias，写得长的容易得高分，那正好奖励了过度设计。我们只用它做同一套 rubric 下两个 skill 版本的相对比较，不看绝对分。
+> ‌“verbosity bias”通常译为“冗长偏差”‌，指评估者（尤其是大模型作为裁判时）倾向于给更长、更啰嗦的回答打高分，即使这些回答信息密度低或包含无关内容
+
+
+
+### 你们这套工程上线后有哪些收益呢？提效多少呢？
+
+收益我分三类讲：一类是`结构性`的，不需要统计就能证明；一类是`过程指标`，有数据但有前提；还有一类是我不敢给精确数字的，我也说清楚为什么。
+
+先说第一类，我觉得这是最实在的收益：`有三类缺陷在上线后是被结构性消除的，不是概率性降低`。
+
+`幻觉类`，就是调用不存在的接口字段，现在它编译不过。`三态缺失`，因为 empty 变成了必填 prop，漏写同样编译不过。`改动越界`，CI 直接比对 diff 文件列表，超出契约范围就卡住。
+
+
+第二类是`过程指标`，试点四周的数据：AI 改动的首次门禁通过率【填 50% → 85%】，人工 CR 返工轮次从【填平均 3 轮降到 1 轮】，人工修改率，就是合入前人工改的行数除以 AI 生成行数，从【填 40% 降到 10%】。
+
+
+第三类，也是我想主动说明的：`整体提效`百分之多少，我不敢给一个精确数字。 原因有三个。
+
+一，我们没有真正的对照组。同一批人、同一个迭代，不可能既用这套流程又不用。
+
+二，同期有混杂变量。团队对 AI 工具的熟练度本身在涨，需求复杂度每个迭代也不一样，这些都会污染数字。
+
+三，更关键的是，主观感受在这件事上是不可靠的。 METR 有个随机对照实验，十六个资深开源开发者、两百多个真实 issue，结果是用 AI 之后实际耗时增加了百分之十九，但开发者事后仍然认为自己被加速了百分之二十。所以如果我给你一个"团队感觉快了百分之三十"，那基本没有信息量。
+
+
+
+`这套东西我们是分阶段上的，目前基线采集跑完了，门禁刚转成强制，所以完整的前后对比数据还不够一个有说服力的样本量。`
+> 我特意把基线采集放在第一周、不加任何限制，就是因为我见过太多"上了一堆工具，但说不清到底有没有变好"的情况。没有基线，后面所有提质提效的说法都是故事。
+
+
+
+### 基线采集和 门禁转为强制 是什么意思，具体怎么操作的呢？
+
+*"基线采集"*是动手改任何东西之前，先把现状数字记下来；*"门禁转为强制"*是规则上线的方式——先只报错不卡死，数据验证阈值合理了，再改成真拦。
+
+
+**基线采集**：
+> 第一周唯一任务是把"改动之前"的数字记死，之后每一步都能跟它对比。
+
+1. *类型覆盖率（any 渗透率）*:
+``` sh
+npx type-coverage --detail            # 输出当前百分比 + 逐文件明细
+```
+
+2. *代码重复率*:
+``` sh
+npx jscpd src --reporters json --output .jscpd-baseline.json   # 生成基线文件，入库
+```
+
+3. *死代码 / 未用导出 / 未声明依赖*
+``` sh
+npx knip                          # 输出 issue 列表和总数
+npx knip --max-issues 87          # 把 87 设为当前值——以后只许降不许涨
+```
+
+4. *14 天返工率（churn）*——纯 git 脚本算，不用任何工具。口径：合入时新增的行，在合入后 14 天内被修改或删除的比例。
+``` sh
+# 第一步：列出过去 8 周合入主干的 commit 及各自新增行数
+git log origin/main --since="8 weeks ago" --pretty="%H %ad" --stat
+
+# 第二步：对每个 commit，看它合入 14 天后，新增的行有多少被动过
+# 用 git log -L 追踪行级历史：
+git log -L <start>,<end>:<file> --since=<merge_date> --until=<merge_date + 14 days>
+```
+> 统计口径是"新增行集合中，14 天内被触碰过的占比"
+
+5. *历史 CR 的返工数据*（从 iCode/git 拉）：
+``` sh
+git rev-list --count origin/main..feature/xxx   # 分支上 commit 数 - 1 ≈ 返工轮次
+```
+
+指标	基线值	采集方式
+类型覆盖率	91.2%	type-coverage
+存量重复率	6.8%	jscpd baseline 文件
+knip issue 数	87	knip --max-issues
+14 天返工率	待算	git 脚本
+平均返工轮次	2.3 轮	iCode 历史 CR
+
+
+**门禁转为强制：先 warn 后 error 的三周节奏**
+> 规则不是一次性砸下去的，砸下去那天如果全红，团队第三天就会绕过你。
+
+1. 全部以 warn 上线，只报不卡。
+``` sh
+# ESLint：本地/开发环境规则全部设 warn
+# 配置文件里：
+rules: {
+  'no-restricted-imports': 'warn',
+  '@typescript-eslint/no-unsafe-member-access': 'warn',
+  // ...
+}
+```
+> 这周 CI 里 warn 不失败，但报告要留档。目的是回答一个问题："如果这些规则转成 error，会卡掉多少正常改动？" 如果 warn 命中率里有一大半是误报，说明规则写错了，先修规则；如果命中率都集中在真正的问题上，说明阈值合理，可以转强制。
+
+2. 转 error，只对新增生效，存量不追溯。
+
+- 方式一：只检查变更文件（推荐，天然棘轮）。 用 `lint-staged` 在 CI 里只对本次 MR 改动的文件跑 `lint + --fix`：
+``` sh
+# package.json
+"lint-staged": {
+  "*.{ts,tsx}": ["eslint --fix", "prettier --write"]
+}
+```
+
+- 方式二：绝对阈值类指标用"基线 + 只许变好"；比如死代码超过87就失败，类型覆盖率低于91.2%就失败
+
+
+*"转为强制"落地在 CI 上的样子：*
+``` yaml
+quality-gate:
+  script:
+    - npx tsc --noEmit
+    - npx eslint . --max-warnings 0          # CI 环境用 max-warnings 0 = warn 也当失败
+    - npx jscpd src --baseline .jscpd-baseline.json --fail-on-new-clones  # # 新增克隆 → 失败
+    - npx knip --max-issues 87  # 超过 87 → 失败
+    - npx type-coverage --at-least 91.2 --history-file  # 低于基线 → 失败
+    - npx dependency-cruiser --exit-code
+    - npx danger ci                          # 契约完整性 + 改动范围 + 规模
+  when: manual                            # 初期挂在"人工可跳过"位，两周后 required
+```
+> --max-warnings 0 让本地是 warn、CI 是 error——开发体验和门禁强度分离；when: manual 一开始留个口子，稳定后再改 required，这叫"软转强制"，第 4 周才完全卡死。
+
+
+
+### 支付链路的单测如何设计？
+
+B 端前端里的支付链路，风险不在"渲染"，在这三件事：
+- `幂等`：用户连点两次"确认支付" → 产生两个支付单
+- `轮询状态机`：支付成功后页面还在轮询、或者轮询永远停不下来
+- `后端返回未知状态`：后端加了个你没见过的状态码，前端静默放行，用户看到"支付中"其实是已关闭
+
+
+设计原则（三条，资深感在这）
+1. `测试的是状态机和契约，不是 UI 渲染`。 页面长什么样不值得测，状态转错了会出事。
+2. `把可测逻辑全部抽成纯函数，hook 只剩胶水`。 这样 80% 的用例是纯函数测试：不需要 DOM、不需要 mock 网络、毫秒级跑完。
+3. `每个用例对应一次真实线上事故，不为覆盖率写`。 这是"bug 驱动用例"：线上出过"连点两次导致双支付单"，就把这条写进用例，保证它不会再发生。
+
+
+
+### 上面的提前写契约，之后强制校验契约式如何实现的？
+
+落地链路：*契约模板（文档）→ 校验脚本（代码）→ 接入点（hook + CI）*
+
+
+**第一步：契约模板（填好你这个项目的版本）**
+
+``` md
+## 变更契约
+- 目标：一句话说清要做什么（例：run 执行中模型调用失败时增加 2 次重试并埋点）
+
+- 允许改动范围（写目录前缀）：
+  - server/src/agent/          # 运行时/状态机
+  - server/src/skills/         # skill 注册
+  - server/src/routes/         # HTTP 路由
+  - web/app/                   # 前端页面
+
+- 必须复用：
+  - AgentRuntime / applyTransition（状态流转不许自己另写一套）
+  - EventEmitter + stream（事件/审计必须走它，不许 console.log 代替）
+  - lintDraft（guard/linter.ts，草稿敏感词拦截）
+  - skills/registry.ts（新 skill 必须注册，不许散落）
+  - db/repositories/*（routes 里不许裸写 SQL / 直连 pg）
+
+- 禁止：
+  - 绕过 server/src/models/ 直连 LLM SDK
+  - 改 db schema 不更新 migrate
+  - 新增 npm 依赖（需显式声明理由）
+  - 改动 server/src/analytics/（口径变更需单列 CR）
+
+- 验收点（必须可执行）：
+  1. pnpm --filter @cs-agent/server typecheck 通过
+  2. pnpm --filter @cs-agent/server test 全绿（涉及 runtime/state-machine 必须）
+  3. pnpm validate:happy-path 跑通（全 mock 端到端）
+  4. 前端改动：pnpm --filter @cs-agent/web build 通过
+```
+
+
+**第二步：校验脚本**
+
+``` ts
+#!/usr/bin/env tsx
+/**
+ * L0 变更契约校验器
+ * 本地：读 .cr-contract.md；CI：读 $CR_CONTRACT 环境变量（CR 描述注入）。
+ * 通过返回 0，失败返回 1。
+ */
+import { execSync } from 'node:child_process';
+import { readFileSync, existsSync } from 'node:fs';
+
+const [PASS, FAIL, WARN] = ['\x1b[32m[PASS]\x1b[0m', '\x1b[31m[FAIL]\x1b[0m', '\x1b[33m[WARN]\x1b[0m'];
+const baseIdx = process.argv.indexOf('--base');
+const base = baseIdx >= 0 ? process.argv[baseIdx + 1] : 'origin/main';
+
+// 1. 读契约：环境变量 > 本地文件
+const md = process.env.CR_CONTRACT ?? (existsSync('.cr-contract.md') ? readFileSync('.cr-contract.md', 'utf8') : '');
+
+// 2. 解析小节（markdown 结构）
+function section(title: string): string {
+  const m = md.match(new RegExp(`^##\\s*${title}\\s*$([\\s\\S]*?)(?=^##\\s|$)`, 'm'));
+  return m?.[1]?.trim() ?? '';
+}
+const goal = section('目标');
+const scope = section('允许改动范围').split(/\r?\n/).filter(Boolean).map((l) => l.replace(/^[-*]\s*/, '').trim()).filter(Boolean);
+const reuse = section('必须复用').split(/\r?\n/).filter(Boolean);
+const accept = section('验收点').split(/\r?\n/).filter(Boolean);
+
+// 3. 契约完整性
+const failures: string[] = [];
+if (!goal) failures.push('缺少【目标】');
+if (!scope.length) failures.push('缺少【允许改动范围】');
+if (accept.length < 2) failures.push('【验收点】少于 2 条');
+if (accept.length >= 2 && !accept.some((l) => /\b(pnpm|npm|yarn)\s/.test(l)))
+  console.log(`${WARN} 验收点没有可执行命令，建议写成 pnpm xxx（可自动跑）`);
+
+// 4. 改动范围 vs diff（范围按目录前缀匹配）
+const changed = execSync(`git diff --name-only ${base}...HEAD`, { encoding: 'utf8' })
+  .split('\n').map((l) => l.trim()).filter(Boolean);
+const outOfScope = changed.filter((f) => !scope.some((g) => f.startsWith(g)));
+if (outOfScope.length) failures.push(`改动超出契约范围：${outOfScope.join(', ')}`);
+
+// 5. 规模
+const additions = execSync(`git diff --numstat ${base}...HEAD`, { encoding: 'utf8' })
+  .split('\n').filter(Boolean)
+  .reduce((sum, l) => sum + parseInt(l.split('\t')[0] ?? '0', 10), 0);
+if (additions > 400) failures.push(`新增 ${additions} 行，超过 400 行，请拆分`);
+
+// 6. AI 标记（分组统计用）
+const headMsg = execSync(`git log -1 --pretty=%B HEAD`, { encoding: 'utf8' }).trim();
+if (!/AI-Assisted:\s*(comate|no)/i.test(headMsg))
+  console.log(`${WARN} 最近 commit 缺少 AI-Assisted 标记，质量分组统计会失真`);
+
+// 7. 报告 + 退出码
+console.log(`── 变更契约校验（base=${base}）──`);
+console.log(`${goal ? PASS : FAIL} 目标: ${goal.slice(0, 40) || '(缺失)'}`);
+console.log(`${scope.length ? PASS : FAIL} 范围: ${scope.join(', ')}`);
+console.log(`${reuse.length ? PASS : FAIL} 必须复用: ${reuse.join(' | ')}`);
+console.log(`${accept.length >= 2 ? PASS : FAIL} 验收点: ${accept.length} 条`);
+console.log(`${!outOfScope.length ? PASS : FAIL} 改动 ${changed.length} 个文件 / 新增 ${additions} 行`);
+if (failures.length) {
+  console.error('\n' + FAIL + ' 契约未通过：');
+  failures.forEach((f) => console.error('  - ' + f));
+  process.exit(1);
+}
+console.log('\n' + PASS + ' 契约校验通过，可以发起评审。');
+process.exit(0);
+```
+> 范围匹配用的是目录前缀 startsWith，不是 glob 通配。这是故意的——约定写清楚"范围写目录前缀"，比引入 minimatch 依赖换来一档表达能力划算，规则简单才不会被绕过。
+
+
+**第三步：接入点（两道）**
+
+- 本地 pre-push hook（.husky/pre-push 或 .git/hooks/pre-push）：
+``` sh
+#!/bin/sh
+[ -f .cr-contract.md ] || { echo "缺少 .cr-contract.md，先填变更契约"; exit 1; }
+pnpm contract:check --base origin/main || exit 1
+pnpm --filter @cs-agent/server typecheck || exit 1
+```
+
+- CI 流水线 stage：
+``` yml
+stages:
+  - contract
+  - quality
+contract:
+  script:
+    # CR/MR 描述由平台注入为 $CR_CONTRACT，然后：
+    - pnpm contract:check --base $CI_MERGE_TARGET
+quality:
+  script:
+    - pnpm install --frozen-lockfile
+    - pnpm --filter @cs-agent/server typecheck
+    - pnpm --filter @cs-agent/server test        # 13 个测试文件
+    - pnpm validate:happy-path                  # 全 mock 端到端 —— Agent 项目最有价值的验收点
+```
+package.json 补一行：
+```json 
+"contract:check": "tsx scripts/check-contract.ts"
+```
+
+
+
+
+
+
+
+
+
+
+

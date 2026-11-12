@@ -761,7 +761,7 @@ trade-ab-skill/
 
 
 
-微前端  node.js  ssr  监控  taro跨端   组件库  性能优化
+微前端  node.js  性能优化  ssr  监控  taro跨端   组件库 
 
 
 <!-- 
@@ -771,6 +771,7 @@ AI复习路径：
 /Users/zhouyuan17/code/.claude-sdd-frontend/技术分享：AI+前端Spec Coding工程规范设计与实践.md
 /Users/zhouyuan17/code/baidu-test-code/clone/ai/pi/ARCHITECTURE.md
 /Users/zhouyuan17/code/baidu-test-code/clone/ai/deepseek-harness/ARCHITECTURE_ANALYSIS_REPORT.md
+/Users/zhouyuan17/code/baidu-test-code/ai-agent/customer-service-agent/AI-CODE-QUALITY-PLAN.md
 
 
 其他：
